@@ -1,0 +1,9 @@
+Banco de Dados (Infra-AWS)
+Nome: partiu_db
+Url: development.canjyobgabmz.us-west-2.rds.amazonaws.com
+Porta: 3306
+JNDI: jdbc/turismo
+
+Usuario
+Login: partiu
+Senha: partiu

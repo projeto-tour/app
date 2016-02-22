@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Alterar Usuário</ui:define>
+
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="usuario" value="#{cadastroUsuarioBean.usuario}" />
+			<f:event listener="#{cadastroUsuarioBean.inicializar('A')}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h:form id="formUsuario">
+			<h1>Alterar Usuário</h1>
+
+			<h:panelGrid>
+				<p:messages autoUpdate="true" closable="true" for="formUsuario" />
+			</h:panelGrid>
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Cancelar" outcome="/Home" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:commandButton value="Alterar" id="botaoAlterar"
+						action="#{cadastroUsuarioBean.alterar}" update="@form" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="3" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="50" maxlength="50"
+					value="#{cadastroUsuarioBean.usuario.nome}" required="true"
+					requiredMessage="Campo de preenchimento obrigat&oacute;rio"
+					validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 50 caracteres">
+					<f:validateLength minimum="1" maximum="50" />
+				</p:inputText>
+				<p:message for="nome" />
+
+				<p:outputLabel value="Email" for="email" />
+				<p:inputText id="email" size="50" maxlength="45"
+					value="#{cadastroUsuarioBean.usuario.email}" required="true"
+					requiredMessage="Campo de preenchimento obrigat&oacute;rio"
+					validatorMessage="O email informado é inválido.">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+				<p:message for="email" />
+
+				<p:outputLabel value="Alias" for="alias" />
+				<p:inputText id="alias" size="50" maxlength="256"
+					value="#{cadastroUsuarioBean.usuario.alias}" required="true"
+					requiredMessage="Campo de preenchimento obrigat&oacute;rio"
+					validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 256 caracteres">
+					<f:validateLength minimum="1" maximum="256" />
+				</p:inputText>
+				<p:message for="alias" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:inputText id="senha" size="50" maxlength="80"
+					value="#{cadastroUsuarioBean.usuario.senha}" required="true"
+					requiredMessage="Campo de preenchimento obrigat&oacute;rio"
+					validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 80 caracteres">
+					<f:validateLength minimum="1" maximum="80" />
+				</p:inputText>
+				<p:message for="senha" />
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
