@@ -5,9 +5,9 @@
 
 	<persistence-unit name="TurismoPU" transaction-type="RESOURCE_LOCAL">
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://development.canjyobgabmz.us-west-2.rds.amazonaws.com:3306/partiu_db"/>
-			<property name="javax.persistence.jdbc.user" value="development"/>
-			<property name="javax.persistence.jdbc.password" value="development"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://partiu-db.czpy9u3mzzpv.us-west-2.rds.amazonaws.com:3306/partiu_db"/>
+			<property name="javax.persistence.jdbc.user" value="partiu_db"/>
+			<property name="javax.persistence.jdbc.password" value="partiu_db"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

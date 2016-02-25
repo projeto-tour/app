@@ -1,42 +1,25 @@
 package br.com.turismo.core.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.com.turismo.core.dao.GenericDAO;
 import br.com.turismo.core.model.TipoTransporte;
-import br.com.turismo.core.util.jpa.Transactional;
 
-public class TiposTransporte implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class TiposTransporte extends GenericDAO<TipoTransporte, Integer> {
 
 	@Inject
 	private EntityManager manager;
 
-	@Transactional
-    public void inserir(TipoTransporte entity) {
-		manager.persist(entity);
-    }
+	public TiposTransporte() {
+		super(TipoTransporte.class);
+	}
 
-	@Transactional
-    public TipoTransporte alterar(TipoTransporte entity) {
-		return manager.merge(entity);
-    }
-
-	@Transactional
-    public void remove(Integer id) {
-		manager.remove(find(id));
-    }
-
-    public TipoTransporte find(Integer id) 
-    {
-        return manager.find(TipoTransporte.class, id);
-    }
-
-    public List<TipoTransporte> findAll() {
-		return manager.createNamedQuery("TipoTransporte.findAll", TipoTransporte.class).getResultList();
-    }
+	public List<TipoTransporte> buscarPorDescricao(String descricao) {
+		return manager.createNamedQuery("TipoTransporte.findByDescricao", TipoTransporte.class)
+				.setParameter("descricao", descricao)
+				.getResultList();
+	}
 }

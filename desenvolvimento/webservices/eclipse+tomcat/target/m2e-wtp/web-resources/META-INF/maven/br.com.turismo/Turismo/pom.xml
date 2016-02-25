@@ -23,12 +23,19 @@
 
 		<!-- Weld - Implementação do CDI -->
 		<weld.version>2.2.10.Final</weld.version>
+		
 		<!-- Weld depende do Jandex -->
 		<jandex.version>1.2.3.Final</jandex.version>
 
 		<!-- Logging -->
 		<slf4j.version>1.7.12</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
+
+		<!-- Implementacao do Bean Validation -->
+		<hibernate.validator.version>5.2.1.Final</hibernate.validator.version>
+
+		<!-- Nucleo do Hibernate -->
+		<hibernate.core.version>5.0.1.Final</hibernate.core.version>
 
 		<!-- Hibernate / JPA -->
 		<hibernate.version>5.0.1.Final</hibernate.version>
@@ -111,6 +118,20 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+			<scope>${api.scope.compile}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.core.version}</version>
+			<scope>${api.scope.compile}</scope>
 		</dependency>
 
 		<dependency>

@@ -7,38 +7,46 @@ import javax.inject.Inject;
 
 import br.com.turismo.core.model.Usuario;
 import br.com.turismo.core.repository.Usuarios;
-import br.com.turismo.core.util.jpa.Transactional;
 
-public class UsuariosFacade implements Serializable
-{
+public class UsuariosFacade implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Usuarios usuarios;
-	
-	public boolean inserir(Usuario entity) {
-		usuarios.inserir(entity);
+
+	public boolean salvar(Usuario entity) {
+		usuarios.salvar(entity);
 		return true;
-    }
+	}
 
-	@Transactional
-    public Usuario alterar(Usuario entity) {
-		return usuarios.alterar(entity);
-    }
+	public Usuario atualizar(Usuario entity) {
+		return usuarios.atualizar(entity);
+	}
 
-	@Transactional
-    public boolean remove(Long id) {
-		usuarios.remove(id);
+	public boolean remover(Long id) {
+		usuarios.remover(id);
 		return true;
-    }
+	}
 
-    public Usuario find(Long id) 
-    {
-        return usuarios.find(id);
-    }
+	public Usuario buscarPorId(Long id) {
+		return usuarios.buscarPorId(id);
+	}
 
-    public List<Usuario> findAll() {
-		return usuarios.findAll();
-    }
-    
+	public List<Usuario> buscarTodos() {
+		return usuarios.buscarTodos();
+	}
+
+	public Usuario buscarPorEmail(String email) {
+		return usuarios.buscarPorEmail(email);
+	}
+
+	public Usuario buscarPorEmailSenha(String email, String senha) {
+		return usuarios.buscarPorEmailSenha(email, senha);
+	}
+
+	public Usuario buscarPorNome(String nome) {
+		return usuarios.buscarPorNome(nome);
+	}
+
 }

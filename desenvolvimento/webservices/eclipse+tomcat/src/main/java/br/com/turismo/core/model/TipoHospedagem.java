@@ -1,8 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.turismo.core.model;
 
 import java.io.Serializable;
-
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +16,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Wellington_Camargo
+ * @author paulkibe
  */
 @Entity
 @Table(name = "tipo_hospedagem")
-@NamedQueries({
-		@NamedQuery(name = "TipoHospedagem.findAll", query = "SELECT t FROM TipoHospedagem t"),
-		@NamedQuery(name = "TipoHospedagem.findById", query = "SELECT t FROM TipoHospedagem t WHERE t.id = :id"),
-		@NamedQuery(name = "TipoHospedagem.findByDescricao", query = "SELECT t FROM TipoHospedagem t WHERE t.descricao = :descricao") })
+@XmlRootElement
+@NamedQueries({ @NamedQuery(name = "TipoHospedagem.findByDescricao", query = "SELECT t FROM TipoHospedagem t WHERE t.descricao = :descricao") })
 public class TipoHospedagem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,20 +38,21 @@ public class TipoHospedagem implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 	@Basic(optional = false)
-	// @NotNull
-	// @Size(min = 1, max = 50)
 	@Column(name = "descricao")
 	private String descricao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoHospedagem")
+	private List<Hospedagem> hospedagemList;
 
 	public TipoHospedagem() {
 	}
 
-	public TipoHospedagem(Integer id) {
-		this.id = id;
+	public TipoHospedagem(String descricao) {
+		super();
+		this.descricao = descricao;
 	}
 
-	public TipoHospedagem(String descricao) {
-		this.descricao = descricao;
+	public TipoHospedagem(Integer id) {
+		this.id = id;
 	}
 
 	public TipoHospedagem(Integer id, String descricao) {
@@ -68,6 +76,15 @@ public class TipoHospedagem implements Serializable {
 		this.descricao = descricao;
 	}
 
+	@XmlTransient
+	public List<Hospedagem> getHospedagemList() {
+		return hospedagemList;
+	}
+
+	public void setHospedagemList(List<Hospedagem> hospedagemList) {
+		this.hospedagemList = hospedagemList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -77,14 +94,11 @@ public class TipoHospedagem implements Serializable {
 
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
 		if (!(object instanceof TipoHospedagem)) {
 			return false;
 		}
 		TipoHospedagem other = (TipoHospedagem) object;
-		if ((this.id == null && other.id != null)
-				|| (this.id != null && !this.id.equals(other.id))) {
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
 		return true;
@@ -92,7 +106,7 @@ public class TipoHospedagem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "br.ufscar.dc.partiuws.entities.TipoHospedagem[ id=" + id + " ]";
+		return "br.com.turismo.core.model.TipoHospedagem[ id=" + id + " ]";
 	}
 
 }

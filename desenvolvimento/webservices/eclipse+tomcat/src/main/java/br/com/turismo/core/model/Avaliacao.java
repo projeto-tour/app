@@ -1,8 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.turismo.core.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,14 +17,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author paulkibe
+ */
 @Entity
 @Table(name = "avaliacao")
-@NamedQueries({
-		@NamedQuery(name = "Avaliacao.findAll", query = "SELECT a FROM Avaliacao a"),
-		@NamedQuery(name = "Avaliacao.findById", query = "SELECT a FROM Avaliacao a WHERE a.id = :id"),
-		@NamedQuery(name = "Avaliacao.findByDescricao", query = "SELECT a FROM Avaliacao a WHERE a.descricao = :descricao") })
+@XmlRootElement
+@NamedQueries({ @NamedQuery(name = "Avaliacao.findByDescricao", query = "SELECT a FROM Avaliacao a WHERE a.descricao = :descricao") })
 public class Avaliacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,26 +38,28 @@ public class Avaliacao implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Long id;
-
 	@Basic(optional = false)
-	// @NotNull
 	@Column(name = "descricao")
 	private String descricao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "avaliacao")
+	private List<AvaliacaoUsuario> avaliacaoUsuarioList;
 
 	public Avaliacao() {
 	}
 
-	public Avaliacao(Long id) {
+	public Avaliacao(Long id, String descricao) {
+		super();
 		this.id = id;
+		this.descricao = descricao;
 	}
 
 	public Avaliacao(String descricao) {
+		super();
 		this.descricao = descricao;
 	}
 
-	public Avaliacao(Long id, String descricao) {
+	public Avaliacao(Long id) {
 		this.id = id;
-		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -64,6 +78,15 @@ public class Avaliacao implements Serializable {
 		this.descricao = descricao;
 	}
 
+	@XmlTransient
+	public List<AvaliacaoUsuario> getAvaliacaoUsuarioList() {
+		return avaliacaoUsuarioList;
+	}
+
+	public void setAvaliacaoUsuarioList(List<AvaliacaoUsuario> avaliacaoUsuarioList) {
+		this.avaliacaoUsuarioList = avaliacaoUsuarioList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -73,14 +96,11 @@ public class Avaliacao implements Serializable {
 
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
 		if (!(object instanceof Avaliacao)) {
 			return false;
 		}
 		Avaliacao other = (Avaliacao) object;
-		if ((this.id == null && other.id != null)
-				|| (this.id != null && !this.id.equals(other.id))) {
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
 		return true;
@@ -88,7 +108,7 @@ public class Avaliacao implements Serializable {
 
 	@Override
 	public String toString() {
-		return "br.ufscar.dc.partiuws.entities.Avaliacao[ id=" + id + " ]";
+		return "br.com.turismo.core.model.Avaliacao[ id=" + id + " ]";
 	}
 
 }

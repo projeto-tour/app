@@ -1,7 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.turismo.core.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,20 +16,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Wellington_Camargo
+ * @author paulkibe
  */
 @Entity
 @Table(name = "tipo_transporte")
-@NamedQueries({
-		@NamedQuery(name = "TipoTransporte.findAll", query = "SELECT t FROM TipoTransporte t"),
-		@NamedQuery(name = "TipoTransporte.findById", query = "SELECT t FROM TipoTransporte t WHERE t.id = :id"),
-		@NamedQuery(name = "TipoTransporte.findByDescricao", query = "SELECT t FROM TipoTransporte t WHERE t.descricao = :descricao") })
 @XmlRootElement
+@NamedQueries({ @NamedQuery(name = "TipoTransporte.findByDescricao", query = "SELECT t FROM TipoTransporte t WHERE t.descricao = :descricao") })
 public class TipoTransporte implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,20 +38,21 @@ public class TipoTransporte implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 	@Basic(optional = false)
-	// @NotNull
-	// @Size(min = 1, max = 50)
 	@Column(name = "descricao")
 	private String descricao;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoTransporte")
+	private List<Transporte> transporteList;
 
 	public TipoTransporte() {
 	}
 
-	public TipoTransporte(Integer id) {
-		this.id = id;
+	public TipoTransporte(String descricao) {
+		super();
+		this.descricao = descricao;
 	}
 
-	public TipoTransporte(String descricao) {
-		this.descricao = descricao;
+	public TipoTransporte(Integer id) {
+		this.id = id;
 	}
 
 	public TipoTransporte(Integer id, String descricao) {
@@ -69,6 +76,15 @@ public class TipoTransporte implements Serializable {
 		this.descricao = descricao;
 	}
 
+	@XmlTransient
+	public List<Transporte> getTransporteList() {
+		return transporteList;
+	}
+
+	public void setTransporteList(List<Transporte> transporteList) {
+		this.transporteList = transporteList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -78,14 +94,11 @@ public class TipoTransporte implements Serializable {
 
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
 		if (!(object instanceof TipoTransporte)) {
 			return false;
 		}
 		TipoTransporte other = (TipoTransporte) object;
-		if ((this.id == null && other.id != null)
-				|| (this.id != null && !this.id.equals(other.id))) {
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
 		return true;
@@ -93,7 +106,7 @@ public class TipoTransporte implements Serializable {
 
 	@Override
 	public String toString() {
-		return "br.ufscar.dc.partiuws.entities.TipoTransporte[ id=" + id + " ]";
+		return "br.com.turismo.core.model.TipoTransporte[ id=" + id + " ]";
 	}
 
 }

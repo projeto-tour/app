@@ -8,33 +8,36 @@ import javax.inject.Inject;
 import br.com.turismo.core.model.Avaliacao;
 import br.com.turismo.core.repository.Avaliacoes;
 
-public class AvaliacoesFacade implements Serializable
-{
+public class AvaliacoesFacade implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Avaliacoes avaliacoes;
-	
-	public boolean inserir(Avaliacao entity) {
-		avaliacoes.inserir(entity);
+
+	public boolean salvar(Avaliacao entity) {
+		avaliacoes.salvar(entity);
 		return true;
-    }
+	}
 
-    public Avaliacao alterar(Avaliacao entity) {
-		return avaliacoes.alterar(entity);
-    }
+	public Avaliacao atualizar(Avaliacao entity) {
+		return avaliacoes.atualizar(entity);
+	}
 
-    public boolean remove(Long id) {
-		avaliacoes.remove(id);
+	public boolean remover(Long id) {
+		avaliacoes.remover(id);
 		return true;
-    }
+	}
 
-    public Avaliacao find(Long id) 
-    {
-        return avaliacoes.find(id);
-    }
+	public Avaliacao buscarPorId(Long id) {
+		return avaliacoes.buscarPorId(id);
+	}
 
-    public List<Avaliacao> findAll() {
-		return avaliacoes.findAll();
-    }
+	public List<Avaliacao> buscarTodos() {
+		return avaliacoes.buscarTodos();
+	}
+
+	public List<Avaliacao> buscarPorDescricao(String descricao) {
+		return avaliacoes.buscarPorDescricao(descricao);
+	}
 }

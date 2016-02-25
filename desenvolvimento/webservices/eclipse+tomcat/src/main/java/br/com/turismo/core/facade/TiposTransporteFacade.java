@@ -8,33 +8,36 @@ import javax.inject.Inject;
 import br.com.turismo.core.model.TipoTransporte;
 import br.com.turismo.core.repository.TiposTransporte;
 
-public class TiposTransporteFacade implements Serializable
-{
+public class TiposTransporteFacade implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private TiposTransporte tiposTransporte;
-	
-	public boolean inserir(TipoTransporte entity) {
-		tiposTransporte.inserir(entity);
+
+	public boolean salvar(TipoTransporte entity) {
+		tiposTransporte.salvar(entity);
 		return true;
-    }
+	}
 
-    public TipoTransporte alterar(TipoTransporte entity) {
-		return tiposTransporte.alterar(entity);
-    }
+	public TipoTransporte atualizar(TipoTransporte entity) {
+		return tiposTransporte.atualizar(entity);
+	}
 
-    public boolean remove(Integer id) {
-		tiposTransporte.remove(id);
+	public boolean remover(Integer id) {
+		tiposTransporte.remover(id);
 		return true;
-    }
+	}
 
-    public TipoTransporte find(Integer id) 
-    {
-        return tiposTransporte.find(id);
-    }
+	public TipoTransporte buscarPorId(Integer id) {
+		return tiposTransporte.buscarPorId(id);
+	}
 
-    public List<TipoTransporte> findAll() {
-		return tiposTransporte.findAll();
-    }
+	public List<TipoTransporte> buscarTodos() {
+		return tiposTransporte.buscarTodos();
+	}
+
+	public List<TipoTransporte> buscarPorDescricao(String descricao) {
+		return tiposTransporte.buscarPorDescricao(descricao);
+	}
 }

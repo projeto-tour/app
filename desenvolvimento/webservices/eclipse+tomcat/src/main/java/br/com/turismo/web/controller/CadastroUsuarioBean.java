@@ -50,12 +50,12 @@ public class CadastroUsuarioBean implements Serializable {
 	}
 
 	private void recuperarUsuarios() {
-		this.todosUsuarios = usuarios.findAll();
+		this.todosUsuarios = usuarios.buscarTodos();
 	}
 
 	public String inserir() {
 		try {
-			usuarios.inserir(this.getUsuario());
+			usuarios.salvar(this.getUsuario());
 			this.recuperarUsuarios();
 			return "/usuario/ListarUsuarios";
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class CadastroUsuarioBean implements Serializable {
 
 	public String alterar() {
 		try {
-			usuarios.alterar(this.getUsuario());
+			usuarios.atualizar(this.getUsuario());
 			this.recuperarUsuarios();
 			return "/usuario/ListarUsuarios";
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class CadastroUsuarioBean implements Serializable {
 	}
 
 	public String excluir() {
-		usuarios.remove(this.getUsuario().getId());
+		usuarios.remover(this.getUsuario().getId());
 		this.recuperarUsuarios();
 		return "/usuario/ListarUsuarios";
 	}

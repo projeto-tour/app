@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.com.turismo.core.model.Usuario;
 import br.com.turismo.core.repository.Usuarios;
+import br.com.turismo.core.util.exceptions.NegocioException;
 import br.com.turismo.core.util.jpa.Transactional;
 
 public class UsuariosService implements Serializable {
@@ -15,13 +16,9 @@ public class UsuariosService implements Serializable {
 	@Inject
 	private Usuarios usuarios;
 
-	public Usuario controleacesso(String email, String senha) {
-		return usuarios.pesquisarPorEmailSenha(email, senha);
-	}
-
 	@Transactional
 	public Usuario cadastrar(Usuario usuario) {
-		Usuario usuarioExistente = usuarios.pesquisarPorEmail(usuario
+		Usuario usuarioExistente = usuarios.buscarPorEmail(usuario
 				.getEmail());
 
 		if (usuarioExistente != null && !usuarioExistente.equals(usuario)) {
@@ -29,7 +26,7 @@ public class UsuariosService implements Serializable {
 					"Já existe um usuario com o email informado.");
 		}
 
-		return usuarios.alterar(usuario);
+		return usuarios.atualizar(usuario);
 	}
 
 }

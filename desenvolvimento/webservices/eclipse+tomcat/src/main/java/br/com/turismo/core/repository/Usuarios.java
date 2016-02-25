@@ -1,61 +1,45 @@
 package br.com.turismo.core.repository;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import br.com.turismo.core.dao.GenericDAO;
 import br.com.turismo.core.model.Usuario;
-import br.com.turismo.core.util.jpa.Transactional;
 
-public class Usuarios implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Usuarios extends GenericDAO<Usuario, Long> {
 
 	@Inject
 	private EntityManager manager;
 
-	@Transactional
-	public void inserir(Usuario entity) {
-		manager.persist(entity);
+	public Usuarios() {
+		super(Usuario.class);
 	}
 
-	@Transactional
-	public Usuario alterar(Usuario entity) {
-		return manager.merge(entity);
-	}
-
-	@Transactional
-	public void remove(Long id) {
-		manager.remove(find(id));
-	}
-
-	public Usuario find(Long id) {
-		return manager.find(Usuario.class, id);
-	}
-
-	public List<Usuario> findAll() {
-		return manager.createNamedQuery("Usuario.findAll", Usuario.class)
-				.getResultList();
-	}
-
-	public Usuario pesquisarPorEmail(String email) {
+	public Usuario buscarPorEmail(String email) {
 		try {
-			return manager
-					.createNamedQuery("Usuario.findByEmail", Usuario.class)
-					.setParameter("email", email).getSingleResult();
+			return manager.createNamedQuery("Usuario.findByEmail", Usuario.class)
+					.setParameter("email", email)
+					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
 	}
 
-	public Usuario pesquisarPorEmailSenha(String email, String senha) {
+	public Usuario buscarPorEmailSenha(String email, String senha) {
 		try {
-			return manager
-					.createNamedQuery("Usuario.findByLogin", Usuario.class)
-					.setParameter("email", email).setParameter("senha", senha)
+			return manager.createNamedQuery("Usuario.findByEmailSenha", Usuario.class)
+					.setParameter("email", email)
+					.setParameter("senha", senha).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	public Usuario buscarPorNome(String nome) {
+		try {
+			return manager.createNamedQuery("Usuario.findByNome", Usuario.class)
+					.setParameter("nome", nome)
 					.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
