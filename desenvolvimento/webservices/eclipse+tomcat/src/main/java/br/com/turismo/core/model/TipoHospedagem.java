@@ -7,6 +7,7 @@ package br.com.turismo.core.model;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,16 +19,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author paulkibe
- */
 @Entity
 @Table(name = "tipo_hospedagem")
-@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "TipoHospedagem.findByDescricao", query = "SELECT t FROM TipoHospedagem t WHERE t.descricao = :descricao") })
 public class TipoHospedagem implements Serializable {
 

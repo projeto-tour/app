@@ -19,16 +19,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author paulkibe
- */
 @Entity
 @Table(name = "tipo_passeio")
-@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "TipoPasseio.findAll", query = "SELECT t FROM TipoPasseio t"),
 		@NamedQuery(name = "TipoPasseio.findById", query = "SELECT t FROM TipoPasseio t WHERE t.id = :id"),
 		@NamedQuery(name = "TipoPasseio.findByDescricao", query = "SELECT t FROM TipoPasseio t WHERE t.descricao = :descricao") })

@@ -6,6 +6,7 @@
 package br.com.turismo.core.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,15 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author paulkibe
- */
 @Entity
 @Table(name = "evento")
-@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
 		@NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"),
 		@NamedQuery(name = "Evento.findByPontoInteresseId", query = "SELECT e FROM Evento e WHERE e.pontoInteresse.id = :pontoInteresseId"),

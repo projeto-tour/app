@@ -8,6 +8,7 @@ package br.com.turismo.core.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,16 +24,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author paulkibe
- */
 @Entity
 @Table(name = "percurso")
-@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Percurso.findAll", query = "SELECT p FROM Percurso p"),
 		@NamedQuery(name = "Percurso.findById", query = "SELECT p FROM Percurso p WHERE p.id = :id"),
 		@NamedQuery(name = "Percurso.findByAgendaId", query = "SELECT p FROM Percurso p WHERE p.agenda.id = :agendaId"),

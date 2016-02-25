@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.turismo.core.enums.EnumTipoOperacao;
+import br.com.turismo.core.facade.UsuariosFacade;
 import br.com.turismo.core.model.Usuario;
-import br.com.turismo.core.repository.Usuarios;
 
 @Named
 @ViewScoped
@@ -18,7 +18,7 @@ public class CadastroUsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private Usuarios usuarios;
+	private UsuariosFacade usuariosFacade;
 
 	private Usuario usuario = new Usuario();
 
@@ -50,12 +50,12 @@ public class CadastroUsuarioBean implements Serializable {
 	}
 
 	private void recuperarUsuarios() {
-		this.todosUsuarios = usuarios.buscarTodos();
+		this.todosUsuarios = usuariosFacade.buscarTodos();
 	}
 
 	public String inserir() {
 		try {
-			usuarios.salvar(this.getUsuario());
+			usuariosFacade.salvar(this.getUsuario());
 			this.recuperarUsuarios();
 			return "/usuario/ListarUsuarios";
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class CadastroUsuarioBean implements Serializable {
 
 	public String alterar() {
 		try {
-			usuarios.atualizar(this.getUsuario());
+			usuariosFacade.atualizar(this.getUsuario());
 			this.recuperarUsuarios();
 			return "/usuario/ListarUsuarios";
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class CadastroUsuarioBean implements Serializable {
 	}
 
 	public String excluir() {
-		usuarios.remover(this.getUsuario().getId());
+		usuariosFacade.remover(this.getUsuario().getId());
 		this.recuperarUsuarios();
 		return "/usuario/ListarUsuarios";
 	}

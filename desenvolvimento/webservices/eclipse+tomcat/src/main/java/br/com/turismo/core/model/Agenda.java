@@ -24,16 +24,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author paulkibe
- */
 @Entity
 @Table(name = "agenda")
-@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Agenda.findAll", query = "SELECT a FROM Agenda a"),
 		@NamedQuery(name = "Agenda.findById", query = "SELECT a FROM Agenda a WHERE a.id = :id"),
 		@NamedQuery(name = "Agenda.findByUsuarioId", query = "SELECT a FROM Agenda a WHERE a.usuario.id = :usuarioId"),

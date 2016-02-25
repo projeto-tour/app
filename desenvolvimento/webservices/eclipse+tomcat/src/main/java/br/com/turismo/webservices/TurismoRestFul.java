@@ -10,7 +10,7 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 
 	@Override
 	public Response aplicacao(String token) {
-		return aplicacao(token);
+		return super.usuarioRestFul.aplicacao(token);
 	}
 
 	// -- USUARIO
