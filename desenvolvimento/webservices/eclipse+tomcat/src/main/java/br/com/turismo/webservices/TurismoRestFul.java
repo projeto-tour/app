@@ -55,7 +55,7 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 		return super.usuarioRestFul.buscarUsuarioPorNome(token, nome);
 	}
 
-	// -- TIPOTRANSPORTE
+	// -- TIPOAVALIACAO
 
 	@Override
 	public Response salvarAvaliacao(String token, String descricao) {
@@ -87,7 +87,7 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 		return super.avaliacaoRestFul.buscarAvaliacaoPorDescricao(token, descricao);
 	}
 
-	// -- TIPOTRANSPORTE
+	// -- TIPOHOSPEDAGEM
 
 	@Override
 	public Response salvarTipoHospedagem(String token, String descricao) {

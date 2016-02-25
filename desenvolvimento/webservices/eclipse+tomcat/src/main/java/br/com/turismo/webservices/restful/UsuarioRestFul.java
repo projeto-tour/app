@@ -15,7 +15,7 @@ public class UsuarioRestFul extends ModelRestFulAbstract implements Serializable
 
 	@Inject
 	private UsuariosFacade usuariosFacade;
-
+	
 	public Response salvarUsuario(String token, String nome, String email, String senha, String alias) {
 		try {
 			return getResponse(usuariosFacade.salvar(new Usuario(null, nome, email, senha, alias)));
