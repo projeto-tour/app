@@ -40,6 +40,9 @@
 		<!-- Hibernate / JPA -->
 		<hibernate.version>5.0.1.Final</hibernate.version>
 
+		<!-- Driver JDBC do MySQL -->
+		<mysql.connector.java.version>5.1.38</mysql.connector.java.version>
+		
 		<!-- JAX-RS Jersey -->
 		<jersey.version>1.19</jersey.version>
 		
@@ -131,6 +134,14 @@
 			<scope>${api.scope.compile}</scope>
 		</dependency>
 		 -->
+		 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.java.version}</version>
+			<scope>${api.scope.compile}</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
