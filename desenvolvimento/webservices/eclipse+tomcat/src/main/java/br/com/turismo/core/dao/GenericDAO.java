@@ -17,7 +17,7 @@ import br.com.turismo.core.util.jpa.Transactional;
 public abstract class GenericDAO<E extends Serializable, I> implements GenericDAOInterface<E, I> {
 	
 	@Inject
-	private EntityManager manager;
+	protected EntityManager manager;
 
 	private Class<E> entityClass;
 
@@ -84,4 +84,15 @@ public abstract class GenericDAO<E extends Serializable, I> implements GenericDA
 		return manager.createQuery(query).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean validarDuplicidade(@Valid E entity) throws NegocioException {
+		
+		boolean valido = false;
+		
+		List<E> entities = (List<E>) manager.createNamedQuery(entity.getClass().getSimpleName() + ".isDuplicate");
+		
+		
+		return valido;
+	}
 }

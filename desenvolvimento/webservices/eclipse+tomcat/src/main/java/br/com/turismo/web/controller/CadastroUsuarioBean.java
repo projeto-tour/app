@@ -7,9 +7,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.turismo.core.dao.facade.UsuariosDAOFacade;
+import br.com.turismo.core.entities.Usuario;
 import br.com.turismo.core.enums.EnumTipoOperacao;
-import br.com.turismo.core.facade.UsuariosFacade;
-import br.com.turismo.core.model.Usuario;
 
 @Named
 @ViewScoped
@@ -18,7 +18,7 @@ public class CadastroUsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private UsuariosFacade usuariosFacade;
+	private UsuariosDAOFacade usuariosFacade;
 
 	private Usuario usuario = new Usuario();
 

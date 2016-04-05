@@ -19,57 +19,57 @@ public interface TurismoRestFulInterface {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response aplicacao(@PathParam("token") String token);
 
-	@GET
-	@Path("usuario/salvar/{token}/{nome}/{email}/{senha}/{alias}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response salvarUsuario(@PathParam("token") String token, @PathParam("nome") String nome,
-			@PathParam("email") String email, @PathParam("senha") String senha, @PathParam("alias") String alias);
-
-	@GET
-	@Path("usuario/atualizar/{token}/{id}/{nome}/{email}/{senha}/{alias}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizarUsuario(@PathParam("token") String token, @PathParam("id") Long id,
-			@PathParam("nome") String nome, @PathParam("email") String email, @PathParam("senha") String senha,
-			@PathParam("alias") String alias);
-
-	@GET
-	@Path("usuario/remover/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removerUsuario(@PathParam("token") String token, @PathParam("id") Long id);
-
-	@GET
-	@Path("usuario/buscarPorId/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarUsuarioPorId(@PathParam("token") String token, @PathParam("id") Long id);
-
-	@GET
-	@Path("usuario/buscar/{token}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarUsuarioTodos(@PathParam("token") String token);
-
-	@GET
-	@Path("usuario/buscarPorEmailSenha/{token}/{email}/{senha}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarUsuarioPorEmailSenha(@PathParam("token") String token, @PathParam("email") String email,
-			@PathParam("senha") String senha);
-
-	@GET
-	@Path("usuario/buscarPorEmail/{token}/{email}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarUsuarioPorEmail(@PathParam("token") String token, @PathParam("email") String email);
-
-	@GET
-	@Path("usuario/buscarPorNome/{token}/{nome}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarUsuarioPorNome(@PathParam("token") String token, @PathParam("nome") String nome);
+//	@GET
+//	@Path("usuario/salvar/{token}/{nome}/{email}/{senha}/{alias}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response salvarUsuario(@PathParam("token") String token, @PathParam("nome") String nome,
+//			@PathParam("email") String email, @PathParam("senha") String senha, @PathParam("alias") String alias);
+//
+//	@GET
+//	@Path("usuario/atualizar/{token}/{id}/{nome}/{email}/{senha}/{alias}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response atualizarUsuario(@PathParam("token") String token, @PathParam("id") Long id,
+//			@PathParam("nome") String nome, @PathParam("email") String email, @PathParam("senha") String senha,
+//			@PathParam("alias") String alias);
+//
+//	@GET
+//	@Path("usuario/remover/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response removerUsuario(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("usuario/buscarPorId/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarUsuarioPorId(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("usuario/buscar/{token}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarUsuarioTodos(@PathParam("token") String token);
+//
+//	@GET
+//	@Path("usuario/buscarPorEmailSenha/{token}/{email}/{senha}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarUsuarioPorEmailSenha(@PathParam("token") String token, @PathParam("email") String email,
+//			@PathParam("senha") String senha);
+//
+//	@GET
+//	@Path("usuario/buscarPorEmail/{token}/{email}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarUsuarioPorEmail(@PathParam("token") String token, @PathParam("email") String email);
+//
+//	@GET
+//	@Path("usuario/buscarPorNome/{token}/{nome}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarUsuarioPorNome(@PathParam("token") String token, @PathParam("nome") String nome);
 
 	// -- AVALIACAO
 
@@ -109,46 +109,6 @@ public interface TurismoRestFulInterface {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarAvaliacaoPorDescricao(@PathParam("token") String token,
-			@PathParam("descricao") String descricao);
-
-	// -- TIPOHOSPEDAGEM
-
-	@GET
-	@Path("tipoHospedagem/salvar/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response salvarTipoHospedagem(@PathParam("token") String token, @PathParam("descricao") String descricao);
-
-	@GET
-	@Path("tipoHospedagem/atualizar/{token}/{id}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizarTipoHospedagem(@PathParam("token") String token, @PathParam("id") Integer id,
-			@PathParam("descricao") String descricao);
-
-	@GET
-	@Path("tipoHospedagem/remover/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removerTipoHospedagem(@PathParam("token") String token, @PathParam("id") Integer id);
-
-	@GET
-	@Path("tipoHospedagem/buscarPorId/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoHospedagemPorId(@PathParam("token") String token, @PathParam("id") Integer id);
-
-	@GET
-	@Path("tipoHospedagem/buscar/{token}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoHospedagemTodos(@PathParam("token") String token);
-
-	@GET
-	@Path("tipoHospedagem/buscarPorDescricao/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoHospedagemPorDescricao(@PathParam("token") String token,
 			@PathParam("descricao") String descricao);
 
 	// -- TIPOTRANSPORTE

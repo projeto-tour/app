@@ -6,19 +6,19 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import br.com.turismo.core.model.Usuario;
-import br.com.turismo.core.repository.Usuarios;
+import br.com.turismo.core.dao.UsuarioDAO;
+import br.com.turismo.core.entities.Usuario;
 import br.com.turismo.core.utils.cdi.CDIServiceLocator;
 
 @FacesConverter(forClass = Usuario.class)
 public class UsuarioConverter implements Converter {
 
 	@Inject
-	private Usuarios usuarios;
+	private UsuarioDAO usuarios;
 
 	public UsuarioConverter() {
 		if (usuarios == null) {
-			usuarios = CDIServiceLocator.getBean(Usuarios.class);
+			usuarios = CDIServiceLocator.getBean(UsuarioDAO.class);
 		}
 	}
 

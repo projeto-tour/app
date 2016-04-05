@@ -15,45 +15,45 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 
 	// -- USUARIO
 
-	@Override
-	public Response salvarUsuario(String token, String nome, String email, String senha, String alias) {
-		return super.usuarioRestFul.salvarUsuario(token, nome, email, senha, alias);
-	}
-
-	@Override
-	public Response atualizarUsuario(String token, Long id, String nome, String email, String senha, String alias) {
-		return super.usuarioRestFul.atualizarUsuario(token, id, nome, email, senha, alias);
-	}
-
-	@Override
-	public Response removerUsuario(String token, Long id) {
-		return super.usuarioRestFul.removerUsuario(token, id);
-	}
-
-	@Override
-	public Response buscarUsuarioPorEmailSenha(String token, String email, String senha) {
-		return super.usuarioRestFul.buscarUsuarioPorEmailSenha(token, email, senha);
-	}
-
-	@Override
-	public Response buscarUsuarioPorId(String token, Long id) {
-		return super.usuarioRestFul.buscarUsuarioPorId(token, id);
-	}
-
-	@Override
-	public Response buscarUsuarioTodos(String token) {
-		return super.usuarioRestFul.buscarUsuarioTodos(token);
-	}
-
-	@Override
-	public Response buscarUsuarioPorEmail(String token, String email) {
-		return super.usuarioRestFul.buscarUsuarioPorEmail(token, email);
-	}
-
-	@Override
-	public Response buscarUsuarioPorNome(String token, String nome) {
-		return super.usuarioRestFul.buscarUsuarioPorNome(token, nome);
-	}
+//	@Override
+//	public Response salvarUsuario(String token, String nome, String email, String senha, String alias) {
+//		return super.usuarioRestFul.salvarUsuario(token, nome, email, senha, alias);
+//	}
+//
+//	@Override
+//	public Response atualizarUsuario(String token, Long id, String nome, String email, String senha, String alias) {
+//		return super.usuarioRestFul.atualizarUsuario(token, id, nome, email, senha, alias);
+//	}
+//
+//	@Override
+//	public Response removerUsuario(String token, Long id) {
+//		return super.usuarioRestFul.removerUsuario(token, id);
+//	}
+//
+//	@Override
+//	public Response buscarUsuarioPorEmailSenha(String token, String email, String senha) {
+//		return super.usuarioRestFul.buscarUsuarioPorEmailSenha(token, email, senha);
+//	}
+//
+//	@Override
+//	public Response buscarUsuarioPorId(String token, Long id) {
+//		return super.usuarioRestFul.buscarUsuarioPorId(token, id);
+//	}
+//
+//	@Override
+//	public Response buscarUsuarioTodos(String token) {
+//		return super.usuarioRestFul.buscarUsuarioTodos(token);
+//	}
+//
+//	@Override
+//	public Response buscarUsuarioPorEmail(String token, String email) {
+//		return super.usuarioRestFul.buscarUsuarioPorEmail(token, email);
+//	}
+//
+//	@Override
+//	public Response buscarUsuarioPorNome(String token, String nome) {
+//		return super.usuarioRestFul.buscarUsuarioPorNome(token, nome);
+//	}
 
 	// -- TIPOAVALIACAO
 
@@ -85,38 +85,6 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 	@Override
 	public Response buscarAvaliacaoPorDescricao(String token, String descricao) {
 		return super.avaliacaoRestFul.buscarAvaliacaoPorDescricao(token, descricao);
-	}
-
-	// -- TIPOHOSPEDAGEM
-
-	@Override
-	public Response salvarTipoHospedagem(String token, String descricao) {
-		return super.tipoHospedagemRestFul.salvarTipoHospedagem(token, descricao);
-	}
-
-	@Override
-	public Response atualizarTipoHospedagem(String token, Integer id, String descricao) {
-		return super.tipoHospedagemRestFul.atualizarTipoHospedagem(token, id, descricao);
-	}
-
-	@Override
-	public Response removerTipoHospedagem(String token, Integer id) {
-		return super.tipoHospedagemRestFul.removerTipoHospedagem(token, id);
-	}
-
-	@Override
-	public Response buscarTipoHospedagemPorId(String token, Integer id) {
-		return super.tipoHospedagemRestFul.buscarTipoHospedagemPorId(token, id);
-	}
-
-	@Override
-	public Response buscarTipoHospedagemTodos(String token) {
-		return super.tipoHospedagemRestFul.buscarTipoHospedagemTodos(token);
-	}
-
-	@Override
-	public Response buscarTipoHospedagemPorDescricao(String token, String descricao) {
-		return super.tipoHospedagemRestFul.buscarTipoHospedagemPorDescricao(token, descricao);
 	}
 
 	// -- TIPOTRANSPORTE

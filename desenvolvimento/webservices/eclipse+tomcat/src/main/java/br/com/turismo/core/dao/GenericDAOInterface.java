@@ -18,4 +18,7 @@ public interface GenericDAOInterface<E extends Serializable, I> {
 	List<E> buscarTodos();
 
 	E buscarPorId(I id);
+	
+	boolean validarDuplicidade(@Valid E entity) throws NegocioException;
+	
 }

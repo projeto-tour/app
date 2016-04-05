@@ -6,8 +6,9 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import br.com.turismo.core.facade.TiposTransporteFacade;
-import br.com.turismo.core.model.TipoTransporte;
+import br.com.turismo.core.dao.facade.TiposTransporteFacade;
+import br.com.turismo.core.entities.TipoTransporte;
+import br.com.turismo.core.util.geral.JsonUtils;
 
 public class TipoTransporteRestFul extends ModelRestFulAbstract implements Serializable {
 
@@ -20,7 +21,7 @@ public class TipoTransporteRestFul extends ModelRestFulAbstract implements Seria
 		try {
 			return getResponse(tiposTransporteFacade.salvar(new TipoTransporte(descricao)));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -28,7 +29,7 @@ public class TipoTransporteRestFul extends ModelRestFulAbstract implements Seria
 		try {
 			return getResponse(tiposTransporteFacade.atualizar(new TipoTransporte(id, descricao)));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -44,7 +45,7 @@ public class TipoTransporteRestFul extends ModelRestFulAbstract implements Seria
 		try {
 			return getResponse(tiposTransporteFacade.buscarPorId(id));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -52,7 +53,7 @@ public class TipoTransporteRestFul extends ModelRestFulAbstract implements Seria
 		try {
 			return getResponse(tiposTransporteFacade.buscarTodos());
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -60,7 +61,7 @@ public class TipoTransporteRestFul extends ModelRestFulAbstract implements Seria
 		try {
 			return getResponse(tiposTransporteFacade.buscarPorDescricao(descricao));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 

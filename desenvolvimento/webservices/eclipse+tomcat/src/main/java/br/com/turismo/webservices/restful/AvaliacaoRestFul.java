@@ -6,8 +6,9 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import br.com.turismo.core.facade.AvaliacoesFacade;
-import br.com.turismo.core.model.Avaliacao;
+import br.com.turismo.core.dao.facade.AvaliacoesFacade;
+import br.com.turismo.core.entities.Avaliacao;
+import br.com.turismo.core.util.geral.JsonUtils;
 
 public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializable {
 
@@ -20,7 +21,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.salvar(new Avaliacao(descricao)));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -28,7 +29,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.atualizar(new Avaliacao(id, descricao)));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -36,7 +37,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.remover(id));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -44,7 +45,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.buscarPorId(id));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -52,7 +53,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.buscarTodos());
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
@@ -60,7 +61,7 @@ public class AvaliacaoRestFul extends ModelRestFulAbstract implements Serializab
 		try {
 			return getResponse(avaliacoesFacade.buscarPorDescricao(descricao));
 		} catch (Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(toJsonString(e)).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(JsonUtils.toJson(e)).build();
 		}
 	}
 
