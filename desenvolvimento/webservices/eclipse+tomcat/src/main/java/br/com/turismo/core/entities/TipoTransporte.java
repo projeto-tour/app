@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tipo_transporte")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "TipoTransporte.findAll", query = "SELECT t FROM TipoTransporte t"),
-		@NamedQuery(name = "TipoTransporte.findById", query = "SELECT t FROM TipoTransporte t WHERE t.id = :id"),
-		@NamedQuery(name = "TipoTransporte.findByDescricao", query = "SELECT t FROM TipoTransporte t WHERE t.descricao = :descricao") })
+				@NamedQuery(name = "TipoTransporte.findById", query = "SELECT t FROM TipoTransporte t WHERE t.id = :id"),
+				@NamedQuery(name = "TipoTransporte.findByDescricao", query = "SELECT t FROM TipoTransporte t WHERE t.descricao = :descricao") })
 public class TipoTransporte implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,12 +30,10 @@ public class TipoTransporte implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 	@Basic(optional = false)
 	@Column(name = "descricao")
 	private String descricao;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoTransporte")
-	private List<Transporte> transportes;
 
 	public TipoTransporte() {
 	}
@@ -44,25 +42,20 @@ public class TipoTransporte implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	public TipoTransporte(Integer id) {
+	public TipoTransporte(Long id) {
 		this.id = id;
 	}
 
-	public TipoTransporte(Integer id, String descricao) {
+	public TipoTransporte(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
 	}
 
-	public TipoTransporte(String descricao, List<Transporte> transportes){
-		this.descricao = descricao;
-		this.transportes = transportes;
-	}
-	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -72,18 +65,6 @@ public class TipoTransporte implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	@XmlTransient
-	public List<Transporte> getTransportes() {
-		if (transportes == null) {
-			transportes = new ArrayList<>();
-		}
-		return transportes;
-	}
-
-	public void setTransportes(List<Transporte> transportes) {
-		this.transportes = transportes;
 	}
 
 	@Override

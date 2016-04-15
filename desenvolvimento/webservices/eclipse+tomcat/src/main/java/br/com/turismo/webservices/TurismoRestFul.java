@@ -89,23 +89,23 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 
 	// -- TIPOTRANSPORTE
 
-	@Override
+/*	@Override
 	public Response salvarTipoTransporte(String token, String descricao) {
 		return super.tipoTransporteRestFul.salvarTipoTransporte(token, descricao);
 	}
 
 	@Override
-	public Response atualizarTipoTransporte(String token, Integer id, String descricao) {
+	public Response atualizarTipoTransporte(String token, Long id, String descricao) {
 		return super.tipoTransporteRestFul.atualizarTipoTransporte(token, id, descricao);
 	}
 
 	@Override
-	public Response removerTipoTransporte(String token, Integer id) {
+	public Response removerTipoTransporte(String token, Long id) {
 		return super.tipoTransporteRestFul.removerTipoTransporte(token, id);
 	}
 
 	@Override
-	public Response buscarTipoTransportePorId(String token, Integer id) {
+	public Response buscarTipoTransportePorId(String token, Long id) {
 		return super.tipoTransporteRestFul.buscarTipoTransportePorId(token, id);
 	}
 
@@ -117,6 +117,6 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 	@Override
 	public Response buscarTipoTransportePorDescricao(String token, String descricao) {
 		return super.tipoTransporteRestFul.buscarTipoTransportePorDescricao(token, descricao);
-	}
+	}*/
 
 }

@@ -113,42 +113,42 @@ public interface TurismoRestFulInterface {
 
 	// -- TIPOTRANSPORTE
 
-	@GET
-	@Path("tipoTransporte/salvar/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response salvarTipoTransporte(@PathParam("token") String token, @PathParam("descricao") String descricao);
-
-	@GET
-	@Path("tipoTransporte/atualizar/{token}/{id}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizarTipoTransporte(@PathParam("token") String token, @PathParam("id") Integer id,
-			@PathParam("descricao") String descricao);
-
-	@GET
-	@Path("tipoTransporte/remover/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removerTipoTransporte(@PathParam("token") String token, @PathParam("id") Integer id);
-
-	@GET
-	@Path("tipoTransporte/buscarPorId/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoTransportePorId(@PathParam("token") String token, @PathParam("id") Integer id);
-
-	@GET
-	@Path("tipoTransporte/buscar/{token}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoTransporteTodos(@PathParam("token") String token);
-
-	@GET
-	@Path("tipoTransporte/buscarPorDescricao/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarTipoTransportePorDescricao(@PathParam("token") String token,
-			@PathParam("descricao") String descricao);
+//	@GET
+//	@Path("tipoTransporte/salvar/{token}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response salvarTipoTransporte(@PathParam("token") String token, @PathParam("descricao") String descricao);
+//
+//	@GET
+//	@Path("tipoTransporte/atualizar/{token}/{id}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response atualizarTipoTransporte(@PathParam("token") String token, @PathParam("id") Long id,
+//			@PathParam("descricao") String descricao);
+//
+//	@GET
+//	@Path("tipoTransporte/remover/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response removerTipoTransporte(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("tipoTransporte/buscarPorId/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarTipoTransportePorId(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("tipoTransporte/buscar/{token}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarTipoTransporteTodos(@PathParam("token") String token);
+//
+//	@GET
+//	@Path("tipoTransporte/buscarPorDescricao/{token}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarTipoTransportePorDescricao(@PathParam("token") String token,
+//			@PathParam("descricao") String descricao);
 
 }

@@ -1,29 +1,23 @@
 package br.com.turismo.core.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "transporte")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Transporte.findAll", query = "SELECT t FROM Transporte t"),
 		@NamedQuery(name = "Transporte.findById", query = "SELECT t FROM Transporte t WHERE t.id = :id"),
+		@NamedQuery(name = "Transporte.findByTipoTransporte", query = "SELECT t FROM Transporte t WHERE t.idTipoTransporte = :idTipoTransporte"),
 		@NamedQuery(name = "Transporte.findByDescricao", query = "SELECT t FROM Transporte t WHERE t.descricao = :descricao") })
 public class Transporte implements Serializable {
 
@@ -33,14 +27,14 @@ public class Transporte implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Long id;
+	
 	@Basic(optional = false)
 	@Column(name = "descricao")
 	private String descricao;
-	@JoinColumn(name = "id_tipo_transporte", referencedColumnName = "id")
-	@ManyToOne(optional = false)
-	private TipoTransporte tipoTransporte;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transporte")
-	private List<Rota> rotas;
+	
+	@Basic(optional = false)
+	@Column(name = "id_tipo_transporte")
+	private Long idTipoTransporte;
 
 	public Transporte() {
 	}
@@ -49,8 +43,19 @@ public class Transporte implements Serializable {
 		this.id = id;
 	}
 
-	public Transporte(Long id, String descricao) {
+	
+	public Transporte(Long idTipoTransporte, String descricao) {
+		super();
+		this.descricao = descricao;
+		this.idTipoTransporte = idTipoTransporte;
+	}
+	
+	
+
+	public Transporte(Long id, Long idTipoTransporte, String descricao) {
+		super();
 		this.id = id;
+		this.idTipoTransporte = idTipoTransporte;
 		this.descricao = descricao;
 	}
 
@@ -70,24 +75,12 @@ public class Transporte implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public TipoTransporte getTipoTransporte() {
-		return tipoTransporte;
+	public Long getIdTipoTransporte() {
+		return idTipoTransporte;
 	}
 
-	public void setTipoTransporte(TipoTransporte tipoTransporte) {
-		this.tipoTransporte = tipoTransporte;
-	}
-
-	@XmlTransient
-	public List<Rota> getRotas() {
-		if (rotas == null) {
-			rotas = new ArrayList<>();
-		}
-		return rotas;
-	}
-
-	public void setRotas(List<Rota> rotas) {
-		this.rotas = rotas;
+	public void setIdTipoTransporte(Long idTipoTransporte) {
+		this.idTipoTransporte = idTipoTransporte;
 	}
 
 	@Override

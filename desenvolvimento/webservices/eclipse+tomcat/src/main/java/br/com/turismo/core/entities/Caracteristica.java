@@ -28,17 +28,21 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Caracteristica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Long id;
+	
 	@Basic(optional = false)
 	@Column(name = "descricao")
 	private String descricao;
+	
 	@JoinColumn(name = "tipo_de_dados_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private TipoDeDados tipoDeDado;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "caracteristicaTipoPontoInteresse")
 	private List<CaracteristicaTipoPontoInteresse> caracteristicasTipoPontoInteresse;
 

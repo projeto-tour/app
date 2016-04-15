@@ -30,14 +30,18 @@ public class CaracteristicaTipoPontoInteresse implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Long id;
+	
 	@Basic(optional = false)
 	@Column(name = "obrigatorio")
 	private boolean obrigatorio;
+	
 	@Column(name = "valor")
 	private String valor;
+	
 	@JoinColumn(name = "caracteristica_tipo_ponto_interesse_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private Caracteristica caracteristicaTipoPontoInteresse;
+	
 	@JoinColumn(name = "tipo_ponto_interesse_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private TipoPontoInteresse tipoPontoInteresse;
