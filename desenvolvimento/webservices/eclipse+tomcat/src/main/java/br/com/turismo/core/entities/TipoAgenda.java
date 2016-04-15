@@ -29,7 +29,7 @@ public class TipoAgenda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 	@Basic(optional = false)
 	@Column(name = "descricao")
 	private String descricao;
@@ -39,7 +39,7 @@ public class TipoAgenda implements Serializable {
 	public TipoAgenda() {
 	}
 
-	public TipoAgenda(Integer id) {
+	public TipoAgenda(Long id) {
 		this.id = id;
 	}
 
@@ -47,16 +47,16 @@ public class TipoAgenda implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	public TipoAgenda(Integer id, String descricao) {
+	public TipoAgenda(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

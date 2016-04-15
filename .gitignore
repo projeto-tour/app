@@ -39,3 +39,5 @@ Thumbs.db
 .metadata
 .project
 .settings
+desenvolvimento/webservices/eclipse+tomcat/target/m2e-wtp/web-resources/META-INF/maven/br.com.turismo/Turismo/pom.xml
+desenvolvimento/webservices/eclipse+tomcat/target/classes/META-INF/persistence.xml
