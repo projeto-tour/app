@@ -13,7 +13,6 @@ import br.com.turismo.core.util.exceptions.NegocioException;
 import br.com.turismo.core.util.geral.JsonUtils;
 import br.com.turismo.negocio.messages.Mensagens;
 import br.com.turismo.webservices.response.ResponseRest;
-import br.com.turismo.webservices.restful.ModelRestFulAbstract;
 
 @RequestScoped
 public abstract class ServiceAbstract {

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.turismo.core.dao.TransporteDAO;
-import br.com.turismo.core.entities.TipoTransporte;
 import br.com.turismo.core.entities.Transporte;
 import br.com.turismo.core.util.exceptions.NegocioException;
 import br.com.turismo.negocio.messages.Mensagens;

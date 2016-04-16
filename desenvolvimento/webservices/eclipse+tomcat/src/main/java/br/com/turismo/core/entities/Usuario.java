@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,7 +49,8 @@ public class Usuario implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "nome")
 	private String nome;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	@Transient
 	private List<Agenda> agendas;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private List<PreferenciasUsuario> preferencias;

@@ -30,40 +30,52 @@ import javax.xml.bind.annotation.XmlTransient;
 		@NamedQuery(name = "Agenda.findByDescricao", query = "SELECT a FROM Agenda a WHERE a.descricao = :descricao"),
 		@NamedQuery(name = "Agenda.findByDataInicio", query = "SELECT a FROM Agenda a WHERE a.dataInicio = :dataInicio"),
 		@NamedQuery(name = "Agenda.findByDataFim", query = "SELECT a FROM Agenda a WHERE a.dataFim = :dataFim"),
-		@NamedQuery(name = "Agenda.findByDataCriacaoAgenda", query = "SELECT a FROM Agenda a WHERE a.dataCriacaoAgenda = :dataCriacaoAgenda") })
+		@NamedQuery(name = "Agenda.findByDataCriacaoAgenda", query = "SELECT a FROM Agenda a WHERE a.dataCriacaoAgenda = :dataCriacaoAgenda"),
+		@NamedQuery(name = "Agenda.findByDescricaoUsuario", query = "SELECT a FROM Agenda a WHERE a.descricao = :descricao and a.usuario.id = :usuario_id"),
+		@NamedQuery(name = "Agenda.findByTipoAgenda", query = "SELECT a FROM Agenda a WHERE a.tipoAgenda.id = :id_tipo_agenda")})
 public class Agenda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Long id;
+	
 	@Basic(optional = false)
 	@Column(name = "descricao")
 	private String descricao;
+	
 	@Basic(optional = false)
 	@Column(name = "data_inicio")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
+	
 	@Column(name = "data_fim")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFim;
+	
 	@Basic(optional = false)
 	@Column(name = "data_criacao_agenda")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacaoAgenda;
+	
 	@JoinColumn(name = "id_tipo_agenda", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private TipoAgenda tipoAgenda;
+	
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private Usuario usuario;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "agenda")
 	private List<Rota> rotas;
 
 	public Agenda() {
 	}
+	
+	
 
 	public Agenda(Long id) {
 		this.id = id;
@@ -80,6 +92,41 @@ public class Agenda implements Serializable {
 		this.descricao = descricao;
 		this.dataInicio = dataInicio;
 		this.dataCriacaoAgenda = dataCriacaoAgenda;
+	}
+	
+	public Agenda(String descricao, Date dataInicio, Date dataFim, Date dataCriacaoAgenda, TipoAgenda tipoAgenda,
+			Usuario usuario) {
+		super();
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.dataCriacaoAgenda = dataCriacaoAgenda;
+		this.tipoAgenda = tipoAgenda;
+		this.usuario = usuario;
+	}
+	
+	public Agenda(Long id, String descricao, Date dataInicio, Date dataFim, TipoAgenda tipoAgenda, Usuario usuario) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.tipoAgenda = tipoAgenda;
+		this.usuario = usuario;
+	}
+
+
+
+	public Agenda(Long id, String descricao, Date dataInicio, Date dataFim, Date dataCriacaoAgenda,
+			TipoAgenda tipoAgenda, Usuario usuario) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.dataCriacaoAgenda = dataCriacaoAgenda;
+		this.tipoAgenda = tipoAgenda;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
