@@ -73,43 +73,43 @@ public interface TurismoRestFulInterface {
 
 	// -- AVALIACAO
 
-	@GET
-	@Path("avaliacao/salvar/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response salvarAvaliacao(@PathParam("token") String token, @PathParam("descricao") String descricao);
-
-	@GET
-	@Path("avaliacao/atualizar/{token}/{id}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizarAvaliacao(@PathParam("token") String token, @PathParam("id") Long id,
-			@PathParam("descricao") String descricao);
-
-	@GET
-	@Path("avaliacao/remover/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response removerAvaliacao(@PathParam("token") String token, @PathParam("id") Long id);
-
-	@GET
-	@Path("avaliacao/buscarPorId/{token}/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarAvaliacaoPorId(@PathParam("token") String token, @PathParam("id") Long id);
-
-	@GET
-	@Path("avaliacao/buscar/{token}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarAvaliacaoTodas(@PathParam("token") String token);
-
-	@GET
-	@Path("avaliacao/buscarPorDescricao/{token}/{descricao}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscarAvaliacaoPorDescricao(@PathParam("token") String token,
-			@PathParam("descricao") String descricao);
+//	@GET
+//	@Path("avaliacao/salvar/{token}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response salvarAvaliacao(@PathParam("token") String token, @PathParam("descricao") String descricao);
+//
+//	@GET
+//	@Path("avaliacao/atualizar/{token}/{id}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response atualizarAvaliacao(@PathParam("token") String token, @PathParam("id") Long id,
+//			@PathParam("descricao") String descricao);
+//
+//	@GET
+//	@Path("avaliacao/remover/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response removerAvaliacao(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("avaliacao/buscarPorId/{token}/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarAvaliacaoPorId(@PathParam("token") String token, @PathParam("id") Long id);
+//
+//	@GET
+//	@Path("avaliacao/buscar/{token}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarAvaliacaoTodas(@PathParam("token") String token);
+//
+//	@GET
+//	@Path("avaliacao/buscarPorDescricao/{token}/{descricao}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buscarAvaliacaoPorDescricao(@PathParam("token") String token,
+//			@PathParam("descricao") String descricao);
 
 	// -- TIPOTRANSPORTE
 

@@ -57,35 +57,35 @@ public class TurismoRestFul extends TurismoRestFulAbstract {
 
 	// -- TIPOAVALIACAO
 
-	@Override
-	public Response salvarAvaliacao(String token, String descricao) {
-		return super.avaliacaoRestFul.salvarAvaliacao(token, descricao);
-	}
-
-	@Override
-	public Response atualizarAvaliacao(String token, Long id, String descricao) {
-		return super.avaliacaoRestFul.atualizarAvaliacao(token, id, descricao);
-	}
-
-	@Override
-	public Response removerAvaliacao(String token, Long id) {
-		return super.avaliacaoRestFul.removerAvaliacao(token, id);
-	}
-
-	@Override
-	public Response buscarAvaliacaoPorId(String token, Long id) {
-		return super.avaliacaoRestFul.buscarAvaliacaoPorId(token, id);
-	}
-
-	@Override
-	public Response buscarAvaliacaoTodas(String token) {
-		return super.avaliacaoRestFul.buscarAvaliacaoTodas(token);
-	}
-
-	@Override
-	public Response buscarAvaliacaoPorDescricao(String token, String descricao) {
-		return super.avaliacaoRestFul.buscarAvaliacaoPorDescricao(token, descricao);
-	}
+//	@Override
+//	public Response salvarAvaliacao(String token, String descricao) {
+//		return super.avaliacaoRestFul.salvarAvaliacao(token, descricao);
+//	}
+//
+//	@Override
+//	public Response atualizarAvaliacao(String token, Long id, String descricao) {
+//		return super.avaliacaoRestFul.atualizarAvaliacao(token, id, descricao);
+//	}
+//
+//	@Override
+//	public Response removerAvaliacao(String token, Long id) {
+//		return super.avaliacaoRestFul.removerAvaliacao(token, id);
+//	}
+//
+//	@Override
+//	public Response buscarAvaliacaoPorId(String token, Long id) {
+//		return super.avaliacaoRestFul.buscarAvaliacaoPorId(token, id);
+//	}
+//
+//	@Override
+//	public Response buscarAvaliacaoTodas(String token) {
+//		return super.avaliacaoRestFul.buscarAvaliacaoTodas(token);
+//	}
+//
+//	@Override
+//	public Response buscarAvaliacaoPorDescricao(String token, String descricao) {
+//		return super.avaliacaoRestFul.buscarAvaliacaoPorDescricao(token, descricao);
+//	}
 
 	// -- TIPOTRANSPORTE
 
