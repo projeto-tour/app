@@ -20,10 +20,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "tipo_de_dado")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "TipoDeDados.findAll", query = "SELECT t FROM TipoDeDados t"),
-		@NamedQuery(name = "TipoDeDados.findById", query = "SELECT t FROM TipoDeDados t WHERE t.id = :id"),
-		@NamedQuery(name = "TipoDeDados.findByDescricao", query = "SELECT t FROM TipoDeDados t WHERE t.descricao = :descricao") })
-public class TipoDeDados implements Serializable {
+@NamedQueries({ @NamedQuery(name = "TipoDeDado.findAll", query = "SELECT t FROM TipoDeDado t"),
+		@NamedQuery(name = "TipoDeDado.findById", query = "SELECT t FROM TipoDeDado t WHERE t.id = :id"),
+		@NamedQuery(name = "TipoDeDado.findByDescricao", query = "SELECT t FROM TipoDeDado t WHERE t.descricao = :descricao") })
+public class TipoDeDado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -37,18 +37,18 @@ public class TipoDeDados implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDeDado")
 	private List<Caracteristica> caracteristicas;
 
-	public TipoDeDados() {
+	public TipoDeDado() {
 	}
 
-	public TipoDeDados(Long id) {
+	public TipoDeDado(Long id) {
 		this.id = id;
 	}
 
-	public TipoDeDados(String descricao) {
+	public TipoDeDado(String descricao) {
 		this.descricao = descricao;
 	}
 	
-	public TipoDeDados(Long id, String descricao) {
+	public TipoDeDado(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
 	}
@@ -92,10 +92,10 @@ public class TipoDeDados implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof TipoDeDados)) {
+		if (!(object instanceof TipoDeDado)) {
 			return false;
 		}
-		TipoDeDados other = (TipoDeDados) object;
+		TipoDeDado other = (TipoDeDado) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
