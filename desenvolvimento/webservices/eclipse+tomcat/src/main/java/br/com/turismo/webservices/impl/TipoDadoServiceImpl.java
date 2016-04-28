@@ -5,7 +5,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.turismo.core.dao.facade.TipoDadoDAOFacade;
-import br.com.turismo.core.entities.TipoAgenda;
 import br.com.turismo.core.entities.TipoDeDado;
 import br.com.turismo.core.util.exceptions.NegocioException;
 import br.com.turismo.negocio.messages.Mensagens;

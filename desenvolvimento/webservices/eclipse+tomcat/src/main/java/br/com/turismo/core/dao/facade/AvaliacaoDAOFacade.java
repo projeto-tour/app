@@ -10,8 +10,7 @@ import br.com.turismo.core.entities.Avaliacao;
 import br.com.turismo.core.util.exceptions.NegocioException;
 import br.com.turismo.negocio.messages.Mensagens;
 
-
-public class AvaliacaoDAOFacade  implements Serializable{
+public class AvaliacaoDAOFacade implements Serializable {
 
 	private static final long serialVersionUID = 3276034295327273266L;
 
@@ -19,15 +18,13 @@ public class AvaliacaoDAOFacade  implements Serializable{
 	private AvaliacaoDAO avaliacaoDAO;
 
 	public boolean salvar(Avaliacao avaliacao) {
-		
+
 		Avaliacao avaliacaoExistente = avaliacaoDAO.buscarPorDescricao(avaliacao.getDescricao());
 
 		if (avaliacaoExistente != null && !avaliacaoExistente.equals(avaliacaoDAO)) {
 			throw new NegocioException(Mensagens.getMensagem(null, "M5"));
 		}
-		
-		
-		
+
 		avaliacaoDAO.salvar(avaliacao);
 		return true;
 	}
@@ -39,7 +36,7 @@ public class AvaliacaoDAOFacade  implements Serializable{
 		if (avaliacaoExistente != null && !avaliacaoExistente.equals(avaliacaoDAO)) {
 			throw new NegocioException(Mensagens.getMensagem(null, "M5"));
 		}
-		
+
 		return avaliacaoDAO.atualizar(avaliacao);
 	}
 
@@ -47,17 +44,17 @@ public class AvaliacaoDAOFacade  implements Serializable{
 		avaliacaoDAO.remover(id);
 		return true;
 	}
- 
+
 	public Avaliacao buscarPorId(Long id) {
 		return avaliacaoDAO.buscarPorId(id);
 	}
 
 	public List<Avaliacao> buscarTodos() {
 		return avaliacaoDAO.buscarTodos();
-	}	
-	
+	}
+
 	public Avaliacao buscarPorDescricao(String descricao) {
 		return avaliacaoDAO.buscarPorDescricao(descricao);
 	}
-	
+
 }

@@ -41,7 +41,7 @@ public class Caracteristica implements Serializable {
 	
 	@JoinColumn(name = "tipo_de_dados_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
-	private TipoDeDados tipoDeDado;
+	private TipoDeDado tipoDeDado;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "caracteristicaTipoPontoInteresse")
 	private List<CaracteristicaTipoPontoInteresse> caracteristicasTipoPontoInteresse;
@@ -61,7 +61,7 @@ public class Caracteristica implements Serializable {
 		this.id = id;
 		this.descricao = descricao;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -78,11 +78,11 @@ public class Caracteristica implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public TipoDeDados getTipoDeDados() {
+	public TipoDeDado getTipoDeDados() {
 		return tipoDeDado;
 	}
 
-	public void setTipoDeDados(TipoDeDados tipoDeDado) {
+	public void setTipoDeDados(TipoDeDado tipoDeDado) {
 		this.tipoDeDado = tipoDeDado;
 	}
 

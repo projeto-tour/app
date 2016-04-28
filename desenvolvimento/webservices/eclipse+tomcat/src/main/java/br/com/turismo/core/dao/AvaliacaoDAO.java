@@ -4,7 +4,6 @@ import javax.persistence.NoResultException;
 
 import br.com.turismo.core.entities.Avaliacao;
 
-
 public class AvaliacaoDAO extends GenericDAO<Avaliacao, Long> {
 
 	public AvaliacaoDAO() {
@@ -13,7 +12,8 @@ public class AvaliacaoDAO extends GenericDAO<Avaliacao, Long> {
 
 	public Avaliacao buscarPorDescricao(String descricao) {
 		try {
-			return manager.createNamedQuery("Avaliacao.findByDescricao", Avaliacao.class).setParameter("descricao", descricao).getSingleResult();
+			return manager.createNamedQuery("Avaliacao.findByDescricao", Avaliacao.class)
+					.setParameter("descricao", descricao).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
