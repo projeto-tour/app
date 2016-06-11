@@ -1,0 +1,18 @@
+[
+  {
+    "id": 4,
+    "descricao": "BOOLEAN"
+  },
+  {
+    "id": 3,
+    "descricao": "DOUBLE"
+  },
+  {
+    "id": 1,
+    "descricao": "INTEGER"
+  },
+  {
+    "id": 2,
+    "descricao": "STRING"
+  }
+]

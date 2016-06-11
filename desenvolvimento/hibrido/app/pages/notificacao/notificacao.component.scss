@@ -1,0 +1,24 @@
+$categories: (
+    ionic: color($colors, primary),
+    ponto_interesse: #E65100,
+    promocao: #4CAF50
+);
+
+@function auxiliary-categories() {
+    @return map-remove($categories);
+}
+
+.notificacao {
+    
+    @each $category, $value in auxiliary-categories() {
+        ion-card[category=#{$category}] ion-card-content {
+            border-left: 2px solid $value;
+            padding-left: 10px;
+            border-right: 2px solid $value;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+  
+}

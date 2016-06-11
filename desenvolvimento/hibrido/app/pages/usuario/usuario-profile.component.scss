@@ -1,0 +1,26 @@
+.usuario-profile {
+  
+  .profile-header {
+    background-color: #434954;
+    padding: 16px;
+    width: 100%;
+    min-height: 150px;
+    text-align: center;
+  }
+
+  .profile-header img {
+    max-width: 130px;
+    max-height: 130px;
+    margin-left: -15px;
+    padding: 25px 0 20px 0;
+  }
+
+  .profile-col {
+    padding-top: 80px;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+}

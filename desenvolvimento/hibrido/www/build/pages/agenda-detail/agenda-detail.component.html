@@ -1,0 +1,46 @@
+<ion-navbar *navbar>
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+        <button (click)="carregarPreferencias()">
+      <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+    </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content class="agenda-detail">
+
+    <ion-list *ngIf="agenda !== null">
+        <ion-item-divider light>Informações de Agenda</ion-item-divider>
+        <ion-item>
+            <ion-label dark style="font-size: 0.875em;">Tipo de Agenda</ion-label>
+            <ion-select [(ngModel)]="agenda.tipoAgenda.descricao">
+                <ion-option *ngFor="let tipoAgenda of tiposAgenda">{{tipoAgenda.descricao}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked dark style="font-size: 0.875em;">Descrição</ion-label>
+            <ion-textarea placeholder="Ex. Visita aos meus pais na Bahia" [(ngModel)]="agenda.descricao"></ion-textarea>
+        </ion-item>
+        <ion-item-divider light>Período de Realização</ion-item-divider>
+        <ion-item>
+            <ion-label dark style="font-size: 0.875em;">Data Inicial</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" cancelText="Cancelar" doneText="OK" [(ngModel)]="agenda.dataInicio"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label dark style="font-size: 0.875em;">Data Final</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" cancelText="Cancelar" doneText="OK" [(ngModel)]="agenda.dataFim"></ion-datetime>
+        </ion-item>
+    </ion-list>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col width-50 padding>
+                <button light (click)="limpar()" class="btn">Limpar</button>
+            </ion-col>
+            <ion-col width-50 padding>
+                <button (click)="confirmar()" class="btn">Confirmar</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

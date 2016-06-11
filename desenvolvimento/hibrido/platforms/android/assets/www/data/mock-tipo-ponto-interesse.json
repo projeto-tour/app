@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "descricao": "ALIMENTACAO"
+  },
+  {
+    "id": 2,
+    "descricao": "EVENTO"
+  },
+  {
+    "id": 3,
+    "descricao": "HOTEL"
+  },
+  {
+    "id": 4,
+    "descricao": "NEGOCIOS"
+  },
+  {
+    "id": 5,
+    "descricao": "PASSEIO"
+  }
+]

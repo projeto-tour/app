@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "descricao": "PESSIMO"
+  },
+  {
+    "id": 2,
+    "descricao": "RUIM"
+  },
+  {
+    "id": 3,
+    "descricao": "REGULAR"
+  },
+  {
+    "id": 4,
+    "descricao": "BOM"
+  },
+  {
+    "id": 5,
+    "descricao": "OTIMO"
+  }
+]

@@ -1,0 +1,72 @@
+<ion-navbar *navbar>
+  <ion-title>
+    {{titulo}}
+  </ion-title>
+  <ion-buttons end>
+    <button (click)="dismiss()">
+      Fechar
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-content no-padding class="has-header cards-bg compartilhar">
+
+  <ion-card>
+    <img src="img/onboarding-screens.gif" class="ion-img" />
+    <ion-card-content>
+      <ion-item>
+        <h2 class="card-title">Aplicativo do Turista</h2>
+        <button clear item-right danger>
+          <ion-icon name='star'></ion-icon>
+          4 Estrelas
+        </button>
+      </ion-item>
+      <p>
+        O aplicativo <strong>Partiu!</strong> apóia a gestão de viagens, hospedagens, deslocamentos, agendamentos e reservas
+        em passeios, excursões, e outros eventos turísticos.
+      </p>
+    </ion-card-content>
+    <ion-item actions>
+      <button primary clear item-left>
+            <ion-icon name='thumbs-up'></ion-icon>
+            500 Curtidas
+        </button>
+      <button primary clear item-right>
+            <ion-icon name='people'></ion-icon>
+            1000+ Usuários
+        </button>
+    </ion-item>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <button facebook outline class="btn">
+          <ion-icon ios="logo-facebook" md="logo-facebook" is-active="false"></ion-icon>
+          Facebook
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button twitter outline class="btn">
+          <ion-icon ios="logo-twitter" md="logo-twitter" is-active="false"></ion-icon>
+          Twitter
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-50>
+        <button danger outline class="btn">
+          <ion-icon ios="logo-googleplus" md="logo-googleplus" is-active="false"></ion-icon>
+          Google
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button instagram outline class="btn">
+          <ion-icon ios="logo-instagram" md="logo-instagram" is-active="false"></ion-icon>
+          Instagram
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,96 @@
+<ion-navbar *navbar>
+  <ion-title>
+    {{titulo}}
+  </ion-title>
+  <ion-buttons end>
+    <button (click)="dismiss()">Fechar</button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-content class="usuario-signup usuario-signup-bg">
+
+  <div class="profile-header">
+    <ion-row no-padding>
+      <ion-col width-20 class="profile-col">
+        <button light clear>
+                  <ion-icon name="camera"></ion-icon>
+              </button>
+      </ion-col>
+      <ion-col width-60>
+        <img src="img/user-woman.svg">
+      </ion-col>
+      <ion-col width-20 class="profile-col">
+        <button light clear>
+                  <ion-icon name="pin"></ion-icon>
+              </button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-100>
+        <ion-item>
+          <ion-icon name="person" item-left></ion-icon>
+          <ion-input type="email" placeholder="E-mail"></ion-input>
+        </ion-item>
+        <ion-item no-lines>
+          <ion-icon name="lock" item-left></ion-icon>
+          <ion-input type="password" placeholder="Senha"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50>
+        <button mdc-grey-800 (click)="criarConta()" class="btn">Criar</button>
+      </ion-col>
+      <ion-col width-50>
+        <button mdc-green (click)="login()" class="btn">Login</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-40>
+        <hr style="border-top: 1px solid grey;" md-grey>
+      </ion-col>
+      <ion-col width-20>
+        <p style="text-align:center;"><strong md-grey>OU</strong></p>
+      </ion-col>
+      <ion-col width-40>
+        <hr style="border-top: 1px solid grey;">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50>
+        <button facebook (click)="login()" class="btn">
+          <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+          Facebook
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button twitter (click)="login()" class="btn">
+          <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
+          Twitter
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-50>
+        <button danger (click)="login()" class="btn">
+          <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+          Google
+        </button>
+      </ion-col>
+      <ion-col width-50>
+        <button github (click)="login()" class="btn">
+          <ion-icon ios="logo-github" md="logo-github"></ion-icon>
+          Github
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-navbar *navbar class="hide-border">
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>{{titulo}}</ion-title>
+  <ion-buttons end>
+    <button (click)="marcarComoLida()">
+      <ion-icon ios="ios-done-all" md="md-done-all"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-toolbar>
+  <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
+  </ion-searchbar>
+</ion-toolbar>
+
+<ion-content class="notificacao cards-bg social-cards">
+
+  <ion-refresher (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let notificacao of notificacoes | notificacaoFilter:filtro" #card [attr.category]="notificacao.categoria | lowercase">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="http://placehold.it/80?text=Logo">
+      </ion-avatar>
+      <h2>{{notificacao.titulo}}</h2>
+      <p>
+        <ion-icon name="calendar"></ion-icon>&nbsp;{{_globalMethod.convertToDate(notificacao.data) | date:'medium'}}
+      </p>
+      <ion-note item-right>
+        {{notificacao.tempo}} atrás
+      </ion-note>
+    </ion-item>
+    <img src="http://placehold.it/500x200?text=Imagem+de+destaque">
+    <ion-card-content>
+      <p>{{notificacao.descricao}}</p>
+    </ion-card-content>
+    <ion-item actions>
+      <button primary clear item-left>
+        <ion-icon name='thumbs-up'></ion-icon>
+        12 Curtidas
+      </button>
+      <button primary clear item-left (click)="visualizar(notificacao)">
+        <ion-icon name='open'></ion-icon>
+        Abrir
+      </button>
+      <button danger clear item-right (click)="excluir(notificacao)">
+        <ion-icon name='trash'></ion-icon>
+        Excluir
+      </button>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

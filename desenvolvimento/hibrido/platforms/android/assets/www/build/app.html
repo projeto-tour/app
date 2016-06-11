@@ -1,0 +1,78 @@
+<!-- Side menu -->
+
+<!-- logged out menu -->
+<ion-menu id="loggedOutMenu" [content]="content" *ngIf="showPage && !hasLoggedIn">
+
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-item>
+      <ion-avatar item-left no-lines>
+        <img src="img/user-woman.svg">
+      </ion-avatar>
+      <h2>Nome de usuário</h2>
+      <p>usuario@usuario.com.br</p>
+    </ion-item>
+  </ion-toolbar>
+
+  <ion-content class="outer-content">
+
+    <ion-list>
+      <ion-item-group *ngFor="let menu of menuPages">
+        <ion-item-divider sticky>
+          {{menu.title}}
+        </ion-item-divider>
+        <div *ngFor="let page of menu.pages">
+          <button ion-item menuClose (click)="openPage(page)" *ngIf="page.status !== 'LOGGEDIN'">
+              <ion-icon item-left [name]="page.icon"></ion-icon>
+              {{page.title}}
+            </button>
+        </div>
+      </ion-item-group>
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>
+
+<!-- logged in menu -->
+<ion-menu id="loggedInMenu" [content]="content" *ngIf="showPage && hasLoggedIn">
+
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-item>
+      <ion-avatar item-left no-lines>
+        <img src="img/user-woman.svg">
+      </ion-avatar>
+      <h2>Nome de usuário</h2>
+      <p>usuario@usuario.com.br</p>
+    </ion-item>
+  </ion-toolbar>
+
+  <ion-content class="outer-content">
+
+    <ion-list>
+      <ion-item-group *ngFor="let menu of menuPages">
+        <ion-item-divider sticky>
+          {{menu.title}}
+        </ion-item-divider>
+        <div *ngFor="let page of menu.pages">
+          <button ion-item menuClose (click)="openPage(page)" *ngIf="page.status !== 'LOGGEDOUT'">
+              <ion-icon item-left [name]="page.icon"></ion-icon>
+              {{page.title}}
+            </button>
+        </div>
+      </ion-item-group>
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>
+
+<!-- Main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

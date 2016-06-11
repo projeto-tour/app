@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "descricao": "Passeio",
+    "icone": "walk",
+    "destaque": "img/advance-card-map-paris.png",
+    "qtdeTodos": 50,
+    "qtdeFavoritos": 45,
+    "agendas":[]
+  },
+  {
+    "id": 2,
+    "descricao": "Trabalho",
+    "icone": "briefcase",
+    "destaque": "img/advance-card-map-paris.png",
+    "qtdeTodos": 100,
+    "qtdeFavoritos": 87,
+    "agendas":[]
+  },
+  {
+    "id": 3,
+    "descricao": "Acandêmico",
+    "icone": "school",
+    "destaque": "img/advance-card-map-paris.png",
+    "qtdeTodos": 150,
+    "qtdeFavoritos": 145,
+    "agendas":[]
+  },
+  {
+    "id": 4,
+    "descricao": "Saúde",
+    "icone": "medkit",
+    "destaque": "img/advance-card-map-paris.png",
+    "qtdeTodos": 5,
+    "qtdeFavoritos": 1,
+    "agendas":[]
+  }
+]

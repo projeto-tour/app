@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "tipoPontoInteresse": {
+      "id": 1
+    },
+    "caracteristica": {
+      "id": 3
+    },
+    "obrigatorio": 0,
+    "valor": "Comida Japonesa"
+  },
+  {
+    "id": 2,
+    "tipoPontoInteresse": {
+      "id": 3
+    },
+    "caracteristica": {
+      "id": 2
+    },
+    "obrigatorio": 1,
+    "valor": "SIM"
+  },
+  {
+    "id": "3",
+    "tipoPontoInteresse": {
+      "id": 3
+    },
+    "caracteristica": {
+      "id": 4
+    },
+    "obrigatorio": 0,
+    "valor": "R$ 100,00/diária"
+  }
+]
