@@ -3,6 +3,9 @@ import 'es6-shim';
 import { Component, ViewChild } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 
+// Add the RxJS Observable operators we need in this app.
+import './pages/shared/rxjs.operators';
+
 import { ionicBootstrap, Events, Platform, Nav, MenuController, Modal, Alert } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 

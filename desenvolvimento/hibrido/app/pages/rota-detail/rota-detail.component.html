@@ -1,11 +1,13 @@
-<ion-navbar *navbar>
-    <ion-title>{{titulo}}</ion-title>
-    <ion-buttons end>
-        <button (click)="carregarMapa()">
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{titulo}}</ion-title>
+        <ion-buttons end>
+            <button (click)="carregarMapa()">
         <ion-icon ios="ios-map" md="md-map"></ion-icon>
     </button>
-    </ion-buttons>
-</ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
 
 <ion-content class="cards-bg rota-detail">
 

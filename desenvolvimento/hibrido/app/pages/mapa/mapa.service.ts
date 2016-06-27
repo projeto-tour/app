@@ -14,7 +14,7 @@ export class MapaService {
     getMapas(): Observable<Mapa[]> {
         let data = this._http.get(MAPA_URL);
         return data.map((response: Response) => <Mapa[]>response.json())
-            .do(data => console.log('getMapas: ' +  JSON.stringify(data)))
+            //.do(data => console.log('getMapas: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 

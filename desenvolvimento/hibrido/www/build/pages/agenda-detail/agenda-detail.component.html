@@ -1,11 +1,13 @@
-<ion-navbar *navbar>
-    <ion-title>{{titulo}}</ion-title>
-    <ion-buttons end>
-        <button (click)="carregarPreferencias()">
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{titulo}}</ion-title>
+        <ion-buttons end>
+            <button (click)="carregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
-    </ion-buttons>
-</ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
 
 <ion-content class="agenda-detail">
 

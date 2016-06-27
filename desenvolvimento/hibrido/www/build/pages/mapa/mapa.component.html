@@ -1,14 +1,16 @@
-<ion-navbar *navbar class="hide-border">
-  <button menuToggle>
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>{{titulo}}</ion-title>
-  <ion-buttons end>
-    <button (click)="carregarPreferencias()">
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+      <button (click)="carregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
-  </ion-buttons>
-</ion-navbar>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
 <ion-content class="mapa">
 
