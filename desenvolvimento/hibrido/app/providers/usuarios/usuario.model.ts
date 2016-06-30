@@ -1,3 +1,5 @@
+import { Endereco } from './endereco.model';
+
 /**
  * Referente ao usuario do aplicativo
  * 
@@ -8,23 +10,26 @@
  * @param alias     Alias do usuário (deve ser único)
  * @param data      Data de criação de usuário (deve ser único)
  */
-export class Usuario implements IUsuario {
+export class Usuario implements IUsuario{
     data: number = firebase.database['ServerValue']['TIMESTAMP'];
+    photoURL: string = '';
+    providerId: string = '';
+    uid: string = '';
+    endereco: Endereco = new Endereco();
 
     constructor(
-        public email: string = "",
-        public senha: string = "",
-        public avatar?: string) {
+        public displayName: string = '',
+        public email: string = '',
+        public password: string = '') {
     }
 }
 
 export interface IUsuario {
-    $key?: string;
+    photoURL: string;
+    providerId: string;
+    uid: string;
+    endereco: Endereco;
+    displayName: string;
     email: string;
-    senha: string;
-    nome?: string;
-    alias?: string;
-    avatar?: string;
-    data: number;
+    password: string;
 }
-

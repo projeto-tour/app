@@ -15,6 +15,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { FIREBASE_APP_PROVIDERS } from './providers/firebase';
 import { AUTH_PROVIDERS } from './providers/auth';
 import { USUARIOS_PROVIDERS, Usuario } from './providers/usuarios';
+import { AGENDAS_PROVIDERS } from './providers/agendas';
 import { MenuDataProvider, TutorialDataProvider } from './providers';
 
 // shared
@@ -26,7 +27,6 @@ import { FirebaseAuthService } from './providers/auth';
 // views
 import { PrincipalPage } from './pages/principal';
 import { PreferenciaService } from './pages/preferencia';
-import { AgendaService } from './pages/agenda';
 import { UsuarioLoginPage } from './pages/usuario';
 import { HistoricoService } from './pages/historico';
 import { NotificacaoService } from './pages/notificacao';
@@ -123,10 +123,10 @@ ionicBootstrap
     AUTH_PROVIDERS,
     FIREBASE_APP_PROVIDERS,
     USUARIOS_PROVIDERS,
+    AGENDAS_PROVIDERS,
     MenuDataProvider,
     TutorialDataProvider,
     PreferenciaService,
-    AgendaService,
     HistoricoService,
     NotificacaoService,
     RotaService,

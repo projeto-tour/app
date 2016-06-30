@@ -50,9 +50,7 @@ export class UsuarioLoginPage {
       this._auth.login(credentials)
             .then(authData => {
               this.carregarTelaPrincipal()
-            }).catch((error) => {
-              this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-            });
+            }).catch(this.handleError);
     }
   }
 
@@ -63,9 +61,7 @@ export class UsuarioLoginPage {
             .then(authData => {
               this.carregarTelaPrincipal()
             })
-            .catch((error) => {
-              this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-            });
+            .catch(this.handleError);
     }
   }
 
@@ -74,9 +70,7 @@ export class UsuarioLoginPage {
           .then(authData => {
             this.carregarTelaPrincipal()
           })
-          .catch((error) => {
-            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-          });
+          .catch(this.handleError);
   }
 
   loginFacebook(): void {
@@ -84,9 +78,7 @@ export class UsuarioLoginPage {
           .then(authData => {
             this.carregarTelaPrincipal()
           })
-          .catch((error) => {
-            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-          });
+          .catch(this.handleError);
   }
 
   loginTwitter(): void {
@@ -94,9 +86,7 @@ export class UsuarioLoginPage {
           .then(authData => {
             this.carregarTelaPrincipal()
           })
-          .catch((error) => {
-            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-          });
+          .catch(this.handleError);
   }
 
   loginGoogle(): void {
@@ -104,9 +94,7 @@ export class UsuarioLoginPage {
           .then(authData => {
             this.carregarTelaPrincipal()
           })
-          .catch((error) => {
-            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-          });
+          .catch(this.handleError);
   }
 
   loginGithub(): void {
@@ -114,9 +102,7 @@ export class UsuarioLoginPage {
           .then(authData => {
             this.carregarTelaPrincipal()
           })
-          .catch((error) => {
-            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-          });
+          .catch(this.handleError);
   }
 
   private carregarTelaPrincipal() {
@@ -151,8 +137,8 @@ export class UsuarioLoginPage {
     });
 
     this.loginForm.valueChanges
-      .map(value => { return value; })
-      .subscribe(data => this.onValueChanged(data));
+          .map(value => { return value; })
+          .subscribe(data => this.onValueChanged(data));
   }
 
   private onValueChanged(data: any) {
@@ -163,4 +149,7 @@ export class UsuarioLoginPage {
     this._viewCtrl.dismiss();
   }
 
+  private handleError(error: any) {
+      this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+  }
 }

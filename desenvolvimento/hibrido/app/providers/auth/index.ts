@@ -1,7 +1,7 @@
 
-import { FirebaseAuthService, IUser } from './firebase-auth.service';
+import { FirebaseAuthService } from './firebase-auth.service';
 
-export { FirebaseAuthService, IUser };
+export { FirebaseAuthService };
 
 export const AUTH_PROVIDERS: any[] = [
   FirebaseAuthService
