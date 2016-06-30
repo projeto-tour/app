@@ -1,4 +1,5 @@
-import { Usuario, TipoPontoInteresse } from './';
+import { Usuario } from '../../../providers/usuarios';
+import { TipoPontoInteresse } from './';
 
 /**
  * Referente a preferencia usuario

@@ -1,4 +1,5 @@
-import { Usuario, PontoInteresse } from './';
+import { Usuario } from '../../../providers/usuarios';
+import { PontoInteresse } from './';
 
 /**
  * Referente a avaliação de usuario a um ponto de interesse

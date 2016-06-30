@@ -22,7 +22,8 @@
     <ion-refresher-content pullingText="Puxe para sincronizar" refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-
+  
+  <!--*ngFor="let agenda of agendas | async | agendaFilter:filtro"-->
   <ion-card *ngFor="let agenda of agendas | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
@@ -56,6 +57,6 @@
 
 </ion-content>
 
-<button fab danger fab-bottom fab-right style="z-index: 999" (click)="incluir()">
+<button fab danger fab-bottom fab-right class="fab-footer"(click)="incluir()">
   <ion-icon name='md-add' is-active="false"></ion-icon>
 </button>

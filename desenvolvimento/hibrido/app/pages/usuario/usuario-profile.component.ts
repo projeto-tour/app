@@ -2,7 +2,7 @@ import { Component }  from '@angular/core';
 
 import { App, NavParams, NavController, ViewController } from 'ionic-angular';
 
-import { UsuarioView, UsuarioService } from './';
+import { UsuarioView } from './';
 
 import { UserDataProvider } from '../../providers/user-data.provider';
 
@@ -23,7 +23,6 @@ export class UsuarioProfilePage {
     private _navCtrl: NavController,
     private _viewCtrl: ViewController,
     private _userData: UserDataProvider,
-    private _service: UsuarioService,
     private _globalMethod: GlobalMethodService) {
     this.dados = this._navParams.data;
   }
@@ -45,9 +44,9 @@ export class UsuarioProfilePage {
   ionViewDidUnload() { }
 
   salvar() {
-    this._userData.setUsuario(this.usuario).then(
-      (data: boolean) => data ? this.dismiss() : this._globalMethod.mostrarErro(this.mensagenErro = 'Falha na execução desta operação', this._navCtrl),
-      error => this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl));
+    // this._userData.setUsuario(this.usuario).then(
+    //   (data: boolean) => data ? this.dismiss() : this._globalMethod.mostrarErro(this.mensagenErro = 'Falha na execução desta operação', this._navCtrl),
+    //   error => this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl));
 
   }
 
@@ -56,8 +55,8 @@ export class UsuarioProfilePage {
   }
 
   private getUsuario() {
-    this._userData.getUsuario().then(
-      (data: UsuarioView) => this.usuario = data,
-      error => this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl));
+    // this._userData.getUsuario().then(
+    //   (data: UsuarioView) => this.usuario = data,
+    //   error => this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl));
   }
 }

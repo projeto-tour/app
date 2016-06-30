@@ -13,5 +13,3 @@ export * from './preferencia-usuario.model';
 export * from './rota.model';
 
 export * from './transporte.model';
-
-export * from './usuario.model';

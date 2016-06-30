@@ -8,6 +8,7 @@ export class GlobalMethodService {
     constructor() { }
 
     mostrarErro(erro: any, navCtrl: NavController) {
+        console.log('mostrarErro: ' + erro);
         let toast = Toast.create({
         message: erro,
         duration: 3000

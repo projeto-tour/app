@@ -1,4 +1,4 @@
-import { Usuario } from './';
+import { Usuario } from '../../../providers/usuarios';
 
 /**
  * Referente a agenda de usuario. 

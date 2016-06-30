@@ -8967,7 +8967,7 @@ tab-highlight {
   right: calc(50% - 50px); }
 
 ion-tabbar {
-  background: #387ef5; }
+  background: #f8f8f8; }
 
 .tab-button {
   padding: 12px 10px 5px 10px;
@@ -8976,11 +8976,11 @@ ion-tabbar {
   border-radius: 0;
   font-size: 1.4rem;
   font-weight: 500;
-  color: #fff;
+  color: #8c8c8c;
   box-shadow: none;
   opacity: .7; }
   .tab-button[aria-selected=true] {
-    color: #fff;
+    color: #387ef5;
     opacity: 1; }
 
 .tab-button-text {
@@ -9016,7 +9016,7 @@ tab-highlight {
   display: block;
   width: 1px;
   height: 2px;
-  background: #fff;
+  background: #387ef5;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-transform-origin: 0 0;
@@ -17598,6 +17598,10 @@ body {
 
 .nao-favorito {
   color: #9E9E9E; }
+
+.fab-footer {
+  z-index: 999;
+  margin-bottom: 60px; }
 
 .agenda-detail .btn {
   width: 100%; }

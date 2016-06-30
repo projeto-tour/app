@@ -23,8 +23,10 @@ export class RotaService {
             .catch(this.handleError);;
     }
 
-    private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Houve falha na execução desta operação. Por favor, tente novamente mais tarde.');
+    private handleError(error: any) {
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Houve falha na execução desta operação. Por favor, tente novamente mais tarde.';
+        console.error(errMsg);
+        return Observable.throw(errMsg);
     }
 }

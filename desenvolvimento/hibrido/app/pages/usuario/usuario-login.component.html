@@ -5,7 +5,7 @@
   </div>
 
   <ion-grid>
-    <form [ngFormModel]="loginForm">
+    <form [ngFormModel]="loginForm"  #loginCreds="ngForm">
       <span *ngIf="formError.email" danger padding-left>
         {{formError.email}}
       </span><br>
@@ -16,12 +16,12 @@
         <ion-col width-100>
           <ion-item>
             <ion-icon name="person" item-left></ion-icon>
-            <ion-input [(ngModel)]="usuario.email" ngControl="email" type="email" placeholder="E-mail">
+            <ion-input ngControl="email" type="email" placeholder="E-mail">
             </ion-input>
           </ion-item>
           <ion-item no-lines>
             <ion-icon name="lock" item-left></ion-icon>
-            <ion-input [(ngModel)]="usuario.senha" ngControl="senha" type="password" placeholder="Senha">
+            <ion-input ngControl="password" type="password" placeholder="Senha">
             </ion-input>
           </ion-item>
         </ion-col>
@@ -29,10 +29,10 @@
 
       <ion-row>
         <ion-col width-50>
-          <button mdc-grey-800 (click)="criarConta()" type="submit">Criar</button>
+          <button mdc-grey-800 (click)="criarConta(loginCreds.value, $event)" type="submit">Criar</button>
         </ion-col>
         <ion-col width-50>
-          <button mdc-green (click)="login()" type="submit">Login</button>
+          <button mdc-green (click)="login(loginCreds.value, $event)" type="submit">Login</button>
         </ion-col>
       </ion-row>
     </form>

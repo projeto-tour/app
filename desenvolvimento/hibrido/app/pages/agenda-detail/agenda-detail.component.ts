@@ -2,7 +2,8 @@ import { Component, Inject }  from '@angular/core';
 
 import { NavParams, NavController, Modal, Toast } from 'ionic-angular';
 
-import { Usuario, TipoAgenda, GlobalMethodService } from '../shared';
+import { Usuario } from '../../providers/usuarios';
+import { TipoAgenda, GlobalMethodService } from '../shared';
 import { AgendaView, AgendaService } from '../agenda';
 
 import { UsuarioView } from '../usuario';

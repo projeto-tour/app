@@ -1,10 +1,13 @@
 import { Component }  from '@angular/core';
 import { NgClass } from '@angular/common';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+
 import { NavParams, NavController, Modal, ActionSheet, Platform, Toast, Alert } from 'ionic-angular';
 
 import { UserDataProvider } from '../../providers/user-data.provider';
 
-import { Usuario, TipoAgenda, GlobalMethodService } from '../shared';
+import { Usuario } from '../../providers/usuarios';
+import { TipoAgenda, GlobalMethodService } from '../shared';
 
 import { AgendaView, AgendaService, AgendaFilterPipe } from './';
 
@@ -26,6 +29,7 @@ export class AgendaPage {
   titulo: string = "Agendas";
   usuario: UsuarioView;
   agendas: AgendaView[] = [];
+  //agendas: FirebaseListObservable<any[]>;
   dados: any;
   filtro: string = '';
   mensagenErro: any = null;
@@ -35,7 +39,8 @@ export class AgendaPage {
     private _platform: Platform,
     private _userData: UserDataProvider,
     private _service: AgendaService,
-    public _globalMethod: GlobalMethodService) {
+    public _globalMethod: GlobalMethodService,
+    private _firebaseData: AngularFire) {
     this.dados = _navParams.data;
   }
 
@@ -159,6 +164,7 @@ export class AgendaPage {
   }
 
   private getAgendas(): void {
+    //this.agendas = this._firebaseData.database.list('agendas');
     this._service.getAgendasARealizar()
       .subscribe(
       (data: AgendaView[]) => { //-- on sucess

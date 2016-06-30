@@ -1,128 +1,122 @@
 import { Component }  from '@angular/core';
-import { FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { FormBuilder, ControlGroup, Validators } from '@angular/common';
 
-import { NavController, MenuController, NavParams, ViewController, Modal, Events, Loading } from 'ionic-angular';
+import { NavController, MenuController, NavParams, ViewController, Events, Loading } from 'ionic-angular';
 
-import { Observable } from 'rxjs/Observable';
-
-import { UsuarioView, UsuarioSignUpPage } from './';
-
-import { UserDataProvider } from '../../providers/user-data.provider';
-import { FirebaseDataProvider } from '../../providers/firebase-data.provider';
-
+import { FirebaseAuthService } from '../../providers/auth';
 import { PostValidator, GlobalMethodService } from '../shared';
-
 import { PrincipalPage } from '../principal';
-import { PreferenciaPage } from '../preferencia';
 
 @Component({
-  templateUrl: 'build/pages/usuario/usuario-login.component.html',
-  providers: [UserDataProvider, FirebaseDataProvider]
+  templateUrl: 'build/pages/usuario/usuario-login.component.html'
 })
 export class UsuarioLoginPage {
 
   titulo: string = "Login";
-  usuario: UsuarioView;
 
   loginForm: ControlGroup;
   formError: { [id: string]: string };
   private _validationMessages: { [id: string]: { [id: string]: string } };
 
-  items: Observable<any[]>;
+  mensagenErro: any;
 
-  private dados: any;
-  private mensagenErro: any;
-
-  constructor(private _navParams: NavParams,
+  constructor(
+    private _navParams: NavParams,
     private _navCtrl: NavController,
     private _menu: MenuController,
-    private _userData: UserDataProvider,
     private _viewCtrl: ViewController,
     private _formBuilder: FormBuilder,
     private _events: Events,
     private _globalMethod: GlobalMethodService,
-    private _firebaseData: FirebaseDataProvider) {
-    this.dados = _navParams.data;
-    this.usuario = new UsuarioView("", "");
+    private _auth: FirebaseAuthService) {
   }
 
   ionViewLoaded() {
     this.gerenciarFormulario();
   }
 
-  ionViewWillEnter() { }
-
   ionViewDidEnter() {
     this._menu.enable(false);
-    this._events.publish('usuario:initApp');
   }
-
-  ionViewWillLeave() { }
 
   ionViewDidLeave() {
     this._menu.enable(true);
     this.dismiss();
   }
 
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
-  login() {
+  login(credentials, event) {
     if (this.loginForm.dirty && this.loginForm.valid) {
-      this._userData.login(this.usuario);
-      //-- TODO
-      this.realizarLogin();
+      event.preventDefault();
+      this._auth.login(credentials)
+            .then(authData => {
+              this.carregarTelaPrincipal()
+            }).catch((error) => {
+              this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+            });
     }
   }
 
-  criarConta() {
+  criarConta(credentials, event) {
     if (this.loginForm.dirty && this.loginForm.valid) {
-      this._userData.login(this.usuario);
-      //-- TODO
-      this.realizarLogin();
+      event.preventDefault();
+      this._auth.createUser(credentials)
+            .then(authData => {
+              this.carregarTelaPrincipal()
+            })
+            .catch((error) => {
+              this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+            });
     }
   }
 
   pular() {
-    //-- TODO
-    this.realizarLogin();
+    this._auth.signInWithAnonymous()
+          .then(authData => {
+            this.carregarTelaPrincipal()
+          })
+          .catch((error) => {
+            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+          });
   }
 
   loginFacebook(): void {
-    //-- TODO
-    this.realizarLogin();
+    this._auth.signInWithFacebook()
+          .then(authData => {
+            this.carregarTelaPrincipal()
+          })
+          .catch((error) => {
+            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+          });
   }
 
   loginTwitter(): void {
-    //-- TODO
-    this.realizarLogin();
+    this._auth.signInWithTwitter()
+          .then(authData => {
+            this.carregarTelaPrincipal()
+          })
+          .catch((error) => {
+            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+          });
   }
 
   loginGoogle(): void {
-    //-- TODO
-    this.realizarLogin();
+    this._auth.signInWithGoogle()
+          .then(authData => {
+            this.carregarTelaPrincipal()
+          })
+          .catch((error) => {
+            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+          });
   }
 
   loginGithub(): void {
-    //-- TODO
-    this.realizarLogin();
-  }
-
-  private realizarLogin() {
-    let loading = Loading.create({
-      content: 'Por favor, aguarde...'
-    });
-
-    this._navCtrl.present(loading);
-
-    setTimeout(() => {
-      this.carregarTelaPrincipal();
-    }, 500);
-
-    setTimeout(() => {
-      loading.dismiss();
-    }, 1000);
+    this._auth.signInWithGithub()
+          .then(authData => {
+            this.carregarTelaPrincipal()
+          })
+          .catch((error) => {
+            this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+          });
   }
 
   private carregarTelaPrincipal() {
@@ -132,7 +126,7 @@ export class UsuarioLoginPage {
   private gerenciarFormulario(): void {
     this.formError = {
       'email': '',
-      'senha': ''
+      'password': ''
     };
 
     this._validationMessages = {
@@ -140,7 +134,7 @@ export class UsuarioLoginPage {
         'required': 'E-mail é um campo obrigatório.',
         'invalidEmail': 'Endereço de E-mail inválido.'
       },
-      'senha': {
+      'password': {
         'required': 'Senha é um campo obrigatório',
         'minlength': 'A Senha deve ter no mínimo 5 caracteres.',
         'maxlength': 'A Senha deve ter no máximo 30 caracteres.'
@@ -149,12 +143,10 @@ export class UsuarioLoginPage {
 
     this.loginForm = this._formBuilder.group({
       'email': [
-        this.usuario.email,
-        Validators.compose([Validators.required, PostValidator.mailFormat])
+        '', Validators.compose([Validators.required, PostValidator.mailFormat])
       ],
-      'senha': [
-        this.usuario.senha,
-        Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])
+      'password': [
+        '', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])
       ]
     });
 

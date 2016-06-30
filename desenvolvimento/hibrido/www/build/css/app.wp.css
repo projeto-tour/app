@@ -16885,6 +16885,10 @@ body {
 .nao-favorito {
   color: #9E9E9E; }
 
+.fab-footer {
+  z-index: 999;
+  margin-bottom: 60px; }
+
 .agenda-detail .btn {
   width: 100%; }
 
