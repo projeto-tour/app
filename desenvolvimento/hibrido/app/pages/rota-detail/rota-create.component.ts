@@ -1,7 +1,8 @@
 import { Component }  from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Rota, Agenda } from '../shared';
+import { Agenda } from '../../providers/agendas';
+import { Rota } from '../shared';
 
 @Component({
   templateUrl: 'build/pages/rota-detail/rota-create.component.html'

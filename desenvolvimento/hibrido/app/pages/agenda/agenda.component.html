@@ -23,8 +23,7 @@
     </ion-refresher-content>
   </ion-refresher>
   
-  <!--*ngFor="let agenda of agendas | async | agendaFilter:filtro"-->
-  <ion-card *ngFor="let agenda of agendas | agendaFilter:filtro">
+  <ion-card *ngFor="let agenda of _agendaService.agendas | async | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
       <h2>{{agenda.tipoAgenda.descricao}}</h2>

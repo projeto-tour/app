@@ -16,10 +16,10 @@ import { FIREBASE_APP_PROVIDERS } from './providers/firebase';
 import { AUTH_PROVIDERS } from './providers/auth';
 import { USUARIOS_PROVIDERS, Usuario } from './providers/usuarios';
 import { AGENDAS_PROVIDERS } from './providers/agendas';
-import { MenuDataProvider, TutorialDataProvider } from './providers';
+import { DATA_PROVIDERS, MenuDataService, IMenu, IMenuItem } from './providers/data';
 
 // shared
-import { Menu, MenuItem, GlobalMethodService, GlobalVariableService } from './pages/shared';
+import { GlobalMethodService, GlobalVariableService } from './pages/shared';
 
 // services
 import { FirebaseAuthService } from './providers/auth';
@@ -43,17 +43,17 @@ class PartiuApp {
   usuario: Usuario = new Usuario('Nome de usuário', 'usuario@usuario.com.br', 'img/user-woman.svg');
   
   rootPage: any = null;
-  menuPages: Menu[];
+  menuPages: IMenu[];
   showPage: boolean = false;
 
   mensagenErro: any = null;
 
   constructor(private _events: Events,
-    private _menuData: MenuDataProvider,
     private _platform: Platform,
     private _menu: MenuController,
     private _globalMethod: GlobalMethodService,
-    private _auth: FirebaseAuthService) {
+    private _auth: FirebaseAuthService,
+    private _menuData: MenuDataService) {
     this._platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
@@ -77,7 +77,7 @@ class PartiuApp {
           });
   }
 
-  openPage(page: MenuItem) {
+  openPage(page: IMenuItem) {
     if (page.title.indexOf("Logout") !== -1) {
       this.confirmarLogout();
     } else {
@@ -124,8 +124,7 @@ ionicBootstrap
     FIREBASE_APP_PROVIDERS,
     USUARIOS_PROVIDERS,
     AGENDAS_PROVIDERS,
-    MenuDataProvider,
-    TutorialDataProvider,
+    DATA_PROVIDERS,
     PreferenciaService,
     HistoricoService,
     NotificacaoService,

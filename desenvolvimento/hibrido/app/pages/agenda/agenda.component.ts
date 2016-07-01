@@ -1,18 +1,14 @@
 import { Component }  from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, DatePipe } from '@angular/common';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-import { NavParams, NavController, Modal, ActionSheet, Platform, Toast, Alert } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
 
-import { UserDataProvider } from '../../providers/user-data.provider';
+import { NavController, ActionSheet, Platform, Alert } from 'ionic-angular';
 
-import { Usuario } from '../../providers/usuarios';
-import { TipoAgenda, GlobalMethodService } from '../shared';
-
-import { AgendaView, AgendaService, AgendaFilterPipe } from './';
-
-import { UsuarioView } from '../usuario';
-
+import { AgendaFilterPipe } from './';
+import { AgendaService, IAgenda } from '../../providers/agendas';
+import { GlobalMethodService } from '../shared';
 import { PreferenciaPage } from '../preferencia';
 import { MapaPage } from '../mapa';
 import { RotaPage } from '../rota';
@@ -20,81 +16,54 @@ import { AgendaDetailPage } from '../agenda-detail';
 
 @Component({
   templateUrl: 'build/pages/agenda/agenda.component.html',
-  pipes: [ AgendaFilterPipe ],
-  directives: [ NgClass ],
-  providers: [ UserDataProvider ]
+  pipes: [AgendaFilterPipe],
+  directives: [NgClass]
 })
 export class AgendaPage {
 
   titulo: string = "Agendas";
-  usuario: UsuarioView;
-  agendas: AgendaView[] = [];
-  //agendas: FirebaseListObservable<any[]>;
-  dados: any;
   filtro: string = '';
+  agendas: IAgenda[] = [];
   mensagenErro: any = null;
 
-  constructor(private _navParams: NavParams,
+  constructor(
     private _navCtrl: NavController,
     private _platform: Platform,
-    private _userData: UserDataProvider,
-    private _service: AgendaService,
     public _globalMethod: GlobalMethodService,
-    private _firebaseData: AngularFire) {
-    this.dados = _navParams.data;
+    private _agendaService: AgendaService) {
   }
 
   ionViewLoaded() {
-    this.getUsuario();
     this.getAgendas();
+    this._agendaService.filterAgendas((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
   }
 
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
-  marcarComoFavorito(agenda: AgendaView): void {
+  marcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
+    this._agendaService.updateAgenda(agenda, { favorito: agenda.favorito });
   }
 
   carregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  carregarMapa(agenda: AgendaView): void {
+  carregarMapa(agenda: IAgenda): void {
     this._navCtrl.push(MapaPage, agenda);
   }
 
-  carregarRotas(agenda: AgendaView): void {
+  carregarRotas(agenda: IAgenda): void {
     this._globalMethod.carregarPagina(RotaPage, agenda, true, this._navCtrl);
   }
 
-  editar(agenda: AgendaView): void {
-    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Editar', agenda: agenda, usuario: this.usuario }, true, this._navCtrl);
+  editar(agenda: IAgenda): void {
+    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Editar', agenda: agenda }, true, this._navCtrl);
   }
 
   incluir(): void {
-    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Criar', agenda: null, usuario: this.usuario }, true, this._navCtrl);
+    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Criar', agenda: null }, true, this._navCtrl);
   }
 
-  sincronizar(refresher) {
-    //-- TODO
-    console.log('Begin async operation', refresher);
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-
-  gerenciar(agenda: AgendaView): void {
+  gerenciar(agenda: IAgenda): void {
     let actionSheet = ActionSheet.create({
       title: 'Opções',
       buttons: [
@@ -134,7 +103,7 @@ export class AgendaPage {
     this._navCtrl.present(actionSheet);
   }
 
-  excluir(agenda: AgendaView): void {
+  excluir(agenda: IAgenda): void {
     let confirm = Alert.create({
       title: 'Excluir',
       message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
@@ -148,8 +117,10 @@ export class AgendaPage {
         {
           text: 'Sim',
           handler: () => {
-            //-- TODO
-            console.log('Sim clicked');
+            //-- TODO Otimizar a remoção de agenda da lista local
+            this._agendaService.removeAgenda(agenda).then(() => {
+              this.getAgendas();
+            });
           }
         }
       ]
@@ -157,26 +128,17 @@ export class AgendaPage {
     this._navCtrl.present(confirm);
   }
 
-  private getUsuario() {
-    this._userData.getUsuario().then(
-      (data: UsuarioView) => this.usuario = data,
-      error => this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl));
-  }
-
   private getAgendas(): void {
-    //this.agendas = this._firebaseData.database.list('agendas');
-    this._service.getAgendasARealizar()
+    this._agendaService.agendas
       .subscribe(
-      (data: AgendaView[]) => { //-- on sucess
+      (data: IAgenda[]) => { //-- on sucess
         this.agendas = data;
+        //-- TODO Calcular a kilometragem das rotas de agenda
+        //this.agendas.forEach(data => { data.distancia = this._agendaServiceRota.calcularKilometragem(idAgenda); })
       },
       error => { //-- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { //-- on completion
-
-      }
-      );
+      });
   }
 
 }

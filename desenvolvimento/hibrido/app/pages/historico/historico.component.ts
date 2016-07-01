@@ -6,7 +6,6 @@ import { GlobalMethodService } from '../shared';
 import { Historico, HistoricoService, HistoricoListPage } from './';
 
 import { PreferenciaPage } from '../preferencia';
-import { AgendaView } from '../agenda';
 
 @Component({
   templateUrl: 'build/pages/historico/historico.component.html'

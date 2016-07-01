@@ -25,6 +25,7 @@ export class Usuario implements IUsuario{
 }
 
 export interface IUsuario {
+    $key?: string;
     photoURL: string;
     providerId: string;
     uid: string;

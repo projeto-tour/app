@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 import { FirebaseAuthService } from '../auth';
-
 import { Usuario } from './usuario.model';
 
 @Injectable()

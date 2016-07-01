@@ -2,10 +2,10 @@ import { Component }  from '@angular/core';
 
 import { NavParams, NavController, Alert } from 'ionic-angular';
 
+import { Agenda } from '../../providers/agendas';
 import { GlobalMethodService } from '../shared';
 
 import { RotaView, RotaService } from './';
-import { AgendaView } from '../agenda';
 
 import { RotaCreatePage, RotaDetailPage } from '../rota-detail';
 import { MapaPage } from '../mapa';
@@ -16,7 +16,7 @@ import { MapaPage } from '../mapa';
 export class RotaPage {
 
   titulo: string = "Rotas";
-  agenda: AgendaView;
+  agenda: Agenda;
   mensagenErro: any;
 
   constructor(private _navParams: NavParams,
@@ -81,17 +81,17 @@ export class RotaPage {
   }
 
   private getRotas(): void {
-    this._service.getRotas(this.agenda.id)
-      .subscribe(
-      (data: RotaView[]) => { //-- on sucess
-        this.agenda.rotas = data;
-      },
-      error => { //-- on error
-        this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { //-- on completion
+    // this._service.getRotas(this.agenda.id)
+    //   .subscribe(
+    //   (data: RotaView[]) => { //-- on sucess
+    //     this.agenda.rotas = data;
+    //   },
+    //   error => { //-- on error
+    //     this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+    //   },
+    //   () => { //-- on completion
 
-      }
-      );
+    //   }
+    //   );
   }
 }

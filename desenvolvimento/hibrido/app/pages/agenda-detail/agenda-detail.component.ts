@@ -3,10 +3,8 @@ import { Component, Inject }  from '@angular/core';
 import { NavParams, NavController, Modal, Toast } from 'ionic-angular';
 
 import { Usuario } from '../../providers/usuarios';
-import { TipoAgenda, GlobalMethodService } from '../shared';
-import { AgendaView, AgendaService } from '../agenda';
-
-import { UsuarioView } from '../usuario';
+import { AgendaService, Agenda, TipoAgenda } from '../../providers/agendas';
+import { GlobalMethodService } from '../shared';
 
 import { PreferenciaPage } from '../preferencia';
 import { RotaPage } from '../rota';
@@ -17,9 +15,7 @@ import { RotaPage } from '../rota';
 export class AgendaDetailPage {
 
   titulo: string = "Agenda";
-  usuario: UsuarioView;
-  tiposAgenda: TipoAgenda[] = [];
-  agenda: AgendaView = null;
+  agenda: Agenda = null;
 
   private mensagenErro: any;
 
@@ -29,34 +25,18 @@ export class AgendaDetailPage {
     private _globalMethod: GlobalMethodService) {
     this.titulo = _navParams.data.titulo;
     this.agenda = _navParams.data.agenda;
-    this.usuario = _navParams.data.usuario;
   }
 
   ionViewLoaded() {
     this.getTiposDeAgenda();
   }
 
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
   confirmar(): void {
     this._globalMethod.carregarPagina(RotaPage, this.agenda, true, this._navCtrl);
   }
 
   limpar(): void {
-    this.agenda = new AgendaView(new Usuario(), new TipoAgenda(), "",
-      (new Date()).toDateString(),
-      (new Date()).toDateString(),
-      (new Date()).toDateString())
+    // this.agenda = new Agenda()
   }
 
   carregarPreferencias(): void {
@@ -64,29 +44,29 @@ export class AgendaDetailPage {
   }
 
   private getTiposDeAgenda() {
-    this._service.getTiposDeAgenda()
-      .subscribe(
-      (data: TipoAgenda[]) => { //-- on sucess
-        this.tiposAgenda = data;
-      },
-      error => { //-- on error
-        this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { //-- on completion
-        this.initAgenda(this.agenda);
-      }
-      );
+    // this._service.getTiposDeAgenda()
+    //   .subscribe(
+    //   (data: TipoAgenda[]) => { //-- on sucess
+    //     this.tiposAgenda = data;
+    //   },
+    //   error => { //-- on error
+    //     this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+    //   },
+    //   () => { //-- on completion
+    //     this.initAgenda(this.agenda);
+    //   }
+    //   );
   }
 
-  private initAgenda(agenda: AgendaView): void {
-    if (agenda === null || Object.keys(agenda).length === 0 || agenda.id === 0) {
-      this.agenda = new AgendaView(this.usuario,
-        this.tiposAgenda[0],
-        "",
-        (new Date()).toDateString(),
-        (new Date()).toDateString(),
-        (new Date()).toDateString());
-    }
+  private initAgenda(agenda: Agenda): void {
+    // if (agenda === null || Object.keys(agenda).length === 0 || agenda.id === 0) {
+    //   this.agenda = new Agenda(this.usuario,
+    //     this.tiposAgenda[0],
+    //     "",
+    //     (new Date()).toDateString(),
+    //     (new Date()).toDateString(),
+    //     (new Date()).toDateString());
+    // }
   }
 
 }

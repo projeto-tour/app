@@ -20,7 +20,7 @@ export class HistoricoService {
 
     getHistorico(id: number): Observable<Historico> {
         return this.getHistoricos()
-            .map((data: Historico[]) => data.find(obj => obj.id === id))
+            .map((data: Historico[]) => data)
             .catch(this.handleError);;
     }
 

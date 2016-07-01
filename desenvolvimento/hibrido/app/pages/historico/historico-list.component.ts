@@ -5,7 +5,8 @@ import { NavParams, NavController, Modal, Platform, ActionSheet, Alert } from 'i
 
 import { GlobalMethodService } from '../shared';
 
-import { AgendaView, AgendaFilterPipe, AgendaService } from '../agenda';
+import { AgendaService, Agenda } from '../../providers/agendas';
+import { AgendaFilterPipe } from '../agenda';
 import { AgendaDetailPage } from '../agenda-detail';
 import { PreferenciaPage } from '../preferencia';
 import { MapaPage } from '../mapa';
@@ -19,8 +20,8 @@ import { RotaPage } from '../rota';
 export class HistoricoListPage {
 
   titulo: string = "Históricos";
-  todasAgendas: AgendaView[] = [];
-  agendas: AgendaView[] = [];
+  todasAgendas: Agenda[] = [];
+  agendas: Agenda[] = [];
   dados: any;
   filtro: string = '';
   segment: string = 'todas';
@@ -53,13 +54,13 @@ export class HistoricoListPage {
   atualizarLista(): void {
     console.log('atualizarLista: ' + JSON.stringify(this.segment))
     if (this.segment === 'favoritas') {
-      this.agendas = this.todasAgendas.filter((data: AgendaView) => (new Date(data.dataFim) < new Date()) && data.favorito);
+      this.agendas = this.todasAgendas.filter((data: Agenda) => (new Date(data.dataFim) < new Date()) && data.favorito);
     } else {
-      this.agendas = this.todasAgendas.filter((data: AgendaView) => new Date(data.dataFim) < new Date());
+      this.agendas = this.todasAgendas.filter((data: Agenda) => new Date(data.dataFim) < new Date());
     }
   }
 
-  marcarComoFavorito(agenda: AgendaView): void {
+  marcarComoFavorito(agenda: Agenda): void {
     agenda.favorito = !agenda.favorito;
     this.atualizarLista();
   }
@@ -68,15 +69,15 @@ export class HistoricoListPage {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  carregarMapa(agenda: AgendaView): void {
+  carregarMapa(agenda: Agenda): void {
     this._navCtrl.push(MapaPage, agenda);
   }
 
-  carregarRotas(agenda: AgendaView): void {
+  carregarRotas(agenda: Agenda): void {
     this._globalMethod.carregarPagina(RotaPage, agenda, true, this._navCtrl);
   }
 
-  reagendar(agenda: AgendaView): void {
+  reagendar(agenda: Agenda): void {
     this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Reagendar', agenda: agenda }, true, this._navCtrl);
   }
 
@@ -89,7 +90,7 @@ export class HistoricoListPage {
     }, 2000);
   }
 
-  gerenciar(agenda: AgendaView): void {
+  gerenciar(agenda: Agenda): void {
     let actionSheet = ActionSheet.create({
       title: 'Opções',
       buttons: [
@@ -129,7 +130,7 @@ export class HistoricoListPage {
     this._navCtrl.present(actionSheet);
   }
 
-  excluir(agenda: AgendaView): void {
+  excluir(agenda: Agenda): void {
     let confirm = Alert.create({
       title: 'Excluir',
       message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
@@ -153,16 +154,16 @@ export class HistoricoListPage {
   }
 
   private getAgendas(): void {
-    this._service.getAgendasRealidas()
+    this._service.getMockAgendas()
       .subscribe(
-      (data: AgendaView[]) => { //-- on sucess
+      (data: Agenda[]) => { //-- on sucess
         this.todasAgendas = data;
       },
       error => { //-- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
       () => { //-- on completion
-        this.agendas = this.todasAgendas.filter((data: AgendaView) => new Date(data.dataFim) < new Date());
+        this.agendas = this.todasAgendas.filter((data: Agenda) => new Date(data.dataFim) < new Date());
       }
       );
   }

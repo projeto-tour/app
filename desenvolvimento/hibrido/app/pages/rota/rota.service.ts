@@ -18,7 +18,7 @@ export class RotaService {
 
     getRota(id: number, idAgenda: number): Observable<Rota> {
         return this.getRotas(idAgenda)
-            .map((lista: Rota[]) => lista.find(obj => obj.id === id))
+            .map((lista: Rota[]) => lista)
             // .do(data => console.log('getRota: ' +  JSON.stringify(data)))
             .catch(this.handleError);;
     }

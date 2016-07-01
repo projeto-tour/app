@@ -1,4 +1,5 @@
-import { Agenda, PontoInteresse, Transporte } from './';
+import { Agenda } from '../../../providers/agendas';
+import { PontoInteresse, Transporte } from './';
 
 /**
  * Referente a avaliação de usuario ao ponto de interesse
