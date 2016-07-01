@@ -1,0 +1,22 @@
+[
+  {
+    "descricao": "Passeio",
+    "icone": "walk",
+    "destaque": "img/advance-card-map-paris.png"
+  },
+  {
+    "descricao": "Trabalho",
+    "icone": "briefcase",
+    "destaque": "img/advance-card-map-paris.png"
+  },
+  {
+    "descricao": "Acandêmico",
+    "icone": "school",
+    "destaque": "img/advance-card-map-paris.png"
+  },
+  {
+    "descricao": "Saúde",
+    "icone": "medkit",
+    "destaque": "img/advance-card-map-paris.png"
+  }
+]

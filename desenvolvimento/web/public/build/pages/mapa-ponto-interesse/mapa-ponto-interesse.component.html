@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+      <button (click)="carregarPreferencias()">
+      <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="mapa-ponto-interesse">
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Ponto de Interesse</ion-label>
+      <ion-select [(ngModel)]="pontoInteresse">
+        <ion-option value="1">Passeio</ion-option>
+        <ion-option value="2">Alimentação</ion-option>
+        <ion-option value="3">Evento</ion-option>
+        <ion-option value="4">Hotel</ion-option>
+        <ion-option value="5">Negócios</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Ex. Av. presidente vargas ou São Paulo"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div id="map-ponto-interesse"></div>
+
+</ion-content>

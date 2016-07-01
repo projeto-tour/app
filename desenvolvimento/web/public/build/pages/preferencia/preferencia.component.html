@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+      <button (click)="confirmar()">
+      Confirmar
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="preferencia">
+
+  <ion-list>
+    <ion-item-divider light>Escolhe prefêrencias de pontos de interesse</ion-item-divider>
+    <ion-item *ngFor="let preferencia of preferencias">
+      <ion-label>{{preferencia.descricao}}</ion-label>
+      <ion-checkbox [(ngModel)]="preferencia.preferido" [checked]="preferencia.preferido" [value]="preferencia.descricao"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

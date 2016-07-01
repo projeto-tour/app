@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{titulo}}</ion-title>
+        <ion-buttons end>
+            <button (click)="carregarMapa()">
+        <ion-icon ios="ios-map" md="md-map"></ion-icon>
+    </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg rota-detail">
+
+    <ion-card class="adv-map">
+        <div style="position: relative">
+            <img src="img/advance-card-map-paris.png">
+            <button danger fab fab-right fab-top class="fab-map">
+                <ion-icon name='pin'></ion-icon>
+            </button>
+        </div>
+        <ion-item>
+            <ion-icon subtle item-left name='calendar'></ion-icon>
+            <h2>Informações da Rota</h2>
+            <hr>
+            <h4>Saída: <strong>01/03/2016</strong> as <strong>13:00</strong></h4>
+            <p>Rua visconde de inhumirim 99, Vila Virginia, Ribeirão Preto - SP</p>
+            <h4>Chegada: <strong>01/03/2016</strong> as <strong>13:00</strong></h4>
+            <p>Avenida paulista 100, Jardins, São Paulo - SP</p>
+            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
+        </ion-item>
+        <ion-item>
+            <ion-icon subtle item-left name='restaurant'></ion-icon>
+            <h2>Ponto de Interesse</h2>
+            <hr>
+            <h4>Resturante</h4>
+            <p>Avenida paulista 130, Jardins, São Paulo - SP</p>
+            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
+        </ion-item>
+        <ion-item>
+            <ion-icon subtle item-left name='car'></ion-icon>
+            <h2>Meio de Transporte</h2>
+            <hr>
+            <h4>Carro</h4>
+            <p><span item-left class="item-bold">3 hr</span><span item-left subtle>(4.8 km)</span></p>
+            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
+        </ion-item>
+        <ion-item actions>
+            <button clear primary item-left>
+                <ion-icon name='thumbs-up'></ion-icon>
+                12 Curtidas
+            </button>
+            <button clear primary item-left>
+                <ion-icon name="text"></ion-icon>
+                4 Comentários
+            </button>
+            <button clear primary item-right>
+                <ion-icon name='share'></ion-icon>
+            </button>
+        </ion-item>
+    </ion-card>
+
+</ion-content>
