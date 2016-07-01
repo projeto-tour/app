@@ -60,6 +60,7 @@ export class AgendaService {
     }
 
     createAgenda(agenda: IAgenda): firebase.Promise<any> {
+        console.log('createAgenda: ' +  JSON.stringify(agenda))
         return this.items.push(agenda);
     }
 
@@ -68,6 +69,7 @@ export class AgendaService {
     }
 
     updateAgenda(agenda: IAgenda, changes: any): firebase.Promise<any> {
+        console.log('updateAgenda:[agenda] ' +  JSON.stringify(agenda) +' changes: '+ JSON.stringify(changes))
         return this.items.update(agenda.$key, changes);
     }
 

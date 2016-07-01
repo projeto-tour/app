@@ -18,11 +18,11 @@
 
 <ion-content class="historico cards-bg">
 
-  <ion-refresher (ionRefresh)="sincronizar($event)">
+  <!--<ion-refresher (ionRefresh)="sincronizar($event)">
     <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
     </ion-refresher-content>
-  </ion-refresher>
-
+  </ion-refresher>-->
+  
   <ion-row *ngFor="let i of rows">
     <ion-col width-50 *ngFor="let historico of historicos | slice:(i*2):(i+1)*2">
       <ion-card class="adv-map">

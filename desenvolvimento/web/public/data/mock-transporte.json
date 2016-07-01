@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "tipoTransporte": {
+      "id": 3
+    },
+    "descricao": "carona"
+  },
+  {
+    "id": 2,
+    "tipoTransporte": {
+      "id": 4
+    },
+    "descricao": "coletivo"
+  },
+  {
+    "id": 3,
+    "tipoTransporte": {
+      "id": 3
+    },
+    "descricao": "carro particular"
+  }
+]

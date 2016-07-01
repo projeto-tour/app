@@ -2,16 +2,16 @@ import { Component }  from '@angular/core';
 
 import { NavParams, NavController, Modal } from 'ionic-angular';
 
-import { Mapa, MapaService } from './';
+import { Mapa, MapaService } from '../mapa';
 
 import { GlobalMethodService } from '../shared';
 
 import { PreferenciaPage } from '../preferencia';
 
 @Component({
-  templateUrl: 'build/pages/mapa/mapa.component.html'
+  templateUrl: 'build/pages/mapa-agenda/mapa-agenda.component.html'
 })
-export class MapaPage {
+export class MapaAgendaPage {
 
   titulo: string = "Mapa";
   pontosMapa: any;
@@ -57,7 +57,7 @@ export class MapaPage {
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
       () => { //-- on completion
-        let mapEle = document.getElementById('map');
+        let mapEle = document.getElementById('map-agenda');
 
         let map = new google.maps.Map(mapEle, {
           center: this.pontosMapa.find(d => d.center),
@@ -83,6 +83,7 @@ export class MapaPage {
         google.maps.event.addListenerOnce(map, 'idle', () => {
           mapEle.classList.add('show-map');
         });
+        
       }
       );
   }

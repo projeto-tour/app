@@ -2,16 +2,16 @@ import { Component }  from '@angular/core';
 
 import { NavParams, NavController, Modal } from 'ionic-angular';
 
-import { Mapa, MapaService } from './';
+import { Mapa, MapaService } from '../mapa';
 
 import { GlobalMethodService } from '../shared';
 
 import { PreferenciaPage } from '../preferencia';
 
 @Component({
-  templateUrl: 'build/pages/mapa/mapa.component.html'
+  templateUrl: 'build/pages/mapa-rota/mapa-rota.component.html'
 })
-export class MapaPage {
+export class MapaRotaPage {
 
   titulo: string = "Mapa";
   pontosMapa: any;
@@ -31,18 +31,6 @@ export class MapaPage {
     this.carregarMapa();
   }
 
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
   carregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
@@ -57,7 +45,7 @@ export class MapaPage {
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
       () => { //-- on completion
-        let mapEle = document.getElementById('map');
+        let mapEle = document.getElementById('map-rota');
 
         let map = new google.maps.Map(mapEle, {
           center: this.pontosMapa.find(d => d.center),

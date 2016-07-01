@@ -65,6 +65,7 @@ export class UsuarioProfilePage {
         endereco: this.usuario.endereco ? this.usuario.endereco : new Endereco()
       };
   }
+  
   private handleError(error: any) {
     this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
   }

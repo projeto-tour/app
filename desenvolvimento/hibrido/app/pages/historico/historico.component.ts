@@ -1,10 +1,10 @@
 import { Component }  from '@angular/core';
-import { NavParams, NavController, Platform, ActionSheet, Alert } from 'ionic-angular';
+import { DatePipe } from '@angular/common';
+import { NavController, Platform, ActionSheet, Alert } from 'ionic-angular';
 
+import { Historico, HistoricoListPage } from './';
 import { GlobalMethodService } from '../shared';
-
-import { Historico, HistoricoService, HistoricoListPage } from './';
-
+import { AgendaService, TipoAgendaService, IAgenda, ITipoAgenda } from '../../providers/agendas';
 import { PreferenciaPage } from '../preferencia';
 
 @Component({
@@ -15,36 +15,27 @@ export class HistoricoPage {
   titulo: string = "Históricos";
   historicos: Historico[] = [];
   rows: number[] = [];
-  dados: any;
   filtro: string = '';
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
+  constructor(private _navCtrl: NavController,
     private _platform: Platform,
-    private _service: HistoricoService,
-    public _globalMethod: GlobalMethodService) {
-    this.dados = this._navParams.data;
+    public _globalMethod: GlobalMethodService,
+    private _agendaService: AgendaService,
+    private _tipoAgendaService: TipoAgendaService) {
   }
 
   ionViewLoaded() {
     this.getHistoricos();
+    this._agendaService.filterHistoricos((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
   }
 
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
   carregarAgendas(historico: Historico): void {
-    this._globalMethod.carregarPagina(HistoricoListPage, historico, true, this._navCtrl);
+    if (historico === null || historico.agendas === null || historico.agendas.length <= 0) {
+      this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
+    } else {
+      this._globalMethod.carregarPagina(HistoricoListPage, historico.agendas, true, this._navCtrl);
+    }
   }
 
   carregarPreferencias(): void {
@@ -53,43 +44,49 @@ export class HistoricoPage {
 
   sincronizar(refresher) {
     //-- TODO
-    console.log('Begin async operation', refresher);
+    this.historicos = [];
+    this.getHistoricos();
+    this._agendaService.filterHistoricos((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
     setTimeout(() => {
-      console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
   }
 
   gerenciar(historico: Historico): void {
-    let actionSheet = ActionSheet.create({
-      title: 'Opções',
-      buttons: [
-        {
-          text: 'Excluir Agendas',
-          role: 'destructive',
-          icon: !this._platform.is('ios') ? 'trash' : null,
-          handler: () => {
-            this.excluir(historico);
+    if (historico === null || historico.agendas === null || historico.agendas.length <= 0) {
+      this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
+    } else {
+      let actionSheet = ActionSheet.create({
+        title: 'Opções',
+        buttons: [
+          {
+            text: 'Excluir Agendas',
+            role: 'destructive',
+            icon: !this._platform.is('ios') ? 'trash' : null,
+            handler: () => {
+              this.excluir(historico);
+            }
+          },
+          {
+            text: 'Visualizar Agendas',
+            icon: !this._platform.is('ios') ? 'open' : null,
+            handler: () => {
+              this.carregarAgendas(historico);
+            }
+          },
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            icon: !this._platform.is('ios') ? 'close' : null,
+            handler: () => {
+              console.log('Cancelar clicked');
+            }
           }
-        },
-        {
-          text: 'Visualizar Agendas',
-          icon: !this._platform.is('ios') ? 'open' : null,
-          handler: () => {
-            this.carregarAgendas(historico);
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          icon: !this._platform.is('ios') ? 'close' : null,
-          handler: () => {
-            console.log('Cancelar clicked');
-          }
-        }
-      ]
-    });
-    this._navCtrl.present(actionSheet);
+        ]
+      });
+      this._navCtrl.present(actionSheet);
+    }
+
   }
 
   excluir(historico: Historico): void {
@@ -115,18 +112,24 @@ export class HistoricoPage {
   }
 
   private getHistoricos(): void {
-    this._service.getHistoricos()
+    this._agendaService.historicos
       .subscribe(
-      (data: Historico[]) => { //-- on sucess
-        this.historicos = data;
+      (agendas: IAgenda[]) => { //-- on sucess
+        this._tipoAgendaService.tipos.subscribe(
+          (tipos: ITipoAgenda[]) => { //-- on sucess
+            tipos.forEach(tipo => {
+              var historico = <Historico>tipo;
+              historico.agendas = agendas.filter(agenda => agenda.tipoAgenda.id === tipo.$key);
+              historico.qtdeFavoritos = historico.agendas.filter(agenda => agenda.favorito).length
+              historico.qtdeTodos = historico.agendas.length;
+              this.historicos.push(historico);
+              this.rows = Array.from(Array(Math.ceil((this.historicos).length / 2)).keys());
+            });
+          });
       },
       error => { //-- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { //-- on completion
-        this.rows = Array.from(Array(Math.ceil((this.historicos).length / 2)).keys());
-      }
-      );
+      });
   }
 
 }

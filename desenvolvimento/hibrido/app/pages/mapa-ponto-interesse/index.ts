@@ -1,0 +1,1 @@
+export { MapaPontoInteressePage } from './mapa-ponto-interesse.component';

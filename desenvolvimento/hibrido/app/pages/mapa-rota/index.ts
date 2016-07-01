@@ -1,0 +1,1 @@
+export { MapaRotaPage } from './mapa-rota.component';

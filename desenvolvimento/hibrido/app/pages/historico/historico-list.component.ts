@@ -5,11 +5,11 @@ import { NavParams, NavController, Modal, Platform, ActionSheet, Alert } from 'i
 
 import { GlobalMethodService } from '../shared';
 
-import { AgendaService, Agenda } from '../../providers/agendas';
+import { AgendaService, IAgenda } from '../../providers/agendas';
 import { AgendaFilterPipe } from '../agenda';
 import { AgendaDetailPage } from '../agenda-detail';
 import { PreferenciaPage } from '../preferencia';
-import { MapaPage } from '../mapa';
+import { MapaAgendaPage } from '../mapa-agenda';
 import { RotaPage } from '../rota';
 
 @Component({
@@ -20,9 +20,8 @@ import { RotaPage } from '../rota';
 export class HistoricoListPage {
 
   titulo: string = "Históricos";
-  todasAgendas: Agenda[] = [];
-  agendas: Agenda[] = [];
-  dados: any;
+  todasAgendas: IAgenda[] = [];
+  agendas: IAgenda[] = [];
   filtro: string = '';
   segment: string = 'todas';
   mensagenErro: any;
@@ -32,65 +31,42 @@ export class HistoricoListPage {
     private _platform: Platform,
     private _service: AgendaService,
     public _globalMethod: GlobalMethodService) {
-    this.dados = this._navParams.data;
+    this.todasAgendas = this._navParams.data;
+    this.agendas = this.todasAgendas;
   }
-
-  ionViewLoaded() {
-    this.getAgendas();
-  }
-
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
 
   atualizarLista(): void {
-    console.log('atualizarLista: ' + JSON.stringify(this.segment))
     if (this.segment === 'favoritas') {
-      this.agendas = this.todasAgendas.filter((data: Agenda) => (new Date(data.dataFim) < new Date()) && data.favorito);
+      this.agendas = this.todasAgendas.filter((agenda: IAgenda) => agenda.favorito);
     } else {
-      this.agendas = this.todasAgendas.filter((data: Agenda) => new Date(data.dataFim) < new Date());
+      this.agendas = this.todasAgendas;
     }
   }
 
-  marcarComoFavorito(agenda: Agenda): void {
+  marcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
-    this.atualizarLista();
+    this._service.updateAgenda(agenda, { favorito: agenda.favorito }).then(() => {
+      this.atualizarLista();
+    });
   }
 
   carregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  carregarMapa(agenda: Agenda): void {
-    this._navCtrl.push(MapaPage, agenda);
+  carregarMapa(agenda: IAgenda): void {
+    this._navCtrl.push(MapaAgendaPage, agenda);
   }
 
-  carregarRotas(agenda: Agenda): void {
+  carregarRotas(agenda: IAgenda): void {
     this._globalMethod.carregarPagina(RotaPage, agenda, true, this._navCtrl);
   }
 
-  reagendar(agenda: Agenda): void {
+  reagendar(agenda: IAgenda): void {
     this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Reagendar', agenda: agenda }, true, this._navCtrl);
   }
 
-  atualizar(refresher) {
-    //-- TODO
-    console.log('Begin async operation', refresher);
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-
-  gerenciar(agenda: Agenda): void {
+  gerenciar(agenda: IAgenda): void {
     let actionSheet = ActionSheet.create({
       title: 'Opções',
       buttons: [
@@ -130,7 +106,7 @@ export class HistoricoListPage {
     this._navCtrl.present(actionSheet);
   }
 
-  excluir(agenda: Agenda): void {
+  excluir(agenda: IAgenda): void {
     let confirm = Alert.create({
       title: 'Excluir',
       message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
@@ -151,21 +127,6 @@ export class HistoricoListPage {
       ]
     });
     this._navCtrl.present(confirm);
-  }
-
-  private getAgendas(): void {
-    this._service.getMockAgendas()
-      .subscribe(
-      (data: Agenda[]) => { //-- on sucess
-        this.todasAgendas = data;
-      },
-      error => { //-- on error
-        this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { //-- on completion
-        this.agendas = this.todasAgendas.filter((data: Agenda) => new Date(data.dataFim) < new Date());
-      }
-      );
   }
 
 }

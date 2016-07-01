@@ -6,18 +6,37 @@ import { AgendaService, TipoAgendaService, IAgenda, ITipoAgenda } from '../../pr
 export class MockService {
 
     constructor(
-        private _tipoAgendaService: TipoAgendaService) {
+        private _tipoAgendaService: TipoAgendaService,
+        private _agendaService: AgendaService) {
     }
 
     generateMockTiposDeAgenda(): void {
         this._tipoAgendaService.getMockTiposDeAgenda()
             .subscribe(
-            (data: ITipoAgenda[]) => { //-- on sucess
-                data.forEach(tipoAgenda => {
+            (tipos: ITipoAgenda[]) => { //-- on sucess
+                tipos.forEach(tipo => {
                     this._tipoAgendaService.createTipoAgenda({
-                        descricao: tipoAgenda.descricao,
-                        destaque: tipoAgenda.destaque,
-                        icone: tipoAgenda.icone
+                        descricao: tipo.descricao,
+                        destaque: tipo.destaque,
+                        icone: tipo.icone
+                    });
+                });
+            });
+    }
+
+    private getAgendas(): void {
+        this._agendaService.getMockAgendas()
+            .subscribe(
+            (agendas: IAgenda[]) => { //-- on sucess
+                agendas.forEach(agenda => {
+                    this._agendaService.createAgenda({
+                        descricao: agenda.descricao,
+                        dataInicio: agenda.dataInicio,
+                        dataFim: agenda.dataFim,
+                        distancia: agenda.distancia,
+                        favorito: agenda.favorito,
+                        tipoAgenda: agenda.tipoAgenda,
+                        dataCriacao: agenda.dataCriacao
                     });
                 });
             });

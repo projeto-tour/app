@@ -18,12 +18,7 @@
 
 <ion-content class="agenda cards-bg">
 
-  <ion-refresher (ionRefresh)="sincronizar($event)">
-    <ion-refresher-content pullingText="Puxe para sincronizar" refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>
-  
-  <ion-card *ngFor="let agenda of _agendaService.agendas | async | agendaFilter:filtro">
+  <ion-card *ngFor="let agenda of _service.agendas | async | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
       <h2>{{agenda.tipoAgenda.descricao}}</h2>

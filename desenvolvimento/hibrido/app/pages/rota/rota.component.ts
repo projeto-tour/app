@@ -8,7 +8,7 @@ import { GlobalMethodService } from '../shared';
 import { RotaView, RotaService } from './';
 
 import { RotaCreatePage, RotaDetailPage } from '../rota-detail';
-import { MapaPage } from '../mapa';
+import { MapaRotaPage } from '../mapa-rota';
 
 @Component({
   templateUrl: 'build/pages/rota/rota.component.html'
@@ -17,6 +17,7 @@ export class RotaPage {
 
   titulo: string = "Rotas";
   agenda: Agenda;
+  rotas: RotaView[] = [];
   mensagenErro: any;
 
   constructor(private _navParams: NavParams,
@@ -30,28 +31,16 @@ export class RotaPage {
     this.getRotas();
   }
 
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
   incluir(): void {
     this._navCtrl.push(RotaCreatePage, this.agenda);
   }
 
   navegarNoMapa(rota: RotaView): void {
-    this._navCtrl.push(MapaPage, rota);
+    this._navCtrl.push(MapaRotaPage, rota);
   }
 
   carregarMapa(rota: RotaView): void {
-    this._navCtrl.push(MapaPage, rota);
+    this._navCtrl.push(MapaRotaPage, rota);
   }
 
   gerenciarRota(rota: RotaView): void {
@@ -81,17 +70,17 @@ export class RotaPage {
   }
 
   private getRotas(): void {
-    // this._service.getRotas(this.agenda.id)
-    //   .subscribe(
-    //   (data: RotaView[]) => { //-- on sucess
-    //     this.agenda.rotas = data;
-    //   },
-    //   error => { //-- on error
-    //     this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-    //   },
-    //   () => { //-- on completion
+    this._service.getRotas()
+      .subscribe(
+      (rotas: RotaView[]) => { //-- on sucess
+        this.rotas = rotas;
+      },
+      error => { //-- on error
+        this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+      },
+      () => { //-- on completion
 
-    //   }
-    //   );
+      }
+      );
   }
 }

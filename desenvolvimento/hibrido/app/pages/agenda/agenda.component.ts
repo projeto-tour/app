@@ -10,7 +10,7 @@ import { AgendaFilterPipe } from './';
 import { AgendaService, IAgenda } from '../../providers/agendas';
 import { GlobalMethodService } from '../shared';
 import { PreferenciaPage } from '../preferencia';
-import { MapaPage } from '../mapa';
+import { MapaAgendaPage } from '../mapa-agenda';
 import { RotaPage } from '../rota';
 import { AgendaDetailPage } from '../agenda-detail';
 
@@ -30,17 +30,17 @@ export class AgendaPage {
     private _navCtrl: NavController,
     private _platform: Platform,
     public _globalMethod: GlobalMethodService,
-    private _agendaService: AgendaService) {
+    private _service: AgendaService) {
   }
 
   ionViewLoaded() {
     this.getAgendas();
-    this._agendaService.filterAgendas((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
+    this._service.filterAgendas((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
   }
 
   marcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
-    this._agendaService.updateAgenda(agenda, { favorito: agenda.favorito });
+    this._service.updateAgenda(agenda, { favorito: agenda.favorito });
   }
 
   carregarPreferencias(): void {
@@ -48,7 +48,7 @@ export class AgendaPage {
   }
 
   carregarMapa(agenda: IAgenda): void {
-    this._navCtrl.push(MapaPage, agenda);
+    this._navCtrl.push(MapaAgendaPage, agenda);
   }
 
   carregarRotas(agenda: IAgenda): void {
@@ -118,7 +118,7 @@ export class AgendaPage {
           text: 'Sim',
           handler: () => {
             //-- TODO Otimizar a remoção de agenda da lista local
-            this._agendaService.removeAgenda(agenda).then(() => {
+            this._service.removeAgenda(agenda).then(() => {
               this.getAgendas();
             });
           }
@@ -129,12 +129,12 @@ export class AgendaPage {
   }
 
   private getAgendas(): void {
-    this._agendaService.agendas
+    this._service.agendas
       .subscribe(
       (data: IAgenda[]) => { //-- on sucess
         this.agendas = data;
         //-- TODO Calcular a kilometragem das rotas de agenda
-        //this.agendas.forEach(data => { data.distancia = this._agendaServiceRota.calcularKilometragem(idAgenda); })
+        //this.agendas.forEach(data => { data.distancia = this._serviceRota.calcularKilometragem(idAgenda); })
       },
       error => { //-- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);

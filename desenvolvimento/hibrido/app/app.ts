@@ -28,7 +28,6 @@ import { FirebaseAuthService } from './providers/auth';
 import { PrincipalPage } from './pages/principal';
 import { PreferenciaService } from './pages/preferencia';
 import { UsuarioLoginPage } from './pages/usuario';
-import { HistoricoService } from './pages/historico';
 import { NotificacaoService } from './pages/notificacao';
 import { RotaService } from './pages/rota';
 import { MapaService } from './pages/mapa';
@@ -109,6 +108,7 @@ class PartiuApp {
 
   private logout(): void {
     this._auth.signOut();
+    window.location.reload();
   }
 
 }
@@ -126,7 +126,6 @@ ionicBootstrap
     AGENDAS_PROVIDERS,
     DATA_PROVIDERS,
     PreferenciaService,
-    HistoricoService,
     NotificacaoService,
     RotaService,
     MapaService,

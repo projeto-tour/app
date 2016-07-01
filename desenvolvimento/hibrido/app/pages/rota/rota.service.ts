@@ -9,7 +9,7 @@ export class RotaService {
 
     constructor(private _http: Http) { }
 
-    getRotas(id: Number): Observable<Rota[]> {
+    getRotas(): Observable<Rota[]> {
         let data = this._http.get(ROTA_URL);
         return data.map((response: Response) => <Rota[]>response.json())
             // .do(data => console.log('getRotas: ' +  JSON.stringify(data)))
@@ -17,7 +17,7 @@ export class RotaService {
     }
 
     getRota(id: number, idAgenda: number): Observable<Rota> {
-        return this.getRotas(idAgenda)
+        return this.getRotas()
             .map((lista: Rota[]) => lista)
             // .do(data => console.log('getRota: ' +  JSON.stringify(data)))
             .catch(this.handleError);;

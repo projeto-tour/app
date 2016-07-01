@@ -14,19 +14,13 @@
     </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-toolbar>
-  <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
-  </ion-searchbar>
-</ion-toolbar>
-
 <ion-content class="historico-list cards-bg">
-
-  <ion-refresher (ionRefresh)="atualizar($event)">
-    <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>
 
   <ion-card *ngFor="let agenda of agendas | agendaFilter:filtro">
     <ion-item>

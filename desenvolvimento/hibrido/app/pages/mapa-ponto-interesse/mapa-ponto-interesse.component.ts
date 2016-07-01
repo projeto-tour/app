@@ -2,16 +2,16 @@ import { Component }  from '@angular/core';
 
 import { NavParams, NavController, Modal } from 'ionic-angular';
 
-import { Mapa, MapaService } from './';
+import { Mapa, MapaService } from '../mapa';
 
 import { GlobalMethodService } from '../shared';
 
 import { PreferenciaPage } from '../preferencia';
 
 @Component({
-  templateUrl: 'build/pages/mapa/mapa.component.html'
+  templateUrl: 'build/pages/mapa-ponto-interesse/mapa-ponto-interesse.component.html'
 })
-export class MapaPage {
+export class MapaPontoInteressePage {
 
   titulo: string = "Mapa";
   pontosMapa: any;
@@ -57,7 +57,7 @@ export class MapaPage {
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
       () => { //-- on completion
-        let mapEle = document.getElementById('map');
+        let mapEle = document.getElementById('map-ponto-interesse');
 
         let map = new google.maps.Map(mapEle, {
           center: this.pontosMapa.find(d => d.center),

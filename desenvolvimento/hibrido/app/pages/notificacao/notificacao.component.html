@@ -18,10 +18,10 @@
 
 <ion-content class="notificacao cards-bg social-cards">
 
-  <ion-refresher (ionRefresh)="atualizar($event)">
+  <!--<ion-refresher (ionRefresh)="atualizar($event)">
     <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher>-->
 
   <ion-card *ngFor="let notificacao of notificacoes | notificacaoFilter:filtro" #card [attr.category]="notificacao.categoria | lowercase">
     <ion-item>

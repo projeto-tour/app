@@ -17,8 +17,10 @@
                     <ion-icon name="camera"></ion-icon>
                 </button>
             </ion-col>
+            {{(_usuarioService.usuario | async)?.photoURL}}
             <ion-col width-60>
-                <img [src]="(_usuarioService.usuario | async)?.photoURL">
+                <img [src]="(_usuarioService.usuario | async)?.photoURL" *ngIf="(_usuarioService.usuario | async)?.photoURL">
+                <img src="img/user-woman.svg" *ngIf="!(_usuarioService.usuario | async)?.photoURL">
             </ion-col>
             <ion-col width-20 class="profile-col">
                 <button light clear>

@@ -13,7 +13,7 @@
 
 <ion-content class="tutorial">
 
-  <ion-slides pager>
+  <ion-slides [options]="{pager: true}">
     <ion-slide *ngFor="let tutorial of tutorials">
       <img [src]="tutorial.url" class="slide-image" padding/>
       <h2 class="slide-title" [innerHTML]="tutorial.titulo"></h2>

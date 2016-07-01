@@ -1,4 +1,4 @@
-import { ITipoAgenda } from './tipo-agenda.model';
+import { ITipoAgenda, TipoAgenda } from './tipo-agenda.model';
 /**
  * Referente a agenda de usuario. 
  * Ex.: XXXX, XXXX, etc.
@@ -9,12 +9,12 @@ import { ITipoAgenda } from './tipo-agenda.model';
  * @param descricao     Descrição do tipo de agenda.
  */
 export class Agenda implements IAgenda {
-    dataCriacao: number = firebase.database['ServerValue']['TIMESTAMP'];
+    dataCriacao: string = firebase.database['ServerValue']['TIMESTAMP'];
     favorito: boolean = false;
     distancia: string = '0 KM';
     
     constructor(
-        public tipoAgenda: ITipoAgenda,
+        public tipoAgenda: ITipoAgenda = new TipoAgenda(),
         public descricao: string = "",
         public dataInicio: string = "",
         public dataFim: string = "") {
@@ -29,7 +29,7 @@ export interface IAgenda {
     favorito: boolean;
     dataInicio: string;
     dataFim: string;
-    dataCriacao: number;
+    dataCriacao: string;
     distancia: string;
 }
 

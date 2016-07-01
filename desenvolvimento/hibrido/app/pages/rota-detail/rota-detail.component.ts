@@ -3,7 +3,7 @@ import { NavParams, ViewController, NavController } from 'ionic-angular';
 
 import { RotaView } from '../rota';
 
-import { MapaPage } from '../mapa';
+import { MapaPontoInteressePage } from '../mapa-ponto-interesse';
 
 @Component({
   templateUrl: 'build/pages/rota-detail/rota-detail.component.html'
@@ -40,7 +40,7 @@ export class RotaDetailPage {
   }
 
   carregarMapa(): void {
-    this._navCtrl.push(MapaPage, this.rota);
+    this._navCtrl.push(MapaPontoInteressePage, this.rota);
   }
 
   private dismiss() {

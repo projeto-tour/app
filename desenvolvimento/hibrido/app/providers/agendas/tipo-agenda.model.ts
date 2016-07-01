@@ -17,6 +17,7 @@ export class TipoAgenda implements ITipoAgenda {
 
 export interface ITipoAgenda {
     $key?: string;
+    id?: string;
     descricao: string;
     icone: string;
     destaque: string;
