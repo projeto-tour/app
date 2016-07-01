@@ -1,4 +1,4 @@
-export interface Tutorial {
+export interface ITutorial {
     index: number;
     titulo: string; 
     descricao: string; 

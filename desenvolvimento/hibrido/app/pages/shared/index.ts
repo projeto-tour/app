@@ -7,3 +7,5 @@ export * from './model';
 export * from './validator';
 
 export * from './global';
+
+export * from './mock.service';

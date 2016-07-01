@@ -3,7 +3,7 @@ import { Component }  from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
 @Component({
-  templateUrl: 'build/pages/desenvolvimento/desenvolvimento.component.html',
+  templateUrl: 'build/pages/desenvolvimento/desenvolvimento.component.html'
 })
 export class DesenvolvimentoPage {
 

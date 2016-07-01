@@ -23,18 +23,4 @@ export class PrincipalPage {
     this.selectedIndex = _navParams.data.tabIndex || 0;
   }
 
-  ionViewLoaded() { }
-
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
-
 }

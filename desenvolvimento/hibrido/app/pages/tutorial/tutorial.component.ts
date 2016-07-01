@@ -1,10 +1,8 @@
 import { Component }  from '@angular/core';
 
-import { App, NavParams, ViewController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
 
-import { Tutorial } from './';
-
-import { TutorialDataProvider } from '../../providers/tutorial-data.provider';
+import { TutorialDataService, ITutorial } from '../../providers/data';
 
 @Component({
   templateUrl: 'build/pages/tutorial/tutorial.component.html'
@@ -12,34 +10,15 @@ import { TutorialDataProvider } from '../../providers/tutorial-data.provider';
 export class TutorialPage {
 
   titulo: string = "Tutorial";
+  tutorials: ITutorial[] = [];
 
-  tutorials: Tutorial[] = [];
-  dados: any;
-
-  private mensagenErro: any;
-
-  constructor(private _app: App,
-    private _navParams: NavParams,
-    private _viewCtrl: ViewController,
-    private _dataProvider: TutorialDataProvider) {
-    this.dados = _navParams.data;
+  constructor(private _viewCtrl: ViewController,
+    private _dataProvider: TutorialDataService) {
   }
 
   ionViewLoaded() {
     this.getTutorials();
   }
-
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
 
   dismiss() {
     this._viewCtrl.dismiss(this.titulo);

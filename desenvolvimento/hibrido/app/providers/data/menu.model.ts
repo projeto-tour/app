@@ -4,9 +4,9 @@
  * @param title 
  * @param pages 
  */
-export interface Menu {
+export interface IMenu {
   title: string;
-  pages: MenuItem[];
+  pages: IMenuItem[];
 }
 
 /**
@@ -17,7 +17,7 @@ export interface Menu {
  * @param index 
  * @param icon 
  */
-export interface MenuItem {
+export interface IMenuItem {
   title: string;
   component: any;
   status: string;
