@@ -4,27 +4,26 @@ import 'es6-shim';
 import { Component, ViewChild } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 
-// Add the RxJS Observable operators we need in this app.
+// RxJS Observable operators
 import './pages/shared/rxjs.operators';
 
-// ionic core
+// Ionic Core
 import { ionicBootstrap, Events, Platform, Nav, MenuController, Alert } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-// providers
+// Providers / Services
 import { FIREBASE_APP_PROVIDERS } from './providers/firebase';
-import { AUTH_PROVIDERS } from './providers/auth';
+import { AUTH_PROVIDERS, FirebaseAuthService } from './providers/auth';
 import { USUARIOS_PROVIDERS, Usuario } from './providers/usuarios';
 import { AGENDAS_PROVIDERS } from './providers/agendas';
 import { DATA_PROVIDERS, MenuDataService, IMenu, IMenuItem } from './providers/data';
 
-// shared
+// Shared
 import { GlobalMethodService, GlobalVariableService } from './pages/shared';
 
-// services
-import { FirebaseAuthService } from './providers/auth';
+// Services
 
-// views
+// Views
 import { PrincipalPage } from './pages/principal';
 import { PreferenciaService } from './pages/preferencia';
 import { UsuarioLoginPage } from './pages/usuario';

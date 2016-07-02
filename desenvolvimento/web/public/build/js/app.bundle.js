@@ -172,13 +172,11 @@ var AgendaDetailPage = (function () {
         this.isNovaAgenda = true;
         this.titulo = _navParams.data.titulo;
         this.agenda = _navParams.data.agenda;
+        this.isNovaAgenda = this.agenda === null || Object.keys(this.agenda).length === 0;
         this._tipoAgendaService.tipos.subscribe(function (tipos) {
             _this.tiposDeAgenda = tipos;
-            if (_this.agenda === null || Object.keys(_this.agenda).length === 0) {
+            if (_this.isNovaAgenda) {
                 _this.initAgenda();
-            }
-            else {
-                _this.isNovaAgenda = false;
             }
         });
     }

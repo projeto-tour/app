@@ -1,11 +1,13 @@
-<ion-navbar *navbar>
-    <ion-title>{{titulo}}</ion-title>
-    <ion-buttons end>
-        <button (click)="carregarPreferencias()">
-      <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-    </button>
-    </ion-buttons>
-</ion-navbar>
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{titulo}}</ion-title>
+        <!--<ion-buttons end>
+            <button (click)="carregarPreferencias()">
+                <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+            </button>
+        </ion-buttons>-->
+    </ion-navbar>
+</ion-header>
 
 <ion-content class="agenda-detail">
 
@@ -13,8 +15,10 @@
         <ion-item-divider light>Informações de Agenda</ion-item-divider>
         <ion-item>
             <ion-label dark style="font-size: 0.875em;">Tipo de Agenda</ion-label>
-            <ion-select [(ngModel)]="agenda.tipoAgenda.descricao">
-                <ion-option *ngFor="let tipoAgenda of tiposAgenda">{{tipoAgenda.descricao}}</ion-option>
+            <ion-select [(ngModel)]="agenda.tipoAgenda.id">
+                <ion-option *ngFor="let tipoAgenda of _tipoAgendaService.tipos | async" [value]="tipoAgenda.$key" >
+                    {{tipoAgenda.descricao}}
+                </ion-option>
             </ion-select>
         </ion-item>
         <ion-item>

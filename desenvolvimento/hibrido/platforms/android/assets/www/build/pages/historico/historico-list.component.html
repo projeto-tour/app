@@ -1,30 +1,26 @@
-<ion-navbar *navbar class="hide-border">
-  <ion-segment [(ngModel)]="segment" (ionChange)="atualizarLista()">
-    <ion-segment-button value="todas">
-      Todas
-    </ion-segment-button>
-    <ion-segment-button value="favoritas">
-      Favoritas
-    </ion-segment-button>
-  </ion-segment>
-  <ion-buttons end>
-    <button (click)="carregarPreferencias()">
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-segment [(ngModel)]="segment" (ionChange)="atualizarLista()">
+      <ion-segment-button value="todas">
+        Todas
+      </ion-segment-button>
+      <ion-segment-button value="favoritas">
+        Favoritas
+      </ion-segment-button>
+    </ion-segment>
+    <ion-buttons end>
+      <button (click)="carregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
-  </ion-buttons>
-</ion-navbar>
-
-<ion-toolbar>
-  <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
-  </ion-searchbar>
-</ion-toolbar>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="historico-list cards-bg">
-
-  <ion-refresher (ionRefresh)="atualizar($event)">
-    <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>
 
   <ion-card *ngFor="let agenda of agendas | agendaFilter:filtro">
     <ion-item>

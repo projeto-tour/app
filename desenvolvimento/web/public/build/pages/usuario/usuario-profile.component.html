@@ -44,17 +44,14 @@
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Logradouro</ion-label>
             <ion-textarea type="text" placeholder="Ex. Avenida presidente vargas, 2001" [(ngModel)]="usuario.endereco.logradouro"></ion-textarea>
-            <p>{{(_usuarioService.usuario | async)?.endereco?.logradouro}}</p>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Bairro</ion-label>
             <ion-input type="text" placeholder="Ex. Jd Sumare" [(ngModel)]="usuario.endereco.bairro"></ion-input>
-            <p>{{(_usuarioService.usuario | async)?.endereco?.bairro}}</p>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Cidade</ion-label>
             <ion-input type="text" placeholder="Ex. Ribeirão Preto" [(ngModel)]="usuario.endereco.cidade"></ion-input>
-            <p>{{(_usuarioService.usuario | async)?.endereco?.cidade}}</p>
         </ion-item>
 
         <ion-item>
@@ -65,7 +62,6 @@
                 <ion-option value="SP">São Paulo</ion-option>
                 <ion-option value="RJ">Rio de Janeiro</ion-option>
             </ion-select>
-            <p>{{(_usuarioService.usuario | async)?.endereco?.estado}}</p>
         </ion-item>
     </ion-list>
 

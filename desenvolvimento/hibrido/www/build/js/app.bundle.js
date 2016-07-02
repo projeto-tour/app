@@ -13,22 +13,21 @@ require('es6-shim');
 // angular core
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-// Add the RxJS Observable operators we need in this app.
+// RxJS Observable operators
 require('./pages/shared/rxjs.operators');
-// ionic core
+// Ionic Core
 var ionic_angular_1 = require('ionic-angular');
 var ionic_native_1 = require('ionic-native');
-// providers
+// Providers / Services
 var firebase_1 = require('./providers/firebase');
 var auth_1 = require('./providers/auth');
 var usuarios_1 = require('./providers/usuarios');
 var agendas_1 = require('./providers/agendas');
 var data_1 = require('./providers/data');
-// shared
+// Shared
 var shared_1 = require('./pages/shared');
-// services
-var auth_2 = require('./providers/auth');
-// views
+// Services
+// Views
 var principal_1 = require('./pages/principal');
 var preferencia_1 = require('./pages/preferencia');
 var usuario_1 = require('./pages/usuario');
@@ -109,7 +108,7 @@ var PartiuApp = (function () {
         core_1.Component({
             templateUrl: 'build/app.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.Events, ionic_angular_1.Platform, ionic_angular_1.MenuController, shared_1.GlobalMethodService, auth_2.FirebaseAuthService, data_1.MenuDataService])
+        __metadata('design:paramtypes', [ionic_angular_1.Events, ionic_angular_1.Platform, ionic_angular_1.MenuController, shared_1.GlobalMethodService, auth_1.FirebaseAuthService, data_1.MenuDataService])
     ], PartiuApp);
     return PartiuApp;
 }());
@@ -172,13 +171,11 @@ var AgendaDetailPage = (function () {
         this.isNovaAgenda = true;
         this.titulo = _navParams.data.titulo;
         this.agenda = _navParams.data.agenda;
+        this.isNovaAgenda = this.agenda === null || Object.keys(this.agenda).length === 0;
         this._tipoAgendaService.tipos.subscribe(function (tipos) {
             _this.tiposDeAgenda = tipos;
-            if (_this.agenda === null || Object.keys(_this.agenda).length === 0) {
+            if (_this.isNovaAgenda) {
                 _this.initAgenda();
-            }
-            else {
-                _this.isNovaAgenda = false;
             }
         });
     }

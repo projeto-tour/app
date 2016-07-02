@@ -28,13 +28,11 @@ export class AgendaDetailPage {
     public _tipoAgendaService: TipoAgendaService) {
     this.titulo = _navParams.data.titulo;
     this.agenda = _navParams.data.agenda;
-
+    this.isNovaAgenda = this.agenda === null || Object.keys(this.agenda).length === 0;
     this._tipoAgendaService.tipos.subscribe((tipos: ITipoAgenda[]) => {
       this.tiposDeAgenda = tipos;
-      if (this.agenda === null || Object.keys(this.agenda).length === 0) {
+      if (this.isNovaAgenda) {
         this.initAgenda();
-      } else {
-        this.isNovaAgenda = false;
       }
     });
   }

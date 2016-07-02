@@ -1,28 +1,24 @@
-<ion-navbar *navbar class="hide-border">
-  <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>{{titulo}}</ion-title>
-  <ion-buttons end>
-    <button (click)="carregarPreferencias()">
-      <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
     </button>
-  </ion-buttons>
-</ion-navbar>
-
-<ion-toolbar>
-  <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
-  </ion-searchbar>
-</ion-toolbar>
+    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons end>
+      <button (click)="carregarPreferencias()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar primary [(ngModel)]="filtro" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="agenda cards-bg">
 
-  <ion-refresher (ionRefresh)="sincronizar($event)">
-    <ion-refresher-content pullingText="Puxe para sincronizar" refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>
-
-  <ion-card *ngFor="let agenda of agendas | agendaFilter:filtro">
+  <ion-card *ngFor="let agenda of _service.agendas | async | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
       <h2>{{agenda.tipoAgenda.descricao}}</h2>
@@ -55,6 +51,6 @@
 
 </ion-content>
 
-<button fab danger fab-bottom fab-right style="z-index: 999" (click)="incluir()">
+<button fab danger fab-bottom fab-right class="fab-footer"(click)="incluir()">
   <ion-icon name='md-add' is-active="false"></ion-icon>
 </button>

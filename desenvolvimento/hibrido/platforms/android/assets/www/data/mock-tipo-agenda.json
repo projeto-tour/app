@@ -1,18 +1,22 @@
 [
   {
-    "id": 1,
-    "descricao": "Passeio"
+    "descricao": "Passeio",
+    "icone": "walk",
+    "destaque": "img/advance-card-map-paris.png"
   },
   {
-    "id": 2,
-    "descricao": "Trabalho"
+    "descricao": "Trabalho",
+    "icone": "briefcase",
+    "destaque": "img/advance-card-map-paris.png"
   },
   {
-    "id": 3,
-    "descricao": "Acandêmico"
+    "descricao": "Acandêmico",
+    "icone": "school",
+    "destaque": "img/advance-card-map-paris.png"
   },
   {
-    "id": 4,
-    "descricao": "Saúde"
+    "descricao": "Saúde",
+    "icone": "medkit",
+    "destaque": "img/advance-card-map-paris.png"
   }
 ]

@@ -1,14 +1,15 @@
-<ion-navbar *navbar>
-    <ion-title>
-        {{titulo}}
-    </ion-title>
-    <ion-buttons end>
-        <button (click)="salvar()">Salvar</button>
-    </ion-buttons>
-</ion-navbar>
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{titulo}}
+        </ion-title>
+        <ion-buttons end>
+            <button (click)="salvar()">Salvar</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
 
 <ion-content class="usuario-profile">
-
     <div class="profile-header">
         <ion-row no-padding>
             <ion-col width-20 class="profile-col">
@@ -16,8 +17,10 @@
                     <ion-icon name="camera"></ion-icon>
                 </button>
             </ion-col>
+            {{(_usuarioService.usuario | async)?.photoURL}}
             <ion-col width-60>
-                <img src="img/user-woman.svg">
+                <img [src]="(_usuarioService.usuario | async)?.photoURL" *ngIf="(_usuarioService.usuario | async)?.photoURL">
+                <img src="img/user-woman.svg" *ngIf="!(_usuarioService.usuario | async)?.photoURL">
             </ion-col>
             <ion-col width-20 class="profile-col">
                 <button light clear>
@@ -31,38 +34,38 @@
         <ion-item-divider light>Login</ion-item-divider>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Nome</ion-label>
-            <ion-input type="text" placeholder="Ex. João Silva"></ion-input>
+            <ion-input type="text" placeholder="Ex. João Silva" [innerHTML]="(_usuarioService.usuario | async)?.displayName" disabled></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">E-mail</ion-label>
-            <ion-input type="email" placeholder="Ex. joao@gmail.com"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label stacked dark style="font-size: 0.875em;">Senha</ion-label>
-            <ion-input type="password" placeholder="**********"></ion-input>
+            <ion-input type="email" placeholder="Ex. joao@gmail.com" [innerHTML]="(_usuarioService.usuario | async)?.email" disabled></ion-input>
         </ion-item>
         <ion-item-divider light>Endereço</ion-item-divider>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Logradouro</ion-label>
-            <ion-textarea type="text" placeholder="Ex. Avenida presidente vargas, 2001"></ion-textarea>
+            <ion-textarea type="text" placeholder="Ex. Avenida presidente vargas, 2001" [(ngModel)]="usuario.endereco.logradouro"></ion-textarea>
+            <p>{{(_usuarioService.usuario | async)?.endereco?.logradouro}}</p>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Bairro</ion-label>
-            <ion-input type="text" placeholder="Ex. Jd Sumare"></ion-input>
+            <ion-input type="text" placeholder="Ex. Jd Sumare" [(ngModel)]="usuario.endereco.bairro"></ion-input>
+            <p>{{(_usuarioService.usuario | async)?.endereco?.bairro}}</p>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Cidade</ion-label>
-            <ion-input type="text" placeholder="Ex. Ribeirão Preto"></ion-input>
+            <ion-input type="text" placeholder="Ex. Ribeirão Preto" [(ngModel)]="usuario.endereco.cidade"></ion-input>
+            <p>{{(_usuarioService.usuario | async)?.endereco?.cidade}}</p>
         </ion-item>
 
         <ion-item>
             <ion-label dark style="font-size: 0.875em;">Estado</ion-label>
-            <ion-select>
+            <ion-select [(ngModel)]="usuario.endereco.estado">
                 <ion-option value="ES">Espírito Santo</ion-option>
                 <ion-option value="MG">Minas Gerais</ion-option>
                 <ion-option value="SP">São Paulo</ion-option>
                 <ion-option value="RJ">Rio de Janeiro</ion-option>
             </ion-select>
+            <p>{{(_usuarioService.usuario | async)?.endereco?.estado}}</p>
         </ion-item>
     </ion-list>
 

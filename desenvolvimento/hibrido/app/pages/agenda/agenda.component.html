@@ -4,9 +4,14 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{titulo}}</ion-title>
-    <ion-buttons end>
+    <!--<ion-buttons end>
       <button (click)="carregarPreferencias()">
         <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>-->
+    <ion-buttons end>
+      <button (click)="incluir()">
+        <ion-icon ios="ios-add-outline" md="md-add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -51,6 +56,6 @@
 
 </ion-content>
 
-<button fab danger fab-bottom fab-right class="fab-footer"(click)="incluir()">
+<!--<button fab danger fab-bottom fab-right class="fab-footer"(click)="incluir()">
   <ion-icon name='md-add' is-active="false"></ion-icon>
-</button>
+</button>-->
