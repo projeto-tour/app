@@ -21,8 +21,6 @@ import { DATA_PROVIDERS, MenuDataService, IMenu, IMenuItem } from './providers/d
 // Shared
 import { GlobalMethodService, GlobalVariableService } from './pages/shared';
 
-// Services
-
 // Views
 import { PrincipalPage } from './pages/principal';
 import { PreferenciaService } from './pages/preferencia';

@@ -26,7 +26,6 @@ var agendas_1 = require('./providers/agendas');
 var data_1 = require('./providers/data');
 // Shared
 var shared_1 = require('./pages/shared');
-// Services
 // Views
 var principal_1 = require('./pages/principal');
 var preferencia_1 = require('./pages/preferencia');
