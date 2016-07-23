@@ -1,0 +1,80 @@
+<app>
+
+  <md-sidenav-layout fullscreen>
+    
+    <md-sidenav #sidenav>
+
+      <md-nav-list dense>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./home']">
+          <img md-list-avatar src="app/assets/logo.png" [alt]="title">
+          <h2 md-line>Partiu!</h2>
+          <h4 md-line class="secondary-text">Painel Administrativo</h4>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-divider></md-divider>
+        <h2 md-subheader>CADASTRO</h2>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./caracteristica']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Característica</h4>
+          <span class="secondary-text" style="float:right;">6</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./preferencia']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Preferência</h4>
+          <span class="secondary-text" style="float:right;">5</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodeagenda']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Tipo de Agenda</h4>
+          <span class="secondary-text" style="float:right;">7</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodedado']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Tipo de Dado</h4>
+          <span class="secondary-text" style="float:right;">8</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodepontodeinteresse']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Tipo de Ponto de Interesse</h4>
+          <span class="secondary-text" style="float:right;">3</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodetrasporte']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Tipo de Trasporte</h4>
+          <span class="secondary-text" style="float:right;">5</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close()" [routerLink]="['./trasporte']">
+          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
+          <h4 md-line>Trasporte</h4>
+          <span class="secondary-text" style="float:right;">10</span>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-nav-list>
+    </md-sidenav>
+
+    <md-toolbar color="primary">
+      <button md-icon-button (click)="sidenav.open()">
+        <md-icon class="md-24">menu</md-icon>
+      </button>
+      <span>{{title}}</span>
+      <span class="fill-remaining"></span>
+      <span>{{user}} | </span>
+      <button id="logout" md-icon-button (click)="logout()">
+        <md-icon class="md-24">exit_to_app</md-icon>
+      </button>
+    </md-toolbar>
+    
+    <router-outlet>
+      <!--Content-->
+    </router-outlet>
+
+  </md-sidenav-layout>
+  
+</app>

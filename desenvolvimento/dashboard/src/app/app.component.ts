@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 @Component({
   moduleId: module.id,
@@ -11,14 +10,23 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   directives: [
-    MD_TOOLBAR_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
+    ROUTER_DIRECTIVES,
     MD_PROGRESS_BAR_DIRECTIVES
   ],
   providers: [
-    MdIconRegistry
+    HTTP_PROVIDERS
   ]
 })
-export class AppComponent {
-  title = 'Dashboard';
+export class AppComponent implements OnInit {
+
+    title = 'Partiu!';
+    
+    constructor() { 
+      console.log('constructor: AppComponent');
+    }
+
+    ngOnInit() { 
+
+    }
+
 }
