@@ -1,3 +1,8 @@
+.grid {
+    padding-top: 100px;
+    margin: 5px 5px 5px 5px;
+}
+
 .md-input-card {
   width: 30%;
   margin: 100px auto;

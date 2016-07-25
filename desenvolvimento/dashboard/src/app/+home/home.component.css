@@ -1,0 +1,12 @@
+.card-wide.mdl-card {
+  width: 512px;
+  margin: 50px auto;
+}
+.card-wide > .mdl-card__title {
+  color: #fff;
+  height: 240px;
+  background: url('http://placeimg.com/640/480/nature') center / cover;
+}
+.card-wide > .mdl-card__menu {
+  color: #fff;
+}

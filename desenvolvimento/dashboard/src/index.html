@@ -14,12 +14,17 @@
   <script src="assets/app.css"></script>
 
   <!--Google Material Design Lite & Icons-->
+  <script src="assets/material.min.js"></script>
+  <link rel="stylesheet" href="assets/material.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
 </head>
 <body bgcolor="#EBEBEB">
     
-    <app-root>Loading...</app-root>
+    <app-root>
+      <!-- MDL Progress Bar with Indeterminate Progress -->
+      <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width:100%;"></div>
+    </app-root>
   
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>

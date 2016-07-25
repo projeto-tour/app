@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -27,7 +27,8 @@ import { AuthService } from '../shared';
   ],
   providers: [
     MdIconRegistry
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
@@ -39,11 +40,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
-  login(user: string, password: string) {
-    if (this._authService.login(user, password)) {
+  onSubmit(form: any): void {
+    if (this._authService.login(form.email, form.password)) {
       let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : 'dashboard';
       this._router.navigate([redirect]);
     }

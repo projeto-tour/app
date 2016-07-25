@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
@@ -11,7 +11,8 @@ import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
   directives: [
     MD_GRID_LIST_DIRECTIVES,
     MD_CARD_DIRECTIVES
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
 
@@ -21,7 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
 }

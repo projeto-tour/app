@@ -5,7 +5,7 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 import { AppComponent, environment } from './app';
 import { APP_ROUTER_PROVIDERS } from './app/routing';
-import { AUTH_PROVIDERS } from './app/shared';
+import { AUTH_PROVIDERS, APP_DATA_PROVIDERS } from './app/shared';
 
 if (environment.production) {
   enableProdMode();
@@ -17,6 +17,7 @@ bootstrap(
     APP_ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     AUTH_PROVIDERS,
+    APP_DATA_PROVIDERS,
     disableDeprecatedForms(),
     provideForms()
   ]

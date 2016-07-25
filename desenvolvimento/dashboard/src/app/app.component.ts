@@ -4,6 +4,9 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
 
+import { ToastComponent } from '../app/shared/directives/toast/toast.component';
+import { ModalComponent } from '../app/shared/directives/modal/modal.component';
+
 @Component({
   moduleId: module.id,
   selector: 'app-root',
@@ -11,7 +14,9 @@ import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
   styleUrls: ['app.component.css'],
   directives: [
     ROUTER_DIRECTIVES,
-    MD_PROGRESS_BAR_DIRECTIVES
+    MD_PROGRESS_BAR_DIRECTIVES,
+    ToastComponent,
+    ModalComponent
   ],
   providers: [
     HTTP_PROVIDERS
@@ -22,11 +27,9 @@ export class AppComponent implements OnInit {
     title = 'Partiu!';
     
     constructor() { 
-      console.log('constructor: AppComponent');
     }
 
-    ngOnInit() { 
-
+    ngOnInit() {
     }
 
 }

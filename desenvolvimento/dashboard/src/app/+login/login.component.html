@@ -1,0 +1,37 @@
+<app class="login">
+  
+  <header class="header">
+    <md-grid-list cols="2" rowHeight="50px">
+      <md-grid-tile>
+        <md-icon>computer</md-icon><button md-button>Painel Administrativo</button>
+      </md-grid-tile>
+      <md-grid-tile>
+        <md-icon>devices_other</md-icon><button md-button>Aplicativos Mobile</button>
+      </md-grid-tile>
+    </md-grid-list>
+  </header>
+
+  <main>
+    <form #frm="ngForm" (ngSubmit)="onSubmit(frm.value)">
+      <md-card class="md-input-card">
+        <md-toolbar color="primary">Partiu!</md-toolbar>
+        <md-card-content>
+          <md-input name="email" type="email" placeholder="E-mail" autocomplete="off" required #email ngModel>
+            <span md-prefix><md-icon>perm_identity</md-icon></span>
+          </md-input>
+          <md-input name="password" type="password" placeholder="Senha" autocomplete="off" required #password ngModel>
+            <span md-prefix><md-icon>lock</md-icon></span>
+          </md-input>
+        </md-card-content>
+        <md-card-actions align="end">
+          <button md-raised-button color="accent" type="submit" [disabled]="!frm.form.valid">Login</button>
+        </md-card-actions>
+      </md-card>
+    </form>
+  </main>
+
+  <footer>
+    <p style="text-align: center;" href="mailto:tour.partiu@gmail.com"><button md-button>Copyright © 2016 Partiu! Todos os direitos reservados.</button></p>
+  </footer>
+
+</app>

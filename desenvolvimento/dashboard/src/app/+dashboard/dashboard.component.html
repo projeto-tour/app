@@ -5,52 +5,60 @@
     <md-sidenav #sidenav>
 
       <md-nav-list dense>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./home']">
-          <img md-list-avatar src="app/assets/logo.png" [alt]="title">
-          <h2 md-line>Partiu!</h2>
-          <h4 md-line class="secondary-text">Painel Administrativo</h4>
+        <li class="mdl-list__item mdl-list__item--two-line" (click)="sidenav.close();title = 'Dashboard'" [routerLink]="['./home']">
+          <span class="mdl-list__item-primary-content">
+            <img class="mdl-list__item-avatar" src="assets/logo.png" [alt]="title">
+            <span>Partiu!</span>
+            <span class="mdl-list__item-sub-title">Painel Administrativo</span>
+          </span>
+          <span class="mdl-list__item-secondary-content">
+            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+          </span>
+        </li>
+        <md-divider></md-divider>
+        <md-divider></md-divider>
+        <md-list-item (click)="sidenav.close();title = 'Dashboard'" [routerLink]="['./home']">
+          <md-icon md-list-avatar style="margin-top:15px;">home</md-icon>
+          <h4 md-line>Home</h4>
         </md-list-item>
         <md-divider></md-divider>
-        <md-divider></md-divider>
-        <h2 md-subheader>CADASTRO</h2>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./caracteristica']">
+        <md-list-item (click)="sidenav.close();title = 'Característica'" [routerLink]="['./caracteristica']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Característica</h4>
           <span class="secondary-text" style="float:right;">6</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./preferencia']">
+        <md-list-item (click)="sidenav.close();title = 'Preferência'" [routerLink]="['./preferencia']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Preferência</h4>
           <span class="secondary-text" style="float:right;">5</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodeagenda']">
+        <md-list-item (click)="sidenav.close();title = 'Tipo de Agenda'" [routerLink]="['./tipodeagenda']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Agenda</h4>
           <span class="secondary-text" style="float:right;">7</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodedado']">
+        <md-list-item (click)="sidenav.close();title = 'Tipo de Dado'" [routerLink]="['./tipodedado']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Dado</h4>
           <span class="secondary-text" style="float:right;">8</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodepontodeinteresse']">
+        <md-list-item (click)="sidenav.close();title = 'Tipo de Ponto de Interesse'" [routerLink]="['./tipodepontodeinteresse']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Ponto de Interesse</h4>
           <span class="secondary-text" style="float:right;">3</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./tipodetrasporte']">
+        <md-list-item (click)="sidenav.close();title = 'Tipo de Trasporte'" [routerLink]="['./tipodetrasporte']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Trasporte</h4>
           <span class="secondary-text" style="float:right;">5</span>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close()" [routerLink]="['./trasporte']">
+        <md-list-item (click)="sidenav.close();title = 'Trasporte'" [routerLink]="['./trasporte']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Trasporte</h4>
           <span class="secondary-text" style="float:right;">10</span>
@@ -71,10 +79,8 @@
       </button>
     </md-toolbar>
     
-    <router-outlet>
-      <!--Content-->
-    </router-outlet>
-
+    <router-outlet></router-outlet>
+    
   </md-sidenav-layout>
   
 </app>
