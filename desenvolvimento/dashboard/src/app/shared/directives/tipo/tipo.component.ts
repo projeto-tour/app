@@ -1,5 +1,12 @@
+//Underscore imports
+/// <reference path="../../../../../typings/globals/underscore/index.d.ts" />
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { NgForm, NgModel }    from '@angular/common';
+import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES }    from '@angular/forms';
+
+import { FirebaseListObservable } from 'angularfire2';
+
+import * as _ from 'underscore';
 
 import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -21,6 +28,7 @@ import { CanComponentDeactivate } from '../../../routing';
     templateUrl: 'tipo.component.html',
     styleUrls: ['tipo.component.css'],
     directives: [
+        FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES,
         MD_GRID_LIST_DIRECTIVES,
         MD_BUTTON_DIRECTIVES,
         MD_ICON_DIRECTIVES,
@@ -34,17 +42,18 @@ import { CanComponentDeactivate } from '../../../routing';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TipoComponent implements OnInit, CanComponentDeactivate {
+export class TipoComponent implements OnInit {
 
-    @Input() tipos: ITipo[] = [];
-    @Input() placeholder: string;
-    @Input() maxLength: number;
+    @Input() tipos: FirebaseListObservable<ITipo[]>;
+    @Input() showIcone: boolean = true;
+    @Input() showDestaque: boolean = true;
 
     @Output() create: EventEmitter<any> = new EventEmitter(false);
     @Output() remove: EventEmitter<any> = new EventEmitter(false);
     @Output() update: EventEmitter<any> = new EventEmitter(false);
 
-    tipo: Tipo = new Tipo('');
+    tipo: Tipo = new Tipo();
+    listTipos: ITipo[] = [];
     editing: boolean = false;
     message: string = '';
 
@@ -54,21 +63,23 @@ export class TipoComponent implements OnInit, CanComponentDeactivate {
         private _entityService: EntityService) {
     }
 
-    ngOnInit() { }
-
-    canDeactivate() {
-        return this._modalService.activate();
+    ngOnInit() {
+        this.tipos.subscribe((data: ITipo[]) => {
+            this.listTipos = data;
+        });
+        this.clear();
     }
 
     submit(tipo: ITipo): void {
-        if (tipo.descricao.trim().length) {
-            this.tipo.descricao = tipo.descricao;
+        if (tipo.descricao && tipo.descricao.trim().length) {
             if (this.editing) {
-                this.update.emit(this.tipo);
-                this._toastService.activate(`Tipo [ ${tipo.descricao} ] foi alterado com successo.`);
+                this.update.emit({ tipo: this.tipo, changes: tipo });
+                this._toastService.activate(`${tipo.descricao} foi alterado com successo.`);
+            } else if (_.findWhere(this.listTipos, { descricao: tipo.descricao })) {
+                this._toastService.activate(`${tipo.descricao} já existe.`);
             } else {
-                this.create.emit(this.tipo);
-                this._toastService.activate(`Tipo [ ${tipo.descricao} ] foi cadastrado com successo.`);
+                this.create.emit(new Tipo(tipo));
+                this._toastService.activate(`${tipo.descricao} foi cadastrado com successo.`);
             }
         }
         this.clear();
@@ -80,22 +91,25 @@ export class TipoComponent implements OnInit, CanComponentDeactivate {
     }
 
     delete(tipo: ITipo): void {
-        let msg = `Deseja realmente excluir [ ${tipo.descricao} ] ?`;
-        this._modalService.activate(msg).then(responseOK => {
-            if (responseOK) {
-                this.remove.emit(tipo);
-                this._toastService.activate(`Tipo [ ${tipo.descricao} ] foi removido com successo.`);
-            }
-        });
+        if (tipo.relacionamento && _.keys(tipo.relacionamento).length > 0) {
+            this._toastService.activate(`${tipo.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(tipo.relacionamento).length} cadastros.`);
+        } else {
+            let msg = `Deseja realmente excluir ${tipo.descricao} ?`;
+            this._modalService.activate(msg).then(responseOK => {
+                if (responseOK) {
+                    this.remove.emit(tipo);
+                    this._toastService.activate(`${tipo.descricao} foi removido com successo.`);
+                }
+            });
+        }
     }
 
-    clear(): void {
+    clear(): boolean {
         this.editing = false;
-        this.tipo = new Tipo('');
-    }
-
-    private isDirty() {
-        return this.tipo.descricao.trim().length > 0;
+        this.tipo = new Tipo();
+        this.tipo.icone = null;
+        this.tipo.destaque = null;
+        return false;
     }
 
 }

@@ -37,17 +37,17 @@ export class DashboardComponent implements OnInit {
     user: string = '';
 
     constructor(
-        public _authService: AuthService,
+        private _authService: AuthService,
         private _router: Router,
         private _route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.user = this._authService.getUser();
+        this.user = this._authService.user;
     }
 
     logout() {
-        this._authService.logout();
+        this._authService.signOut();
         window.location.replace('/');
     }
 

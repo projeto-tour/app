@@ -5,17 +5,25 @@
                 <tr>
                     <th style="width:10%">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
+                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">Ícone</th>
+                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">Destaque</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tipo of tipos; let i = index" >
+                <tr *ngFor="let tipo of tipos | async; let i = index" >
                     <td>
                         {{ i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
                         {{ tipo.descricao }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">
+                        {{ tipo.icone }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">
+                        {{ tipo.destaque }}
                     </td>
                     <td>
                         <button md-icon-button (click)="edit(tipo)"><md-icon class="md-24">mode_edit</md-icon></button>
@@ -28,24 +36,50 @@
         </table>
     </div>
     <div class="mdl-cell mdl-cell--4-col mdl-color--blue-grey-100">
-        <form #frm="ngForm" (ngSubmit)="submit(frm.value);descricao.value = '';" >     
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)" >     
             <md-card>
                 <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
                 <md-card-content>
                     <md-input 
                         type="text"
-                        [placeholder]="placeholder" 
-                        [maxLength]="maxLength" 
+                        placeholder="Descrição" 
+                        maxLength="50" 
                         required
                         [value]="tipo.descricao"
+                        (keyup.escape)="clear()"
                         name="descricao"
                         #descricao 
                         ngModel>
-                        <md-hint align="end">{{descricao.characterCount}} / {{maxLength}}</md-hint>
+                        <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
+                    </md-input>
+                    <md-input 
+                        *ngIf="showIcone"
+                        type="text"
+                        placeholder="Nome do ícone" 
+                        maxLength="20" 
+                        [value]="tipo.icone"
+                        (keyup.escape)="clear()"
+                        name="icone"
+                        #icone 
+                        ngModel>
+                        <md-hint align="end">{{icone.characterCount}} / 20</md-hint>
+                    </md-input>
+                    <md-input 
+                        *ngIf="showDestaque"
+                        type="text"
+                        placeholder="Url da imagem de destaque" 
+                        maxLength="100"
+                        [value]="tipo.destaque"
+                        (keyup.escape)="clear()"
+                        name="destaque"
+                        #destaque 
+                        ngModel>
+                        <md-hint align="end">{{destaque.characterCount}} / 100</md-hint>
                     </md-input>
                 </md-card-content>
                 <md-card-actions align="end">
-                        <button md-raised-button color="accent" [disabled]="!frm.form.valid" type="submit">Salvar</button>
+                    <button md-raised-button (click)="clear()">Limpar</button>
+                    <button type="submit" md-raised-button color="accent" [disabled]="!frm.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

@@ -9,7 +9,7 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
-import { AuthService } from '../shared';
+import { AuthService, ToastService } from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -32,10 +32,11 @@ import { AuthService } from '../shared';
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Login';
+  title = 'Partiu!';
 
   constructor(
     public _authService: AuthService,
+    public _toastService: ToastService,
     public _router: Router) {
   }
 
@@ -43,10 +44,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    if (this._authService.login(form.email, form.password)) {
-      let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : 'dashboard';
-      this._router.navigate([redirect]);
-    }
+    this._authService.signIn(form.email, form.password)
+      .then(() => {
+        let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : 'dashboard';
+        this._router.navigate([redirect]);
+      });
   }
 
 }

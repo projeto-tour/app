@@ -11,15 +11,17 @@ export class CanActivateUnAuthGuard implements CanActivate {
     constructor(
         private _authService: AuthService,
         private _router: Router) {
-
     }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-        if (!this._authService.isLoggedIn()) {
-            return true;
-        }
-        this._authService.redirectUrl = state.url;
-        this._router.navigate(['/dashboard'], { queryParams: { redirectTo: state.url } });
-        return false;
+        return this._authService._auth
+            .take(1)
+            .map(authState => !authState)
+            .do(unauthenticated => {
+                if (!unauthenticated) {
+                    this._authService.redirectUrl = state.url;
+                    this._router.navigate(['/dashboard'], { queryParams: { redirectTo: state.url } });
+                }
+            });
     }
 }

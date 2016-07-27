@@ -1,32 +1,69 @@
-import {Injectable, provide} from '@angular/core';
+import { Injectable, provide } from '@angular/core';
+import { AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState } from 'angularfire2';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+
+import { ExceptionService } from '../providers/exception.service';
+import { ProgressBarService } from '../providers/progress-bar.service';
 
 @Injectable()
 export class AuthService {
 
+    private authState: FirebaseAuthState = null;
+
     // store the URL so we can redirect after logging in
-    redirectUrl: string;
+    public redirectUrl: string;
 
-    constructor() {}
-
-    login(user: string, password: string): boolean {
-        if (user && password) {
-            localStorage.setItem('username', user);
-            return true;
-        }
-        return false;
+    constructor(
+        public _auth: FirebaseAuth,
+        private _exceptionService: ExceptionService,
+        private _progressBarService: ProgressBarService) {
+        _progressBarService.show();
+        _auth.subscribe((state: FirebaseAuthState) => {
+            _progressBarService.hide();
+            this.authState = state;
+        },
+            error => { //-- on error
+                _progressBarService.hide();
+                _exceptionService.catchBadResponse(<any>error);
+            },
+            () => { //-- on completion
+                console.log('authState:[UserInfo] ' + JSON.stringify(this.authState.auth))
+            });
     }
 
-    logout(): any {
-        localStorage.removeItem('username');
+    get authenticated(): boolean {
+        return this.authState !== null;
     }
 
-    getUser(): any {
-        return localStorage.getItem('username');
+    get id(): string {
+        return this.authenticated ? this.authState.uid : '';
     }
 
-    isLoggedIn(): boolean {
-        return this.getUser() !== null;
+    get user(): string {
+        return this.authenticated ? this.authState.auth.email || this.authState.auth.providerData[0].email : '';
     }
+
+    signIn(email: string, password: string): firebase.Promise<FirebaseAuthState> {
+        this._progressBarService.show();
+        return this._auth.login({ email: email, password: password }, {
+                provider: AuthProviders.Password,
+                method: AuthMethods.Password
+            })
+            .then((auth) => {
+                this._progressBarService.hide();
+            })
+            .catch((error) => {
+                this._progressBarService.hide();
+                this._exceptionService.catchBadResponse(error)
+            });
+    }
+
+    signOut(): void {
+        this._auth.logout();
+    }
+
 }
 
 export var AUTH_PROVIDERS: Array<any> = [

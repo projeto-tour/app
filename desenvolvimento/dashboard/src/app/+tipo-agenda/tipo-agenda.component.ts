@@ -15,8 +15,8 @@ import { TipoComponent, TipoAgendaService } from '../shared';
 export class TipoAgendaComponent implements OnInit {
 
   title = 'Tipo de Agenda';
-  placeholder: string = 'Tipo de agenda';
-  maxLength: number = 50;
+  showIcone: boolean = true;
+  showDestaque: boolean = true;
 
   constructor(public _tipoAgendaService: TipoAgendaService) { }
 

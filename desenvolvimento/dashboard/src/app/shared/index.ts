@@ -11,3 +11,7 @@ export * from './providers/services';
 export * from './providers/toast.service';
 export * from './providers/modal.service';
 export * from './providers/entity.service';
+
+export * from './firebase/firebase';
+
+export * from './config';

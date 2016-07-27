@@ -1,8 +1,8 @@
 <partiu-tipo
     [(tipos)]="_tipoAgendaService.tipos"
-    [placeholder]="placeholder"
-    [maxLength]="maxLength"
+    [showIcone]="showIcone"
+    [showDestaque]="showDestaque"
     (create)="_tipoAgendaService.create($event)"
     (remove)="_tipoAgendaService.remove($event)"
-    (update)="_tipoAgendaService.update($event)">
+    (update)="_tipoAgendaService.update($event.tipo, $event.changes)">
 </partiu-tipo>

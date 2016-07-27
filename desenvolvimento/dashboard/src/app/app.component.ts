@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
-
+import { ProgressBarComponent } from '../app/shared/directives/progress-bar/progress-bar.component';
 import { ToastComponent } from '../app/shared/directives/toast/toast.component';
 import { ModalComponent } from '../app/shared/directives/modal/modal.component';
 
@@ -14,7 +13,7 @@ import { ModalComponent } from '../app/shared/directives/modal/modal.component';
   styleUrls: ['app.component.css'],
   directives: [
     ROUTER_DIRECTIVES,
-    MD_PROGRESS_BAR_DIRECTIVES,
+    ProgressBarComponent,
     ToastComponent,
     ModalComponent
   ],
@@ -26,10 +25,8 @@ export class AppComponent implements OnInit {
 
     title = 'Partiu!';
     
-    constructor() { 
-    }
+    constructor() { }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
 }
