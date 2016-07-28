@@ -11,9 +11,6 @@
             <span>Partiu!</span>
             <span class="mdl-list__item-sub-title">Painel Administrativo</span>
           </span>
-          <span class="mdl-list__item-secondary-content">
-            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-          </span>
         </li>
         <md-divider></md-divider>
         <md-divider></md-divider>
@@ -25,43 +22,37 @@
         <md-list-item (click)="sidenav.close();title = 'Característica'" [routerLink]="['./caracteristica']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Característica</h4>
-          <span class="secondary-text" style="float:right;">6</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Preferência'" [routerLink]="['./preferencia']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Preferência</h4>
-          <span class="secondary-text" style="float:right;">5</span>
+          <span class="secondary-text" style="float:right;">{{ countCaracteristica }}</span>
         </md-list-item>
         <md-divider></md-divider>
         <md-list-item (click)="sidenav.close();title = 'Tipo de Agenda'" [routerLink]="['./tipodeagenda']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Agenda</h4>
-          <span class="secondary-text" style="float:right;">7</span>
+          <span class="secondary-text" style="float:right;">{{ countTipoAgenda }}</span>
         </md-list-item>
         <md-divider></md-divider>
         <md-list-item (click)="sidenav.close();title = 'Tipo de Dado'" [routerLink]="['./tipodedado']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Dado</h4>
-          <span class="secondary-text" style="float:right;">8</span>
+          <span class="secondary-text" style="float:right;">{{ countTipoDado }}</span>
         </md-list-item>
         <md-divider></md-divider>
         <md-list-item (click)="sidenav.close();title = 'Tipo de Ponto de Interesse'" [routerLink]="['./tipodepontodeinteresse']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Ponto de Interesse</h4>
-          <span class="secondary-text" style="float:right;">3</span>
+          <span class="secondary-text" style="float:right;">{{ countTipoPontoInteresse }}</span>
         </md-list-item>
         <md-divider></md-divider>
         <md-list-item (click)="sidenav.close();title = 'Tipo de Trasporte'" [routerLink]="['./tipodetrasporte']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Tipo de Trasporte</h4>
-          <span class="secondary-text" style="float:right;">5</span>
+          <span class="secondary-text" style="float:right;">{{ countTipoTransporte }}</span>
         </md-list-item>
         <md-divider></md-divider>
         <md-list-item (click)="sidenav.close();title = 'Trasporte'" [routerLink]="['./trasporte']">
           <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
           <h4 md-line>Trasporte</h4>
-          <span class="secondary-text" style="float:right;">10</span>
+          <span class="secondary-text" style="float:right;">{{ countTransporte }}</span>
         </md-list-item>
         <md-divider></md-divider>
       </md-nav-list>

@@ -1,0 +1,68 @@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col">
+        <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th class="mdl-data-table__cell--non-numeric">Descrição</th>
+                    <th class="mdl-data-table__cell--non-numeric">Detalhes</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let caracteristica of _caracteristicaService.list | async; let i = index" >
+                    <td>
+                        {{ i+1 }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{ caracteristica.descricao }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{ getDescricao(caracteristica.tipo_dado) }}
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="edit(caracteristica)"><md-icon class="md-24">mode_edit</md-icon></button>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="remove(caracteristica)"><md-icon class="md-24">delete</md-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col mdl-color--blue-grey-100">
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)" >     
+            <md-card>
+                <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
+                <md-card-content>
+                    <md-input 
+                        type="text"
+                        placeholder="Descrição" 
+                        maxLength="50" 
+                        required
+                        [(value)]="caracteristica.descricao"
+                        (keyup.escape)="reset()"
+                        name="descricao"
+                        #descricao 
+                        ngModel>
+                        <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
+                    </md-input>
+                    <p>Selecione o tipo de dado</p>
+                    <section class="select-section">
+                        <md-radio-group [(value)]="caracteristica.tipo_dado" name="tipo_dado" ngModel>
+                            <md-radio-button *ngFor="let tipo of _tipoDadoService.list | async" [align]="'start'" name="tipo_dado" [value]="tipo.$key">
+                                {{ tipo.descricao }}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </section>
+                    <hr>
+                </md-card-content>
+                <md-card-actions align="end">
+                    <button *ngIf="editing" md-raised-button (click)="clear()">Cancelar</button>
+                    <button type="submit" md-raised-button color="accent" [disabled]="!frm.form.valid">Salvar</button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</div>

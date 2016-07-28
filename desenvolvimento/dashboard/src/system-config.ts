@@ -79,7 +79,12 @@ const barrels: string[] = [
   // App dashboard barrels.
   'app/+dashboard',
   'app/+home',
+  'app/+caracteristica',
   'app/+tipo-agenda',
+  'app/+tipo-dado',
+  'app/+tipo-ponto-interesse',
+  'app/+tipo-transporte',
+  'app/+transporte',
   
   /** @cli-barrel */
 ];

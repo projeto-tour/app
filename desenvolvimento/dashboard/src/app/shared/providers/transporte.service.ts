@@ -1,14 +1,14 @@
 import { Injectable, bind, Inject } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-import { ITipo, Tipo } from '../';
+import { ITransporte, Transporte } from '../';
 import { FIREBASE_CONFIG, FirebaseConfig } from '../config';
 
 import { ExceptionService } from '../providers/exception.service';
 import { ProgressBarService } from '../providers/progress-bar.service';
 
 @Injectable()
-export class TipoAgendaService {
+export class TransporteService {
 
   list: FirebaseListObservable<any>;
 
@@ -17,13 +17,13 @@ export class TipoAgendaService {
     private _exceptionService: ExceptionService,
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
-    this.list = _angularFire.database.list(_firebaseConfig.tipo_agenda);
+    this.list = _angularFire.database.list(_firebaseConfig.transporte);
   }
 
-  create(tipo: Tipo): firebase.Promise<any> {
-    console.log('create>> tipo: ' + JSON.stringify(tipo));
+  create(transporte: Transporte): firebase.Promise<any> {
+    console.log('create>> transporte: ' + JSON.stringify(transporte));
     this._progressBarService.show();
-    return this.list.push(tipo)
+    return this.list.push(transporte)
       .then((data) => {
         this._progressBarService.hide();
       })
@@ -33,10 +33,10 @@ export class TipoAgendaService {
       });
   }
 
-  update(tipo: ITipo, changes: any): firebase.Promise<any> {
-    console.log('update>> tipo: ' + JSON.stringify(tipo) + '  changes: ' + JSON.stringify(changes));
+  update(transporte: ITransporte, changes: any): firebase.Promise<any> {
+    console.log('update>> transporte: ' + JSON.stringify(transporte) + '  changes: ' + JSON.stringify(changes));
     this._progressBarService.show();
-    return this.list.update(tipo.$key, changes)
+    return this.list.update(transporte.$key, changes)
       .then((data) => {
         this._progressBarService.hide();
       })
@@ -46,10 +46,10 @@ export class TipoAgendaService {
       });
   }
 
-  remove(tipo: ITipo): firebase.Promise<any> {
-    console.log('remove>> tipo: ' + JSON.stringify(tipo));
+  remove(transporte: ITransporte): firebase.Promise<any> {
+    console.log('remove>> transporte: ' + JSON.stringify(transporte));
     this._progressBarService.show();
-    return this.list.remove(tipo.$key)
+    return this.list.remove(transporte.$key)
       .then((data) => {
         this._progressBarService.hide();
       })
@@ -61,6 +61,6 @@ export class TipoAgendaService {
 
 }
 
-export var tipoAgendaServiceInjectables: Array<any> = [
-  bind(TipoAgendaService).toClass(TipoAgendaService)
+export var transporteServiceInjectables: Array<any> = [
+  bind(TransporteService).toClass(TransporteService)
 ];

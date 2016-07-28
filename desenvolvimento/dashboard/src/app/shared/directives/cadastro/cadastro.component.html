@@ -1,0 +1,87 @@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col">
+        <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th class="mdl-data-table__cell--non-numeric">Descrição</th>
+                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">Ícone</th>
+                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">Destaque</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items | async; let i = index" >
+                    <td>
+                        {{ i+1 }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{ item.descricao }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">
+                        {{ item.icone }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">
+                        {{ item.destaque }}
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="edit.emit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="remove.emit(item)"><md-icon class="md-24">delete</md-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <form #frm="ngForm" (ngSubmit)="submit(frm.value)" >     
+            <md-card>
+                <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
+                <md-card-content>
+                    <md-input 
+                        type="text"
+                        placeholder="Descrição" 
+                        maxLength="50" 
+                        required
+                        [(value)]="item.descricao"
+                        (keyup.escape)="reset()"
+                        name="descricao"
+                        #descricao 
+                        ngModel>
+                        <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
+                    </md-input>
+                    <md-input 
+                        *ngIf="showIcone"
+                        type="text"
+                        placeholder="Nome do ícone" 
+                        maxLength="20" 
+                        [(value)]="item.icone"
+                        (keyup.escape)="reset()"
+                        name="icone"
+                        #icone 
+                        ngModel>
+                        <md-hint align="end">{{icone.characterCount}} / 20</md-hint>
+                    </md-input>
+                    <md-input 
+                        *ngIf="showDestaque"
+                        type="text"
+                        placeholder="Url da imagem de destaque" 
+                        maxLength="100"
+                        [(value)]="item.destaque"
+                        (keyup.escape)="reset()"
+                        name="destaque"
+                        #destaque 
+                        ngModel>
+                        <md-hint align="end">{{destaque.characterCount}} / 100</md-hint>
+                    </md-input>
+                </md-card-content>
+                <md-card-actions align="end">
+                    <button *ngIf="editing" md-raised-button (click)="reset()">Cancelar</button>
+                    <button type="submit" md-raised-button color="accent" [disabled]="!frm.form.valid">Salvar</button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</div>

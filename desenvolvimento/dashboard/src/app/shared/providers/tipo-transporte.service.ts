@@ -8,7 +8,7 @@ import { ExceptionService } from '../providers/exception.service';
 import { ProgressBarService } from '../providers/progress-bar.service';
 
 @Injectable()
-export class TipoAgendaService {
+export class TipoTransporteService {
 
   list: FirebaseListObservable<any>;
 
@@ -17,7 +17,7 @@ export class TipoAgendaService {
     private _exceptionService: ExceptionService,
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
-    this.list = _angularFire.database.list(_firebaseConfig.tipo_agenda);
+    this.list = _angularFire.database.list(_firebaseConfig.tipo_transporte);
   }
 
   create(tipo: Tipo): firebase.Promise<any> {
@@ -61,6 +61,6 @@ export class TipoAgendaService {
 
 }
 
-export var tipoAgendaServiceInjectables: Array<any> = [
-  bind(TipoAgendaService).toClass(TipoAgendaService)
+export var tipoTransporteServiceInjectables: Array<any> = [
+  bind(TipoTransporteService).toClass(TipoTransporteService)
 ];
