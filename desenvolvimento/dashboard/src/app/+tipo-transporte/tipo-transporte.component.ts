@@ -6,11 +6,17 @@ import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
-import { ToastService } from '../shared/providers/toast.service';
-import { ModalService } from '../shared/providers/modal.service';
-import { EntityService } from '../shared/providers/entity.service';
-
-import { CadastroComponent, TipoTransporteService, ITipoTransporte, TipoTransporte } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  ModalService,
+  EntityService,
+  CadastroComponent,
+  TipoTransporteService,
+  ITipoTransporte,
+  TipoTransporte,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +24,8 @@ import { CadastroComponent, TipoTransporteService, ITipoTransporte, TipoTranspor
   templateUrl: 'tipo-transporte.component.html',
   styleUrls: ['tipo-transporte.component.css'],
   directives: [
-    CadastroComponent
+    CadastroComponent,
+    MDL
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,6 +39,7 @@ export class TipoTransporteComponent implements OnInit {
   showDestaque: boolean = true;
 
   constructor(
+    private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _entityService: EntityService,
@@ -40,6 +48,7 @@ export class TipoTransporteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._authService.title = 'Tipo de Transporte';
     this._tipoTransporteService.list.subscribe((data: ITipoTransporte[]) => {
       this.listTipoTransporte = data;
     });
@@ -50,8 +59,8 @@ export class TipoTransporteComponent implements OnInit {
       if (_.findWhere(this.listTipoTransporte, { descricao: tipoTransporte.descricao })) {
         this._toastService.activate(`${tipoTransporte.descricao} já existe.`);
       } else {
-        this._tipoTransporteService.create(new TipoTransporte(tipoTransporte));
-        this._toastService.activate(`${tipoTransporte.descricao} foi cadastrado com successo.`);
+        let key = this._tipoTransporteService.create(new TipoTransporte(tipoTransporte));
+        this._toastService.activate(key ? `${tipoTransporte.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoTransporte.descricao}.`);
       }
     }
     this.clear();
@@ -59,8 +68,9 @@ export class TipoTransporteComponent implements OnInit {
 
   update(tipoTransporte: any): void {
     if (this.isValid(tipoTransporte.changes)) {
-      this._tipoTransporteService.update(tipoTransporte.item, tipoTransporte.changes);
-      this._toastService.activate(`${tipoTransporte.changes.descricao} foi alterado com successo.`);
+      this._tipoTransporteService.update(tipoTransporte.item, tipoTransporte.changes).then(data => {
+        this._toastService.activate(`${tipoTransporte.changes.descricao} foi alterado com successo.`);
+      });
     }
     this.clear();
   }
@@ -77,8 +87,9 @@ export class TipoTransporteComponent implements OnInit {
       let msg = `Deseja realmente excluir ${tipoTransporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoTransporteService.remove(tipoTransporte);
-          this._toastService.activate(`${tipoTransporte.descricao} foi removido com successo.`);
+          this._tipoTransporteService.remove(tipoTransporte).then(data => {
+            this._toastService.activate(`${tipoTransporte.descricao} foi removido com successo.`);
+          });
         }
       });
     }

@@ -18,19 +18,12 @@ export class TipoPontoInteresseService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.tipo_ponto_interesse);
+    this.list.subscribe(data => { console.log('TipoPontoInteresseService: '+JSON.stringify(data)); });
   }
 
-  create(tipo: Tipo): firebase.Promise<any> {
+  create(tipo: Tipo): any {
     console.log('create>> tipo: ' + JSON.stringify(tipo));
-    this._progressBarService.show();
-    return this.list.push(tipo)
-      .then((data) => {
-        this._progressBarService.hide();
-      })
-      .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
-      });
+    return this.list.push(tipo).key;
   }
 
   update(tipo: ITipo, changes: any): firebase.Promise<any> {
@@ -38,11 +31,10 @@ export class TipoPontoInteresseService {
     this._progressBarService.show();
     return this.list.update(tipo.$key, changes)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
@@ -51,14 +43,20 @@ export class TipoPontoInteresseService {
     this._progressBarService.show();
     return this.list.remove(tipo.$key)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
+  private requestResponse(ok: boolean, error: any): void {
+    this._progressBarService.hide();
+    if (!ok) {
+        this._exceptionService.catchBadResponse(error)
+    }
+  }
+  
 }
 
 export var tipoPontoInteresseServiceInjectables: Array<any> = [

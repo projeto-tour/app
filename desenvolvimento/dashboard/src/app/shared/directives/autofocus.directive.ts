@@ -1,12 +1,15 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, AfterViewChecked } from '@angular/core';
 
 @Directive({
   selector: '[autofocus]'
 })
-export class Autofocus {
+export class Autofocus implements AfterViewChecked {
 
   constructor(private _element: ElementRef) {
-    _element.nativeElement.focus();
+  }
+
+  ngAfterViewChecked() {
+    this._element.nativeElement.focus();
   }
 
 }

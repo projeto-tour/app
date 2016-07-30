@@ -1,6 +1,7 @@
 export * from './auth/auth.service';
 
 export * from './directives/autofocus.directive';
+export * from './directives/mdl.directive';
 
 export * from './directives/cadastro/cadastro.component';
 export * from './directives/modal/modal.component';

@@ -2,6 +2,7 @@ import { Injectable, provide } from '@angular/core';
 import { AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState } from 'angularfire2';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 
 import { ExceptionService } from '../providers/exception.service';
@@ -12,9 +13,9 @@ export class AuthService {
 
     private authState: FirebaseAuthState = null;
 
-    // store the URL so we can redirect after logging in
-    public redirectUrl: string;
-
+    public redirectUrl: string = 'dashboard';
+    public title: string = 'Dashboard';
+    
     constructor(
         public _auth: FirebaseAuth,
         private _exceptionService: ExceptionService,

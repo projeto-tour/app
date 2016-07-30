@@ -18,19 +18,12 @@ export class CaracteristicaService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.caracteristica);
+    this.list.subscribe(data => { console.log('CaracteristicaService: '+JSON.stringify(data)); });
   }
 
-  create(caracteristica: Caracteristica): firebase.Promise<any> {
+  create(caracteristica: Caracteristica): any {
     console.log('create>> caracteristica: ' + JSON.stringify(caracteristica));
-    this._progressBarService.show();
-    return this.list.push(caracteristica)
-      .then((data) => {
-        this._progressBarService.hide();
-      })
-      .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
-      });
+    return this.list.push(caracteristica).key;
   }
 
   update(caracteristica: ICaracteristica, changes: any): firebase.Promise<any> {
@@ -38,11 +31,10 @@ export class CaracteristicaService {
     this._progressBarService.show();
     return this.list.update(caracteristica.$key, changes)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
@@ -51,14 +43,20 @@ export class CaracteristicaService {
     this._progressBarService.show();
     return this.list.remove(caracteristica.$key)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
+  private requestResponse(ok: boolean, error: any): void {
+    this._progressBarService.hide();
+    if (!ok) {
+        this._exceptionService.catchBadResponse(error)
+    }
+  }
+  
 }
 
 export var caracteristicaServiceInjectables: Array<any> = [

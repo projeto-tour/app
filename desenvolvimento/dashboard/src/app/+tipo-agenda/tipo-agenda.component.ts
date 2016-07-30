@@ -6,11 +6,17 @@ import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
-import { ToastService } from '../shared/providers/toast.service';
-import { ModalService } from '../shared/providers/modal.service';
-import { EntityService } from '../shared/providers/entity.service';
-
-import { CadastroComponent, TipoAgendaService, ITipoAgenda, TipoAgenda } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  ModalService,
+  EntityService,
+  CadastroComponent,
+  TipoAgendaService,
+  ITipoAgenda,
+  TipoAgenda,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +24,8 @@ import { CadastroComponent, TipoAgendaService, ITipoAgenda, TipoAgenda } from '.
   templateUrl: 'tipo-agenda.component.html',
   styleUrls: ['tipo-agenda.component.css'],
   directives: [
-    CadastroComponent
+    CadastroComponent,
+    MDL
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,6 +39,7 @@ export class TipoAgendaComponent implements OnInit {
   showDestaque: boolean = true;
 
   constructor(
+    private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _entityService: EntityService,
@@ -40,6 +48,7 @@ export class TipoAgendaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._authService.title = 'Tipo de Agenda';
     this._tipoAgendaService.list.subscribe((data: ITipoAgenda[]) => {
       this.listTipoAgenda = data;
     });
@@ -50,8 +59,8 @@ export class TipoAgendaComponent implements OnInit {
       if (_.findWhere(this.listTipoAgenda, { descricao: tipoAgenda.descricao })) {
         this._toastService.activate(`${tipoAgenda.descricao} já existe.`);
       } else {
-        this._tipoAgendaService.create(new TipoAgenda(tipoAgenda));
-        this._toastService.activate(`${tipoAgenda.descricao} foi cadastrado com successo.`);
+        let key = this._tipoAgendaService.create(new TipoAgenda(tipoAgenda));
+        this._toastService.activate(key ? `${tipoAgenda.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoAgenda.descricao}.`);
       }
     }
     this.clear();
@@ -59,8 +68,9 @@ export class TipoAgendaComponent implements OnInit {
 
   update(tipoAgenda: any): void {
     if (this.isValid(tipoAgenda.changes)) {
-      this._tipoAgendaService.update(tipoAgenda.item, tipoAgenda.changes);
-      this._toastService.activate(`${tipoAgenda.changes.descricao} foi alterado com successo.`);
+      this._tipoAgendaService.update(tipoAgenda.item, tipoAgenda.changes).then(data => {
+        this._toastService.activate(`${tipoAgenda.changes.descricao} foi alterado com successo.`);
+      });
     }
     this.clear();
   }
@@ -77,8 +87,9 @@ export class TipoAgendaComponent implements OnInit {
       let msg = `Deseja realmente excluir ${tipoAgenda.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoAgendaService.remove(tipoAgenda);
-          this._toastService.activate(`${tipoAgenda.descricao} foi removido com successo.`);
+          this._tipoAgendaService.remove(tipoAgenda).then(data => {
+            this._toastService.activate(`${tipoAgenda.descricao} foi removido com successo.`);
+          });
         }
       });
     }

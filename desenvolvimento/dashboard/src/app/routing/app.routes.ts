@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { CanActivateAuthGuard, CanActivateUnAuthGuard, CanDeactivateGuard  } from './';
+import { CanActivateAuthGuard, CanActivateUnAuthGuard  } from './';
 import { DashboardRoutes } from '../+dashboard';
 import { LoginRoutes } from '../+login';
 
@@ -13,6 +13,5 @@ export const AppRoutes: RouterConfig = [
 export const APP_ROUTER_PROVIDERS = [
   provideRouter(AppRoutes),
   CanActivateAuthGuard,
-  CanActivateUnAuthGuard,
-  CanDeactivateGuard
+  CanActivateUnAuthGuard
 ];

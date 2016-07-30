@@ -1,4 +1,4 @@
-<app>
+<!--<app>
 
   <md-sidenav-layout fullscreen>
     
@@ -68,10 +68,97 @@
       <button id="logout" md-icon-button (click)="logout()">
         <md-icon class="md-24">exit_to_app</md-icon>
       </button>
+      
     </md-toolbar>
     
     <router-outlet></router-outlet>
     
   </md-sidenav-layout>
   
-</app>
+</app>-->
+
+<!-- Always shows a header, even in smaller screens. -->
+<div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">{{ _authService.title }}</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <i class="material-icons mdl-list__item-icon mdl-color--grey-50">person</i><span class="mdl-color-text--grey-50" style="padding-left:5px;">{{ _authService.user }}</span>
+      </nav>
+      <!-- Right aligned menu below button -->
+      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-lower-right">
+        <li class="mdl-menu__item" (click)="logout()">Logout</li>
+        <li class="mdl-menu__item">Sobre</li>
+        <li class="mdl-menu__item">Ajuda</li>
+      </ul>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <li class="mdl-list__item mdl-list__item--two-line" [routerLink]="['./home']">
+      <span class="mdl-list__item-primary-content">
+        <img class="mdl-list__item-avatar  mdl-color--grey-50" src="assets/logo.png" [alt]="title">
+        <span>Partiu!</span>
+        <span class="mdl-list__item-sub-title">Painel Administrativo</span>
+      </span>
+    </li>
+    <hr>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" [routerLink]="['./home']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">home</i>
+          Home
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./caracteristica']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Característica
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./tipodeagenda']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Tipo de Agenda
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./tipodedado']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Tipo de Dado
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./tipodepontodeinteresse']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Tipo de Ponto de Interesse
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./tipodetrasporte']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Tipo de Trasporte
+        </span>
+      </a>
+      <a class="mdl-navigation__link" [routerLink]="['./trasporte']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Trasporte
+        </span>
+      </a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+        <!-- Your content goes here -->
+        <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

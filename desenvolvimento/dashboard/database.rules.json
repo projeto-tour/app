@@ -1,0 +1,36 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "caracteristica": {
+      "$key_caracteristica": {
+        ".validate": "newData.hasChildren(['descricao', 'tipo_dado']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0 && newData.child('tipo_dado').exists() && newData.child('tipo_dado').val().length > 0"
+      }
+    },
+    "tipo_agenda": {
+      "$key_tipo_agenda": {
+        ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0"
+      }
+    },
+    "tipo_dado": {
+      "$key_tipo_dado": {
+        ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0"
+      }
+    },
+    "tipo_ponto_interesse": {
+      "$key_tipo_ponto_interesse": {
+        ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0"
+      }
+    },
+    "tipo_transporte": {
+      "$key_tipo_transporte": {
+        ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0"
+      }
+    },
+    "transporte": {
+      "$key_transporte": {
+        ".validate": "newData.hasChildren(['descricao', 'tipo_transporte']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0 && newData.child('tipo_transporte').exists() && newData.child('tipo_transporte').val().length > 0"
+      }
+    }
+  }
+}

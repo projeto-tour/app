@@ -6,11 +6,17 @@ import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
-import { ToastService } from '../shared/providers/toast.service';
-import { ModalService } from '../shared/providers/modal.service';
-import { EntityService } from '../shared/providers/entity.service';
-
-import { CadastroComponent, TipoPontoInteresseService, ITipoPontoInteresse, TipoPontoInteresse } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  ModalService,
+  EntityService,
+  CadastroComponent,
+  TipoPontoInteresseService,
+  ITipoPontoInteresse,
+  TipoPontoInteresse,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +24,8 @@ import { CadastroComponent, TipoPontoInteresseService, ITipoPontoInteresse, Tipo
   templateUrl: 'tipo-ponto-interesse.component.html',
   styleUrls: ['tipo-ponto-interesse.component.css'],
   directives: [
-    CadastroComponent
+    CadastroComponent,
+    MDL
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,6 +39,7 @@ export class TipoPontoInteresseComponent implements OnInit {
   showDestaque: boolean = true;
 
   constructor(
+    private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _entityService: EntityService,
@@ -40,6 +48,7 @@ export class TipoPontoInteresseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._authService.title = 'Tipo de Ponto de Interesse';
     this._tipoPontoInteresseService.list.subscribe((data: ITipoPontoInteresse[]) => {
       this.listTipoPontoInteresse = data;
     });
@@ -50,8 +59,8 @@ export class TipoPontoInteresseComponent implements OnInit {
       if (_.findWhere(this.listTipoPontoInteresse, { descricao: tipoPontoInteresse.descricao })) {
         this._toastService.activate(`${tipoPontoInteresse.descricao} já existe.`);
       } else {
-        this._tipoPontoInteresseService.create(new TipoPontoInteresse(tipoPontoInteresse));
-        this._toastService.activate(`${tipoPontoInteresse.descricao} foi cadastrado com successo.`);
+        let key = this._tipoPontoInteresseService.create(new TipoPontoInteresse(tipoPontoInteresse));
+        this._toastService.activate(key ? `${tipoPontoInteresse.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoPontoInteresse.descricao}.`);
       }
     }
     this.clear();
@@ -59,8 +68,9 @@ export class TipoPontoInteresseComponent implements OnInit {
 
   update(tipoPontoInteresse: any): void {
     if (this.isValid(tipoPontoInteresse.changes)) {
-      this._tipoPontoInteresseService.update(tipoPontoInteresse.item, tipoPontoInteresse.changes);
-      this._toastService.activate(`${tipoPontoInteresse.changes.descricao} foi alterado com successo.`);
+      this._tipoPontoInteresseService.update(tipoPontoInteresse.item, tipoPontoInteresse.changes).then(data => {
+        this._toastService.activate(`${tipoPontoInteresse.changes.descricao} foi alterado com successo.`);
+      });
     }
     this.clear();
   }
@@ -72,14 +82,15 @@ export class TipoPontoInteresseComponent implements OnInit {
 
   remove(tipoPontoInteresse: ITipoPontoInteresse): void {
     if ((tipoPontoInteresse.preferencias_usuario && _.keys(tipoPontoInteresse.preferencias_usuario).length > 0)
-        || (tipoPontoInteresse.caracteristicas_tipo_ponto_interesse && _.keys(tipoPontoInteresse.caracteristicas_tipo_ponto_interesse).length > 0)) {
+      || (tipoPontoInteresse.caracteristicas_tipo_ponto_interesse && _.keys(tipoPontoInteresse.caracteristicas_tipo_ponto_interesse).length > 0)) {
       this._toastService.activate(`${tipoPontoInteresse.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(tipoPontoInteresse.preferencias_usuario).length + _.keys(tipoPontoInteresse.caracteristicas_tipo_ponto_interesse).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${tipoPontoInteresse.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoPontoInteresseService.remove(tipoPontoInteresse);
-          this._toastService.activate(`${tipoPontoInteresse.descricao} foi removido com successo.`);
+          this._tipoPontoInteresseService.remove(tipoPontoInteresse).then(data => {
+            this._toastService.activate(`${tipoPontoInteresse.descricao} foi removido com successo.`);
+          });
         }
       });
     }

@@ -14,7 +14,10 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 import * as _ from 'underscore';
 
-import { Autofocus } from '../../';
+import {
+    Autofocus,
+    MDL
+} from '../../';
 
 @Component({
     moduleId: module.id,
@@ -29,7 +32,8 @@ import { Autofocus } from '../../';
         MD_INPUT_DIRECTIVES,
         FORM_DIRECTIVES,
         MdIcon,
-        Autofocus
+        Autofocus,
+        MDL
     ],
     providers: [
         MdIconRegistry

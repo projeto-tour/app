@@ -5,8 +5,6 @@
                 <tr>
                     <th style="width:10%">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
-                    <th class="mdl-data-table__cell--non-numeric">Ícone</th>
-                    <th class="mdl-data-table__cell--non-numeric">Destaque</th>
                     <th class="mdl-data-table__cell--non-numeric">Detalhes</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
@@ -19,12 +17,6 @@
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
                         {{ transporte.descricao }}
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        {{ transporte.icone }}
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        {{ transporte.destaque }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
                         {{ getDescricao(transporte.tipo_transporte) }}
@@ -56,30 +48,8 @@
                         ngModel>
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
-                    <md-input 
-                        type="text"
-                        placeholder="Nome do ícone" 
-                        maxLength="20" 
-                        [(value)]="transporte.icone"
-                        (keyup.escape)="reset()"
-                        name="icone"
-                        #icone 
-                        ngModel>
-                        <md-hint align="end">{{icone.characterCount}} / 20</md-hint>
-                    </md-input>
-                    <md-input 
-                        type="text"
-                        placeholder="Url da imagem de destaque" 
-                        maxLength="100"
-                        [(value)]="transporte.destaque"
-                        (keyup.escape)="reset()"
-                        name="destaque"
-                        #destaque 
-                        ngModel>
-                        <md-hint align="end">{{destaque.characterCount}} / 100</md-hint>
-                    </md-input>
                     <p>Selecione o tipo de transporte</p>
-                    <section class="select-section">
+                    <section class="select-section mdl-color--grey-100">
                         <md-radio-group [(value)]="transporte.tipo_transporte" name="tipo_transporte" ngModel>
                             <md-radio-button *ngFor="let tipo of _tipoTransporteService.list | async" [align]="'start'" name="tipo_transporte" [value]="tipo.$key">
                                 {{ tipo.descricao }}

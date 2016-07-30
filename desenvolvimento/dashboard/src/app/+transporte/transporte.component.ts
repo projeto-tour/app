@@ -16,11 +16,21 @@ import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordinatio
 
 import * as _ from 'underscore';
 
-import { ToastService } from '../shared/providers/toast.service';
-import { ModalService } from '../shared/providers/modal.service';
-import { EntityService } from '../shared/providers/entity.service';
-
-import { Autofocus, TransporteService, TipoTransporteService, ITransporte, Transporte, ITipoTransporte, TipoTransporte } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  ModalService,
+  EntityService,
+  CadastroComponent,
+  TransporteService,
+  TipoTransporteService,
+  ITransporte,
+  Transporte,
+  ITipoTransporte,
+  TipoTransporte,
+  Autofocus,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -36,7 +46,8 @@ import { Autofocus, TransporteService, TipoTransporteService, ITransporte, Trans
     MD_RADIO_DIRECTIVES,
     FORM_DIRECTIVES,
     MdIcon,
-    Autofocus
+    Autofocus,
+    MDL
   ],
   providers: [
     MdIconRegistry,
@@ -52,6 +63,7 @@ export class TransporteComponent implements OnInit {
   listTipoTransporte: ITipoTransporte[] = [];
 
   constructor(
+    private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _entityService: EntityService,
@@ -61,6 +73,7 @@ export class TransporteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._authService.title = 'Transporte';
     this._transporteService.list.subscribe((data: ITransporte[]) => {
       this.listTransporte = data;
     });
@@ -73,17 +86,24 @@ export class TransporteComponent implements OnInit {
 
   submit(transporte: ITransporte): void {
     if (this.isValid(transporte)) {
+      var key = null;
+      var message = '';
       if (this.editing) {
-        this._transporteService.update(this.transporte, transporte);
-        this._toastService.activate(`${transporte.descricao} foi alterado com successo.`);
+        this._transporteService.update(this.transporte, transporte)
+        key = this.transporte.$key;
+        message = `${transporte.descricao} foi alterado com successo.`;
       } else if (_.findWhere(this.listTransporte, { descricao: transporte.descricao })) {
-        this._toastService.activate(`${transporte.descricao} já existe.`);
+        message = `${transporte.descricao} já existe.`;
       } else {
-        this._transporteService.create(new Transporte(transporte));
-        this._toastService.activate(`${transporte.descricao} foi cadastrado com successo.`);
+        key = this._transporteService.create(new Transporte(transporte));
+        message = key ? `${transporte.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${transporte.descricao}.`;
       }
+      if (key) {
+        this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`, JSON.parse(`{"${key}": true}`));
+        this.clear();
+      }
+      this._toastService.activate(message);
     }
-    this.clear();
   }
 
   edit(transporte: ITransporte): void {
@@ -98,8 +118,10 @@ export class TransporteComponent implements OnInit {
       let msg = `Deseja realmente excluir ${transporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._transporteService.remove(transporte);
-          this._toastService.activate(`${transporte.descricao} foi removido com successo.`);
+          this._transporteService.remove(transporte).then(data => {
+            this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`, JSON.parse(`{"${transporte.$key}": true}`));
+            this._toastService.activate(`${transporte.descricao} foi removido com successo.`);
+          });
         }
       });
     }

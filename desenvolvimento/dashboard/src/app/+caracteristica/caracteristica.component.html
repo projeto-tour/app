@@ -49,7 +49,7 @@
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
                     <p>Selecione o tipo de dado</p>
-                    <section class="select-section">
+                    <section class="select-section mdl-color--grey-50">
                         <md-radio-group [(value)]="caracteristica.tipo_dado" name="tipo_dado" ngModel>
                             <md-radio-button *ngFor="let tipo of _tipoDadoService.list | async" [align]="'start'" name="tipo_dado" [value]="tipo.$key">
                                 {{ tipo.descricao }}

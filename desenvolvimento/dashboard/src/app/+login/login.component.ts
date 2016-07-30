@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
@@ -9,7 +9,11 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
-import { AuthService, ToastService } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -23,7 +27,8 @@ import { AuthService, ToastService } from '../shared';
     MD_ICON_DIRECTIVES,
     MD_INPUT_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
-    MdIcon
+    MdIcon,
+    MDL
   ],
   providers: [
     MdIconRegistry
@@ -32,15 +37,14 @@ import { AuthService, ToastService } from '../shared';
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Partiu!';
-
   constructor(
     public _authService: AuthService,
-    public _toastService: ToastService,
-    public _router: Router) {
+    private _toastService: ToastService,
+    private _router: Router) {
   }
 
   ngOnInit() {
+    this._authService.title = 'Partiu!';
   }
 
   onSubmit(form: any): void {

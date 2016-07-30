@@ -18,19 +18,12 @@ export class TransporteService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.transporte);
+    this.list.subscribe(data => { console.log('TransporteService: '+JSON.stringify(data)); });
   }
 
-  create(transporte: Transporte): firebase.Promise<any> {
+  create(transporte: Transporte): any {
     console.log('create>> transporte: ' + JSON.stringify(transporte));
-    this._progressBarService.show();
-    return this.list.push(transporte)
-      .then((data) => {
-        this._progressBarService.hide();
-      })
-      .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
-      });
+    return this.list.push(transporte).key;
   }
 
   update(transporte: ITransporte, changes: any): firebase.Promise<any> {
@@ -38,11 +31,10 @@ export class TransporteService {
     this._progressBarService.show();
     return this.list.update(transporte.$key, changes)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
@@ -51,14 +43,20 @@ export class TransporteService {
     this._progressBarService.show();
     return this.list.remove(transporte.$key)
       .then((data) => {
-        this._progressBarService.hide();
+        return this.requestResponse(true, null);
       })
       .catch((error) => {
-        this._progressBarService.hide();
-        this._exceptionService.catchBadResponse(error)
+        return this.requestResponse(false, error);
       });
   }
 
+  private requestResponse(ok: boolean, error: any): void {
+    this._progressBarService.hide();
+    if (!ok) {
+        this._exceptionService.catchBadResponse(error)
+    }
+  }
+  
 }
 
 export var transporteServiceInjectables: Array<any> = [

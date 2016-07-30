@@ -6,11 +6,17 @@ import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
-import { ToastService } from '../shared/providers/toast.service';
-import { ModalService } from '../shared/providers/modal.service';
-import { EntityService } from '../shared/providers/entity.service';
-
-import { CadastroComponent, TipoDadoService, ITipoDado, TipoDado } from '../shared';
+import {
+  AuthService,
+  ToastService,
+  ModalService,
+  EntityService,
+  CadastroComponent,
+  TipoDadoService,
+  ITipoDado,
+  TipoDado,
+  MDL
+} from '../shared';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +24,8 @@ import { CadastroComponent, TipoDadoService, ITipoDado, TipoDado } from '../shar
   templateUrl: 'tipo-dado.component.html',
   styleUrls: ['tipo-dado.component.css'],
   directives: [
-    CadastroComponent
+    CadastroComponent,
+    MDL
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,6 +39,7 @@ export class TipoDadoComponent implements OnInit {
   showDestaque: boolean = false;
 
   constructor(
+    private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _entityService: EntityService,
@@ -40,6 +48,7 @@ export class TipoDadoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._authService.title = 'Tipo de Dado';
     this._tipoDadoService.list.subscribe((data: ITipoDado[]) => {
       this.listTipoDado = data;
     });
@@ -50,8 +59,8 @@ export class TipoDadoComponent implements OnInit {
       if (_.findWhere(this.listTipoDado, { descricao: tipoDado.descricao })) {
         this._toastService.activate(`${tipoDado.descricao} já existe.`);
       } else {
-        this._tipoDadoService.create(new TipoDado(tipoDado));
-        this._toastService.activate(`${tipoDado.descricao} foi cadastrado com successo.`);
+        let key = this._tipoDadoService.create(new TipoDado(tipoDado));
+        this._toastService.activate(key ? `${tipoDado.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoDado.descricao}.`);
       }
     }
     this.clear();
@@ -59,8 +68,9 @@ export class TipoDadoComponent implements OnInit {
 
   update(tipoDado: any): void {
     if (this.isValid(tipoDado.changes)) {
-      this._tipoDadoService.update(tipoDado.item, tipoDado.changes);
-      this._toastService.activate(`${tipoDado.changes.descricao} foi alterado com successo.`);
+      this._tipoDadoService.update(tipoDado.item, tipoDado.changes).then(data => {
+        this._toastService.activate(`${tipoDado.changes.descricao} foi alterado com successo.`);
+      });
     }
     this.clear();
   }
@@ -77,8 +87,9 @@ export class TipoDadoComponent implements OnInit {
       let msg = `Deseja realmente excluir ${tipoDado.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoDadoService.remove(tipoDado);
-          this._toastService.activate(`${tipoDado.descricao} foi removido com successo.`);
+          this._tipoDadoService.remove(tipoDado).then(data => {
+            this._toastService.activate(`${tipoDado.descricao} foi removido com successo.`);
+          });
         }
       });
     }

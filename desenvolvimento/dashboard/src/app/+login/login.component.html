@@ -14,7 +14,7 @@
   <main>
     <form #frm="ngForm" (ngSubmit)="onSubmit(frm.value)">
       <md-card class="md-input-card">
-        <md-toolbar color="primary">{{ title }}</md-toolbar>
+        <md-toolbar color="primary">{{ _authService.title }}</md-toolbar>
         <md-card-content>
           <md-input name="email" type="email" placeholder="E-mail" autocomplete="off" required #email ngModel>
             <span md-prefix><md-icon>perm_identity</md-icon></span>

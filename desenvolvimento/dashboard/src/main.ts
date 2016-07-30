@@ -5,7 +5,12 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 import { AppComponent, environment } from './app';
 import { APP_ROUTER_PROVIDERS } from './app/routing';
-import { FIREBASE_APP_PROVIDERS, AUTH_PROVIDERS, APP_DATA_PROVIDERS, CONFIG_PROVIDERS } from './app/shared';
+import { 
+  FIREBASE_APP_PROVIDERS, 
+  AUTH_PROVIDERS, 
+  APP_DATA_PROVIDERS, 
+  CONFIG_PROVIDERS 
+} from './app/shared';
 
 if (environment.production) {
   enableProdMode();
@@ -14,14 +19,14 @@ if (environment.production) {
 bootstrap(
   AppComponent,
   [
+    disableDeprecatedForms(),
+    provideForms(),
     APP_ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     FIREBASE_APP_PROVIDERS,
     AUTH_PROVIDERS,
     APP_DATA_PROVIDERS,
-    CONFIG_PROVIDERS,
-    disableDeprecatedForms(),
-    provideForms()
+    CONFIG_PROVIDERS
   ]
 ).then(
   success => console.log('AppComponent bootstrapped!'),
