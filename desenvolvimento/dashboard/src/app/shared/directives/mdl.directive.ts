@@ -5,12 +5,12 @@ declare var componentHandler: any;
 @Directive({
     selector: '[mdl]'
 })
-export class MDL implements AfterViewChecked {
+export class MdlDirective implements AfterViewChecked {
 
     ngAfterViewChecked() {
         if (componentHandler) {
             componentHandler.upgradeAllRegistered();
         }
     }
-    
+
 }

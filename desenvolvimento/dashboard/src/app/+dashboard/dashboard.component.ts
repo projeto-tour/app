@@ -10,7 +10,7 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 import {
     AuthService,
-    MDL
+    MdlDirective
 } from '../shared';
 
 @Component({
@@ -26,7 +26,7 @@ import {
         MD_SIDENAV_DIRECTIVES,
         MD_TOOLBAR_DIRECTIVES,
         MdIcon,
-        MDL
+        MdlDirective
     ],
     providers: [
         MdIconRegistry
@@ -46,5 +46,5 @@ export class DashboardComponent implements OnInit {
         this._authService.signOut();
         window.location.replace('/');
     }
-    
+
 }

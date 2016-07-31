@@ -24,7 +24,7 @@ import { ModalComponent } from '../app/shared/directives/modal/modal.component';
 export class AppComponent implements OnInit {
 
     title = 'Partiu!';
-    
+
     constructor() { }
 
     ngOnInit() { }

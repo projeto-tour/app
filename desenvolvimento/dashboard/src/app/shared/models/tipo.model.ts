@@ -24,5 +24,5 @@ export interface ITipo {
     descricao: string;
     icone: string;
     destaque: string;
-    relacionamento?: any;
 }
+

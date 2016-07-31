@@ -1,8 +1,6 @@
-//Underscore imports
+// Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-
-import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
@@ -15,7 +13,7 @@ import {
   TipoPontoInteresseService,
   ITipoPontoInteresse,
   TipoPontoInteresse,
-  MDL
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -25,7 +23,7 @@ import {
   styleUrls: ['tipo-ponto-interesse.component.css'],
   directives: [
     CadastroComponent,
-    MDL
+    MdlDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -60,7 +58,8 @@ export class TipoPontoInteresseComponent implements OnInit {
         this._toastService.activate(`${tipoPontoInteresse.descricao} já existe.`);
       } else {
         let key = this._tipoPontoInteresseService.create(new TipoPontoInteresse(tipoPontoInteresse));
-        this._toastService.activate(key ? `${tipoPontoInteresse.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoPontoInteresse.descricao}.`);
+        this._toastService.activate(key ? `${tipoPontoInteresse.descricao} foi cadastrado com successo.`
+          : `Não foi possível cadastrar ${tipoPontoInteresse.descricao}.`);
       }
     }
     this.clear();
@@ -82,8 +81,11 @@ export class TipoPontoInteresseComponent implements OnInit {
 
   remove(tipoPontoInteresse: ITipoPontoInteresse): void {
     if ((tipoPontoInteresse.preferencias_usuario && _.keys(tipoPontoInteresse.preferencias_usuario).length > 0)
-      || (tipoPontoInteresse.caracteristicas_tipo_ponto_interesse && _.keys(tipoPontoInteresse.caracteristicas_tipo_ponto_interesse).length > 0)) {
-      this._toastService.activate(`${tipoPontoInteresse.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(tipoPontoInteresse.preferencias_usuario).length + _.keys(tipoPontoInteresse.caracteristicas_tipo_ponto_interesse).length} cadastros.`);
+      || (tipoPontoInteresse.caracteristica_tipo_ponto_interesse
+        && _.keys(tipoPontoInteresse.caracteristica_tipo_ponto_interesse).length > 0)) {
+      this._toastService.activate(`${tipoPontoInteresse.descricao} não pode ser excluído pois já foi atribuído à 
+        ${_.keys(tipoPontoInteresse.preferencias_usuario).length
+        + _.keys(tipoPontoInteresse.caracteristica_tipo_ponto_interesse).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${tipoPontoInteresse.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {

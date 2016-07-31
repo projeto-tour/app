@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
@@ -12,7 +12,7 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import {
   AuthService,
   ToastService,
-  MDL
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -28,7 +28,7 @@ import {
     MD_INPUT_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
     MdIcon,
-    MDL
+    MdlDirective
   ],
   providers: [
     MdIconRegistry

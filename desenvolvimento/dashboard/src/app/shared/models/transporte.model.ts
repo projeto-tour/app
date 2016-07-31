@@ -27,5 +27,5 @@ export class Transporte implements ITransporte {
 export interface ITransporte extends ITipo {
     $key?: string;
     tipo_transporte: string;
-    rotas?: any;
+    rota?: any;
 }

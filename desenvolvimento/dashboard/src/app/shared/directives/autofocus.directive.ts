@@ -3,7 +3,7 @@ import { Directive, ElementRef, AfterViewChecked } from '@angular/core';
 @Directive({
   selector: '[autofocus]'
 })
-export class Autofocus implements AfterViewChecked {
+export class AutofocusDirective implements AfterViewChecked {
 
   constructor(private _element: ElementRef) {
   }

@@ -23,5 +23,5 @@ export class TipoDado implements ITipoDado {
 
 export interface ITipoDado extends ITipo {
     $key?: string;
-    caracteristicas?: any;
+    caracteristica?: any;
 }

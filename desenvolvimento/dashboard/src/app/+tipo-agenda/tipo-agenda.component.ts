@@ -1,8 +1,6 @@
-//Underscore imports
+// Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-
-import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
@@ -15,7 +13,7 @@ import {
   TipoAgendaService,
   ITipoAgenda,
   TipoAgenda,
-  MDL
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -25,7 +23,7 @@ import {
   styleUrls: ['tipo-agenda.component.css'],
   directives: [
     CadastroComponent,
-    MDL
+    MdlDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -60,7 +58,8 @@ export class TipoAgendaComponent implements OnInit {
         this._toastService.activate(`${tipoAgenda.descricao} já existe.`);
       } else {
         let key = this._tipoAgendaService.create(new TipoAgenda(tipoAgenda));
-        this._toastService.activate(key ? `${tipoAgenda.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoAgenda.descricao}.`);
+        this._toastService.activate(key ? `${tipoAgenda.descricao} foi cadastrado com successo.`
+          : `Não foi possível cadastrar ${tipoAgenda.descricao}.`);
       }
     }
     this.clear();
@@ -81,8 +80,9 @@ export class TipoAgendaComponent implements OnInit {
   }
 
   remove(tipoAgenda: ITipoAgenda): void {
-    if (tipoAgenda.agendas && _.keys(tipoAgenda.agendas).length > 0) {
-      this._toastService.activate(`${tipoAgenda.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(tipoAgenda.agendas).length} cadastros.`);
+    if (tipoAgenda.agenda && _.keys(tipoAgenda.agenda).length > 0) {
+      this._toastService.activate(`${tipoAgenda.descricao} não pode ser excluído pois já foi atribuído à 
+                                    ${_.keys(tipoAgenda.agenda).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${tipoAgenda.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {

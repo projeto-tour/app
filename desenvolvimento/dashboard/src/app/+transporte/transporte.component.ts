@@ -1,9 +1,7 @@
-//Underscore imports
+// Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FORM_DIRECTIVES } from '@angular/forms';
-
-import { FirebaseListObservable } from 'angularfire2';
 
 import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -21,15 +19,13 @@ import {
   ToastService,
   ModalService,
   EntityService,
-  CadastroComponent,
   TransporteService,
   TipoTransporteService,
   ITransporte,
   Transporte,
   ITipoTransporte,
-  TipoTransporte,
-  Autofocus,
-  MDL
+  AutofocusDirective,
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -46,8 +42,8 @@ import {
     MD_RADIO_DIRECTIVES,
     FORM_DIRECTIVES,
     MdIcon,
-    Autofocus,
-    MDL
+    AutofocusDirective,
+    MdlDirective
   ],
   providers: [
     MdIconRegistry,
@@ -86,20 +82,22 @@ export class TransporteComponent implements OnInit {
 
   submit(transporte: ITransporte): void {
     if (this.isValid(transporte)) {
-      var key = null;
-      var message = '';
+      let key = null;
+      let message = '';
       if (this.editing) {
-        this._transporteService.update(this.transporte, transporte)
+        this._transporteService.update(this.transporte, transporte);
         key = this.transporte.$key;
         message = `${transporte.descricao} foi alterado com successo.`;
       } else if (_.findWhere(this.listTransporte, { descricao: transporte.descricao })) {
         message = `${transporte.descricao} já existe.`;
       } else {
         key = this._transporteService.create(new Transporte(transporte));
-        message = key ? `${transporte.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${transporte.descricao}.`;
+        message = key ? `${transporte.descricao} foi cadastrado com successo.`
+          : `Não foi possível cadastrar ${transporte.descricao}.`;
       }
       if (key) {
-        this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`, JSON.parse(`{"${key}": true}`));
+        this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
+          JSON.parse(`{"${key}": true}`));
         this.clear();
       }
       this._toastService.activate(message);
@@ -112,14 +110,16 @@ export class TransporteComponent implements OnInit {
   }
 
   remove(transporte: ITransporte): void {
-    if (transporte.rotas && _.keys(transporte.rotas).length > 0) {
-      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(transporte.rotas).length} cadastros.`);
+    if (transporte.rota && _.keys(transporte.rota).length > 0) {
+      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois já foi atribuído à  
+        ${_.keys(transporte.rota).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${transporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._transporteService.remove(transporte).then(data => {
-            this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`, JSON.parse(`{"${transporte.$key}": true}`));
+            this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
+              JSON.parse(`{"${transporte.$key}": true}`));
             this._toastService.activate(`${transporte.descricao} foi removido com successo.`);
           });
         }
@@ -132,7 +132,8 @@ export class TransporteComponent implements OnInit {
     this.transporte = new Transporte();
     this.transporte.icone = null;
     this.transporte.destaque = null;
-    this.transporte.tipo_transporte = _.defaults(_.has(this.listTipoTransporte[0], '$key') ? this.listTipoTransporte[0].$key : '', '');
+    this.transporte.tipo_transporte = _.defaults(_.has(this.listTipoTransporte[0], '$key') ?
+      this.listTipoTransporte[0].$key : '', '');
   }
 
   private isValid(transporte: ITransporte): boolean {

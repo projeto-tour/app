@@ -19,7 +19,7 @@ export const ChildRoutes: RouterConfig = [
   { path: 'tipodepontodeinteresse', component: TipoPontoInteresseComponent },
   { path: 'tipodetrasporte', component: TipoTransporteComponent },
   { path: 'trasporte', component: TransporteComponent },
-  { path: '**', pathMatch:'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 export const DashboardRoutes: RouterConfig = [

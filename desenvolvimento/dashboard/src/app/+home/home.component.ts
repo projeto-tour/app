@@ -5,7 +5,7 @@ import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 
 import {
   AuthService,
-  MDL
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -16,7 +16,7 @@ import {
   directives: [
     MD_GRID_LIST_DIRECTIVES,
     MD_CARD_DIRECTIVES,
-    MDL
+    MdlDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

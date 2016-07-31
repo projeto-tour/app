@@ -96,8 +96,8 @@
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
           for="demo-menu-lower-right">
         <li class="mdl-menu__item" (click)="logout()">Logout</li>
-        <li class="mdl-menu__item">Sobre</li>
-        <li class="mdl-menu__item">Ajuda</li>
+        <li class="mdl-menu__item" [routerLink]="['./home']">Sobre</li>
+        <li class="mdl-menu__item" [routerLink]="['./home']">Ajuda</li>
       </ul>
     </div>
   </header>

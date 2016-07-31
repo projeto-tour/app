@@ -1,5 +1,4 @@
 import { Injectable, bind } from '@angular/core';
-import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -21,7 +20,7 @@ export class ExceptionService {
         let message = error.message ? error.message : 'Houve falha na execução desta operação. Por favor, tente novamente mais tarde.';
         let errorResponse = JSON.stringify({message: message, status: status, code: code});
         this._toastService.activate(message);
-        console.log('errorHandler: ' + errorResponse);
+        // console.log('errorHandler: ' + errorResponse);
         // return Observable.throw(errorResponse); // TODO: We should NOT swallow error here.
         return Observable.of();
     }

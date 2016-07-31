@@ -5,7 +5,7 @@
                 <tr>
                     <th style="width:10%">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
-                    <th class="mdl-data-table__cell--non-numeric">Detalhes</th>
+                    <th class="mdl-data-table__cell--non-numeric">Tipo de Dado</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
                 </tr>
@@ -37,6 +37,7 @@
                 <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
                 <md-card-content>
                     <md-input 
+                        id="descricao"
                         type="text"
                         placeholder="Descrição" 
                         maxLength="50" 

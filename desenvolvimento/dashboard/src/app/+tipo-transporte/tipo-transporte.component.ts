@@ -1,8 +1,6 @@
-//Underscore imports
+// Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-
-import { FirebaseListObservable } from 'angularfire2';
 
 import * as _ from 'underscore';
 
@@ -15,7 +13,7 @@ import {
   TipoTransporteService,
   ITipoTransporte,
   TipoTransporte,
-  MDL
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -25,7 +23,7 @@ import {
   styleUrls: ['tipo-transporte.component.css'],
   directives: [
     CadastroComponent,
-    MDL
+    MdlDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -60,7 +58,8 @@ export class TipoTransporteComponent implements OnInit {
         this._toastService.activate(`${tipoTransporte.descricao} já existe.`);
       } else {
         let key = this._tipoTransporteService.create(new TipoTransporte(tipoTransporte));
-        this._toastService.activate(key ? `${tipoTransporte.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${tipoTransporte.descricao}.`);
+        this._toastService.activate(key ? `${tipoTransporte.descricao} foi cadastrado com successo.`
+          : `Não foi possível cadastrar ${tipoTransporte.descricao}.`);
       }
     }
     this.clear();
@@ -82,7 +81,8 @@ export class TipoTransporteComponent implements OnInit {
 
   remove(tipoTransporte: ITipoTransporte): void {
     if (tipoTransporte.transporte && _.keys(tipoTransporte.transporte).length > 0) {
-      this._toastService.activate(`${tipoTransporte.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(tipoTransporte.transporte).length} cadastros.`);
+      this._toastService.activate(`${tipoTransporte.descricao} não pode ser excluído pois já foi atribuído à 
+        ${_.keys(tipoTransporte.transporte).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${tipoTransporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {

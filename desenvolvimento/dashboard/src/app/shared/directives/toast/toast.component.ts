@@ -34,7 +34,7 @@ export class ToastComponent implements OnInit {
   }
 
   private show() {
-    console.log(this.message);
+    // console.log(this.message);
     this.toastElement.style.opacity = 1;
     this.toastElement.style.zIndex = 9999;
 

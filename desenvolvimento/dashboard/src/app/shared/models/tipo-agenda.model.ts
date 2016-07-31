@@ -23,5 +23,5 @@ export class TipoAgenda implements ITipoAgenda {
 
 export interface ITipoAgenda extends ITipo {
     $key?: string;
-    agendas?: any;
+    agenda?: any;
 }

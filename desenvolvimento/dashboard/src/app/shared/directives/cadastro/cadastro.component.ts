@@ -1,5 +1,3 @@
-//Underscore imports
-/// <reference path="../../../../../typings/globals/underscore/index.d.ts" />
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FORM_DIRECTIVES } from '@angular/forms';
 
@@ -12,11 +10,9 @@ import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
-import * as _ from 'underscore';
-
 import {
-    Autofocus,
-    MDL
+    AutofocusDirective,
+    MdlDirective
 } from '../../';
 
 @Component({
@@ -32,8 +28,8 @@ import {
         MD_INPUT_DIRECTIVES,
         FORM_DIRECTIVES,
         MdIcon,
-        Autofocus,
-        MDL
+        AutofocusDirective,
+        MdlDirective
     ],
     providers: [
         MdIconRegistry

@@ -7,7 +7,7 @@ import { LoginRoutes } from '../+login';
 export const AppRoutes: RouterConfig = [
   ...LoginRoutes,
   ...DashboardRoutes,
-  { path: '**', pathMatch:'full', redirectTo: '/login' }
+  { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

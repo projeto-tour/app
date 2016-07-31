@@ -1,7 +1,7 @@
 import { ITipo } from './tipo.model';
 
 /**
- * Referente caracteristicas de tipo de dado. 
+ * Referente caracteristica de tipo de dado. 
  * Ex.: avião, carro, ônibus, etc ...
  * 
  * @param key
@@ -27,5 +27,5 @@ export class Caracteristica implements ICaracteristica {
 export interface ICaracteristica extends ITipo {
     $key?: string;
     tipo_dado: string;
-    caracteristicas_tipo_ponto_interesse?: any;
+    caracteristica_tipo_ponto_interesse?: any;
 }

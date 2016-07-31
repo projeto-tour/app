@@ -18,16 +18,16 @@ export class TransporteService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.transporte);
-    this.list.subscribe(data => { console.log('TransporteService: '+JSON.stringify(data)); });
+    // this.list.subscribe(data => { console.log('TransporteService: ' + JSON.stringify(data)); });
   }
 
   create(transporte: Transporte): any {
-    console.log('create>> transporte: ' + JSON.stringify(transporte));
+    // console.log('create>> transporte: ' + JSON.stringify(transporte));
     return this.list.push(transporte).key;
   }
 
   update(transporte: ITransporte, changes: any): firebase.Promise<any> {
-    console.log('update>> transporte: ' + JSON.stringify(transporte) + '  changes: ' + JSON.stringify(changes));
+    // console.log('update>> transporte: ' + JSON.stringify(transporte) + '  changes: ' + JSON.stringify(changes));
     this._progressBarService.show();
     return this.list.update(transporte.$key, changes)
       .then((data) => {
@@ -39,7 +39,7 @@ export class TransporteService {
   }
 
   remove(transporte: ITransporte): firebase.Promise<any> {
-    console.log('remove>> transporte: ' + JSON.stringify(transporte));
+    // console.log('remove>> transporte: ' + JSON.stringify(transporte));
     this._progressBarService.show();
     return this.list.remove(transporte.$key)
       .then((data) => {
@@ -53,10 +53,10 @@ export class TransporteService {
   private requestResponse(ok: boolean, error: any): void {
     this._progressBarService.hide();
     if (!ok) {
-        this._exceptionService.catchBadResponse(error)
+        this._exceptionService.catchBadResponse(error);
     }
   }
-  
+
 }
 
 export var transporteServiceInjectables: Array<any> = [

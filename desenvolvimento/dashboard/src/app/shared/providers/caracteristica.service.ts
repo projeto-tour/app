@@ -18,16 +18,16 @@ export class CaracteristicaService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.caracteristica);
-    this.list.subscribe(data => { console.log('CaracteristicaService: '+JSON.stringify(data)); });
+    // this.list.subscribe(data => { console.log('CaracteristicaService: ' + JSON.stringify(data)); });
   }
 
   create(caracteristica: Caracteristica): any {
-    console.log('create>> caracteristica: ' + JSON.stringify(caracteristica));
+    // console.log('create>> caracteristica: ' + JSON.stringify(caracteristica));
     return this.list.push(caracteristica).key;
   }
 
   update(caracteristica: ICaracteristica, changes: any): firebase.Promise<any> {
-    console.log('update>> caracteristica: ' + JSON.stringify(caracteristica) + '  changes: ' + JSON.stringify(changes));
+    // console.log('update>> caracteristica: ' + JSON.stringify(caracteristica) + '  changes: ' + JSON.stringify(changes));
     this._progressBarService.show();
     return this.list.update(caracteristica.$key, changes)
       .then((data) => {
@@ -39,7 +39,7 @@ export class CaracteristicaService {
   }
 
   remove(caracteristica: ICaracteristica): firebase.Promise<any> {
-    console.log('remove>> caracteristica: ' + JSON.stringify(caracteristica));
+    // console.log('remove>> caracteristica: ' + JSON.stringify(caracteristica));
     this._progressBarService.show();
     return this.list.remove(caracteristica.$key)
       .then((data) => {
@@ -53,10 +53,10 @@ export class CaracteristicaService {
   private requestResponse(ok: boolean, error: any): void {
     this._progressBarService.hide();
     if (!ok) {
-        this._exceptionService.catchBadResponse(error)
+        this._exceptionService.catchBadResponse(error);
     }
   }
-  
+
 }
 
 export var caracteristicaServiceInjectables: Array<any> = [

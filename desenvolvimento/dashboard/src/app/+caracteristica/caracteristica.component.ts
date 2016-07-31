@@ -1,9 +1,7 @@
-//Underscore imports
+// Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FORM_DIRECTIVES } from '@angular/forms';
-
-import { FirebaseListObservable } from 'angularfire2';
 
 import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -26,9 +24,8 @@ import {
   ICaracteristica,
   Caracteristica,
   ITipoDado,
-  TipoDado,
-  Autofocus,
-  MDL
+  AutofocusDirective,
+  MdlDirective
 } from '../shared';
 
 @Component({
@@ -45,8 +42,8 @@ import {
     MD_RADIO_DIRECTIVES,
     FORM_DIRECTIVES,
     MdIcon,
-    Autofocus,
-    MDL
+    AutofocusDirective,
+    MdlDirective
   ],
   providers: [
     MdIconRegistry,
@@ -85,20 +82,22 @@ export class CaracteristicaComponent implements OnInit {
 
   submit(caracteristica: ICaracteristica): void {
     if (this.isValid(caracteristica)) {
-      var key = null;
-      var message = '';
+      let key = null;
+      let message = '';
       if (this.editing) {
-        this._caracteristicaService.update(this.caracteristica, caracteristica)
+        this._caracteristicaService.update(this.caracteristica, caracteristica);
         key = this.caracteristica.$key;
         message = `${caracteristica.descricao} foi alterado com successo.`;
       } else if (_.findWhere(this.listCaracteristica, { descricao: caracteristica.descricao })) {
         message = `${caracteristica.descricao} já existe.`;
       } else {
         key = this._caracteristicaService.create(new Caracteristica(caracteristica));
-        message = key ? `${caracteristica.descricao} foi cadastrado com successo.` : `Não foi possível cadastrar ${caracteristica.descricao}.`;
+        message = key ? `${caracteristica.descricao} foi cadastrado com successo.`
+          : `Não foi possível cadastrar ${caracteristica.descricao}.`;
       }
       if (key) {
-        this._tipoDadoService.updates(`/${caracteristica.tipo_dado}/caracteristicas`, JSON.parse(`{"${key}": true}`));
+        this._tipoDadoService.updates(`/${caracteristica.tipo_dado}/caracteristica`,
+          JSON.parse(`{"${key}": true}`));
         this.clear();
       }
       this._toastService.activate(message);
@@ -111,14 +110,17 @@ export class CaracteristicaComponent implements OnInit {
   }
 
   remove(caracteristica: ICaracteristica): void {
-    if (caracteristica.caracteristicas_tipo_ponto_interesse && _.keys(caracteristica.caracteristicas_tipo_ponto_interesse).length > 0) {
-      this._toastService.activate(`${caracteristica.descricao} não pode ser excluído pois já foi atribuído à ${_.keys(caracteristica.caracteristicas_tipo_ponto_interesse).length} cadastros.`);
+    if (caracteristica.caracteristica_tipo_ponto_interesse
+      && _.keys(caracteristica.caracteristica_tipo_ponto_interesse).length > 0) {
+      this._toastService.activate(`${caracteristica.descricao} não pode ser excluído pois já foi atribuído à 
+        ${_.keys(caracteristica.caracteristica_tipo_ponto_interesse).length} cadastros.`);
     } else {
       let msg = `Deseja realmente excluir ${caracteristica.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._caracteristicaService.remove(caracteristica).then(data => {
-            this._tipoDadoService.updates(`/${caracteristica.tipo_dado}/caracteristicas`, JSON.parse(`{"${caracteristica.$key}": true}`));
+            this._tipoDadoService.updates(`/${caracteristica.tipo_dado}/caracteristica`,
+              JSON.parse(`{"${caracteristica.$key}": true}`));
             this._toastService.activate(`${caracteristica.descricao} foi removido com successo.`);
           });
         }
