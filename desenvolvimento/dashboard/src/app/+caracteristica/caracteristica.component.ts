@@ -1,7 +1,7 @@
 // Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/forms';
+import { FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -41,6 +41,7 @@ import {
     MD_INPUT_DIRECTIVES,
     MD_RADIO_DIRECTIVES,
     FORM_DIRECTIVES,
+    REACTIVE_FORM_DIRECTIVES,
     MdIcon,
     AutofocusDirective,
     MdlDirective
@@ -53,7 +54,7 @@ import {
 })
 export class CaracteristicaComponent implements OnInit {
 
-  caracteristica: ICaracteristica = new Caracteristica();
+  caracteristica: ICaracteristica;
   editing: boolean = false;
   listCaracteristica: ICaracteristica[] = [];
   listTipoDado: ITipoDado[] = [];
@@ -129,9 +130,9 @@ export class CaracteristicaComponent implements OnInit {
   }
 
   clear() {
-    this.editing = false;
     this.caracteristica = new Caracteristica();
     this.caracteristica.tipo_dado = _.defaults(_.has(this.listTipoDado[0], '$key') ? this.listTipoDado[0].$key : '', '');
+    this.editing = false;
   }
 
   private isValid(caracteristica: ICaracteristica): boolean {

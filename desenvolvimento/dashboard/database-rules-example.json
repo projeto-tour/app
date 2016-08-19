@@ -1,0 +1,300 @@
+{
+  "rules": {
+
+    /* Handle */
+    "handle": {
+      "$handle": {
+        // public
+        ".read": "true",
+
+        // create/update only && ( (handle belongs to this user) || (handle belongs to an org where this user is a manager) )
+        ".write": "newData.exists() && ( (newData.child('owner/type').val() == 'user' && newData.child('owner/id').val() == auth.uid) || (newData.child('owner/type').val() == 'org' && root.child('org/'+newData.child('owner/id').val()+'/member/'+auth.uid).val() == 'manager') )",
+
+        // has children, is string, has length of < 128 and matches regex
+        ".validate": "newData.hasChildren(['owner', 'name', 'email']) && $handle.length <= 128 && $handle.matches(/^[a-z][a-z0-9-]*[a-z0-9]$/)",
+        
+        "owner": {
+          // has children
+          ".validate": "newData.hasChildren(['type', 'id'])",
+
+          "type": {
+            // create only && is one of [user,org] (reserved is valid but set by an admin)
+            ".validate": "!data.exists() && (newData.val() == 'user' || newData.val() == 'org')"
+          },
+
+          "id": {
+            // create only && ( (is this user's handle) || (is this orgs handle) )
+            ".validate": "!data.exists() && ( (newData.parent().child('type').val() == 'user' && root.child('user/'+newData.val()+'/handle').val() == $handle) || (newData.parent().child('type').val() == 'org' && root.child('org/'+newData.val()+'/handle').val() == $handle) )"
+          }
+        },
+
+        "name": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        "email": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        // public projects
+        "project": {
+          "$project": {
+            // is boolean and project must be public
+            ".validate": "newData.isBoolean() && root.child('project/'+$handle+'/'+$project+'/public').val() === true"
+          }
+        }
+      }
+    },
+
+    /* User */
+    "user": {
+      "$user": {
+        // only the user
+        ".read": "$user == auth.uid",
+
+        // create/update only && user is this user or service
+        ".write": "newData.exists() && (auth.uid == $user || auth.uid == 'treehub:stripe')",
+
+        // has children
+        ".validate": "newData.hasChildren(['handle', 'email'])",
+
+        "handle": {
+          // create only && does not exist && is string, has length of < 128 and matches regex
+          ".validate": "!data.exists() && !root.child('handle/'+newData.val()).exists() && newData.isString() && newData.val().length <= 128 && newData.val().matches(/^[a-z][a-z0-9-]*[a-z0-9]$/)"
+        },
+
+        "name": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        "email": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        "welcomed": {
+          // data is a number && is not in the future && is not more than 10 minutes old
+          ".validate": "newData.isNumber() && newData.val() <= now && newData.val() >= (now - 600000)"
+        },
+
+        "stripe": {
+          // only treehub:stripe can write && this is a string && stripe points to this user
+          ".validate": "auth.uid == 'treehub:stripe' && newData.isString() && root.child('stripe/'+newData.val()+'/owner/type').val() == 'user' && root.child('stripe/'+newData.val()+'/owner/id').val() == $user"
+        },
+
+        "project": {
+          "$project": {
+            // this is a boolean && project points to this user
+            ".validate": "newData.isBoolean() && root.child('project/'+newData.parent().parent().child('handle').val()+'/'+$project+'/owner/type').val() == 'user' && root.child('project/'+newData.parent().parent().child('handle').val()+'/'+$project+'/owner/id').val() == $user"
+          }
+        }
+      }
+    },
+
+    /* Org */
+    "org": {
+      "$org": {
+        // only members
+        ".read": "data.child('member/'+auth.uid).exists()",
+
+        // create/update only && ( (create & authenticated) or user is a manager or user is a service )
+        ".write": "newData.exists() && ( (!data.exists() && auth.uid != null) || data.child('member/'+auth.uid).val() == 'manager' || auth.uid == 'treehub:stripe')",
+
+        // has children
+        ".validate": "newData.hasChildren(['handle', 'name', 'email', 'member'])",
+
+        "handle": {
+          // create only && does not exist && is string, has length of < 128 and matches regex
+          ".validate": "!data.exists() && !root.child('handle/'+newData.val()).exists() && newData.isString() && newData.val().length <= 128 && newData.val().matches(/^[a-z][a-z0-9-]*[a-z0-9]$/)"
+        },
+
+        "name": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        "email": {
+          // data is a string
+          ".validate": "newData.isString()"
+        },
+
+        "stripe": {
+          // only treehub:stripe can write && this is a string && stripe points to this org
+          ".validate": "auth.uid == 'treehub:stripe' && newData.isString() && root.child('stripe/'+newData.val()+'/owner/type').val() == 'org' && root.child('stripe/'+newData.val()+'/owner/id').val() == $org"
+        },
+
+        "member": {
+          // require this user to be a manager always
+          ".validate": "newData.hasChildren([auth.uid]) && newData.child(auth.uid).val() == 'manager'",
+
+          "$member": {
+            // member exists && value is one of [manager, collaborator, viewer]
+            ".validate": "root.child('user/'+$member).exists() && newData.val().matches(/^(manager|collaborator|viewer)$/)"
+          }
+        },
+
+        "project": {
+          "$project": {
+            // this is a boolean && project points to this org
+            ".validate": "newData.isBoolean() && root.child('project/'+newData.parent().parent().child('handle').val()+'/'+$project+'/owner/type').val() == 'org' && root.child('project/'+newData.parent().parent().child('handle').val()+'/'+$project+'/owner/id').val() == $org"
+          }
+        }
+      }
+    },
+
+    /* Stripe */
+    "stripe": {
+      "$stripe": {
+        // service user || (stripe belongs to this user) || (stripe belongs to an org where this user is a manager)
+        ".read": "auth.uid == 'treehub:stripe' || (data.child('owner/type').val() == 'user' && data.child('owner/id').val() == auth.uid) || (data.child('owner/type').val() == 'org' && root.child('org/'+data.child('owner/id').val()+'/member/'+auth.uid).val() == 'manager')",
+
+        // service user && (create/update || (delete && owner reference is not set))
+        ".write": "auth.uid == 'treehub:stripe' && (newData.exists() || (data.child('owner/type').val() == 'user' && root.child('user/'+data.child('owner/id').val()+'/stripe').val() != $stripe) || (data.child('owner/type').val() == 'org' && root.child('org/'+data.child('owner/id').val()+'/stripe').val() != $stripe))",
+
+        // has children
+        ".validate": "newData.hasChildren(['owner', 'expires', 'customer'])",
+
+        "owner": {
+          // create && has children
+          ".validate": "!data.exists() && newData.exists() && newData.hasChildren(['type', 'id'])",
+
+          "type": {
+            // is one of [user,org]
+            ".validate": "newData.val() == 'user' || newData.val() == 'org'"
+          },
+
+          "id": {
+            // (valid user) || (valid org)
+            ".validate": "(newData.parent().child('type').val() == 'user' && root.child('user/'+newData.val()).exists()) || (newData.parent().child('type').val() == 'org' && root.child('org/'+newData.val()).exists())"
+          }
+        },
+
+        "expires": {
+          // data is a number
+          ".validate": "newData.isNumber()"
+        },
+
+        "customer": {
+          // data is a string
+          ".validate": "newData.isString()"
+        }
+      }
+    },
+
+    /* Project */
+    "project": {
+      "$handle": {
+        // (user && belongs to this user) || (org && user is a member)
+        ".read": "(root.child('handle/'+$handle+'/owner/type').val() == 'user' && root.child('handle/'+$handle+'/owner/id').val() == auth.uid) || (root.child('handle/'+$handle+'/owner/type').val() == 'org' && root.child('org/'+root.child('handle/'+$handle+'/owner/id').val()+'/member/'+auth.uid).exists())",
+
+        // (user && belongs to this user) || (org && user is a manager)
+        ".write": "(root.child('handle/'+$handle+'/owner/type').val() == 'user' && root.child('handle/'+$handle+'/owner/id').val() == auth.uid) || (root.child('handle/'+$handle+'/owner/type').val() == 'org' && root.child('org/'+root.child('handle/'+$handle+'/owner/id').val()+'/member/'+auth.uid).val() == 'manager')",
+
+        // existing handle
+        ".validate": "root.child('handle/'+$handle).exists()",
+
+        "$project": {
+          // public || project member
+          ".read": "data.child('public').val() === true || data.child('member/'+auth.uid).exists()",
+
+          // project manager
+          ".write": "data.child('member/'+auth.uid).val() == 'manager'",
+
+          // has children && matches regex
+          ".validate": "newData.hasChildren(['owner', 'name', 'public']) && $project.length <= 128 && $project.matches(/^[a-z][a-z0-9-]*[a-z0-9]$/)",
+
+          "owner": {
+            // create && has children
+            ".validate": "!data.exists() && newData.exists() && newData.hasChildren(['type', 'id'])",
+
+            "type": {
+              // is same as handle
+              ".validate": "newData.val() == root.child('handle/'+$handle+'/owner/type').val()"
+            },
+
+            "id": {
+              // is same as handle
+              ".validate": "newData.val() == root.child('handle/'+$handle+'/owner/id').val()"
+            }
+          },
+
+          "name": {
+            // data is a string
+            ".validate": "newData.isString()"
+          },
+
+          "tagline": {
+            // data is a string
+            ".validate": "newData.isString() && newData.val().length <= 100"
+          },
+
+          "description": {
+            // data is a string
+            ".validate": "newData.isString()"
+          },
+
+          "person": {
+            // data is a uuidv4
+            ".validate": "newData.isString() && newData.val().matches(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)"
+          },
+
+          "public": {
+            // data is a boolean
+            ".validate": "newData.isBoolean()"
+          },
+
+          "member": {
+            "$member": {
+              // member exists && value is one of [manager, collaborator, viewer]
+              ".validate": "root.child('user/'+$member).exists() && newData.val().matches(/^(manager|collaborator|viewer)$/)"
+            }
+          }
+        }
+      }
+    },
+
+    /* Commit */
+    "commit": {
+      "$handle": {
+        "$project": {
+          // existing project && hasChildren
+          ".validate": "root.child('project/'+$handle+'/'+$project).exists() && newData.hasChildren(['meta','commit'])",
+
+          // only service user can write
+          ".write": "auth.uid == 'treehub:commit'",
+
+          // service user || (project is public) || (user is a project member) || (project belongs to user and user is this user) || (project belongs to org and user is in org)
+          ".read": "auth.uid == 'treehub:commit' || root.child('project/'+$handle+'/'+$project+'/public').val() == true || root.child('project/'+$handle+'/'+$project+'/member/'+auth.uid).exists() || (root.child('project/'+$handle+'/'+$project+'/owner/type').val() == 'user' &&  root.child('project/'+$handle+'/'+$project+'/owner/id').val() == auth.uid) || (root.child('project/'+$handle+'/'+$project+'/owner/type').val() == 'org' && root.child('org/'+root.child('project/'+$handle+'/'+$project+'/owner/id').val()+'/member/'+auth.uid).exists())",
+
+          "meta": {
+            // hasChildren
+            ".validate": "newData.hasChildren(['current','offset'])",
+
+            "current": {
+              // Value is a uuidv4
+              ".validate": "newData.val().matches(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/)"
+            },
+
+            "offset": {
+              // value is an integer and ( (newData == 0 && data == null) || (newData = data+1) )
+              ".validate": "newData.isNumber() && ( (newData.val() == 0 && !data.exists()) || (newData.val() == (data.val()+1)) )"
+            }
+          },
+
+          "commit": {
+            // has children
+            ".validate": "newData.hasChildren([(newData.parent().child('meta/offset').val()+'')])",
+
+            "$number": {
+              // value == meta/current && $number == meta/offset (as string)
+              ".validate": "newData.val() == newData.parent().parent().child('meta/current').val() && $number == (newData.parent().parent().child('meta/offset').val()+'')"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -15,11 +15,11 @@ export class ExceptionService {
     };
 
     errorHandler(error: any) {
-        let status = error.status ? `${error.status} - ${error.statusText}` : '';
-        let code = error.code ? `${error.code}` : '';
         let message = error.message ? error.message : 'Houve falha na execução desta operação. Por favor, tente novamente mais tarde.';
-        let errorResponse = JSON.stringify({message: message, status: status, code: code});
         this._toastService.activate(message);
+        // let status = error.status ? `${error.status} - ${error.statusText}` : '';
+        // let code = error.code ? `${error.code}` : '';
+        // let errorResponse = JSON.stringify({message: message, status: status, code: code});
         // console.log('errorHandler: ' + errorResponse);
         // return Observable.throw(errorResponse); // TODO: We should NOT swallow error here.
         return Observable.of();
