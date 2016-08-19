@@ -12,7 +12,8 @@ export class TutorialPage {
   titulo: string = "Tutorial";
   tutorials: ITutorial[] = [];
 
-  constructor(private _viewCtrl: ViewController) {
+  constructor(
+    public _viewCtrl: ViewController) {
   }
 
   ionViewLoaded() {

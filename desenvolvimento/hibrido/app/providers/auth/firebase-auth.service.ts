@@ -11,14 +11,15 @@ import { Endereco } from '../usuarios/endereco.model';
 export class FirebaseAuthService {
     authState: FirebaseAuthState = null;
 
-    constructor(public _auth: FirebaseAuth) {
+    constructor(
+        public _auth: FirebaseAuth) {
         _auth.subscribe((state: FirebaseAuthState) => {
                 this.authState = state;
             },
-            error => { //-- on error
+            error => { // -- on error
                 this.handleError(<any>error);
             },
-            () => { //-- on completion
+            () => { // -- on completion
                 console.log('authState:[UserInfo] ' + JSON.stringify(this.authState.auth))
             });
     }
@@ -106,7 +107,7 @@ export class FirebaseAuthService {
                     providerId: this.authState.auth.providerId,
                     uid: this.authState.uid || this.authState.auth.uid,
                     endereco: new Endereco()
-                }
+                };
             } else {
                 return {
                     data: null,
@@ -117,7 +118,7 @@ export class FirebaseAuthService {
                     providerId: this.authState.auth.providerId,
                     uid: this.authState.uid || this.authState.auth.uid || this.authState.auth.providerData[0].uid,
                     endereco: new Endereco()
-                }
+                };
             }
         }
         else {
@@ -130,7 +131,7 @@ export class FirebaseAuthService {
                 providerId: '',
                 uid: '',
                 endereco: new Endereco()
-            }
+            };
         }
     }
 

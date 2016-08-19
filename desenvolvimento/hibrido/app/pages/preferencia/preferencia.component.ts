@@ -18,12 +18,13 @@ export class PreferenciaPage {
   preferencias: Array<Preferencia> = [];
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController,
-    private _navCtrl: NavController,
-    private _service: PreferenciaService,
-    private _platform: Platform,
-    private _globalMethod: GlobalMethodService) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController,
+    public _navCtrl: NavController,
+    public _service: PreferenciaService,
+    public _platform: Platform,
+    public _globalMethod: GlobalMethodService) {
     this.isAndroid = _platform.is('android');
     this.dados = _navParams.data;
   }

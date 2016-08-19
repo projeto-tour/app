@@ -4,7 +4,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Observable } from 'rxjs/Observable';
 
-import { NavController, ActionSheet, Platform, Alert } from 'ionic-angular';
+import { NavController, ActionSheetController, Platform, AlertController } from 'ionic-angular';
 
 import { AgendaFilterPipe } from './';
 import { AgendaService, IAgenda } from '../../providers/agendas';
@@ -21,16 +21,18 @@ import { AgendaDetailPage } from '../agenda-detail';
 })
 export class AgendaPage {
 
-  titulo: string = "Agendas";
+  titulo: string = 'Agendas';
   filtro: string = '';
   agendas: IAgenda[] = [];
   mensagenErro: any = null;
 
   constructor(
-    private _navCtrl: NavController,
-    private _platform: Platform,
+    public _navCtrl: NavController,
+    public _platform: Platform,
     public _globalMethod: GlobalMethodService,
-    private _service: AgendaService) {
+    public _service: AgendaService,
+    public _alertCtrl: AlertController,
+    public _actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewLoaded() {
@@ -64,7 +66,7 @@ export class AgendaPage {
   }
 
   gerenciar(agenda: IAgenda): void {
-    let actionSheet = ActionSheet.create({
+    let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
       buttons: [
         {
@@ -86,7 +88,7 @@ export class AgendaPage {
           text: 'Compartilhar',
           icon: !this._platform.is('ios') ? 'share' : null,
           handler: () => {
-            //-- TODO
+            // -- TODO
             console.log('Compartilhar clicked');
           }
         },
@@ -100,11 +102,11 @@ export class AgendaPage {
         }
       ]
     });
-    this._navCtrl.present(actionSheet);
+    actionSheet.present();
   }
 
   excluir(agenda: IAgenda): void {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
       buttons: [
@@ -117,7 +119,7 @@ export class AgendaPage {
         {
           text: 'Sim',
           handler: () => {
-            //-- TODO Otimizar a remoção de agenda da lista local
+            // -- TODO Otimizar a remoção de agenda da lista local
             this._service.removeAgenda(agenda).then(() => {
               this.getAgendas();
             });
@@ -125,18 +127,18 @@ export class AgendaPage {
         }
       ]
     });
-    this._navCtrl.present(confirm);
+    confirm.present();
   }
 
   private getAgendas(): void {
     this._service.agendas
       .subscribe(
-      (data: IAgenda[]) => { //-- on sucess
+      (data: IAgenda[]) => { // -- on sucess
         this.agendas = data;
-        //-- TODO Calcular a kilometragem das rotas de agenda
-        //this.agendas.forEach(data => { data.distancia = this._serviceRota.calcularKilometragem(idAgenda); })
+        // -- TODO Calcular a kilometragem das rotas de agenda
+        // this.agendas.forEach(data => { data.distancia = this._serviceRota.calcularKilometragem(idAgenda); })
       },
-      error => { //-- on error
+      error => { // -- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       });
   }

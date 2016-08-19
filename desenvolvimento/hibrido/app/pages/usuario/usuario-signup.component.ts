@@ -14,8 +14,9 @@ export class UsuarioSignUpPage {
   usuario: UsuarioView = new UsuarioView();
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController) {
     this.dados = this._navParams.data;
   }
 

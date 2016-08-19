@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
 
-import { NavController, Toast, Modal } from 'ionic-angular';
+import { NavController, ToastController, ModalController } from 'ionic-angular';
 
 @Injectable()
 export class GlobalMethodService {
 
-    constructor() { }
+    constructor(
+        public _toastCtrl: ToastController,
+        public _modalCtrl: ModalController) { }
 
     mostrarErro(error: any, navCtrl: NavController) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Houve falha na execução desta operação. Por favor, tente novamente mais tarde.';
         console.log('mostrarErro: ' + errMsg);
-        let toast = Toast.create({
+        let toast = this._toastCtrl.create({
             message: errMsg,
             duration: 3000
         });
-        navCtrl.present(toast);
+        toast.present();
     }
 
     mostrarMensagem(msg: any, navCtrl: NavController) {
-        let toast = Toast.create({
+        let toast = this._toastCtrl.create({
             message: msg,
             duration: 3000
         });
-        navCtrl.present(toast);
+        toast.present();
     }
-    
+
     carregarPagina(pagina, dados, isPush: boolean, navCtrl: NavController) {
         if (isPush) {
             navCtrl.push(pagina, dados);
         } else {
-            let modal = Modal.create(pagina, { dados: dados });
-            navCtrl.present(modal);
-            modal.onDismiss(data => {
+            let modal = this._modalCtrl.create(pagina, { dados: dados });
+            modal.present();
+            modal.onDidDismiss((data: any) => {
                 if (data) {
                     console.log('onDismiss: ' + JSON.stringify(data));
                 }

@@ -1,6 +1,6 @@
 import { Component }  from '@angular/core';
 
-import { NavParams, ViewController, Alert, NavController, ActionSheet, Platform } from 'ionic-angular';
+import { NavParams, ViewController, AlertController, NavController, ActionSheetController, Platform } from 'ionic-angular';
 
 import { Item } from '../shared';
 
@@ -9,17 +9,20 @@ import { Item } from '../shared';
 })
 export class BagagemPage {
 
-  titulo: string = "Bagagem";
+  titulo: string = 'Bagagem';
   dados: any;
   bagagem: Item[] = [];
   contador: number = 0;
 
   private mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController,
-    private _navCtrl: NavController,
-    private _platform: Platform) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController,
+    public _navCtrl: NavController,
+    public _platform: Platform,
+    public _alertCtrl: AlertController,
+    public _actionSheetCtrl: ActionSheetController) {
     this.dados = _navParams.data;
   }
 
@@ -46,9 +49,9 @@ export class BagagemPage {
   }
 
   incluir(): void {
-    let prompt = Alert.create({
+    let prompt = this._alertCtrl.create({
       title: 'Bagagem',
-      message: "Incluir um novo item na sua bagagem",
+      message: 'Incluir um novo item na sua bagagem',
       inputs: [
         {
           name: 'item',
@@ -71,7 +74,7 @@ export class BagagemPage {
         }
       ]
     });
-    this._navCtrl.present(prompt);
+    prompt.present();
   }
 
   gerenciarContador(): void {
@@ -79,7 +82,7 @@ export class BagagemPage {
   }
 
   gerenciar(item: Item): void {
-    let actionSheet = ActionSheet.create({
+    let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
       buttons: [
         {
@@ -107,7 +110,7 @@ export class BagagemPage {
         }
       ]
     });
-    this._navCtrl.present(actionSheet);
+    actionSheet.present();
   }
 
   private dismiss() {
@@ -115,19 +118,19 @@ export class BagagemPage {
   }
 
   private getBagagem(): void {
-    this.bagagem.push(new Item("RG", false));
-    this.bagagem.push(new Item("CPF", false));
-    this.bagagem.push(new Item("Passaporte", false));
-    this.bagagem.push(new Item("Câmera", false));
-    this.bagagem.push(new Item("Carregador de celular", false));
-    this.bagagem.push(new Item("Celular", false));
-    this.bagagem.push(new Item("Escova de dentes", false));
-    this.bagagem.push(new Item("Fones de ouvido", false));
-    this.bagagem.push(new Item("Notebook", false));
-    this.bagagem.push(new Item("Ipad/Tablet", false));
-    this.bagagem.push(new Item("Óculos de sol", false));
-    this.bagagem.push(new Item("Perfume", false));
-    this.bagagem.push(new Item("Plugues adaptadores", false));
+    this.bagagem.push(new Item('RG', false));
+    this.bagagem.push(new Item('CPF', false));
+    this.bagagem.push(new Item('Passaporte', false));
+    this.bagagem.push(new Item('Câmera', false));
+    this.bagagem.push(new Item('Carregador de celular', false));
+    this.bagagem.push(new Item('Celular', false));
+    this.bagagem.push(new Item('Escova de dentes', false));
+    this.bagagem.push(new Item('Fones de ouvido', false));
+    this.bagagem.push(new Item('Notebook', false));
+    this.bagagem.push(new Item('Ipad/Tablet', false));
+    this.bagagem.push(new Item('Óculos de sol', false));
+    this.bagagem.push(new Item('Perfume', false));
+    this.bagagem.push(new Item('Plugues adaptadores', false));
   }
 
 }

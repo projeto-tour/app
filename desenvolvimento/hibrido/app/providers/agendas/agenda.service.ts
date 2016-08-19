@@ -25,19 +25,22 @@ export class AgendaService {
 
     private items: FirebaseListObservable<IAgenda[]>;
 
-    constructor(af: AngularFire, auth: FirebaseAuthService, private http: Http) {
-        const path = `/agendas/${auth.id}`;
+    constructor(
+        public _af: AngularFire, 
+        public _auth: FirebaseAuthService, 
+        public _http: Http) {
+        const path = `/agendas/${_auth.id}`;
 
-        this.items = af.database.list(path);
+        this.items = _af.database.list(path);
 
-        this.filteredAgendas = af.database.list(path, {
+        this.filteredAgendas = _af.database.list(path, {
             query: {
                 orderByChild: 'dataFim',
                 startAt: this.filterAgenda,
             }
         });
 
-        this.filteredHistoricos = af.database.list(path, {
+        this.filteredHistoricos = _af.database.list(path, {
             query: {
                 orderByChild: 'dataFim',
                 endAt: this.filterHistorico,
@@ -74,7 +77,7 @@ export class AgendaService {
     }
 
     getMockAgendas(): Observable<IAgenda[]> {
-        let data = this.http.get(AGENDA_URL);
+        let data = this._http.get(AGENDA_URL);
         return data.map((response: Response) => <IAgenda[]>response.json());
     }
 }

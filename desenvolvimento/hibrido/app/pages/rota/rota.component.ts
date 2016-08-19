@@ -1,6 +1,6 @@
 import { Component }  from '@angular/core';
 
-import { NavParams, NavController, Alert } from 'ionic-angular';
+import { NavParams, NavController, AlertController } from 'ionic-angular';
 
 import { Agenda } from '../../providers/agendas';
 import { GlobalMethodService } from '../shared';
@@ -15,15 +15,17 @@ import { MapaRotaPage } from '../mapa-rota';
 })
 export class RotaPage {
 
-  titulo: string = "Rotas";
+  titulo: string = 'Rotas';
   agenda: Agenda;
   rotas: RotaView[] = [];
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
-    private _service: RotaService,
-    public _globalMethod: GlobalMethodService) {
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController,
+    public _service: RotaService,
+    public _globalMethod: GlobalMethodService,
+    public _alertCtrl: AlertController) {
     this.agenda = _navParams.data;
   }
 
@@ -48,7 +50,7 @@ export class RotaPage {
   }
 
   excluir(rota: RotaView): void {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: 'Deseja realmente excluir essa rota?',
       buttons: [
@@ -66,19 +68,19 @@ export class RotaPage {
         }
       ]
     });
-    this._navCtrl.present(confirm);
+    confirm.present();
   }
 
   private getRotas(): void {
     this._service.getRotas()
       .subscribe(
-      (rotas: RotaView[]) => { //-- on sucess
+      (rotas: RotaView[]) => { // -- on sucess
         this.rotas = rotas;
       },
-      error => { //-- on error
+      error => { // -- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
-      () => { //-- on completion
+      () => { // -- on completion
 
       }
       );

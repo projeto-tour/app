@@ -9,7 +9,8 @@ import { PREFERENCIA_URL } from '../shared';
 @Injectable()
 export class PreferenciaService {
 
-    constructor(private _http: Http) { }
+    constructor(
+        public _http: Http) { }
 
     getPreferencias(): Observable<Preferencia[]> {
         let data = this._http.get(PREFERENCIA_URL);

@@ -10,8 +10,8 @@ export class UsuarioService {
     usuario: FirebaseObjectObservable<any>;
 
     constructor(
-        _af: AngularFire,
-        _auth: FirebaseAuthService) {
+        public _af: AngularFire,
+        public _auth: FirebaseAuthService) {
         this.usuario = _af.database.object(`/usuarios/${_auth.id}`)
     }
 

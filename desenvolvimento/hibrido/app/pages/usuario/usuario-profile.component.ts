@@ -16,9 +16,9 @@ export class UsuarioProfilePage {
   mensagenErro: any;
 
   constructor(
-    private _viewCtrl: ViewController,
-    private _navCtrl: NavController,
-    private _globalMethod: GlobalMethodService,
+    public _viewCtrl: ViewController,
+    public _navCtrl: NavController,
+    public _globalMethod: GlobalMethodService,
     public _usuarioService: UsuarioService) {
     this.getUsuario();
   }

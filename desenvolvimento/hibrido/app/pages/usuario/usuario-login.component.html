@@ -5,23 +5,37 @@
   </div>
 
   <ion-grid>
-    <form [ngFormModel]="loginForm"  #loginCreds="ngForm">
-      <span *ngIf="formError.email" danger padding-left>
-        {{formError.email}}
+    <form #loginForm="ngForm" novalidate>
+      <span *ngIf="email.valid || submitted == false" danger padding-left>
+        E-mail inválido.
       </span><br>
-      <span *ngIf="formError.senha" danger padding-left>
-        {{formError.senha}}
+      <span *ngIf="password.valid || submitted == false" danger padding-left>
+        Senha inválida.
       </span>
       <ion-row>
         <ion-col width-100>
           <ion-item>
             <ion-icon name="person" item-left></ion-icon>
-            <ion-input ngControl="email" type="email" placeholder="E-mail">
+            <ion-input 
+                [(ngModel)]="credentials.email" 
+                name="email" 
+                type="text" 
+                #email="ngModel" 
+                spellcheck="false" 
+                autocapitalize="off" 
+                required 
+                placeholder="E-mail">
             </ion-input>
           </ion-item>
           <ion-item no-lines>
             <ion-icon name="lock" item-left></ion-icon>
-            <ion-input ngControl="password" type="password" placeholder="Senha">
+            <ion-input 
+                [(ngModel)]="credentials.password" 
+                name="password" 
+                type="password" 
+                #password="ngModel" 
+                required 
+                placeholder="Senha">
             </ion-input>
           </ion-item>
         </ion-col>
@@ -29,10 +43,10 @@
 
       <ion-row>
         <ion-col width-50>
-          <button mdc-grey-800 (click)="criarConta(loginCreds.value, $event)" type="submit">Criar</button>
+          <button mdc-grey-800 (click)="criarConta(loginForm)" type="submit">Criar</button>
         </ion-col>
         <ion-col width-50>
-          <button mdc-green (click)="login(loginCreds.value, $event)" type="submit">Login</button>
+          <button mdc-green (click)="login(loginForm)" type="submit">Login</button>
         </ion-col>
       </ion-row>
     </form>
@@ -75,6 +89,6 @@
 
 </ion-content>
 
-<!--<button fab light fab-bottom fab-center style="z-index: 100" (click)="pular()">
+<button fab light fab-bottom fab-center style="z-index: 100" (click)="pular()">
   PULAR
-</button>-->
+</button>

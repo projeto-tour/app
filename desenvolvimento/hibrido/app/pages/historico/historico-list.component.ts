@@ -1,7 +1,7 @@
 import { Component }  from '@angular/core';
 import { NgClass } from '@angular/common';
 
-import { NavParams, NavController, Modal, Platform, ActionSheet, Alert } from 'ionic-angular';
+import { NavParams, NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 
 import { GlobalMethodService } from '../shared';
 
@@ -19,18 +19,21 @@ import { RotaPage } from '../rota';
 })
 export class HistoricoListPage {
 
-  titulo: string = "Históricos";
+  titulo: string = 'Históricos';
   todasAgendas: IAgenda[] = [];
   agendas: IAgenda[] = [];
   filtro: string = '';
   segment: string = 'todas';
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
-    private _platform: Platform,
-    private _service: AgendaService,
-    public _globalMethod: GlobalMethodService) {
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController,
+    public _platform: Platform,
+    public _service: AgendaService,
+    public _globalMethod: GlobalMethodService,
+    public _alertCtrl: AlertController,
+    public _actionSheetCtrl: ActionSheetController) {
     this.todasAgendas = this._navParams.data;
     this.agendas = this.todasAgendas;
   }
@@ -67,7 +70,7 @@ export class HistoricoListPage {
   }
 
   gerenciar(agenda: IAgenda): void {
-    let actionSheet = ActionSheet.create({
+    let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
       buttons: [
         {
@@ -89,7 +92,7 @@ export class HistoricoListPage {
           text: 'Compartilhar',
           icon: !this._platform.is('ios') ? 'share' : null,
           handler: () => {
-            //-- TODO
+            // -- TODO
             console.log('Compartilhar clicked');
           }
         },
@@ -103,11 +106,11 @@ export class HistoricoListPage {
         }
       ]
     });
-    this._navCtrl.present(actionSheet);
+    actionSheet.present();
   }
 
   excluir(agenda: IAgenda): void {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
       buttons: [
@@ -120,13 +123,13 @@ export class HistoricoListPage {
         {
           text: 'Sim',
           handler: () => {
-            //-- TODO
+            // -- TODO
             console.log('Sim clicked');
           }
         }
       ]
     });
-    this._navCtrl.present(confirm);
+    confirm.present();
   }
 
 }

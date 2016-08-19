@@ -12,8 +12,9 @@ export class DesenvolvimentoPage {
 
   private mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController) {
     this.dados = _navParams.data;
     this.titulo = this.dados.title.length === 0 ? this.titulo : this.dados.title;
   }

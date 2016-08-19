@@ -6,8 +6,7 @@ interface ValidationResult {
 
 export class PostValidator {
 
-    constructor() {
-    }
+    constructor() {  }
 
     static mailFormat(control: Control): ValidationResult {
         var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;

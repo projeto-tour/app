@@ -1,6 +1,6 @@
 import { Component }  from '@angular/core';
 
-import { NavParams, NavController, Modal } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 
 import { Mapa, MapaService } from '../mapa';
 
@@ -13,17 +13,18 @@ import { PreferenciaPage } from '../preferencia';
 })
 export class MapaAgendaPage {
 
-  titulo: string = "Mapa";
+  titulo: string = 'Mapa';
   pontosMapa: any;
   pontoInteresse: string = '1';
   mapa: any;
   dados: any;
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
-    private _service: MapaService,
-    private _globalMethod: GlobalMethodService) {
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController,
+    public _service: MapaService,
+    public _globalMethod: GlobalMethodService) {
     this.dados = this._navParams.data;
   }
 

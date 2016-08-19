@@ -7,7 +7,8 @@ import { Rota, ROTA_URL } from '../shared';
 @Injectable()
 export class RotaService {
 
-    constructor(private _http: Http) { }
+    constructor(
+        public _http: Http) { }
 
     getRotas(): Observable<Rota[]> {
         let data = this._http.get(ROTA_URL);

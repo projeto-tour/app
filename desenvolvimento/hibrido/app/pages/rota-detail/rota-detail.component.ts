@@ -15,9 +15,10 @@ export class RotaDetailPage {
 
   private mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController,
-    private _navCtrl: NavController) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController,
+    public _navCtrl: NavController) {
     this.rota = _navParams.data;
   }
 

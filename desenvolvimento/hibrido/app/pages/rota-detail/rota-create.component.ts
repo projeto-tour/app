@@ -15,8 +15,9 @@ export class RotaCreatePage {
 
   private mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController) {
     this.rota = new Rota(null, null, null, null, "", "", "", "")
     this.agenda = this._navParams.data;
   }

@@ -1,6 +1,7 @@
 import { Component }  from '@angular/core';
 
-import { NavParams, NavController, Modal, Alert } from 'ionic-angular';
+import { NavParams, NavController, AlertController } from 'ionic-angular';
+import { InAppBrowser }  from 'ionic-native';
 
 import { GlobalMethodService } from '../shared';
 
@@ -15,16 +16,18 @@ import { DesenvolvimentoPage } from '../desenvolvimento';
 })
 export class NotificacaoPage {
 
-  titulo: string = "Notificações";
+  titulo: string = 'Notificações';
   notificacoes: Notificacao[] = [];
   dados: any;
   filtro: string = '';
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
-    private _service: NotificacaoService,
-    private _globalMethod: GlobalMethodService) {
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController,
+    public _service: NotificacaoService,
+    public _globalMethod: GlobalMethodService,
+    public _alertCtrl: AlertController) {
     this.dados = this._navParams.data;
   }
 
@@ -52,7 +55,8 @@ export class NotificacaoPage {
   }
 
   visualizar(notificacao: Notificacao): void {
-    this._globalMethod.carregarPagina(DesenvolvimentoPage, { title: "Detalhes da Notificação" }, true, this._navCtrl);
+    new InAppBrowser(`http://placehold.it/320?text${notificacao.descricao}`, '_system');
+    // this._globalMethod.carregarPagina(DesenvolvimentoPage, { title: 'Detalhes da Notificação' }, true, this._navCtrl);
   }
 
   atualizar(refresher) {
@@ -64,7 +68,7 @@ export class NotificacaoPage {
   }
 
   excluir(notificacao: Notificacao): void {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: 'Deseja realmente excluir essa notificação?',
       buttons: [
@@ -82,19 +86,19 @@ export class NotificacaoPage {
         }
       ]
     });
-    this._navCtrl.present(confirm);
+    confirm.present();
   }
 
   private getNotificacoes(): void {
     this._service.getNotificacoes()
       .subscribe(
-      (data: Notificacao[]) => { //-- on sucess
+      (data: Notificacao[]) => { // -- on sucess
         this.notificacoes = data;
       },
-      error => { //-- on error
+      error => { // -- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       },
-      () => { //-- on completion
+      () => { // -- on completion
 
       }
       );

@@ -11,9 +11,10 @@ export class SobrePage {
 
   private mensagenErro: any;
 
-  constructor(private _app: App,
-    private _navParams: NavParams,
-    private _viewCtrl: ViewController) {
+  constructor(
+    public _app: App,
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController) {
   }
 
   ionViewLoaded() { }

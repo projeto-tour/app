@@ -9,7 +9,8 @@ import { MAPA_URL } from '../shared';
 @Injectable()
 export class MapaService {
 
-    constructor(private _http: Http) { }
+    constructor(
+        public _http: Http) { }
 
     getMapas(): Observable<Mapa[]> {
         let data = this._http.get(MAPA_URL);

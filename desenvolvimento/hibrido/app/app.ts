@@ -1,5 +1,3 @@
-import 'es6-shim';
-
 // angular core
 import { Component, ViewChild } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
@@ -8,7 +6,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import './pages/shared/rxjs.operators';
 
 // Ionic Core
-import { ionicBootstrap, Events, Platform, Nav, MenuController, Alert } from 'ionic-angular';
+import { ionicBootstrap, Events, Platform, Nav, MenuController, AlertController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 // Providers / Services
@@ -37,19 +35,21 @@ class PartiuApp {
   @ViewChild(Nav) nav: Nav;
 
   usuario: Usuario = new Usuario('Nome de usuário', 'usuario@usuario.com.br', 'img/user-woman.svg');
-  
+
   rootPage: any = null;
   menuPages: IMenu[];
   showPage: boolean = false;
 
   mensagenErro: any = null;
 
-  constructor(private _events: Events,
-    private _platform: Platform,
-    private _menu: MenuController,
-    private _globalMethod: GlobalMethodService,
-    private _auth: FirebaseAuthService,
-    private _menuData: MenuDataService) {
+  constructor(
+    public _events: Events,
+    public _platform: Platform,
+    public _menu: MenuController,
+    public _globalMethod: GlobalMethodService,
+    public _auth: FirebaseAuthService,
+    public _menuData: MenuDataService,
+    public _alertCtrl: AlertController) {
     this._platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
@@ -58,23 +58,23 @@ class PartiuApp {
     this.menuPages = this._menuData.getMenuPages();
 
     this._auth.authGuard()
-          .subscribe((authenticated: boolean) => { //-- on sucess
-            if (authenticated) {
-              this.rootPage = PrincipalPage;
-            } else {
-              this.rootPage = UsuarioLoginPage;
-            }
-          },
-          error => { //-- on error
-            console.log('authGuard:[Error] ' +  error)
-          },
-          () => { //-- on completion
-            this.showPage = true;
-          });
+      .subscribe((authenticated: boolean) => { // -- on sucess
+        if (authenticated) {
+          this.rootPage = PrincipalPage;
+        } else {
+          this.rootPage = UsuarioLoginPage;
+        }
+      },
+      error => { // -- on error
+        console.log('authGuard:[Error] ' + error)
+      },
+      () => { // -- on completion
+        this.showPage = true;
+      });
   }
 
   openPage(page: IMenuItem) {
-    if (page.title.indexOf("Logout") !== -1) {
+    if (page.title.indexOf('Logout') !== -1) {
       this.confirmarLogout();
     } else {
       this.nav.push(page.component, { title: page.title });
@@ -82,7 +82,7 @@ class PartiuApp {
   }
 
   confirmarLogout() {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Logout',
       message: 'Deseja realmente realizar logout?',
       buttons: [
@@ -100,7 +100,7 @@ class PartiuApp {
         }
       ]
     });
-    this.nav.present(confirm);
+    confirm.present();
   }
 
   private logout(): void {
@@ -112,9 +112,9 @@ class PartiuApp {
 
 ionicBootstrap
   (
-  //-- Root Component
+  // -- Root Component
   PartiuApp,
-  //-- Providers           
+  // -- Providers           
   [
     HTTP_PROVIDERS,
     AUTH_PROVIDERS,
@@ -129,10 +129,9 @@ ionicBootstrap
     GlobalMethodService,
     GlobalVariableService
   ],
-  //-- Config
+  // -- Config
   {
-    tabbarPlacement: 'bottom',
-    prodMode: true,
+    prodMode: false,
     backButtonText: 'Voltar',
     monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Juno', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
     monthShortNames: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],

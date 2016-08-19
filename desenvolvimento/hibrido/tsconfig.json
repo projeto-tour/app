@@ -5,12 +5,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "files": [
-    "node_modules/angularfire2/firebase3.d.ts"
-  ],
   "filesGlob": [
     "**/*.ts",
-    "!node_modules/**/*"
+    "!node_modules/**/*",
+    "node_modules/angularfire2/firebase3.d.ts"
   ],
   "exclude": [
     "node_modules",

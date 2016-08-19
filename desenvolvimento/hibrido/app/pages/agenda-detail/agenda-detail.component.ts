@@ -1,7 +1,7 @@
 import { Component, Inject }  from '@angular/core';
 import { DatePipe } from '@angular/common';
 
-import { NavParams, NavController, Modal, Toast } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 
 import { Usuario } from '../../providers/usuarios';
 import { AgendaService, TipoAgendaService, IAgenda, Agenda, ITipoAgenda, TipoAgenda } from '../../providers/agendas';
@@ -14,17 +14,18 @@ import { RotaPage } from '../rota';
 })
 export class AgendaDetailPage {
 
-  titulo: string = "Agenda";
+  titulo: string = 'Agenda';
   agenda: IAgenda;
   tiposDeAgenda: ITipoAgenda[];
   isNovaAgenda: boolean = true;
 
   private mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _navCtrl: NavController,
-    private _globalMethod: GlobalMethodService,
-    private _agendaService: AgendaService,
+  constructor(
+    public _navParams: NavParams,
+    public _navCtrl: NavController,
+    public _globalMethod: GlobalMethodService,
+    public _agendaService: AgendaService,
     public _tipoAgendaService: TipoAgendaService) {
     this.titulo = _navParams.data.titulo;
     this.agenda = _navParams.data.agenda;

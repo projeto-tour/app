@@ -6,8 +6,8 @@ import { AgendaService, TipoAgendaService, IAgenda, ITipoAgenda } from '../../pr
 export class MockService {
 
     constructor(
-        private _tipoAgendaService: TipoAgendaService,
-        private _agendaService: AgendaService) {
+        public _tipoAgendaService: TipoAgendaService,
+        public _agendaService: AgendaService) {
     }
 
     generateMockTiposDeAgenda(): void {

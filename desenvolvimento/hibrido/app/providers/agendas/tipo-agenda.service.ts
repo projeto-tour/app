@@ -11,8 +11,8 @@ export class TipoAgendaService {
   tipos: FirebaseListObservable<ITipoAgenda[]>;
 
   constructor(
-    private _af: AngularFire,
-    private _http: Http) {
+    public _af: AngularFire,
+    public _http: Http) {
     this.tipos = _af.database.list('/tipos_agenda');
   }
 

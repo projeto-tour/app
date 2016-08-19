@@ -9,7 +9,8 @@ import { NOTIFICACAO_URL} from '../shared';
 @Injectable()
 export class NotificacaoService {
 
-    constructor(private _http: Http) { }
+    constructor(
+        public _http: Http) { }
 
     getNotificacoes(): Observable<Notificacao[]> {
         let data = this._http.get(NOTIFICACAO_URL);

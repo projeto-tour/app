@@ -19,7 +19,8 @@ export class PrincipalPage {
   tab3Root: any = HistoricoPage;
   tab4Root: any = NotificacaoPage;
 
-  constructor(private _navParams: NavParams) {
+  constructor(
+    public _navParams: NavParams) {
     this.selectedIndex = _navParams.data.tabIndex || 0;
   }
 

@@ -11,8 +11,9 @@ export class ConfiguracaoPage {
   dados: any;
   mensagenErro: any;
 
-  constructor(private _navParams: NavParams,
-    private _viewCtrl: ViewController) {
+  constructor(
+    public _navParams: NavParams,
+    public _viewCtrl: ViewController) {
     this.dados = this._navParams.data;
   }
 

@@ -1,6 +1,6 @@
 import { Component }  from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { NavController, Platform, ActionSheet, Alert } from 'ionic-angular';
+import { NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 
 import { Historico, HistoricoListPage } from './';
 import { GlobalMethodService } from '../shared';
@@ -12,17 +12,20 @@ import { PreferenciaPage } from '../preferencia';
 })
 export class HistoricoPage {
 
-  titulo: string = "Históricos";
+  titulo: string = 'Históricos';
   historicos: Historico[] = [];
   rows: number[] = [];
   filtro: string = '';
   mensagenErro: any;
 
-  constructor(private _navCtrl: NavController,
-    private _platform: Platform,
+  constructor(
+    public _navCtrl: NavController,
+    public _platform: Platform,
     public _globalMethod: GlobalMethodService,
-    private _agendaService: AgendaService,
-    private _tipoAgendaService: TipoAgendaService) {
+    public _agendaService: AgendaService,
+    public _tipoAgendaService: TipoAgendaService,
+    public _alertCtrl: AlertController,
+    public _actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewLoaded() {
@@ -43,7 +46,7 @@ export class HistoricoPage {
   }
 
   sincronizar(refresher) {
-    //-- TODO
+    // -- TODO
     this.historicos = [];
     this.getHistoricos();
     this._agendaService.filterHistoricos((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
@@ -56,7 +59,7 @@ export class HistoricoPage {
     if (historico === null || historico.agendas === null || historico.agendas.length <= 0) {
       this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
     } else {
-      let actionSheet = ActionSheet.create({
+      let actionSheet = this._actionSheetCtrl.create({
         title: 'Opções',
         buttons: [
           {
@@ -84,13 +87,13 @@ export class HistoricoPage {
           }
         ]
       });
-      this._navCtrl.present(actionSheet);
+      actionSheet.present();
     }
 
   }
 
   excluir(historico: Historico): void {
-    let confirm = Alert.create({
+    let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: `Deseja realmente excluir todas agendas do tipo ${historico.descricao}?`,
       buttons: [
@@ -108,15 +111,15 @@ export class HistoricoPage {
         }
       ]
     });
-    this._navCtrl.present(confirm);
+    confirm.present();
   }
 
   private getHistoricos(): void {
     this._agendaService.historicos
       .subscribe(
-      (agendas: IAgenda[]) => { //-- on sucess
+      (agendas: IAgenda[]) => { // -- on sucess
         this._tipoAgendaService.tipos.subscribe(
-          (tipos: ITipoAgenda[]) => { //-- on sucess
+          (tipos: ITipoAgenda[]) => { // -- on sucess
             tipos.forEach(tipo => {
               var historico = <Historico>tipo;
               historico.agendas = agendas.filter(agenda => agenda.tipoAgenda.id === tipo.$key);
@@ -127,7 +130,7 @@ export class HistoricoPage {
             });
           });
       },
-      error => { //-- on error
+      error => { // -- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       });
   }
