@@ -3,9 +3,11 @@ import { NgClass } from '@angular/common';
 
 import { NavParams, NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 
-import { GlobalMethodService } from '../shared';
+import { filter } from 'lodash';
 
-import { AgendaService, IAgenda } from '../../providers/agendas';
+import { GlobalMethodService, IAgenda, ITipoAgenda } from '../shared';
+import { AgendaService } from '../../providers/data';
+
 import { AgendaFilterPipe } from '../agenda';
 import { AgendaDetailPage } from '../agenda-detail';
 import { PreferenciaPage } from '../preferencia';
@@ -20,6 +22,7 @@ import { RotaPage } from '../rota';
 export class HistoricoListPage {
 
   titulo: string = 'Históricos';
+  tipoAgenda: ITipoAgenda;
   todasAgendas: IAgenda[] = [];
   agendas: IAgenda[] = [];
   filtro: string = '';
@@ -34,13 +37,20 @@ export class HistoricoListPage {
     public _globalMethod: GlobalMethodService,
     public _alertCtrl: AlertController,
     public _actionSheetCtrl: ActionSheetController) {
-    this.todasAgendas = this._navParams.data;
-    this.agendas = this.todasAgendas;
+    this.tipoAgenda = this._navParams.data;
+    _service.agendasPorTipo.subscribe((agendas: IAgenda[]) => {
+      this.agendas = this.todasAgendas = agendas;
+      this.atualizarLista();
+    });
+  }
+
+  ionViewLoaded() {
+    this._service.filterByTipo(this.tipoAgenda.$key);
   }
 
   atualizarLista(): void {
     if (this.segment === 'favoritas') {
-      this.agendas = this.todasAgendas.filter((agenda: IAgenda) => agenda.favorito);
+      this.agendas = filter(this.todasAgendas, { 'favorito': true });
     } else {
       this.agendas = this.todasAgendas;
     }
@@ -48,8 +58,8 @@ export class HistoricoListPage {
 
   marcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
-    this._service.updateAgenda(agenda, { favorito: agenda.favorito }).then(() => {
-      this.atualizarLista();
+    this._service.update(agenda, { favorito: agenda.favorito }).then(() => {
+      this._globalMethod.mostrarMensagem(`${agenda.descricao} foi adicionado aos favoritos.`, this._navCtrl);
     });
   }
 
@@ -92,7 +102,7 @@ export class HistoricoListPage {
           text: 'Compartilhar',
           icon: !this._platform.is('ios') ? 'share' : null,
           handler: () => {
-            // -- TODO
+            // -- TODO Compartilhar
             console.log('Compartilhar clicked');
           }
         },
@@ -123,7 +133,7 @@ export class HistoricoListPage {
         {
           text: 'Sim',
           handler: () => {
-            // -- TODO
+            // -- TODO Excluir
             console.log('Sim clicked');
           }
         }

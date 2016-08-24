@@ -12,20 +12,26 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 // Providers / Services
 import { FIREBASE_APP_PROVIDERS } from './providers/firebase';
 import { AUTH_PROVIDERS, FirebaseAuthService } from './providers/auth';
-import { USUARIOS_PROVIDERS, Usuario } from './providers/usuarios';
-import { AGENDAS_PROVIDERS } from './providers/agendas';
-import { DATA_PROVIDERS, MenuDataService, IMenu, IMenuItem } from './providers/data';
+import { 
+  DATA_PROVIDERS,
+  MenuDataService 
+} from './providers/data';
+import { CONNECTIVITY_PROVIDERS } from './providers/connectivity';
 
 // Shared
-import { GlobalMethodService, GlobalVariableService } from './pages/shared';
+import { 
+  GlobalMethodService, 
+  GlobalVariableService,
+  CONFIG_PROVIDERS,
+  IMenu, 
+  IMenuItem,
+  Usuario 
+} from './pages/shared';
 
 // Views
 import { PrincipalPage } from './pages/principal';
-import { PreferenciaService } from './pages/preferencia';
 import { UsuarioLoginPage } from './pages/usuario';
-import { NotificacaoService } from './pages/notificacao';
 import { RotaService } from './pages/rota';
-import { MapaService } from './pages/mapa';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -34,8 +40,8 @@ class PartiuApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  usuario: Usuario = new Usuario('Nome de usuário', 'usuario@usuario.com.br', 'img/user-woman.svg');
-
+  usuario: Usuario = new Usuario({ displayName: 'Nome de usuário', email: 'usuario@usuario.com.br', photoURL: 'img/user-woman.svg' });
+  
   rootPage: any = null;
   menuPages: IMenu[];
   showPage: boolean = false;
@@ -66,7 +72,7 @@ class PartiuApp {
         }
       },
       error => { // -- on error
-        console.log('authGuard:[Error] ' + error)
+        console.log('authGuard:[Error] ' + error);
       },
       () => { // -- on completion
         this.showPage = true;
@@ -118,14 +124,11 @@ ionicBootstrap
   [
     HTTP_PROVIDERS,
     AUTH_PROVIDERS,
-    FIREBASE_APP_PROVIDERS,
-    USUARIOS_PROVIDERS,
-    AGENDAS_PROVIDERS,
+    CONNECTIVITY_PROVIDERS,
+    CONFIG_PROVIDERS,
     DATA_PROVIDERS,
-    PreferenciaService,
-    NotificacaoService,
+    FIREBASE_APP_PROVIDERS,
     RotaService,
-    MapaService,
     GlobalMethodService,
     GlobalVariableService
   ],

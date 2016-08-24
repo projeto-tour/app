@@ -1,18 +1,26 @@
-.mapa, .mapa-agenda, .mapa-ponto-interesse, .mapa-rota {
+// .mapa {
 
-  ion-content {
-    background: rgb(229, 227, 223);
-  }
+//   ion-content {
+//     background: rgb(229, 227, 223);
+//   }
+ 
+//   scroll-content {
+//     height: 100%
+//   }
+  
+//   #map  {
+//     width: 100%;
+//     height: 100%;
+//     opacity: 0;
+//     transition: opacity 150ms ease-in
+//   }
 
-  #map, #map-agenda, #map-ponto-interesse, #map-rota {
+// }
+.scroll {
+    height: 100%;
+}
+ 
+#map {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 150ms ease-in
-  }
-
-  #map.show-map, #map-agenda.show-map, #map-ponto-interesse.show-map, #map-rota.show-map {
-    opacity: 1;
-  }
-  
 }

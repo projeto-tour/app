@@ -1,15 +1,14 @@
 import { Component }  from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { Agenda } from '../../providers/agendas';
-import { Rota } from '../shared';
+import { Rota, Agenda } from '../shared';
 
 @Component({
   templateUrl: 'build/pages/rota-detail/rota-create.component.html'
 })
 export class RotaCreatePage {
 
-  titulo: string = "Nova Rota";
+  titulo: string = 'Nova Rota';
   rota: Rota;
   agenda: Agenda;
 
@@ -18,7 +17,7 @@ export class RotaCreatePage {
   constructor(
     public _navParams: NavParams,
     public _viewCtrl: ViewController) {
-    this.rota = new Rota(null, null, null, null, "", "", "", "")
+    this.rota = new Rota();
     this.agenda = this._navParams.data;
   }
 

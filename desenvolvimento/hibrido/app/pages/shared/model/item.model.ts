@@ -1,14 +1,22 @@
 /**
  * Referente ao um objeto generico
  * 
- * @param id 
+ * @param $key 
  * @param descricao 
  * @param status 
  */
 export class Item {
-    id: number;
-    constructor(public descricao: string = "",
-        public status: boolean = false) {
+    descricao: string;
+    status: boolean;
 
+    constructor(obj?: any) {
+        this.descricao = obj && obj.descricao || null;
+        this.status = obj && obj.status || null;
     }
+}
+
+export interface IItem {
+    $key?: string;
+    descricao: string;
+    status: boolean;
 }

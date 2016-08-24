@@ -1,22 +1,32 @@
 [
   {
     "id": 1,
-    "descricao": "ALIMENTACAO"
+    "descricao": "Alimentação",
+    "icone": "information-circle",
+    "destaque": "http://placeimg.com/160/120/nature"
   },
   {
     "id": 2,
-    "descricao": "EVENTO"
+    "descricao": "Evento",
+    "icone": "information-circle",
+    "destaque": "http://placeimg.com/160/120/nature"
   },
   {
     "id": 3,
-    "descricao": "HOTEL"
+    "descricao": "Hotel",
+    "icone": "information-circle",
+    "destaque": "http://placeimg.com/160/120/nature"
   },
   {
     "id": 4,
-    "descricao": "NEGOCIOS"
+    "descricao": "Negócio",
+    "icone": "information-circle",
+    "destaque": "http://placeimg.com/160/120/nature"
   },
   {
     "id": 5,
-    "descricao": "PASSEIO"
+    "descricao": "Passeio",
+    "icone": "information-circle",
+    "destaque": "http://placeimg.com/160/120/nature"
   }
 ]

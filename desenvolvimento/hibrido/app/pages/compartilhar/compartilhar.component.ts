@@ -7,7 +7,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 })
 export class CompartilharPage {
 
-  titulo: string = "Compartilhar";
+  titulo: string = 'Compartilhar';
   dados: any;
 
   private mensagenErro: any;

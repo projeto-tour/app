@@ -17,10 +17,8 @@
                     <ion-icon name="camera"></ion-icon>
                 </button>
             </ion-col>
-            {{(_usuarioService.usuario | async)?.photoURL}}
             <ion-col width-60>
-                <img [src]="(_usuarioService.usuario | async)?.photoURL" *ngIf="(_usuarioService.usuario | async)?.photoURL">
-                <img src="img/user-woman.svg" *ngIf="!(_usuarioService.usuario | async)?.photoURL">
+                <img [src]="_auth.userInfo.photoURL">
             </ion-col>
             <ion-col width-20 class="profile-col">
                 <button light clear>
@@ -31,32 +29,32 @@
     </div>
 
     <ion-list>
-        <ion-item-divider light>Login</ion-item-divider>
+        <ion-item-divider light>Usuário</ion-item-divider>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Nome</ion-label>
-            <ion-input type="text" placeholder="Ex. João Silva" [innerHTML]="(_usuarioService.usuario | async)?.displayName" disabled></ion-input>
+            <ion-input type="text" placeholder="Ex. João Silva" [innerHTML]="_auth.userInfo.displayName" disabled></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">E-mail</ion-label>
-            <ion-input type="email" placeholder="Ex. joao@gmail.com" [innerHTML]="(_usuarioService.usuario | async)?.email" disabled></ion-input>
+            <ion-input type="email" placeholder="Ex. joao@gmail.com" [innerHTML]="_auth.userInfo.email" disabled></ion-input>
         </ion-item>
         <ion-item-divider light>Endereço</ion-item-divider>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Logradouro</ion-label>
-            <ion-textarea type="text" placeholder="Ex. Avenida presidente vargas, 2001" [(ngModel)]="usuario.endereco.logradouro"></ion-textarea>
+            <ion-textarea type="text" placeholder="Ex. Avenida presidente vargas, 2001" [(ngModel)]="endereco.logradouro"></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Bairro</ion-label>
-            <ion-input type="text" placeholder="Ex. Jd Sumare" [(ngModel)]="usuario.endereco.bairro"></ion-input>
+            <ion-input type="text" placeholder="Ex. Jd Sumare" [(ngModel)]="endereco.bairro"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked dark style="font-size: 0.875em;">Cidade</ion-label>
-            <ion-input type="text" placeholder="Ex. Ribeirão Preto" [(ngModel)]="usuario.endereco.cidade"></ion-input>
+            <ion-input type="text" placeholder="Ex. Ribeirão Preto" [(ngModel)]="endereco.cidade"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label dark style="font-size: 0.875em;">Estado</ion-label>
-            <ion-select [(ngModel)]="usuario.endereco.estado">
+            <ion-select [(ngModel)]="endereco.estado">
                 <ion-option value="ES">Espírito Santo</ion-option>
                 <ion-option value="MG">Minas Gerais</ion-option>
                 <ion-option value="SP">São Paulo</ion-option>

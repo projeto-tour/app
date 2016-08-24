@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { ITutorial } from './tutorial.model';
+import {
+    ITutorial
+} from '../../pages/shared';
 
 @Injectable()
 export class TutorialDataService {

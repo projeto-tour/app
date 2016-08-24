@@ -171,7 +171,8 @@ body {
 ion-app,
 ion-nav,
 ion-tab,
-ion-tabs {
+ion-tabs,
+.app-root {
   position: absolute;
   top: 0;
   left: 0;
@@ -184,8 +185,13 @@ ion-tabs {
 ion-tab scroll-cotent {
   display: none; }
 
+ion-tab {
+  -webkit-transform: translateY(-200%);
+  transform: translateY(-200%); }
+
 ion-tab.show-tab {
-  z-index: 1; }
+  -webkit-transform: translateY(0);
+  transform: translateY(0); }
 
 ion-tab.show-tab scroll-cotent {
   display: block; }
@@ -254,7 +260,7 @@ ion-tabbar {
 ion-tabbar.show-tabbar {
   opacity: 1; }
 
-[tabbarPlacement=top] > ion-tabbar {
+[tabsPlacement=top] > ion-tabbar {
   top: 0;
   bottom: auto; }
 
@@ -279,28 +285,15 @@ ion-content.js-scroll > scroll-content {
   -webkit-overflow-scrolling: auto;
   will-change: initial; }
 
+.disable-scroll ion-page scroll-content {
+  overflow-y: hidden;
+  overflow-x: hidden; }
+
 [nav-viewport],
 [nav-portal],
 [tab-portal],
 .nav-decor {
   display: none; }
-
-.css-scrollbars ::-webkit-scrollbar {
-  width: 9px; }
-
-.css-scrollbars ::-webkit-scrollbar-thumb:vertical {
-  min-height: 10px;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  background-clip: padding-box; }
-
-.css-scrollbars ::-webkit-scrollbar-thumb:vertical:active {
-  min-height: 10px;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  background-clip: padding-box; }
 
 html {
   font-size: 62.5%; }
@@ -789,6 +782,16 @@ ion-loading {
 ion-menu {
   position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none; }
+  ion-menu.show-menu {
+    display: block; }
+
+.menu-inner {
+  position: absolute;
+  top: 0;
   right: auto;
   bottom: 0;
   left: 0;
@@ -805,13 +808,19 @@ ion-menu {
   -webkit-transform: translate3d(-9999px, 0, 0);
   transform: translate3d(-9999px, 0, 0); }
 
-ion-menu[side=right] {
+.menu-inner > ion-header,
+.menu-inner > ion-content,
+.menu-inner > ion-footer {
+  position: relative; }
+
+ion-menu[side=right] > .menu-inner {
   right: 0;
   left: auto; }
 
 ion-menu ion-backdrop {
   z-index: -1;
-  display: none; }
+  display: none;
+  opacity: .1; }
 
 .menu-content {
   -webkit-transform: translate3d(0, 0, 0);
@@ -823,25 +832,20 @@ ion-menu ion-backdrop {
   pointer-events: none; }
 
 @media (max-width: 340px) {
-  ion-menu {
+  .menu-inner {
     width: 264px; } }
 
-ion-menu[type=reveal].show-menu {
+ion-menu[type=reveal] {
+  z-index: 0; }
+
+ion-menu[type=reveal].show-menu .menu-inner {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
 ion-menu[type=overlay] {
   z-index: 80; }
-  ion-menu[type=overlay] ion-backdrop {
-    left: -3000px;
-    display: block;
-    width: 6000px;
-    opacity: .01;
-    -webkit-transform: translate3d(-9999px, 0, 0);
-    transform: translate3d(-9999px, 0, 0); }
-    ion-menu[type=overlay] ion-backdrop.show-backdrop {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0); }
+  ion-menu[type=overlay] .show-backdrop {
+    display: block; }
 
 ion-modal {
   position: absolute;
@@ -888,47 +892,6 @@ ion-modal-inner {
   width: 100%;
   height: 100%; }
 
-ion-popover {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center; }
-
-.popover-wrapper {
-  z-index: 10;
-  opacity: 0; }
-
-.popover-content {
-  position: absolute;
-  z-index: 10;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: auto;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-height: 200px; }
-  .popover-content scroll-content {
-    position: relative; }
-
 .item-range .item-inner {
   overflow: visible; }
 
@@ -942,6 +905,10 @@ ion-popover {
 
 .item-range ion-range {
   width: 100%; }
+  .item-range ion-range ion-label {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center; }
 
 ion-range {
   position: relative;
@@ -1082,10 +1049,6 @@ ion-scroll {
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position; }
-
-body.disable-scroll scroll-content {
-  overflow-y: hidden;
-  overflow-x: hidden; }
 
 .hidden-show-when {
   display: none !important; }
@@ -4636,6 +4599,82 @@ sup[dark],
 ion-icon[dark] {
   color: #222; }
 
+h1[favorite],
+h2[favorite],
+h3[favorite],
+h4[favorite],
+h5[favorite],
+h6[favorite],
+p[favorite],
+span[favorite],
+a:not([button])[favorite],
+small[favorite],
+b[favorite],
+i[favorite],
+strong[favorite],
+em[favorite],
+sub[favorite],
+sup[favorite],
+ion-icon[favorite] {
+  color: #69BB7B; }
+
+h1[twitter],
+h2[twitter],
+h3[twitter],
+h4[twitter],
+h5[twitter],
+h6[twitter],
+p[twitter],
+span[twitter],
+a:not([button])[twitter],
+small[twitter],
+b[twitter],
+i[twitter],
+strong[twitter],
+em[twitter],
+sub[twitter],
+sup[twitter],
+ion-icon[twitter] {
+  color: #53ACEB; }
+
+h1[github],
+h2[github],
+h3[github],
+h4[github],
+h5[github],
+h6[github],
+p[github],
+span[github],
+a:not([button])[github],
+small[github],
+b[github],
+i[github],
+strong[github],
+em[github],
+sub[github],
+sup[github],
+ion-icon[github] {
+  color: #000000; }
+
+h1[instagram],
+h2[instagram],
+h3[instagram],
+h4[instagram],
+h5[instagram],
+h6[instagram],
+p[instagram],
+span[instagram],
+a:not([button])[instagram],
+small[instagram],
+b[instagram],
+i[instagram],
+strong[instagram],
+em[instagram],
+sub[instagram],
+sup[instagram],
+ion-icon[instagram] {
+  color: #235D8D; }
+
 h1[mdc-black],
 h2[mdc-black],
 h3[mdc-black],
@@ -4807,82 +4846,6 @@ sup[mdc-orange],
 ion-icon[mdc-orange] {
   color: #E65100; }
 
-h1[favorite],
-h2[favorite],
-h3[favorite],
-h4[favorite],
-h5[favorite],
-h6[favorite],
-p[favorite],
-span[favorite],
-a:not([button])[favorite],
-small[favorite],
-b[favorite],
-i[favorite],
-strong[favorite],
-em[favorite],
-sub[favorite],
-sup[favorite],
-ion-icon[favorite] {
-  color: #69BB7B; }
-
-h1[twitter],
-h2[twitter],
-h3[twitter],
-h4[twitter],
-h5[twitter],
-h6[twitter],
-p[twitter],
-span[twitter],
-a:not([button])[twitter],
-small[twitter],
-b[twitter],
-i[twitter],
-strong[twitter],
-em[twitter],
-sub[twitter],
-sup[twitter],
-ion-icon[twitter] {
-  color: #53ACEB; }
-
-h1[github],
-h2[github],
-h3[github],
-h4[github],
-h5[github],
-h6[github],
-p[github],
-span[github],
-a:not([button])[github],
-small[github],
-b[github],
-i[github],
-strong[github],
-em[github],
-sub[github],
-sup[github],
-ion-icon[github] {
-  color: #000000; }
-
-h1[instagram],
-h2[instagram],
-h3[instagram],
-h4[instagram],
-h5[instagram],
-h6[instagram],
-p[instagram],
-span[instagram],
-a:not([button])[instagram],
-small[instagram],
-b[instagram],
-i[instagram],
-strong[instagram],
-em[instagram],
-sub[instagram],
-sup[instagram],
-ion-icon[instagram] {
-  color: #235D8D; }
-
 ion-action-sheet {
   position: absolute;
   top: 0;
@@ -5009,7 +4972,8 @@ ion-alert {
   font-weight: normal; }
 
 .alert-message {
-  overflow: auto; }
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
 
 .alert-input {
   padding: 10px 0;
@@ -5104,7 +5068,8 @@ ion-alert {
 .alert-checkbox-group {
   overflow: scroll;
   max-height: 240px;
-  border-top: 1px solid #dbdbdf; }
+  border-top: 1px solid #dbdbdf;
+  -webkit-overflow-scrolling: touch; }
 
 .alert-tappable {
   display: -webkit-box;
@@ -5270,6 +5235,22 @@ ion-badge {
   color: #fff;
   background-color: #222; }
 
+.badge-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+
+.badge-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+
+.badge-github {
+  color: #fff;
+  background-color: #000000; }
+
+.badge-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+
 .badge-mdc-black {
   color: #fff;
   background-color: #212121; }
@@ -5305,22 +5286,6 @@ ion-badge {
 .badge-mdc-orange {
   color: #fff;
   background-color: #E65100; }
-
-.badge-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-
-.badge-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-
-.badge-github {
-  color: #fff;
-  background-color: #000000; }
-
-.badge-instagram {
-  color: #fff;
-  background-color: #235D8D; }
 
 .button {
   -webkit-user-select: none;
@@ -5446,9 +5411,6 @@ button[disabled],
     color: #fff;
     background-color: #387ef5;
     opacity: 1; }
-
-.hairlines .button-outline {
-  border-width: 0.55px; }
 
 .button-clear {
   border-color: transparent;
@@ -5582,6 +5544,98 @@ ion-button-effect {
     opacity: .4; }
   .button-clear-dark:hover:not(.disable-hover) {
     color: #222; }
+
+.button-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+  .button-favorite.activated {
+    background-color: #61ac71; }
+
+.button-outline-favorite {
+  border-color: #69BB7B;
+  color: #69BB7B;
+  background-color: transparent; }
+  .button-outline-favorite.activated {
+    color: #fff;
+    background-color: #69BB7B; }
+
+.button-clear-favorite {
+  border-color: transparent;
+  color: #69BB7B;
+  background-color: transparent; }
+  .button-clear-favorite.activated {
+    opacity: .4; }
+  .button-clear-favorite:hover:not(.disable-hover) {
+    color: #69BB7B; }
+
+.button-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+  .button-twitter.activated {
+    background-color: #4c9ed8; }
+
+.button-outline-twitter {
+  border-color: #53ACEB;
+  color: #53ACEB;
+  background-color: transparent; }
+  .button-outline-twitter.activated {
+    color: #fff;
+    background-color: #53ACEB; }
+
+.button-clear-twitter {
+  border-color: transparent;
+  color: #53ACEB;
+  background-color: transparent; }
+  .button-clear-twitter.activated {
+    opacity: .4; }
+  .button-clear-twitter:hover:not(.disable-hover) {
+    color: #53ACEB; }
+
+.button-github {
+  color: #fff;
+  background-color: #000000; }
+  .button-github.activated {
+    background-color: #141414; }
+
+.button-outline-github {
+  border-color: #000000;
+  color: #000000;
+  background-color: transparent; }
+  .button-outline-github.activated {
+    color: #fff;
+    background-color: #000000; }
+
+.button-clear-github {
+  border-color: transparent;
+  color: #000000;
+  background-color: transparent; }
+  .button-clear-github.activated {
+    opacity: .4; }
+  .button-clear-github:hover:not(.disable-hover) {
+    color: #000000; }
+
+.button-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+  .button-instagram.activated {
+    background-color: #356a96; }
+
+.button-outline-instagram {
+  border-color: #235D8D;
+  color: #235D8D;
+  background-color: transparent; }
+  .button-outline-instagram.activated {
+    color: #fff;
+    background-color: #235D8D; }
+
+.button-clear-instagram {
+  border-color: transparent;
+  color: #235D8D;
+  background-color: transparent; }
+  .button-clear-instagram.activated {
+    opacity: .4; }
+  .button-clear-instagram:hover:not(.disable-hover) {
+    color: #235D8D; }
 
 .button-mdc-black {
   color: #fff;
@@ -5789,98 +5843,6 @@ ion-button-effect {
     opacity: .4; }
   .button-clear-mdc-orange:hover:not(.disable-hover) {
     color: #E65100; }
-
-.button-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-  .button-favorite.activated {
-    background-color: #61ac71; }
-
-.button-outline-favorite {
-  border-color: #69BB7B;
-  color: #69BB7B;
-  background-color: transparent; }
-  .button-outline-favorite.activated {
-    color: #fff;
-    background-color: #69BB7B; }
-
-.button-clear-favorite {
-  border-color: transparent;
-  color: #69BB7B;
-  background-color: transparent; }
-  .button-clear-favorite.activated {
-    opacity: .4; }
-  .button-clear-favorite:hover:not(.disable-hover) {
-    color: #69BB7B; }
-
-.button-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-  .button-twitter.activated {
-    background-color: #4c9ed8; }
-
-.button-outline-twitter {
-  border-color: #53ACEB;
-  color: #53ACEB;
-  background-color: transparent; }
-  .button-outline-twitter.activated {
-    color: #fff;
-    background-color: #53ACEB; }
-
-.button-clear-twitter {
-  border-color: transparent;
-  color: #53ACEB;
-  background-color: transparent; }
-  .button-clear-twitter.activated {
-    opacity: .4; }
-  .button-clear-twitter:hover:not(.disable-hover) {
-    color: #53ACEB; }
-
-.button-github {
-  color: #fff;
-  background-color: #000000; }
-  .button-github.activated {
-    background-color: #141414; }
-
-.button-outline-github {
-  border-color: #000000;
-  color: #000000;
-  background-color: transparent; }
-  .button-outline-github.activated {
-    color: #fff;
-    background-color: #000000; }
-
-.button-clear-github {
-  border-color: transparent;
-  color: #000000;
-  background-color: transparent; }
-  .button-clear-github.activated {
-    opacity: .4; }
-  .button-clear-github:hover:not(.disable-hover) {
-    color: #000000; }
-
-.button-instagram {
-  color: #fff;
-  background-color: #235D8D; }
-  .button-instagram.activated {
-    background-color: #356a96; }
-
-.button-outline-instagram {
-  border-color: #235D8D;
-  color: #235D8D;
-  background-color: transparent; }
-  .button-outline-instagram.activated {
-    color: #fff;
-    background-color: #235D8D; }
-
-.button-clear-instagram {
-  border-color: transparent;
-  color: #235D8D;
-  background-color: transparent; }
-  .button-clear-instagram.activated {
-    opacity: .4; }
-  .button-clear-instagram:hover:not(.disable-hover) {
-    color: #235D8D; }
 
 .button-fab {
   position: absolute;
@@ -6090,6 +6052,30 @@ ion-checkbox[dark] .checkbox-checked {
   ion-checkbox[dark] .checkbox-checked .checkbox-inner {
     border-color: #fff; }
 
+ion-checkbox[favorite] .checkbox-checked {
+  border-color: #69BB7B;
+  background-color: #69BB7B; }
+  ion-checkbox[favorite] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[twitter] .checkbox-checked {
+  border-color: #53ACEB;
+  background-color: #53ACEB; }
+  ion-checkbox[twitter] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[github] .checkbox-checked {
+  border-color: #000000;
+  background-color: #000000; }
+  ion-checkbox[github] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[instagram] .checkbox-checked {
+  border-color: #235D8D;
+  background-color: #235D8D; }
+  ion-checkbox[instagram] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
 ion-checkbox[mdc-black] .checkbox-checked {
   border-color: #212121;
   background-color: #212121; }
@@ -6142,30 +6128,6 @@ ion-checkbox[mdc-orange] .checkbox-checked {
   border-color: #E65100;
   background-color: #E65100; }
   ion-checkbox[mdc-orange] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[favorite] .checkbox-checked {
-  border-color: #69BB7B;
-  background-color: #69BB7B; }
-  ion-checkbox[favorite] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[twitter] .checkbox-checked {
-  border-color: #53ACEB;
-  background-color: #53ACEB; }
-  ion-checkbox[twitter] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[github] .checkbox-checked {
-  border-color: #000000;
-  background-color: #000000; }
-  ion-checkbox[github] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[instagram] .checkbox-checked {
-  border-color: #235D8D;
-  background-color: #235D8D; }
-  ion-checkbox[instagram] .checkbox-checked .checkbox-inner {
     border-color: #fff; }
 
 ion-chip {
@@ -6241,6 +6203,22 @@ ion-chip ion-icon[dark] {
   color: #fff;
   background-color: #222; }
 
+ion-chip ion-icon[favorite] {
+  color: #fff;
+  background-color: #69BB7B; }
+
+ion-chip ion-icon[twitter] {
+  color: #fff;
+  background-color: #53ACEB; }
+
+ion-chip ion-icon[github] {
+  color: #fff;
+  background-color: #000000; }
+
+ion-chip ion-icon[instagram] {
+  color: #fff;
+  background-color: #235D8D; }
+
 ion-chip ion-icon[mdc-black] {
   color: #fff;
   background-color: #212121; }
@@ -6276,22 +6254,6 @@ ion-chip ion-icon[mdc-grey-800] {
 ion-chip ion-icon[mdc-orange] {
   color: #fff;
   background-color: #E65100; }
-
-ion-chip ion-icon[favorite] {
-  color: #fff;
-  background-color: #69BB7B; }
-
-ion-chip ion-icon[twitter] {
-  color: #fff;
-  background-color: #53ACEB; }
-
-ion-chip ion-icon[github] {
-  color: #fff;
-  background-color: #000000; }
-
-ion-chip ion-icon[instagram] {
-  color: #fff;
-  background-color: #235D8D; }
 
 [no-padding],
 [no-padding] scroll-content {
@@ -6383,6 +6345,18 @@ ion-page.show-page ~ .nav-decor {
 [margin-horizontal] scroll-content {
   margin-right: 16px;
   margin-left: 16px; }
+
+ion-content:not([no-bounce]) > scroll-content::before, ion-content:not([no-bounce]) > scroll-content::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  content: ""; }
+
+ion-content:not([no-bounce]) > scroll-content::before {
+  bottom: -1px; }
+
+ion-content:not([no-bounce]) > scroll-content::after {
+  top: -1px; }
 
 ion-datetime {
   display: -webkit-box;
@@ -6838,7 +6812,8 @@ ion-reorder {
   justify-content: center;
   max-width: 40px;
   height: 100%;
-  font-size: 1.6em;
+  font-size: 1.45em;
+  opacity: .5;
   pointer-events: all;
   -ms-touch-action: manipulation;
   touch-action: manipulation; }
@@ -6859,13 +6834,14 @@ ion-reorder {
   display: -ms-flexbox;
   display: flex; }
 
-.reorder-active .item-inner {
+.reorder-list-active .item-inner {
   pointer-events: none; }
 
 .item-wrapper.reorder-active,
-.item.reorder-active {
+.item.reorder-active,
+.reorder-active {
   z-index: 4;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   opacity: .8;
   -webkit-transition: none;
   transition: none;
@@ -7013,6 +6989,22 @@ ion-item-divider[dark] {
   color: #fff;
   background-color: #222; }
 
+ion-item-divider[favorite] {
+  color: #fff;
+  background-color: #69BB7B; }
+
+ion-item-divider[twitter] {
+  color: #fff;
+  background-color: #53ACEB; }
+
+ion-item-divider[github] {
+  color: #fff;
+  background-color: #000000; }
+
+ion-item-divider[instagram] {
+  color: #fff;
+  background-color: #235D8D; }
+
 ion-item-divider[mdc-black] {
   color: #fff;
   background-color: #212121; }
@@ -7048,22 +7040,6 @@ ion-item-divider[mdc-grey-800] {
 ion-item-divider[mdc-orange] {
   color: #fff;
   background-color: #E65100; }
-
-ion-item-divider[favorite] {
-  color: #fff;
-  background-color: #69BB7B; }
-
-ion-item-divider[twitter] {
-  color: #fff;
-  background-color: #53ACEB; }
-
-ion-item-divider[github] {
-  color: #fff;
-  background-color: #000000; }
-
-ion-item-divider[instagram] {
-  color: #fff;
-  background-color: #235D8D; }
 
 ion-item-sliding {
   background-color: #fff; }
@@ -7188,6 +7164,18 @@ ion-label[light] {
 ion-label[dark] {
   color: #222; }
 
+ion-label[favorite] {
+  color: #69BB7B; }
+
+ion-label[twitter] {
+  color: #53ACEB; }
+
+ion-label[github] {
+  color: #000000; }
+
+ion-label[instagram] {
+  color: #235D8D; }
+
 ion-label[mdc-black] {
   color: #212121; }
 
@@ -7214,18 +7202,6 @@ ion-label[mdc-grey-800] {
 
 ion-label[mdc-orange] {
   color: #E65100; }
-
-ion-label[favorite] {
-  color: #69BB7B; }
-
-ion-label[twitter] {
-  color: #53ACEB; }
-
-ion-label[github] {
-  color: #000000; }
-
-ion-label[instagram] {
-  color: #235D8D; }
 
 ion-list-header {
   display: -webkit-box;
@@ -7418,7 +7394,7 @@ ion-loading {
 .loading-spinner .spinner-dots circle {
   fill: #69717d; }
 
-ion-menu {
+.menu-inner {
   background: #fff; }
 
 .menu-content-reveal {
@@ -7427,7 +7403,7 @@ ion-menu {
 .menu-content-push {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); }
 
-ion-menu[type=overlay] {
+ion-menu[type=overlay] .menu-inner {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); }
 
 .modal-wrapper {
@@ -7659,8 +7635,50 @@ ion-picker-cmp {
   -webkit-transform: translate3d(0, 0, 90px);
   transform: translate3d(0, 0, 90px); }
 
+ion-popover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+
+.popover-wrapper {
+  z-index: 10;
+  opacity: 0; }
+
+.popover-content {
+  position: absolute;
+  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  .popover-content scroll-content {
+    position: relative; }
+
 .popover-content {
   width: 200px;
+  min-width: 0;
+  min-height: 0;
   max-height: 90%;
   border-radius: 10px;
   color: #000;
@@ -7763,6 +7781,26 @@ ion-radio[dark] .radio-checked {
   ion-radio[dark] .radio-checked .radio-inner {
     border-color: #222; }
 
+ion-radio[favorite] .radio-checked {
+  color: #69BB7B; }
+  ion-radio[favorite] .radio-checked .radio-inner {
+    border-color: #69BB7B; }
+
+ion-radio[twitter] .radio-checked {
+  color: #53ACEB; }
+  ion-radio[twitter] .radio-checked .radio-inner {
+    border-color: #53ACEB; }
+
+ion-radio[github] .radio-checked {
+  color: #000000; }
+  ion-radio[github] .radio-checked .radio-inner {
+    border-color: #000000; }
+
+ion-radio[instagram] .radio-checked {
+  color: #235D8D; }
+  ion-radio[instagram] .radio-checked .radio-inner {
+    border-color: #235D8D; }
+
 ion-radio[mdc-black] .radio-checked {
   color: #212121; }
   ion-radio[mdc-black] .radio-checked .radio-inner {
@@ -7808,26 +7846,6 @@ ion-radio[mdc-orange] .radio-checked {
   ion-radio[mdc-orange] .radio-checked .radio-inner {
     border-color: #E65100; }
 
-ion-radio[favorite] .radio-checked {
-  color: #69BB7B; }
-  ion-radio[favorite] .radio-checked .radio-inner {
-    border-color: #69BB7B; }
-
-ion-radio[twitter] .radio-checked {
-  color: #53ACEB; }
-  ion-radio[twitter] .radio-checked .radio-inner {
-    border-color: #53ACEB; }
-
-ion-radio[github] .radio-checked {
-  color: #000000; }
-  ion-radio[github] .radio-checked .radio-inner {
-    border-color: #000000; }
-
-ion-radio[instagram] .radio-checked {
-  color: #235D8D; }
-  ion-radio[instagram] .radio-checked .radio-inner {
-    border-color: #235D8D; }
-
 .item-range .item-inner {
   overflow: visible; }
 
@@ -7841,6 +7859,10 @@ ion-radio[instagram] .radio-checked {
 
 .item-range ion-range {
   width: 100%; }
+  .item-range ion-range ion-label {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center; }
 
 ion-range {
   position: relative;
@@ -7989,6 +8011,22 @@ ion-range[dark] .range-bar-active,
 ion-range[dark] .range-tick-active {
   background: #222; }
 
+ion-range[favorite] .range-bar-active,
+ion-range[favorite] .range-tick-active {
+  background: #69BB7B; }
+
+ion-range[twitter] .range-bar-active,
+ion-range[twitter] .range-tick-active {
+  background: #53ACEB; }
+
+ion-range[github] .range-bar-active,
+ion-range[github] .range-tick-active {
+  background: #000000; }
+
+ion-range[instagram] .range-bar-active,
+ion-range[instagram] .range-tick-active {
+  background: #235D8D; }
+
 ion-range[mdc-black] .range-bar-active,
 ion-range[mdc-black] .range-tick-active {
   background: #212121; }
@@ -8024,22 +8062,6 @@ ion-range[mdc-grey-800] .range-tick-active {
 ion-range[mdc-orange] .range-bar-active,
 ion-range[mdc-orange] .range-tick-active {
   background: #E65100; }
-
-ion-range[favorite] .range-bar-active,
-ion-range[favorite] .range-tick-active {
-  background: #69BB7B; }
-
-ion-range[twitter] .range-bar-active,
-ion-range[twitter] .range-tick-active {
-  background: #53ACEB; }
-
-ion-range[github] .range-bar-active,
-ion-range[github] .range-tick-active {
-  background: #000000; }
-
-ion-range[instagram] .range-bar-active,
-ion-range[instagram] .range-tick-active {
-  background: #235D8D; }
 
 ion-searchbar {
   position: relative;
@@ -8307,6 +8329,106 @@ ion-searchbar[dark] .searchbar-ios-cancel {
 .toolbar[dark] ion-searchbar .searchbar-ios-cancel {
   color: #fff; }
 
+ion-searchbar[favorite] .searchbar-ios-cancel {
+  color: #69BB7B; }
+  ion-searchbar[favorite] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #61ac71; }
+
+.toolbar[favorite] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[favorite] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[favorite] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[favorite] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[favorite] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[favorite] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[favorite] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[twitter] .searchbar-ios-cancel {
+  color: #53ACEB; }
+  ion-searchbar[twitter] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #4c9ed8; }
+
+.toolbar[twitter] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[twitter] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[twitter] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[twitter] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[twitter] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[twitter] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[twitter] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[github] .searchbar-ios-cancel {
+  color: #000000; }
+  ion-searchbar[github] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #141414; }
+
+.toolbar[github] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[github] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[github] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[github] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[github] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[github] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[github] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[instagram] .searchbar-ios-cancel {
+  color: #235D8D; }
+  ion-searchbar[instagram] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #356a96; }
+
+.toolbar[instagram] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[instagram] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[instagram] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[instagram] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[instagram] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[instagram] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[instagram] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
 ion-searchbar[mdc-black] .searchbar-ios-cancel {
   color: #212121; }
   ion-searchbar[mdc-black] .searchbar-ios-cancel:hover:not(.disable-hover) {
@@ -8532,106 +8654,6 @@ ion-searchbar[mdc-orange] .searchbar-ios-cancel {
 .toolbar[mdc-orange] ion-searchbar .searchbar-ios-cancel {
   color: #fff; }
 
-ion-searchbar[favorite] .searchbar-ios-cancel {
-  color: #69BB7B; }
-  ion-searchbar[favorite] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #61ac71; }
-
-.toolbar[favorite] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[favorite] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[favorite] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[favorite] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[favorite] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[favorite] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[favorite] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[twitter] .searchbar-ios-cancel {
-  color: #53ACEB; }
-  ion-searchbar[twitter] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #4c9ed8; }
-
-.toolbar[twitter] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[twitter] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[twitter] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[twitter] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[twitter] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[twitter] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[twitter] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[github] .searchbar-ios-cancel {
-  color: #000000; }
-  ion-searchbar[github] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #141414; }
-
-.toolbar[github] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[github] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[github] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[github] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[github] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[github] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[github] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[instagram] .searchbar-ios-cancel {
-  color: #235D8D; }
-  ion-searchbar[instagram] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #356a96; }
-
-.toolbar[instagram] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[instagram] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[instagram] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[instagram] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[instagram] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[instagram] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[instagram] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
 ion-segment {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8808,6 +8830,74 @@ ion-segment[dark] .segment-button-disabled {
 .toolbar[dark] .segment-button.segment-activated {
   color: #222; }
 
+ion-segment[favorite] .segment-button {
+  border-color: #69BB7B;
+  color: #69BB7B; }
+  ion-segment[favorite] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(105, 187, 123, 0.1); }
+  ion-segment[favorite] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(105, 187, 123, 0.16); }
+  ion-segment[favorite] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #69BB7B; }
+
+ion-segment[favorite] .segment-button-disabled {
+  color: rgba(105, 187, 123, 0.3); }
+
+.toolbar[favorite] .segment-button.segment-activated {
+  color: #69BB7B; }
+
+ion-segment[twitter] .segment-button {
+  border-color: #53ACEB;
+  color: #53ACEB; }
+  ion-segment[twitter] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(83, 172, 235, 0.1); }
+  ion-segment[twitter] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(83, 172, 235, 0.16); }
+  ion-segment[twitter] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #53ACEB; }
+
+ion-segment[twitter] .segment-button-disabled {
+  color: rgba(83, 172, 235, 0.3); }
+
+.toolbar[twitter] .segment-button.segment-activated {
+  color: #53ACEB; }
+
+ion-segment[github] .segment-button {
+  border-color: #000000;
+  color: #000000; }
+  ion-segment[github] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(0, 0, 0, 0.1); }
+  ion-segment[github] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(0, 0, 0, 0.16); }
+  ion-segment[github] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #000000; }
+
+ion-segment[github] .segment-button-disabled {
+  color: rgba(0, 0, 0, 0.3); }
+
+.toolbar[github] .segment-button.segment-activated {
+  color: #000000; }
+
+ion-segment[instagram] .segment-button {
+  border-color: #235D8D;
+  color: #235D8D; }
+  ion-segment[instagram] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(35, 93, 141, 0.1); }
+  ion-segment[instagram] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(35, 93, 141, 0.16); }
+  ion-segment[instagram] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #235D8D; }
+
+ion-segment[instagram] .segment-button-disabled {
+  color: rgba(35, 93, 141, 0.3); }
+
+.toolbar[instagram] .segment-button.segment-activated {
+  color: #235D8D; }
+
 ion-segment[mdc-black] .segment-button {
   border-color: #212121;
   color: #212121; }
@@ -8961,74 +9051,6 @@ ion-segment[mdc-orange] .segment-button-disabled {
 .toolbar[mdc-orange] .segment-button.segment-activated {
   color: #E65100; }
 
-ion-segment[favorite] .segment-button {
-  border-color: #69BB7B;
-  color: #69BB7B; }
-  ion-segment[favorite] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(105, 187, 123, 0.1); }
-  ion-segment[favorite] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(105, 187, 123, 0.16); }
-  ion-segment[favorite] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #69BB7B; }
-
-ion-segment[favorite] .segment-button-disabled {
-  color: rgba(105, 187, 123, 0.3); }
-
-.toolbar[favorite] .segment-button.segment-activated {
-  color: #69BB7B; }
-
-ion-segment[twitter] .segment-button {
-  border-color: #53ACEB;
-  color: #53ACEB; }
-  ion-segment[twitter] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(83, 172, 235, 0.1); }
-  ion-segment[twitter] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(83, 172, 235, 0.16); }
-  ion-segment[twitter] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #53ACEB; }
-
-ion-segment[twitter] .segment-button-disabled {
-  color: rgba(83, 172, 235, 0.3); }
-
-.toolbar[twitter] .segment-button.segment-activated {
-  color: #53ACEB; }
-
-ion-segment[github] .segment-button {
-  border-color: #000000;
-  color: #000000; }
-  ion-segment[github] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(0, 0, 0, 0.1); }
-  ion-segment[github] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(0, 0, 0, 0.16); }
-  ion-segment[github] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #000000; }
-
-ion-segment[github] .segment-button-disabled {
-  color: rgba(0, 0, 0, 0.3); }
-
-.toolbar[github] .segment-button.segment-activated {
-  color: #000000; }
-
-ion-segment[instagram] .segment-button {
-  border-color: #235D8D;
-  color: #235D8D; }
-  ion-segment[instagram] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(35, 93, 141, 0.1); }
-  ion-segment[instagram] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(35, 93, 141, 0.16); }
-  ion-segment[instagram] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #235D8D; }
-
-ion-segment[instagram] .segment-button-disabled {
-  color: rgba(35, 93, 141, 0.3); }
-
-.toolbar[instagram] .segment-button.segment-activated {
-  color: #235D8D; }
-
 ion-select {
   display: -webkit-box;
   display: -webkit-flex;
@@ -9156,29 +9178,29 @@ ion-select {
 tab-highlight {
   display: none; }
 
-[tabbarLayout=icon-bottom] .tab-button .tab-button-icon {
+[tabsLayout=icon-bottom] .tab-button .tab-button-icon {
   -webkit-box-ordinal-group: 11;
   -webkit-order: 10;
   -ms-flex-order: 10;
   order: 10; }
 
-[tabbarLayout=icon-left] .tab-button {
+[tabsLayout=icon-left] .tab-button {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
-  [tabbarLayout=icon-left] .tab-button .tab-button-icon {
+  [tabsLayout=icon-left] .tab-button .tab-button-icon {
     padding-right: 8px;
     text-align: right; }
 
-[tabbarLayout=icon-right] .tab-button {
+[tabsLayout=icon-right] .tab-button {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
-  [tabbarLayout=icon-right] .tab-button .tab-button-icon {
+  [tabsLayout=icon-right] .tab-button .tab-button-icon {
     -webkit-box-ordinal-group: 11;
     -webkit-order: 10;
     -ms-flex-order: 10;
@@ -9186,10 +9208,10 @@ tab-highlight {
     padding-left: 8px;
     text-align: left; }
 
-[tabbarLayout=icon-hide] .tab-button-icon {
+[tabsLayout=icon-hide] .tab-button-icon {
   display: none; }
 
-[tabbarLayout=title-hide] .tab-button-text {
+[tabsLayout=title-hide] .tab-button-text {
   display: none; }
 
 .tab-badge {
@@ -9205,16 +9227,20 @@ tab-highlight {
 .has-icon .tab-badge {
   right: calc(50% - 30px); }
 
-[tabbarLayout=icon-bottom] .tab-badge,
-[tabbarLayout=icon-left] .tab-badge,
-[tabbarLayout=icon-right] .tab-badge {
+[tabsLayout=icon-bottom] .tab-badge,
+[tabsLayout=icon-left] .tab-badge,
+[tabsLayout=icon-right] .tab-badge {
   right: calc(50% - 50px); }
 
 ion-tabbar {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border-top: 1px solid #b2b2b2;
   background: #f8f8f8; }
 
-ion-tabs[tabbarPlacement=top] ion-tabbar {
+ion-tabs[tabsPlacement=top] ion-tabbar {
   border-top: 0;
   border-bottom: 1px solid #b2b2b2; }
 
@@ -9244,34 +9270,34 @@ ion-tabs[tabbarPlacement=top] ion-tabbar {
   .tab-button-icon::before {
     vertical-align: top; }
 
-[tabbarLayout=icon-right] .tab-button .tab-button-text,
-[tabbarLayout=icon-left] .tab-button .tab-button-text {
+[tabsLayout=icon-right] .tab-button .tab-button-text,
+[tabsLayout=icon-left] .tab-button .tab-button-text {
   font-size: 1.4rem;
   line-height: 1.1; }
 
-[tabbarLayout=icon-right] .tab-button ion-icon,
-[tabbarLayout=icon-left] .tab-button ion-icon {
+[tabsLayout=icon-right] .tab-button ion-icon,
+[tabsLayout=icon-left] .tab-button ion-icon {
   min-width: 24px;
   height: 26px;
   font-size: 24px; }
 
-[tabbarLayout=icon-hide] .tab-button,
+[tabsLayout=icon-hide] .tab-button,
 .tab-button.has-title-only {
   min-height: 41px; }
-  [tabbarLayout=icon-hide] .tab-button .tab-button-text,
+  [tabsLayout=icon-hide] .tab-button .tab-button-text,
   .tab-button.has-title-only .tab-button-text {
     margin: 2px 0;
     font-size: 1.4rem;
     line-height: 1.1; }
 
-[tabbarLayout=title-hide] .tab-button,
+[tabsLayout=title-hide] .tab-button,
 .tab-button.icon-only {
   min-height: 41px; }
 
 .hairlines ion-tabs ion-tabbar {
   border-top-width: 0.55px; }
 
-.hairlines ion-tabs[tabbarPlacement="top"] ion-tabbar {
+.hairlines ion-tabs[tabsPlacement="top"] ion-tabbar {
   border-bottom-width: 0.55px; }
 
 ion-tabs[primary] ion-tabbar {
@@ -9317,6 +9343,42 @@ ion-tabs[dark] ion-tabbar {
     color: #fff; }
   ion-tabs[dark] ion-tabbar .tab-button:hover:not(.disable-hover),
   ion-tabs[dark] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[favorite] ion-tabbar {
+  border-color: #4ba65f;
+  background-color: #69BB7B; }
+  ion-tabs[favorite] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[favorite] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[favorite] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[twitter] ion-tabbar {
+  border-color: #2596e6;
+  background-color: #53ACEB; }
+  ion-tabs[twitter] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[twitter] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[twitter] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[github] ion-tabbar {
+  border-color: black;
+  background-color: #000000; }
+  ion-tabs[github] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[github] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[github] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[instagram] ion-tabbar {
+  border-color: #194264;
+  background-color: #235D8D; }
+  ion-tabs[instagram] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[instagram] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[instagram] ion-tabbar .tab-button[aria-selected=true] {
     color: #fff; }
 
 ion-tabs[mdc-black] ion-tabbar {
@@ -9398,42 +9460,6 @@ ion-tabs[mdc-orange] ion-tabbar {
     color: #fff; }
   ion-tabs[mdc-orange] ion-tabbar .tab-button:hover:not(.disable-hover),
   ion-tabs[mdc-orange] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[favorite] ion-tabbar {
-  border-color: #4ba65f;
-  background-color: #69BB7B; }
-  ion-tabs[favorite] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[favorite] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[favorite] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[twitter] ion-tabbar {
-  border-color: #2596e6;
-  background-color: #53ACEB; }
-  ion-tabs[twitter] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[twitter] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[twitter] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[github] ion-tabbar {
-  border-color: black;
-  background-color: #000000; }
-  ion-tabs[github] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[github] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[github] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[instagram] ion-tabbar {
-  border-color: #194264;
-  background-color: #235D8D; }
-  ion-tabs[instagram] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[instagram] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[instagram] ion-tabbar .tab-button[aria-selected=true] {
     color: #fff; }
 
 ion-toggle {
@@ -9531,6 +9557,18 @@ ion-toggle[light] .toggle-checked {
 ion-toggle[dark] .toggle-checked {
   background-color: #222; }
 
+ion-toggle[favorite] .toggle-checked {
+  background-color: #69BB7B; }
+
+ion-toggle[twitter] .toggle-checked {
+  background-color: #53ACEB; }
+
+ion-toggle[github] .toggle-checked {
+  background-color: #000000; }
+
+ion-toggle[instagram] .toggle-checked {
+  background-color: #235D8D; }
+
 ion-toggle[mdc-black] .toggle-checked {
   background-color: #212121; }
 
@@ -9557,18 +9595,6 @@ ion-toggle[mdc-grey-800] .toggle-checked {
 
 ion-toggle[mdc-orange] .toggle-checked {
   background-color: #E65100; }
-
-ion-toggle[favorite] .toggle-checked {
-  background-color: #69BB7B; }
-
-ion-toggle[twitter] .toggle-checked {
-  background-color: #53ACEB; }
-
-ion-toggle[github] .toggle-checked {
-  background-color: #000000; }
-
-ion-toggle[instagram] .toggle-checked {
-  background-color: #235D8D; }
 
 ion-toast {
   position: absolute;
@@ -9793,6 +9819,10 @@ ion-menu > .toolbar:first-child .toolbar-background,
 
 ion-footer .toolbar:last-child .toolbar-background,
 .toolbar[no-border-bottom] .toolbar-background {
+  border-bottom-width: 0; }
+
+.toolbar[no-border] .toolbar-background {
+  border-top-width: 0;
   border-bottom-width: 0; }
 
 .toolbar-content {
@@ -10107,6 +10137,130 @@ ion-buttons[right] {
     color: #fff;
     background-color: #343434; }
 
+.toolbar[favorite] .toolbar-background {
+  border-color: #4ba65f;
+  background: #69BB7B; }
+
+.toolbar[favorite] .toolbar-title,
+.toolbar[favorite] .bar-button-default {
+  color: #fff; }
+
+.bar-button-favorite {
+  color: #69BB7B;
+  background-color: transparent; }
+  .bar-button-favorite:hover:not(.disable-hover) {
+    color: #69BB7B; }
+  .bar-button-favorite.activated {
+    opacity: .4; }
+
+.bar-button-outline-favorite {
+  border-color: #61ac71;
+  color: #61ac71;
+  background-color: transparent; }
+  .bar-button-outline-favorite.activated {
+    color: #fff;
+    background-color: #61ac71; }
+
+.bar-button-solid-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+  .bar-button-solid-favorite.activated {
+    color: #fff;
+    background-color: #61ac71; }
+
+.toolbar[twitter] .toolbar-background {
+  border-color: #2596e6;
+  background: #53ACEB; }
+
+.toolbar[twitter] .toolbar-title,
+.toolbar[twitter] .bar-button-default {
+  color: #fff; }
+
+.bar-button-twitter {
+  color: #53ACEB;
+  background-color: transparent; }
+  .bar-button-twitter:hover:not(.disable-hover) {
+    color: #53ACEB; }
+  .bar-button-twitter.activated {
+    opacity: .4; }
+
+.bar-button-outline-twitter {
+  border-color: #4c9ed8;
+  color: #4c9ed8;
+  background-color: transparent; }
+  .bar-button-outline-twitter.activated {
+    color: #fff;
+    background-color: #4c9ed8; }
+
+.bar-button-solid-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+  .bar-button-solid-twitter.activated {
+    color: #fff;
+    background-color: #4c9ed8; }
+
+.toolbar[github] .toolbar-background {
+  border-color: black;
+  background: #000000; }
+
+.toolbar[github] .toolbar-title,
+.toolbar[github] .bar-button-default {
+  color: #fff; }
+
+.bar-button-github {
+  color: #000000;
+  background-color: transparent; }
+  .bar-button-github:hover:not(.disable-hover) {
+    color: #000000; }
+  .bar-button-github.activated {
+    opacity: .4; }
+
+.bar-button-outline-github {
+  border-color: #141414;
+  color: #141414;
+  background-color: transparent; }
+  .bar-button-outline-github.activated {
+    color: #fff;
+    background-color: #141414; }
+
+.bar-button-solid-github {
+  color: #fff;
+  background-color: #000000; }
+  .bar-button-solid-github.activated {
+    color: #fff;
+    background-color: #141414; }
+
+.toolbar[instagram] .toolbar-background {
+  border-color: #194264;
+  background: #235D8D; }
+
+.toolbar[instagram] .toolbar-title,
+.toolbar[instagram] .bar-button-default {
+  color: #fff; }
+
+.bar-button-instagram {
+  color: #235D8D;
+  background-color: transparent; }
+  .bar-button-instagram:hover:not(.disable-hover) {
+    color: #235D8D; }
+  .bar-button-instagram.activated {
+    opacity: .4; }
+
+.bar-button-outline-instagram {
+  border-color: #356a96;
+  color: #356a96;
+  background-color: transparent; }
+  .bar-button-outline-instagram.activated {
+    color: #fff;
+    background-color: #356a96; }
+
+.bar-button-solid-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+  .bar-button-solid-instagram.activated {
+    color: #fff;
+    background-color: #356a96; }
+
 .toolbar[mdc-black] .toolbar-background {
   border-color: #080808;
   background: #212121; }
@@ -10386,134 +10540,12 @@ ion-buttons[right] {
     color: #fff;
     background-color: #e85f14; }
 
-.toolbar[favorite] .toolbar-background {
-  border-color: #4ba65f;
-  background: #69BB7B; }
-
-.toolbar[favorite] .toolbar-title,
-.toolbar[favorite] .bar-button-default {
-  color: #fff; }
-
-.bar-button-favorite {
-  color: #69BB7B;
-  background-color: transparent; }
-  .bar-button-favorite:hover:not(.disable-hover) {
-    color: #69BB7B; }
-  .bar-button-favorite.activated {
-    opacity: .4; }
-
-.bar-button-outline-favorite {
-  border-color: #61ac71;
-  color: #61ac71;
-  background-color: transparent; }
-  .bar-button-outline-favorite.activated {
-    color: #fff;
-    background-color: #61ac71; }
-
-.bar-button-solid-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-  .bar-button-solid-favorite.activated {
-    color: #fff;
-    background-color: #61ac71; }
-
-.toolbar[twitter] .toolbar-background {
-  border-color: #2596e6;
-  background: #53ACEB; }
-
-.toolbar[twitter] .toolbar-title,
-.toolbar[twitter] .bar-button-default {
-  color: #fff; }
-
-.bar-button-twitter {
-  color: #53ACEB;
-  background-color: transparent; }
-  .bar-button-twitter:hover:not(.disable-hover) {
-    color: #53ACEB; }
-  .bar-button-twitter.activated {
-    opacity: .4; }
-
-.bar-button-outline-twitter {
-  border-color: #4c9ed8;
-  color: #4c9ed8;
-  background-color: transparent; }
-  .bar-button-outline-twitter.activated {
-    color: #fff;
-    background-color: #4c9ed8; }
-
-.bar-button-solid-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-  .bar-button-solid-twitter.activated {
-    color: #fff;
-    background-color: #4c9ed8; }
-
-.toolbar[github] .toolbar-background {
-  border-color: black;
-  background: #000000; }
-
-.toolbar[github] .toolbar-title,
-.toolbar[github] .bar-button-default {
-  color: #fff; }
-
-.bar-button-github {
-  color: #000000;
-  background-color: transparent; }
-  .bar-button-github:hover:not(.disable-hover) {
-    color: #000000; }
-  .bar-button-github.activated {
-    opacity: .4; }
-
-.bar-button-outline-github {
-  border-color: #141414;
-  color: #141414;
-  background-color: transparent; }
-  .bar-button-outline-github.activated {
-    color: #fff;
-    background-color: #141414; }
-
-.bar-button-solid-github {
-  color: #fff;
-  background-color: #000000; }
-  .bar-button-solid-github.activated {
-    color: #fff;
-    background-color: #141414; }
-
-.toolbar[instagram] .toolbar-background {
-  border-color: #194264;
-  background: #235D8D; }
-
-.toolbar[instagram] .toolbar-title,
-.toolbar[instagram] .bar-button-default {
-  color: #fff; }
-
-.bar-button-instagram {
-  color: #235D8D;
-  background-color: transparent; }
-  .bar-button-instagram:hover:not(.disable-hover) {
-    color: #235D8D; }
-  .bar-button-instagram.activated {
-    opacity: .4; }
-
-.bar-button-outline-instagram {
-  border-color: #356a96;
-  color: #356a96;
-  background-color: transparent; }
-  .bar-button-outline-instagram.activated {
-    color: #fff;
-    background-color: #356a96; }
-
-.bar-button-solid-instagram {
-  color: #fff;
-  background-color: #235D8D; }
-  .bar-button-solid-instagram.activated {
-    color: #fff;
-    background-color: #356a96; }
-
 ion-nav > ion-page > .toolbar.statusbar-padding:first-child,
 ion-nav > ion-page > ion-header > .toolbar.statusbar-padding:first-child,
 ion-tab > ion-page > ion-header > .toolbar.statusbar-padding:first-child,
-ion-menu > .toolbar.statusbar-padding:first-child {
+ion-tabs > ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child,
+ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child,
+ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child {
   padding-top: 20px;
   height: calc(44px + 20px);
   min-height: calc(44px + 20px); }
@@ -10521,7 +10553,9 @@ ion-menu > .toolbar.statusbar-padding:first-child {
 ion-nav > ion-page > ion-content.statusbar-padding:first-child scroll-content,
 ion-nav > ion-page > ion-header > ion-content.statusbar-padding:first-child scroll-content,
 ion-tab > ion-page > ion-header > ion-content.statusbar-padding:first-child scroll-content,
-ion-menu > ion-content.statusbar-padding:first-child scroll-content {
+ion-tabs > ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child scroll-content,
+ion-menu > .menu-inner > ion-content.statusbar-padding:first-child scroll-content,
+ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child scroll-content {
   padding-top: 20px; }
 
 ion-nav > ion-page > ion-content.statusbar-padding:first-child[padding] scroll-content,
@@ -10530,8 +10564,12 @@ ion-nav > ion-page > ion-header > ion-content.statusbar-padding:first-child[padd
 ion-nav > ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] scroll-content,
 ion-tab > ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] scroll-content,
 ion-tab > ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] scroll-content,
-ion-menu > ion-content.statusbar-padding:first-child[padding] scroll-content,
-ion-menu > ion-content.statusbar-padding:first-child[padding-top] scroll-content {
+ion-tabs > ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding] scroll-content,
+ion-tabs > ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding-top] scroll-content,
+ion-menu > .menu-inner > ion-content.statusbar-padding:first-child[padding] scroll-content,
+ion-menu > .menu-inner > ion-content.statusbar-padding:first-child[padding-top] scroll-content,
+ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child[padding] scroll-content,
+ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child[padding-top] scroll-content {
   padding-top: calc(16px + 20px); }
 
 ion-nav > ion-page > .toolbar.statusbar-padding:first-child ion-segment,
@@ -10540,8 +10578,12 @@ ion-nav > ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-seg
 ion-nav > ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-title,
 ion-tab > ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
 ion-tab > ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-title,
-ion-menu > .toolbar.statusbar-padding:first-child ion-segment,
-ion-menu > .toolbar.statusbar-padding:first-child ion-title {
+ion-tabs > ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
+ion-tabs > ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child ion-title,
+ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-segment,
+ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-title,
+ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
+ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-title {
   padding-top: 20px;
   height: calc(44px + 20px);
   min-height: calc(44px + 20px); }

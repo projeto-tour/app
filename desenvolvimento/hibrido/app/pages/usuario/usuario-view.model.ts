@@ -1,4 +1,4 @@
-import { Usuario } from '../../providers/usuarios/usuario.model';
+import { Usuario } from '../shared';
 
 export class UsuarioView extends Usuario {
     logado: boolean = false;
@@ -6,12 +6,12 @@ export class UsuarioView extends Usuario {
 }
 
 export class Endereco {
-    logradouro: String = "";
-    pais: String = "Brazil";
-    latitude: String = "";
-    longitude: String = "";
-    constructor(public cidade: String = "", 
-                public estado: String = "SP") {
+    logradouro: String = '';
+    pais: String = 'Brazil';
+    latitude: String = '';
+    longitude: String = '';
+    constructor(public cidade: String = '', 
+                public estado: String = 'SP') {
                     
                 }
 }

@@ -2,8 +2,7 @@ import { Component }  from '@angular/core';
 
 import { NavParams, NavController, AlertController } from 'ionic-angular';
 
-import { Agenda } from '../../providers/agendas';
-import { GlobalMethodService } from '../shared';
+import { GlobalMethodService, IAgenda, Agenda } from '../shared';
 
 import { RotaView, RotaService } from './';
 
@@ -16,7 +15,7 @@ import { MapaRotaPage } from '../mapa-rota';
 export class RotaPage {
 
   titulo: string = 'Rotas';
-  agenda: Agenda;
+  agenda: IAgenda = new Agenda();
   rotas: RotaView[] = [];
   mensagenErro: any;
 
@@ -26,7 +25,8 @@ export class RotaPage {
     public _service: RotaService,
     public _globalMethod: GlobalMethodService,
     public _alertCtrl: AlertController) {
-    this.agenda = _navParams.data;
+    this.agenda.$key = _navParams.data;
+    console.log(JSON.stringify(this.agenda));
   }
 
   ionViewLoaded() {

@@ -1,38 +1,19 @@
-import { Usuario } from '../../../providers/usuarios';
-import { PontoInteresse } from './';
-
 /**
- * Referente a avaliação de usuario a um ponto de interesse
+ * Referente a avaliação de usuario
  * 
- * @param id 
- * @param usuario 
- * @param pontoInteresse 
- * @param avaliacao 
- * @param comentario 
- * @param recomendar 
- * @param dataAvaliacao 
+ * @param $key 
+ * @param descricao 
  */
-export class AvaliacaoUsuario {
-    id: number;
-    constructor(public usuario: Usuario,
-        public pontoInteresse: PontoInteresse,
-        public avaliacao: Avaliacao,
-        public comentario: string = "",
-        public recomendar: boolean,
-        public dataAvaliacao: Date) {
+export class Avaliacao implements IAvaliacao {
+    descricao: string;
 
+    constructor(obj?: any) {
+        this.descricao = obj && obj.descricao || null;
     }
 }
 
-/**
- * Referente a avaliação de um ponto de interesse
- * 
- * @param id 
- * @param descricao 
- */
-export class Avaliacao {
-    id: number;
-    constructor(public descricao: string = "") {
-
-    }
+export interface IAvaliacao {
+    $key?: string;
+    descricao: string;
+    avaliacao_usuario?: any;
 }

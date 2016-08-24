@@ -3,9 +3,12 @@ import { Component }  from '@angular/core';
 import { NavParams, NavController, AlertController } from 'ionic-angular';
 import { InAppBrowser }  from 'ionic-native';
 
-import { GlobalMethodService } from '../shared';
+import { Observable } from 'rxjs/Observable';
 
-import { Notificacao, NotificacaoFilterPipe, NotificacaoService } from './';
+import { NotificacaoFilterPipe } from './';
+
+import { GlobalMethodService, INotificacao } from '../shared';
+import { NotificacaoService } from '../../providers/data/notificacao.service';
 
 import { PreferenciaPage } from '../preferencia';
 import { DesenvolvimentoPage } from '../desenvolvimento';
@@ -17,9 +20,9 @@ import { DesenvolvimentoPage } from '../desenvolvimento';
 export class NotificacaoPage {
 
   titulo: string = 'Notificações';
-  notificacoes: Notificacao[] = [];
   dados: any;
   filtro: string = '';
+  notificacoes: Observable<any>;
   mensagenErro: any;
 
   constructor(
@@ -29,45 +32,21 @@ export class NotificacaoPage {
     public _globalMethod: GlobalMethodService,
     public _alertCtrl: AlertController) {
     this.dados = this._navParams.data;
+    this.notificacoes = _service.getMock();
   }
-
-  ionViewLoaded() {
-    this.getNotificacoes();
-  }
-
-  ionViewWillEnter() { }
-
-  ionViewDidEnter() { }
-
-  ionViewWillLeave() { }
-
-  ionViewDidLeave() { }
-
-  ionViewWillUnload() { }
-
-  ionViewDidUnload() { }
 
   carregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  marcarComoLida(): void {
+  marcarComoLida(notificacao: INotificacao): void {
   }
 
-  visualizar(notificacao: Notificacao): void {
-    new InAppBrowser(`http://placehold.it/320?text${notificacao.descricao}`, '_system');
-    // this._globalMethod.carregarPagina(DesenvolvimentoPage, { title: 'Detalhes da Notificação' }, true, this._navCtrl);
+  visualizar(notificacao: INotificacao): void {
+    new InAppBrowser(notificacao.url, '_system');
   }
 
-  atualizar(refresher) {
-    console.log('Begin async operation', refresher);
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-
-  excluir(notificacao: Notificacao): void {
+  excluir(notificacao: INotificacao): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: 'Deseja realmente excluir essa notificação?',
@@ -87,21 +66,6 @@ export class NotificacaoPage {
       ]
     });
     confirm.present();
-  }
-
-  private getNotificacoes(): void {
-    this._service.getNotificacoes()
-      .subscribe(
-      (data: Notificacao[]) => { // -- on sucess
-        this.notificacoes = data;
-      },
-      error => { // -- on error
-        this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-      },
-      () => { // -- on completion
-
-      }
-      );
   }
 
 }

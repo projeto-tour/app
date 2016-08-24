@@ -3,7 +3,7 @@
     <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-    <ion-title>{{titulo}}</ion-title>
+    <ion-title>{{ titulo }}</ion-title>
     <ion-buttons end>
       <button (click)="carregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
@@ -18,29 +18,22 @@
 
 <ion-content class="historico cards-bg">
 
-  <!--<ion-refresher (ionRefresh)="sincronizar($event)">
-    <ion-refresher-content pullingText="Puxe para atualizar" refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>-->
-  
   <ion-row *ngFor="let i of rows">
     <ion-col width-50 *ngFor="let historico of historicos | slice:(i*2):(i+1)*2">
       <ion-card class="adv-map">
         <div style="position: relative">
-          <img [src]='historico.destaque'>
+          <img [src]='historico.tipo_agenda.destaque'>
           <button light small fab fab-left fab-top class="fab-map" (click)="carregarAgendas(historico)">
-              <ion-icon [name]='historico.icone'></ion-icon>
+              <ion-icon [name]='historico.tipo_agenda.icone'></ion-icon>
             </button>
         </div>
         <br>
         <ion-item>
-          <h2>{{historico.descricao}}</h2>
-          <p>{{historico.qtdeTodos}} Agendas realizadas</p>
+          <h2>{{ historico.tipo_agenda.descricao }}</h2>
         </ion-item>
         <ion-item actions>
           <button mdc-orange clear item-left (click)="carregarAgendas(historico)">
-              <ion-icon name='star'></ion-icon>
-              {{historico.qtdeFavoritos}} Favoritos
+              <ion-badge mdc-orange>{{ historico.qtde_todos }}</ion-badge>&nbsp;&nbsp;Agendas
             </button>
           <button mdc-grey clear item-right (click)="gerenciar(historico)">
                 <ion-icon name='md-more'></ion-icon>

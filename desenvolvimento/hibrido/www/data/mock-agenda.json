@@ -1,113 +1,78 @@
 [
   {
-    "id": "1",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Passeio"
-    },
+    "$key": "1",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Passeio",
     "descricao": "Visita aos meus pais, familiares e amigos em Ipirá - Baiha",
-    "dataInicio": "2015-03-06 08:00:00",
-    "dataFim": "2015-03-09 10:00:00",
-    "dataCriacao": "2015-02-10 20:38:00",
+    "data_inicio": "2015-03-06 08:00:00",
+    "data_fim": "2015-03-09 10:00:00",
+    "data_criacao": "2015-02-10 20:38:00",
     "distancia": "2320 km",
     "favorito": false
   },
   {
-    "id": "2",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Acadêmico"
-    },
+    "$key": "2",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Acadêmico",
     "descricao": "The Developer’s Conference (TDC), São Paulo - SP",
-    "dataInicio": "2015-05-12 08:00:00",
-    "dataFim": "2015-05-18 20:00:00",
-    "dataCriacao": "2015-05-10 20:00:00",
+    "data_inicio": "2015-05-12 08:00:00",
+    "data_fim": "2015-05-18 20:00:00",
+    "data_criacao": "2015-05-10 20:00:00",
     "distancia": "340 km",
     "favorito": false
   },
   {
-    "id": "3",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Passeio"
-    },
+    "$key": "3",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Passeio",
     "descricao": "Visita aos pais da minha esposa, familiares e amigos em Ribeirão Preto - SP",
-    "dataInicio": "2015-07-06 08:00:00",
-    "dataFim": "2015-07-09 20:00:00",
-    "dataCriacao": "2015-06-10 20:38:00",
+    "data_inicio": "2015-07-06 08:00:00",
+    "data_fim": "2015-07-09 20:00:00",
+    "data_criacao": "2015-06-10 20:38:00",
     "distancia": "2320 km",
     "favorito": true
   },
   {
-    "id": "4",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Passeio"
-    },
+    "$key": "4",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Passeio",
     "descricao": "Viagem de reencontro com amigos da faculdade em Jardins, São Paulo - SP",
-    "dataInicio": "2015-08-07 08:00:00",
-    "dataFim": "2015-08-08 23:00:00",
-    "dataCriacao": "2015-07-30 20:38:00",
+    "data_inicio": "2015-08-07 08:00:00",
+    "data_fim": "2015-08-08 23:00:00",
+    "data_criacao": "2015-07-30 20:38:00",
     "distancia": "320 km",
     "favorito": true
   },
   {
-    "id": "5",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Acadêmico"
-    },
+    "$key": "5",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Acadêmico",
     "descricao": "Mobile Brazil Conference, Rio de Janeiro - RJ",
-    "dataInicio": "2015-09-01 08:00:00",
-    "dataFim": "2015-09-06 20:00:00",
-    "dataCriacao": "2015-08-30 20:38:00",
+    "data_inicio": "2015-09-01 08:00:00",
+    "data_fim": "2015-09-06 20:00:00",
+    "data_criacao": "2015-08-30 20:38:00",
     "distancia": "1200 km",
     "favorito": false
   },
   {
-    "id": "6",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Acadêmico"
-    },
+    "$key": "6",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Acadêmico",
     "descricao": "The Developer’s Conference (TDC), São Paulo - SP",
-    "dataInicio": "2016-07-06 08:00:00",
-    "dataFim": "2016-07-09 20:00:00",
-    "dataCriacao": "2016-06-01 20:00:00",
+    "data_inicio": "2016-07-06 08:00:00",
+    "data_fim": "2016-07-09 20:00:00",
+    "data_criacao": "2016-06-01 20:00:00",
     "distancia": "340 km",
     "favorito": true
   },
   {
-    "id": "7",
-    "usuario": {
-      "id": 1
-    },
-    "tipoAgenda": {
-      "id": 1,
-      "descricao": "Saúde"
-    },
-    "descricao": "Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo, São Paulo - SP",
-    "dataInicio": "2016-09-01 08:00:00",
-    "dataFim": "2016-09-04 20:00:00",
-    "dataCriacao": "2016-06-03 20:00:00",
+    "$key": "7",
+    "usuario": "Nome de Usuário",
+    "tipo_agenda": "Saúde",
+    "descricao": "Hospital das Clínicas da Faculdade de Medicina da Univers$keyade de São Paulo, São Paulo - SP",
+    "data_inicio": "2016-09-01 08:00:00",
+    "data_fim": "2016-09-04 20:00:00",
+    "data_criacao": "2016-06-03 20:00:00",
     "distancia": "340 km",
     "favorito": false
   }

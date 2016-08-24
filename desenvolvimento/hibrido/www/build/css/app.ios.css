@@ -4599,6 +4599,82 @@ sup[dark],
 ion-icon[dark] {
   color: #222; }
 
+h1[favorite],
+h2[favorite],
+h3[favorite],
+h4[favorite],
+h5[favorite],
+h6[favorite],
+p[favorite],
+span[favorite],
+a:not([button])[favorite],
+small[favorite],
+b[favorite],
+i[favorite],
+strong[favorite],
+em[favorite],
+sub[favorite],
+sup[favorite],
+ion-icon[favorite] {
+  color: #69BB7B; }
+
+h1[twitter],
+h2[twitter],
+h3[twitter],
+h4[twitter],
+h5[twitter],
+h6[twitter],
+p[twitter],
+span[twitter],
+a:not([button])[twitter],
+small[twitter],
+b[twitter],
+i[twitter],
+strong[twitter],
+em[twitter],
+sub[twitter],
+sup[twitter],
+ion-icon[twitter] {
+  color: #53ACEB; }
+
+h1[github],
+h2[github],
+h3[github],
+h4[github],
+h5[github],
+h6[github],
+p[github],
+span[github],
+a:not([button])[github],
+small[github],
+b[github],
+i[github],
+strong[github],
+em[github],
+sub[github],
+sup[github],
+ion-icon[github] {
+  color: #000000; }
+
+h1[instagram],
+h2[instagram],
+h3[instagram],
+h4[instagram],
+h5[instagram],
+h6[instagram],
+p[instagram],
+span[instagram],
+a:not([button])[instagram],
+small[instagram],
+b[instagram],
+i[instagram],
+strong[instagram],
+em[instagram],
+sub[instagram],
+sup[instagram],
+ion-icon[instagram] {
+  color: #235D8D; }
+
 h1[mdc-black],
 h2[mdc-black],
 h3[mdc-black],
@@ -4769,82 +4845,6 @@ sub[mdc-orange],
 sup[mdc-orange],
 ion-icon[mdc-orange] {
   color: #E65100; }
-
-h1[favorite],
-h2[favorite],
-h3[favorite],
-h4[favorite],
-h5[favorite],
-h6[favorite],
-p[favorite],
-span[favorite],
-a:not([button])[favorite],
-small[favorite],
-b[favorite],
-i[favorite],
-strong[favorite],
-em[favorite],
-sub[favorite],
-sup[favorite],
-ion-icon[favorite] {
-  color: #69BB7B; }
-
-h1[twitter],
-h2[twitter],
-h3[twitter],
-h4[twitter],
-h5[twitter],
-h6[twitter],
-p[twitter],
-span[twitter],
-a:not([button])[twitter],
-small[twitter],
-b[twitter],
-i[twitter],
-strong[twitter],
-em[twitter],
-sub[twitter],
-sup[twitter],
-ion-icon[twitter] {
-  color: #53ACEB; }
-
-h1[github],
-h2[github],
-h3[github],
-h4[github],
-h5[github],
-h6[github],
-p[github],
-span[github],
-a:not([button])[github],
-small[github],
-b[github],
-i[github],
-strong[github],
-em[github],
-sub[github],
-sup[github],
-ion-icon[github] {
-  color: #000000; }
-
-h1[instagram],
-h2[instagram],
-h3[instagram],
-h4[instagram],
-h5[instagram],
-h6[instagram],
-p[instagram],
-span[instagram],
-a:not([button])[instagram],
-small[instagram],
-b[instagram],
-i[instagram],
-strong[instagram],
-em[instagram],
-sub[instagram],
-sup[instagram],
-ion-icon[instagram] {
-  color: #235D8D; }
 
 ion-action-sheet {
   position: absolute;
@@ -5235,6 +5235,22 @@ ion-badge {
   color: #fff;
   background-color: #222; }
 
+.badge-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+
+.badge-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+
+.badge-github {
+  color: #fff;
+  background-color: #000000; }
+
+.badge-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+
 .badge-mdc-black {
   color: #fff;
   background-color: #212121; }
@@ -5270,22 +5286,6 @@ ion-badge {
 .badge-mdc-orange {
   color: #fff;
   background-color: #E65100; }
-
-.badge-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-
-.badge-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-
-.badge-github {
-  color: #fff;
-  background-color: #000000; }
-
-.badge-instagram {
-  color: #fff;
-  background-color: #235D8D; }
 
 .button {
   -webkit-user-select: none;
@@ -5545,6 +5545,98 @@ ion-button-effect {
   .button-clear-dark:hover:not(.disable-hover) {
     color: #222; }
 
+.button-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+  .button-favorite.activated {
+    background-color: #61ac71; }
+
+.button-outline-favorite {
+  border-color: #69BB7B;
+  color: #69BB7B;
+  background-color: transparent; }
+  .button-outline-favorite.activated {
+    color: #fff;
+    background-color: #69BB7B; }
+
+.button-clear-favorite {
+  border-color: transparent;
+  color: #69BB7B;
+  background-color: transparent; }
+  .button-clear-favorite.activated {
+    opacity: .4; }
+  .button-clear-favorite:hover:not(.disable-hover) {
+    color: #69BB7B; }
+
+.button-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+  .button-twitter.activated {
+    background-color: #4c9ed8; }
+
+.button-outline-twitter {
+  border-color: #53ACEB;
+  color: #53ACEB;
+  background-color: transparent; }
+  .button-outline-twitter.activated {
+    color: #fff;
+    background-color: #53ACEB; }
+
+.button-clear-twitter {
+  border-color: transparent;
+  color: #53ACEB;
+  background-color: transparent; }
+  .button-clear-twitter.activated {
+    opacity: .4; }
+  .button-clear-twitter:hover:not(.disable-hover) {
+    color: #53ACEB; }
+
+.button-github {
+  color: #fff;
+  background-color: #000000; }
+  .button-github.activated {
+    background-color: #141414; }
+
+.button-outline-github {
+  border-color: #000000;
+  color: #000000;
+  background-color: transparent; }
+  .button-outline-github.activated {
+    color: #fff;
+    background-color: #000000; }
+
+.button-clear-github {
+  border-color: transparent;
+  color: #000000;
+  background-color: transparent; }
+  .button-clear-github.activated {
+    opacity: .4; }
+  .button-clear-github:hover:not(.disable-hover) {
+    color: #000000; }
+
+.button-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+  .button-instagram.activated {
+    background-color: #356a96; }
+
+.button-outline-instagram {
+  border-color: #235D8D;
+  color: #235D8D;
+  background-color: transparent; }
+  .button-outline-instagram.activated {
+    color: #fff;
+    background-color: #235D8D; }
+
+.button-clear-instagram {
+  border-color: transparent;
+  color: #235D8D;
+  background-color: transparent; }
+  .button-clear-instagram.activated {
+    opacity: .4; }
+  .button-clear-instagram:hover:not(.disable-hover) {
+    color: #235D8D; }
+
 .button-mdc-black {
   color: #fff;
   background-color: #212121; }
@@ -5751,98 +5843,6 @@ ion-button-effect {
     opacity: .4; }
   .button-clear-mdc-orange:hover:not(.disable-hover) {
     color: #E65100; }
-
-.button-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-  .button-favorite.activated {
-    background-color: #61ac71; }
-
-.button-outline-favorite {
-  border-color: #69BB7B;
-  color: #69BB7B;
-  background-color: transparent; }
-  .button-outline-favorite.activated {
-    color: #fff;
-    background-color: #69BB7B; }
-
-.button-clear-favorite {
-  border-color: transparent;
-  color: #69BB7B;
-  background-color: transparent; }
-  .button-clear-favorite.activated {
-    opacity: .4; }
-  .button-clear-favorite:hover:not(.disable-hover) {
-    color: #69BB7B; }
-
-.button-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-  .button-twitter.activated {
-    background-color: #4c9ed8; }
-
-.button-outline-twitter {
-  border-color: #53ACEB;
-  color: #53ACEB;
-  background-color: transparent; }
-  .button-outline-twitter.activated {
-    color: #fff;
-    background-color: #53ACEB; }
-
-.button-clear-twitter {
-  border-color: transparent;
-  color: #53ACEB;
-  background-color: transparent; }
-  .button-clear-twitter.activated {
-    opacity: .4; }
-  .button-clear-twitter:hover:not(.disable-hover) {
-    color: #53ACEB; }
-
-.button-github {
-  color: #fff;
-  background-color: #000000; }
-  .button-github.activated {
-    background-color: #141414; }
-
-.button-outline-github {
-  border-color: #000000;
-  color: #000000;
-  background-color: transparent; }
-  .button-outline-github.activated {
-    color: #fff;
-    background-color: #000000; }
-
-.button-clear-github {
-  border-color: transparent;
-  color: #000000;
-  background-color: transparent; }
-  .button-clear-github.activated {
-    opacity: .4; }
-  .button-clear-github:hover:not(.disable-hover) {
-    color: #000000; }
-
-.button-instagram {
-  color: #fff;
-  background-color: #235D8D; }
-  .button-instagram.activated {
-    background-color: #356a96; }
-
-.button-outline-instagram {
-  border-color: #235D8D;
-  color: #235D8D;
-  background-color: transparent; }
-  .button-outline-instagram.activated {
-    color: #fff;
-    background-color: #235D8D; }
-
-.button-clear-instagram {
-  border-color: transparent;
-  color: #235D8D;
-  background-color: transparent; }
-  .button-clear-instagram.activated {
-    opacity: .4; }
-  .button-clear-instagram:hover:not(.disable-hover) {
-    color: #235D8D; }
 
 .button-fab {
   position: absolute;
@@ -6052,6 +6052,30 @@ ion-checkbox[dark] .checkbox-checked {
   ion-checkbox[dark] .checkbox-checked .checkbox-inner {
     border-color: #fff; }
 
+ion-checkbox[favorite] .checkbox-checked {
+  border-color: #69BB7B;
+  background-color: #69BB7B; }
+  ion-checkbox[favorite] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[twitter] .checkbox-checked {
+  border-color: #53ACEB;
+  background-color: #53ACEB; }
+  ion-checkbox[twitter] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[github] .checkbox-checked {
+  border-color: #000000;
+  background-color: #000000; }
+  ion-checkbox[github] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
+ion-checkbox[instagram] .checkbox-checked {
+  border-color: #235D8D;
+  background-color: #235D8D; }
+  ion-checkbox[instagram] .checkbox-checked .checkbox-inner {
+    border-color: #fff; }
+
 ion-checkbox[mdc-black] .checkbox-checked {
   border-color: #212121;
   background-color: #212121; }
@@ -6104,30 +6128,6 @@ ion-checkbox[mdc-orange] .checkbox-checked {
   border-color: #E65100;
   background-color: #E65100; }
   ion-checkbox[mdc-orange] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[favorite] .checkbox-checked {
-  border-color: #69BB7B;
-  background-color: #69BB7B; }
-  ion-checkbox[favorite] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[twitter] .checkbox-checked {
-  border-color: #53ACEB;
-  background-color: #53ACEB; }
-  ion-checkbox[twitter] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[github] .checkbox-checked {
-  border-color: #000000;
-  background-color: #000000; }
-  ion-checkbox[github] .checkbox-checked .checkbox-inner {
-    border-color: #fff; }
-
-ion-checkbox[instagram] .checkbox-checked {
-  border-color: #235D8D;
-  background-color: #235D8D; }
-  ion-checkbox[instagram] .checkbox-checked .checkbox-inner {
     border-color: #fff; }
 
 ion-chip {
@@ -6203,6 +6203,22 @@ ion-chip ion-icon[dark] {
   color: #fff;
   background-color: #222; }
 
+ion-chip ion-icon[favorite] {
+  color: #fff;
+  background-color: #69BB7B; }
+
+ion-chip ion-icon[twitter] {
+  color: #fff;
+  background-color: #53ACEB; }
+
+ion-chip ion-icon[github] {
+  color: #fff;
+  background-color: #000000; }
+
+ion-chip ion-icon[instagram] {
+  color: #fff;
+  background-color: #235D8D; }
+
 ion-chip ion-icon[mdc-black] {
   color: #fff;
   background-color: #212121; }
@@ -6238,22 +6254,6 @@ ion-chip ion-icon[mdc-grey-800] {
 ion-chip ion-icon[mdc-orange] {
   color: #fff;
   background-color: #E65100; }
-
-ion-chip ion-icon[favorite] {
-  color: #fff;
-  background-color: #69BB7B; }
-
-ion-chip ion-icon[twitter] {
-  color: #fff;
-  background-color: #53ACEB; }
-
-ion-chip ion-icon[github] {
-  color: #fff;
-  background-color: #000000; }
-
-ion-chip ion-icon[instagram] {
-  color: #fff;
-  background-color: #235D8D; }
 
 [no-padding],
 [no-padding] scroll-content {
@@ -6989,6 +6989,22 @@ ion-item-divider[dark] {
   color: #fff;
   background-color: #222; }
 
+ion-item-divider[favorite] {
+  color: #fff;
+  background-color: #69BB7B; }
+
+ion-item-divider[twitter] {
+  color: #fff;
+  background-color: #53ACEB; }
+
+ion-item-divider[github] {
+  color: #fff;
+  background-color: #000000; }
+
+ion-item-divider[instagram] {
+  color: #fff;
+  background-color: #235D8D; }
+
 ion-item-divider[mdc-black] {
   color: #fff;
   background-color: #212121; }
@@ -7024,22 +7040,6 @@ ion-item-divider[mdc-grey-800] {
 ion-item-divider[mdc-orange] {
   color: #fff;
   background-color: #E65100; }
-
-ion-item-divider[favorite] {
-  color: #fff;
-  background-color: #69BB7B; }
-
-ion-item-divider[twitter] {
-  color: #fff;
-  background-color: #53ACEB; }
-
-ion-item-divider[github] {
-  color: #fff;
-  background-color: #000000; }
-
-ion-item-divider[instagram] {
-  color: #fff;
-  background-color: #235D8D; }
 
 ion-item-sliding {
   background-color: #fff; }
@@ -7164,6 +7164,18 @@ ion-label[light] {
 ion-label[dark] {
   color: #222; }
 
+ion-label[favorite] {
+  color: #69BB7B; }
+
+ion-label[twitter] {
+  color: #53ACEB; }
+
+ion-label[github] {
+  color: #000000; }
+
+ion-label[instagram] {
+  color: #235D8D; }
+
 ion-label[mdc-black] {
   color: #212121; }
 
@@ -7190,18 +7202,6 @@ ion-label[mdc-grey-800] {
 
 ion-label[mdc-orange] {
   color: #E65100; }
-
-ion-label[favorite] {
-  color: #69BB7B; }
-
-ion-label[twitter] {
-  color: #53ACEB; }
-
-ion-label[github] {
-  color: #000000; }
-
-ion-label[instagram] {
-  color: #235D8D; }
 
 ion-list-header {
   display: -webkit-box;
@@ -7781,6 +7781,26 @@ ion-radio[dark] .radio-checked {
   ion-radio[dark] .radio-checked .radio-inner {
     border-color: #222; }
 
+ion-radio[favorite] .radio-checked {
+  color: #69BB7B; }
+  ion-radio[favorite] .radio-checked .radio-inner {
+    border-color: #69BB7B; }
+
+ion-radio[twitter] .radio-checked {
+  color: #53ACEB; }
+  ion-radio[twitter] .radio-checked .radio-inner {
+    border-color: #53ACEB; }
+
+ion-radio[github] .radio-checked {
+  color: #000000; }
+  ion-radio[github] .radio-checked .radio-inner {
+    border-color: #000000; }
+
+ion-radio[instagram] .radio-checked {
+  color: #235D8D; }
+  ion-radio[instagram] .radio-checked .radio-inner {
+    border-color: #235D8D; }
+
 ion-radio[mdc-black] .radio-checked {
   color: #212121; }
   ion-radio[mdc-black] .radio-checked .radio-inner {
@@ -7825,26 +7845,6 @@ ion-radio[mdc-orange] .radio-checked {
   color: #E65100; }
   ion-radio[mdc-orange] .radio-checked .radio-inner {
     border-color: #E65100; }
-
-ion-radio[favorite] .radio-checked {
-  color: #69BB7B; }
-  ion-radio[favorite] .radio-checked .radio-inner {
-    border-color: #69BB7B; }
-
-ion-radio[twitter] .radio-checked {
-  color: #53ACEB; }
-  ion-radio[twitter] .radio-checked .radio-inner {
-    border-color: #53ACEB; }
-
-ion-radio[github] .radio-checked {
-  color: #000000; }
-  ion-radio[github] .radio-checked .radio-inner {
-    border-color: #000000; }
-
-ion-radio[instagram] .radio-checked {
-  color: #235D8D; }
-  ion-radio[instagram] .radio-checked .radio-inner {
-    border-color: #235D8D; }
 
 .item-range .item-inner {
   overflow: visible; }
@@ -8011,6 +8011,22 @@ ion-range[dark] .range-bar-active,
 ion-range[dark] .range-tick-active {
   background: #222; }
 
+ion-range[favorite] .range-bar-active,
+ion-range[favorite] .range-tick-active {
+  background: #69BB7B; }
+
+ion-range[twitter] .range-bar-active,
+ion-range[twitter] .range-tick-active {
+  background: #53ACEB; }
+
+ion-range[github] .range-bar-active,
+ion-range[github] .range-tick-active {
+  background: #000000; }
+
+ion-range[instagram] .range-bar-active,
+ion-range[instagram] .range-tick-active {
+  background: #235D8D; }
+
 ion-range[mdc-black] .range-bar-active,
 ion-range[mdc-black] .range-tick-active {
   background: #212121; }
@@ -8046,22 +8062,6 @@ ion-range[mdc-grey-800] .range-tick-active {
 ion-range[mdc-orange] .range-bar-active,
 ion-range[mdc-orange] .range-tick-active {
   background: #E65100; }
-
-ion-range[favorite] .range-bar-active,
-ion-range[favorite] .range-tick-active {
-  background: #69BB7B; }
-
-ion-range[twitter] .range-bar-active,
-ion-range[twitter] .range-tick-active {
-  background: #53ACEB; }
-
-ion-range[github] .range-bar-active,
-ion-range[github] .range-tick-active {
-  background: #000000; }
-
-ion-range[instagram] .range-bar-active,
-ion-range[instagram] .range-tick-active {
-  background: #235D8D; }
 
 ion-searchbar {
   position: relative;
@@ -8329,6 +8329,106 @@ ion-searchbar[dark] .searchbar-ios-cancel {
 .toolbar[dark] ion-searchbar .searchbar-ios-cancel {
   color: #fff; }
 
+ion-searchbar[favorite] .searchbar-ios-cancel {
+  color: #69BB7B; }
+  ion-searchbar[favorite] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #61ac71; }
+
+.toolbar[favorite] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[favorite] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[favorite] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[favorite] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[favorite] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[favorite] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[favorite] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[twitter] .searchbar-ios-cancel {
+  color: #53ACEB; }
+  ion-searchbar[twitter] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #4c9ed8; }
+
+.toolbar[twitter] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[twitter] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[twitter] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[twitter] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[twitter] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[twitter] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[twitter] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[github] .searchbar-ios-cancel {
+  color: #000000; }
+  ion-searchbar[github] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #141414; }
+
+.toolbar[github] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[github] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[github] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[github] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[github] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[github] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[github] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
+ion-searchbar[instagram] .searchbar-ios-cancel {
+  color: #235D8D; }
+  ion-searchbar[instagram] .searchbar-ios-cancel:hover:not(.disable-hover) {
+    color: #356a96; }
+
+.toolbar[instagram] ion-searchbar .searchbar-search-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
+
+.toolbar[instagram] ion-searchbar .searchbar-input {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08); }
+  .toolbar[instagram] ion-searchbar .searchbar-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[instagram] ion-searchbar .searchbar-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5); }
+  .toolbar[instagram] ion-searchbar .searchbar-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+.toolbar[instagram] ion-searchbar .searchbar-clear-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
+
+.toolbar[instagram] ion-searchbar .searchbar-ios-cancel {
+  color: #fff; }
+
 ion-searchbar[mdc-black] .searchbar-ios-cancel {
   color: #212121; }
   ion-searchbar[mdc-black] .searchbar-ios-cancel:hover:not(.disable-hover) {
@@ -8554,106 +8654,6 @@ ion-searchbar[mdc-orange] .searchbar-ios-cancel {
 .toolbar[mdc-orange] ion-searchbar .searchbar-ios-cancel {
   color: #fff; }
 
-ion-searchbar[favorite] .searchbar-ios-cancel {
-  color: #69BB7B; }
-  ion-searchbar[favorite] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #61ac71; }
-
-.toolbar[favorite] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[favorite] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[favorite] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[favorite] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[favorite] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[favorite] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[favorite] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[twitter] .searchbar-ios-cancel {
-  color: #53ACEB; }
-  ion-searchbar[twitter] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #4c9ed8; }
-
-.toolbar[twitter] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[twitter] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[twitter] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[twitter] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[twitter] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[twitter] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[twitter] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[github] .searchbar-ios-cancel {
-  color: #000000; }
-  ion-searchbar[github] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #141414; }
-
-.toolbar[github] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[github] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[github] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[github] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[github] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[github] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[github] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
-ion-searchbar[instagram] .searchbar-ios-cancel {
-  color: #235D8D; }
-  ion-searchbar[instagram] .searchbar-ios-cancel:hover:not(.disable-hover) {
-    color: #356a96; }
-
-.toolbar[instagram] ion-searchbar .searchbar-search-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(255,%20255,%20255,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>"); }
-
-.toolbar[instagram] ion-searchbar .searchbar-input {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08); }
-  .toolbar[instagram] ion-searchbar .searchbar-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[instagram] ion-searchbar .searchbar-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.5); }
-  .toolbar[instagram] ion-searchbar .searchbar-input::-webkit-input-placeholder {
-    text-indent: 0;
-    color: rgba(255, 255, 255, 0.5); }
-
-.toolbar[instagram] ion-searchbar .searchbar-clear-icon {
-  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(255,%20255,%20255,%200.5)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>"); }
-
-.toolbar[instagram] ion-searchbar .searchbar-ios-cancel {
-  color: #fff; }
-
 ion-segment {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8830,6 +8830,74 @@ ion-segment[dark] .segment-button-disabled {
 .toolbar[dark] .segment-button.segment-activated {
   color: #222; }
 
+ion-segment[favorite] .segment-button {
+  border-color: #69BB7B;
+  color: #69BB7B; }
+  ion-segment[favorite] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(105, 187, 123, 0.1); }
+  ion-segment[favorite] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(105, 187, 123, 0.16); }
+  ion-segment[favorite] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #69BB7B; }
+
+ion-segment[favorite] .segment-button-disabled {
+  color: rgba(105, 187, 123, 0.3); }
+
+.toolbar[favorite] .segment-button.segment-activated {
+  color: #69BB7B; }
+
+ion-segment[twitter] .segment-button {
+  border-color: #53ACEB;
+  color: #53ACEB; }
+  ion-segment[twitter] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(83, 172, 235, 0.1); }
+  ion-segment[twitter] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(83, 172, 235, 0.16); }
+  ion-segment[twitter] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #53ACEB; }
+
+ion-segment[twitter] .segment-button-disabled {
+  color: rgba(83, 172, 235, 0.3); }
+
+.toolbar[twitter] .segment-button.segment-activated {
+  color: #53ACEB; }
+
+ion-segment[github] .segment-button {
+  border-color: #000000;
+  color: #000000; }
+  ion-segment[github] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(0, 0, 0, 0.1); }
+  ion-segment[github] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(0, 0, 0, 0.16); }
+  ion-segment[github] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #000000; }
+
+ion-segment[github] .segment-button-disabled {
+  color: rgba(0, 0, 0, 0.3); }
+
+.toolbar[github] .segment-button.segment-activated {
+  color: #000000; }
+
+ion-segment[instagram] .segment-button {
+  border-color: #235D8D;
+  color: #235D8D; }
+  ion-segment[instagram] .segment-button:hover:not(.segment-activated) {
+    background-color: rgba(35, 93, 141, 0.1); }
+  ion-segment[instagram] .segment-button:active:not(.segment-activated) {
+    background-color: rgba(35, 93, 141, 0.16); }
+  ion-segment[instagram] .segment-button.segment-activated {
+    color: #fff;
+    background-color: #235D8D; }
+
+ion-segment[instagram] .segment-button-disabled {
+  color: rgba(35, 93, 141, 0.3); }
+
+.toolbar[instagram] .segment-button.segment-activated {
+  color: #235D8D; }
+
 ion-segment[mdc-black] .segment-button {
   border-color: #212121;
   color: #212121; }
@@ -8982,74 +9050,6 @@ ion-segment[mdc-orange] .segment-button-disabled {
 
 .toolbar[mdc-orange] .segment-button.segment-activated {
   color: #E65100; }
-
-ion-segment[favorite] .segment-button {
-  border-color: #69BB7B;
-  color: #69BB7B; }
-  ion-segment[favorite] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(105, 187, 123, 0.1); }
-  ion-segment[favorite] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(105, 187, 123, 0.16); }
-  ion-segment[favorite] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #69BB7B; }
-
-ion-segment[favorite] .segment-button-disabled {
-  color: rgba(105, 187, 123, 0.3); }
-
-.toolbar[favorite] .segment-button.segment-activated {
-  color: #69BB7B; }
-
-ion-segment[twitter] .segment-button {
-  border-color: #53ACEB;
-  color: #53ACEB; }
-  ion-segment[twitter] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(83, 172, 235, 0.1); }
-  ion-segment[twitter] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(83, 172, 235, 0.16); }
-  ion-segment[twitter] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #53ACEB; }
-
-ion-segment[twitter] .segment-button-disabled {
-  color: rgba(83, 172, 235, 0.3); }
-
-.toolbar[twitter] .segment-button.segment-activated {
-  color: #53ACEB; }
-
-ion-segment[github] .segment-button {
-  border-color: #000000;
-  color: #000000; }
-  ion-segment[github] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(0, 0, 0, 0.1); }
-  ion-segment[github] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(0, 0, 0, 0.16); }
-  ion-segment[github] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #000000; }
-
-ion-segment[github] .segment-button-disabled {
-  color: rgba(0, 0, 0, 0.3); }
-
-.toolbar[github] .segment-button.segment-activated {
-  color: #000000; }
-
-ion-segment[instagram] .segment-button {
-  border-color: #235D8D;
-  color: #235D8D; }
-  ion-segment[instagram] .segment-button:hover:not(.segment-activated) {
-    background-color: rgba(35, 93, 141, 0.1); }
-  ion-segment[instagram] .segment-button:active:not(.segment-activated) {
-    background-color: rgba(35, 93, 141, 0.16); }
-  ion-segment[instagram] .segment-button.segment-activated {
-    color: #fff;
-    background-color: #235D8D; }
-
-ion-segment[instagram] .segment-button-disabled {
-  color: rgba(35, 93, 141, 0.3); }
-
-.toolbar[instagram] .segment-button.segment-activated {
-  color: #235D8D; }
 
 ion-select {
   display: -webkit-box;
@@ -9345,6 +9345,42 @@ ion-tabs[dark] ion-tabbar {
   ion-tabs[dark] ion-tabbar .tab-button[aria-selected=true] {
     color: #fff; }
 
+ion-tabs[favorite] ion-tabbar {
+  border-color: #4ba65f;
+  background-color: #69BB7B; }
+  ion-tabs[favorite] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[favorite] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[favorite] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[twitter] ion-tabbar {
+  border-color: #2596e6;
+  background-color: #53ACEB; }
+  ion-tabs[twitter] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[twitter] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[twitter] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[github] ion-tabbar {
+  border-color: black;
+  background-color: #000000; }
+  ion-tabs[github] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[github] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[github] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
+ion-tabs[instagram] ion-tabbar {
+  border-color: #194264;
+  background-color: #235D8D; }
+  ion-tabs[instagram] ion-tabbar .tab-button {
+    color: #fff; }
+  ion-tabs[instagram] ion-tabbar .tab-button:hover:not(.disable-hover),
+  ion-tabs[instagram] ion-tabbar .tab-button[aria-selected=true] {
+    color: #fff; }
+
 ion-tabs[mdc-black] ion-tabbar {
   border-color: #080808;
   background-color: #212121; }
@@ -9424,42 +9460,6 @@ ion-tabs[mdc-orange] ion-tabbar {
     color: #fff; }
   ion-tabs[mdc-orange] ion-tabbar .tab-button:hover:not(.disable-hover),
   ion-tabs[mdc-orange] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[favorite] ion-tabbar {
-  border-color: #4ba65f;
-  background-color: #69BB7B; }
-  ion-tabs[favorite] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[favorite] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[favorite] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[twitter] ion-tabbar {
-  border-color: #2596e6;
-  background-color: #53ACEB; }
-  ion-tabs[twitter] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[twitter] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[twitter] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[github] ion-tabbar {
-  border-color: black;
-  background-color: #000000; }
-  ion-tabs[github] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[github] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[github] ion-tabbar .tab-button[aria-selected=true] {
-    color: #fff; }
-
-ion-tabs[instagram] ion-tabbar {
-  border-color: #194264;
-  background-color: #235D8D; }
-  ion-tabs[instagram] ion-tabbar .tab-button {
-    color: #fff; }
-  ion-tabs[instagram] ion-tabbar .tab-button:hover:not(.disable-hover),
-  ion-tabs[instagram] ion-tabbar .tab-button[aria-selected=true] {
     color: #fff; }
 
 ion-toggle {
@@ -9557,6 +9557,18 @@ ion-toggle[light] .toggle-checked {
 ion-toggle[dark] .toggle-checked {
   background-color: #222; }
 
+ion-toggle[favorite] .toggle-checked {
+  background-color: #69BB7B; }
+
+ion-toggle[twitter] .toggle-checked {
+  background-color: #53ACEB; }
+
+ion-toggle[github] .toggle-checked {
+  background-color: #000000; }
+
+ion-toggle[instagram] .toggle-checked {
+  background-color: #235D8D; }
+
 ion-toggle[mdc-black] .toggle-checked {
   background-color: #212121; }
 
@@ -9583,18 +9595,6 @@ ion-toggle[mdc-grey-800] .toggle-checked {
 
 ion-toggle[mdc-orange] .toggle-checked {
   background-color: #E65100; }
-
-ion-toggle[favorite] .toggle-checked {
-  background-color: #69BB7B; }
-
-ion-toggle[twitter] .toggle-checked {
-  background-color: #53ACEB; }
-
-ion-toggle[github] .toggle-checked {
-  background-color: #000000; }
-
-ion-toggle[instagram] .toggle-checked {
-  background-color: #235D8D; }
 
 ion-toast {
   position: absolute;
@@ -10137,6 +10137,130 @@ ion-buttons[right] {
     color: #fff;
     background-color: #343434; }
 
+.toolbar[favorite] .toolbar-background {
+  border-color: #4ba65f;
+  background: #69BB7B; }
+
+.toolbar[favorite] .toolbar-title,
+.toolbar[favorite] .bar-button-default {
+  color: #fff; }
+
+.bar-button-favorite {
+  color: #69BB7B;
+  background-color: transparent; }
+  .bar-button-favorite:hover:not(.disable-hover) {
+    color: #69BB7B; }
+  .bar-button-favorite.activated {
+    opacity: .4; }
+
+.bar-button-outline-favorite {
+  border-color: #61ac71;
+  color: #61ac71;
+  background-color: transparent; }
+  .bar-button-outline-favorite.activated {
+    color: #fff;
+    background-color: #61ac71; }
+
+.bar-button-solid-favorite {
+  color: #fff;
+  background-color: #69BB7B; }
+  .bar-button-solid-favorite.activated {
+    color: #fff;
+    background-color: #61ac71; }
+
+.toolbar[twitter] .toolbar-background {
+  border-color: #2596e6;
+  background: #53ACEB; }
+
+.toolbar[twitter] .toolbar-title,
+.toolbar[twitter] .bar-button-default {
+  color: #fff; }
+
+.bar-button-twitter {
+  color: #53ACEB;
+  background-color: transparent; }
+  .bar-button-twitter:hover:not(.disable-hover) {
+    color: #53ACEB; }
+  .bar-button-twitter.activated {
+    opacity: .4; }
+
+.bar-button-outline-twitter {
+  border-color: #4c9ed8;
+  color: #4c9ed8;
+  background-color: transparent; }
+  .bar-button-outline-twitter.activated {
+    color: #fff;
+    background-color: #4c9ed8; }
+
+.bar-button-solid-twitter {
+  color: #fff;
+  background-color: #53ACEB; }
+  .bar-button-solid-twitter.activated {
+    color: #fff;
+    background-color: #4c9ed8; }
+
+.toolbar[github] .toolbar-background {
+  border-color: black;
+  background: #000000; }
+
+.toolbar[github] .toolbar-title,
+.toolbar[github] .bar-button-default {
+  color: #fff; }
+
+.bar-button-github {
+  color: #000000;
+  background-color: transparent; }
+  .bar-button-github:hover:not(.disable-hover) {
+    color: #000000; }
+  .bar-button-github.activated {
+    opacity: .4; }
+
+.bar-button-outline-github {
+  border-color: #141414;
+  color: #141414;
+  background-color: transparent; }
+  .bar-button-outline-github.activated {
+    color: #fff;
+    background-color: #141414; }
+
+.bar-button-solid-github {
+  color: #fff;
+  background-color: #000000; }
+  .bar-button-solid-github.activated {
+    color: #fff;
+    background-color: #141414; }
+
+.toolbar[instagram] .toolbar-background {
+  border-color: #194264;
+  background: #235D8D; }
+
+.toolbar[instagram] .toolbar-title,
+.toolbar[instagram] .bar-button-default {
+  color: #fff; }
+
+.bar-button-instagram {
+  color: #235D8D;
+  background-color: transparent; }
+  .bar-button-instagram:hover:not(.disable-hover) {
+    color: #235D8D; }
+  .bar-button-instagram.activated {
+    opacity: .4; }
+
+.bar-button-outline-instagram {
+  border-color: #356a96;
+  color: #356a96;
+  background-color: transparent; }
+  .bar-button-outline-instagram.activated {
+    color: #fff;
+    background-color: #356a96; }
+
+.bar-button-solid-instagram {
+  color: #fff;
+  background-color: #235D8D; }
+  .bar-button-solid-instagram.activated {
+    color: #fff;
+    background-color: #356a96; }
+
 .toolbar[mdc-black] .toolbar-background {
   border-color: #080808;
   background: #212121; }
@@ -10416,130 +10540,6 @@ ion-buttons[right] {
     color: #fff;
     background-color: #e85f14; }
 
-.toolbar[favorite] .toolbar-background {
-  border-color: #4ba65f;
-  background: #69BB7B; }
-
-.toolbar[favorite] .toolbar-title,
-.toolbar[favorite] .bar-button-default {
-  color: #fff; }
-
-.bar-button-favorite {
-  color: #69BB7B;
-  background-color: transparent; }
-  .bar-button-favorite:hover:not(.disable-hover) {
-    color: #69BB7B; }
-  .bar-button-favorite.activated {
-    opacity: .4; }
-
-.bar-button-outline-favorite {
-  border-color: #61ac71;
-  color: #61ac71;
-  background-color: transparent; }
-  .bar-button-outline-favorite.activated {
-    color: #fff;
-    background-color: #61ac71; }
-
-.bar-button-solid-favorite {
-  color: #fff;
-  background-color: #69BB7B; }
-  .bar-button-solid-favorite.activated {
-    color: #fff;
-    background-color: #61ac71; }
-
-.toolbar[twitter] .toolbar-background {
-  border-color: #2596e6;
-  background: #53ACEB; }
-
-.toolbar[twitter] .toolbar-title,
-.toolbar[twitter] .bar-button-default {
-  color: #fff; }
-
-.bar-button-twitter {
-  color: #53ACEB;
-  background-color: transparent; }
-  .bar-button-twitter:hover:not(.disable-hover) {
-    color: #53ACEB; }
-  .bar-button-twitter.activated {
-    opacity: .4; }
-
-.bar-button-outline-twitter {
-  border-color: #4c9ed8;
-  color: #4c9ed8;
-  background-color: transparent; }
-  .bar-button-outline-twitter.activated {
-    color: #fff;
-    background-color: #4c9ed8; }
-
-.bar-button-solid-twitter {
-  color: #fff;
-  background-color: #53ACEB; }
-  .bar-button-solid-twitter.activated {
-    color: #fff;
-    background-color: #4c9ed8; }
-
-.toolbar[github] .toolbar-background {
-  border-color: black;
-  background: #000000; }
-
-.toolbar[github] .toolbar-title,
-.toolbar[github] .bar-button-default {
-  color: #fff; }
-
-.bar-button-github {
-  color: #000000;
-  background-color: transparent; }
-  .bar-button-github:hover:not(.disable-hover) {
-    color: #000000; }
-  .bar-button-github.activated {
-    opacity: .4; }
-
-.bar-button-outline-github {
-  border-color: #141414;
-  color: #141414;
-  background-color: transparent; }
-  .bar-button-outline-github.activated {
-    color: #fff;
-    background-color: #141414; }
-
-.bar-button-solid-github {
-  color: #fff;
-  background-color: #000000; }
-  .bar-button-solid-github.activated {
-    color: #fff;
-    background-color: #141414; }
-
-.toolbar[instagram] .toolbar-background {
-  border-color: #194264;
-  background: #235D8D; }
-
-.toolbar[instagram] .toolbar-title,
-.toolbar[instagram] .bar-button-default {
-  color: #fff; }
-
-.bar-button-instagram {
-  color: #235D8D;
-  background-color: transparent; }
-  .bar-button-instagram:hover:not(.disable-hover) {
-    color: #235D8D; }
-  .bar-button-instagram.activated {
-    opacity: .4; }
-
-.bar-button-outline-instagram {
-  border-color: #356a96;
-  color: #356a96;
-  background-color: transparent; }
-  .bar-button-outline-instagram.activated {
-    color: #fff;
-    background-color: #356a96; }
-
-.bar-button-solid-instagram {
-  color: #fff;
-  background-color: #235D8D; }
-  .bar-button-solid-instagram.activated {
-    color: #fff;
-    background-color: #356a96; }
-
 ion-nav > ion-page > .toolbar.statusbar-padding:first-child,
 ion-nav > ion-page > ion-header > .toolbar.statusbar-padding:first-child,
 ion-tab > ion-page > ion-header > .toolbar.statusbar-padding:first-child,
@@ -10653,18 +10653,12 @@ body {
 .historico ion-content.cards-bg {
   background-color: #f4f4f7; }
 
-.mapa ion-content, .mapa-agenda ion-content, .mapa-ponto-interesse ion-content, .mapa-rota ion-content {
-  background: #e5e3df; }
+.scroll {
+  height: 100%; }
 
-.mapa #map, .mapa #map-agenda, .mapa #map-ponto-interesse, .mapa #map-rota, .mapa-agenda #map, .mapa-agenda #map-agenda, .mapa-agenda #map-ponto-interesse, .mapa-agenda #map-rota, .mapa-ponto-interesse #map, .mapa-ponto-interesse #map-agenda, .mapa-ponto-interesse #map-ponto-interesse, .mapa-ponto-interesse #map-rota, .mapa-rota #map, .mapa-rota #map-agenda, .mapa-rota #map-ponto-interesse, .mapa-rota #map-rota {
+#map {
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  -webkit-transition: opacity 150ms ease-in;
-  transition: opacity 150ms ease-in; }
-
-.mapa #map.show-map, .mapa #map-agenda.show-map, .mapa #map-ponto-interesse.show-map, .mapa #map-rota.show-map, .mapa-agenda #map.show-map, .mapa-agenda #map-agenda.show-map, .mapa-agenda #map-ponto-interesse.show-map, .mapa-agenda #map-rota.show-map, .mapa-ponto-interesse #map.show-map, .mapa-ponto-interesse #map-agenda.show-map, .mapa-ponto-interesse #map-ponto-interesse.show-map, .mapa-ponto-interesse #map-rota.show-map, .mapa-rota #map.show-map, .mapa-rota #map-agenda.show-map, .mapa-rota #map-ponto-interesse.show-map, .mapa-rota #map-rota.show-map {
-  opacity: 1; }
+  height: 100%; }
 
 .notificacao ion-card[category=ionic] ion-card-content {
   border-left: 2px solid #387ef5;

@@ -21,7 +21,7 @@ export class RotaService {
         return this.getRotas()
             .map((lista: Rota[]) => lista)
             // .do(data => console.log('getRota: ' +  JSON.stringify(data)))
-            .catch(this.handleError);;
+            .catch(this.handleError);
     }
 
     private handleError(error: any) {

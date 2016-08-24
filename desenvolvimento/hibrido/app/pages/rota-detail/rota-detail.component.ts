@@ -10,7 +10,7 @@ import { MapaPontoInteressePage } from '../mapa-ponto-interesse';
 })
 export class RotaDetailPage {
 
-  titulo: string = "Detalhes";
+  titulo: string = 'Detalhes';
   rota: RotaView;
 
   private mensagenErro: any;

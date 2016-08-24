@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "tipoTransporte": {
-      "id": 3
-    },
-    "descricao": "carona"
+    "tipo_transporte": 3,
+    "descricao": "carona",
+    "icone": "car",
+    "destaque": "http://placeimg.com/160/120/tech/grayscale"
   },
   {
     "id": 2,
-    "tipoTransporte": {
-      "id": 4
-    },
-    "descricao": "coletivo"
+    "tipo_transporte": 4,
+    "descricao": "coletivo",
+    "icone": "car",
+    "destaque": "http://placeimg.com/160/120/tech/grayscale"
   },
   {
     "id": 3,
-    "tipoTransporte": {
-      "id": 3
-    },
-    "descricao": "carro particular"
+    "tipo_transporte": 3,
+    "descricao": "carro particular",
+    "icone": "car",
+    "destaque": "http://placeimg.com/160/120/tech/grayscale"
   }
 ]

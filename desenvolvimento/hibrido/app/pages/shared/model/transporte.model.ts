@@ -1,29 +1,31 @@
+import { ITipo } from './tipo.model';
+
 /**
  * Referente ao meio de transporte utilizado. 
  * Ex.: avião, carro, ônibus, etc ...
  * 
- * @param id 
- * @param tipoTransporte     Tipo de transporte descrito (fk_transporte_tipo_transporte).
+ * @param key
  * @param descricao
+ * @param icone 
+ * @param destaque
+ * @param tipo_transporte
  */
-export class Transporte {
-    id: number;
-    constructor(public tipoTransporte: TipoTransporte,
-        public descricao: string = "") {
+export class Transporte implements ITransporte {
+    descricao: string;
+    icone: string;
+    destaque: string;
+    tipo_transporte: string;
 
+    constructor(obj?: any) {
+        this.descricao = obj && obj.descricao || null;
+        this.icone = obj && obj.icone || 'info';
+        this.destaque = obj && obj.destaque || 'http://placeimg.com/320/240/nature';
+        this.tipo_transporte = obj && obj.tipo_transporte || null;
     }
 }
 
-/**
- * Referente ao tipo de transporte utilizado. 
- * Ex.: aéreo, terrestre, etc.
- * 
- * @param id 
- * @param descricao 
- */
-export class TipoTransporte {
-    id: number;
-    constructor(public descricao: string = "") {
-
-    }
+export interface ITransporte extends ITipo {
+    $key?: string;
+    tipo_transporte: string;
+    rota?: any;
 }

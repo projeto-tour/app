@@ -9,7 +9,7 @@ import { UsuarioView } from './';
 })
 export class UsuarioSignUpPage {
 
-  titulo: string = "Login";
+  titulo: string = 'Login';
   dados: any;
   usuario: UsuarioView = new UsuarioView();
   mensagenErro: any;

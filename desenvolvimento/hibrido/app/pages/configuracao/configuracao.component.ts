@@ -7,7 +7,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 })
 export class ConfiguracaoPage {
 
-  titulo: string = "Configurações";
+  titulo: string = 'Configurações';
   dados: any;
   mensagenErro: any;
 

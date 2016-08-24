@@ -13,9 +13,10 @@
 
   <ion-list>
     <ion-item-divider light>Escolhe prefêrencias de pontos de interesse</ion-item-divider>
-    <ion-item *ngFor="let preferencia of preferencias">
-      <ion-label>{{preferencia.descricao}}</ion-label>
-      <ion-checkbox [(ngModel)]="preferencia.preferido" [checked]="preferencia.preferido" [value]="preferencia.descricao"></ion-checkbox>
+    <ion-item *ngFor="let item of preferncias">
+      <ion-label>{{ item.descricao }}</ion-label>
+      <ion-checkbox checked="true"></ion-checkbox>
+      <!--<ion-checkbox [(ngModel)]="preferencia.preferido" [checked]="preferencia.preferido" [value]="preferencia.descricao"></ion-checkbox>-->
     </ion-item>
   </ion-list>
 

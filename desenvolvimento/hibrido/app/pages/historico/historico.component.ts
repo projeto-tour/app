@@ -2,10 +2,14 @@ import { Component }  from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 
-import { Historico, HistoricoListPage } from './';
-import { GlobalMethodService } from '../shared';
-import { AgendaService, TipoAgendaService, IAgenda, ITipoAgenda } from '../../providers/agendas';
+import { keys, get } from 'lodash';
+
+import { HistoricoListPage } from './';
 import { PreferenciaPage } from '../preferencia';
+
+import { FirebaseAuthService } from '../../providers/auth';
+import { GlobalMethodService, Historico, ITipoAgenda } from '../shared';
+import { TipoAgendaService } from '../../providers/data/tipo-agenda.service';
 
 @Component({
   templateUrl: 'build/pages/historico/historico.component.html'
@@ -13,31 +17,29 @@ import { PreferenciaPage } from '../preferencia';
 export class HistoricoPage {
 
   titulo: string = 'Históricos';
-  historicos: Historico[] = [];
   rows: number[] = [];
   filtro: string = '';
+  historicos: Historico[] = [];
   mensagenErro: any;
 
   constructor(
     public _navCtrl: NavController,
     public _platform: Platform,
     public _globalMethod: GlobalMethodService,
-    public _agendaService: AgendaService,
     public _tipoAgendaService: TipoAgendaService,
+    public _auth: FirebaseAuthService,
     public _alertCtrl: AlertController,
     public _actionSheetCtrl: ActionSheetController) {
+    this.getHistoricos();
   }
 
-  ionViewLoaded() {
-    this.getHistoricos();
-    this._agendaService.filterHistoricos((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-  }
+  ionViewLoaded() { }
 
   carregarAgendas(historico: Historico): void {
-    if (historico === null || historico.agendas === null || historico.agendas.length <= 0) {
+    if (!historico.qtde_todos || historico.qtde_todos <= 0) {
       this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
     } else {
-      this._globalMethod.carregarPagina(HistoricoListPage, historico.agendas, true, this._navCtrl);
+      this._globalMethod.carregarPagina(HistoricoListPage, historico.tipo_agenda, true, this._navCtrl);
     }
   }
 
@@ -45,18 +47,8 @@ export class HistoricoPage {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  sincronizar(refresher) {
-    // -- TODO
-    this.historicos = [];
-    this.getHistoricos();
-    this._agendaService.filterHistoricos((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-    setTimeout(() => {
-      refresher.complete();
-    }, 2000);
-  }
-
   gerenciar(historico: Historico): void {
-    if (historico === null || historico.agendas === null || historico.agendas.length <= 0) {
+    if (!historico.qtde_todos || historico.qtde_todos <= 0) {
       this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
     } else {
       let actionSheet = this._actionSheetCtrl.create({
@@ -95,7 +87,7 @@ export class HistoricoPage {
   excluir(historico: Historico): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
-      message: `Deseja realmente excluir todas agendas do tipo ${historico.descricao}?`,
+      message: `Deseja realmente excluir todas agendas do tipo ${historico.tipo_agenda.descricao}?`,
       buttons: [
         {
           text: 'Não',
@@ -106,6 +98,7 @@ export class HistoricoPage {
         {
           text: 'Sim',
           handler: () => {
+            // TODO Excluir agendas
             console.log('Sim clicked');
           }
         }
@@ -115,21 +108,16 @@ export class HistoricoPage {
   }
 
   private getHistoricos(): void {
-    this._agendaService.historicos
-      .subscribe(
-      (agendas: IAgenda[]) => { // -- on sucess
-        this._tipoAgendaService.tipos.subscribe(
-          (tipos: ITipoAgenda[]) => { // -- on sucess
-            tipos.forEach(tipo => {
-              var historico = <Historico>tipo;
-              historico.agendas = agendas.filter(agenda => agenda.tipoAgenda.id === tipo.$key);
-              historico.qtdeFavoritos = historico.agendas.filter(agenda => agenda.favorito).length
-              historico.qtdeTodos = historico.agendas.length;
-              this.historicos.push(historico);
-              this.rows = Array.from(Array(Math.ceil((this.historicos).length / 2)).keys());
-            });
-          });
-      },
+    this._tipoAgendaService.tipos.subscribe((tipos: ITipoAgenda[]) => { // -- on sucess
+      this.historicos = [];
+      tipos.forEach((tipo: ITipoAgenda) => {
+        let historico = new Historico();
+        historico.qtde_todos = keys(get(tipo.agenda, `${this._auth.uid || this._auth.userInfo.uid}`)).length;
+        historico.tipo_agenda = tipo;
+        this.historicos.push(historico);
+      });
+      this.rows = Array.from(Array(Math.ceil((this.historicos).length / 2)).keys());
+    },
       error => { // -- on error
         this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
       });

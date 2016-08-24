@@ -69,7 +69,7 @@ export class BagagemPage {
         {
           text: 'OK',
           handler: data => {
-            this.bagagem.push(new Item(data.item, false));
+            this.bagagem.push(new Item({ descricao: data.item, status: false }));
           }
         }
       ]
@@ -118,19 +118,19 @@ export class BagagemPage {
   }
 
   private getBagagem(): void {
-    this.bagagem.push(new Item('RG', false));
-    this.bagagem.push(new Item('CPF', false));
-    this.bagagem.push(new Item('Passaporte', false));
-    this.bagagem.push(new Item('Câmera', false));
-    this.bagagem.push(new Item('Carregador de celular', false));
-    this.bagagem.push(new Item('Celular', false));
-    this.bagagem.push(new Item('Escova de dentes', false));
-    this.bagagem.push(new Item('Fones de ouvido', false));
-    this.bagagem.push(new Item('Notebook', false));
-    this.bagagem.push(new Item('Ipad/Tablet', false));
-    this.bagagem.push(new Item('Óculos de sol', false));
-    this.bagagem.push(new Item('Perfume', false));
-    this.bagagem.push(new Item('Plugues adaptadores', false));
+    this.bagagem.push(new Item({ descricao: 'RG', status: false }));
+    this.bagagem.push(new Item({ descricao: 'CPF', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Passaporte', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Câmera', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Carregador de celular', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Celular', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Escova de dentes', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Fones de ouvido', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Notebook', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Ipad/Tablet', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Óculos de sol', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Perfume', status: false }));
+    this.bagagem.push(new Item({ descricao: 'Plugues adaptadores', status: false }));
   }
 
 }

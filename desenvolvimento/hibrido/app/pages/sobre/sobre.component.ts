@@ -7,7 +7,7 @@ import { App, NavParams, ViewController } from 'ionic-angular';
 })
 export class SobrePage {
 
-  titulo: string = "Sobre";
+  titulo: string = 'Sobre';
 
   private mensagenErro: any;
 

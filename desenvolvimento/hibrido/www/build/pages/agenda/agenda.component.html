@@ -26,9 +26,9 @@
   <ion-card *ngFor="let agenda of _service.agendas | async | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
-      <h2>{{agenda.tipoAgenda.descricao}}</h2>
+      <h2>{{agenda.tipo_agenda.descricao}}</h2>
       <p>
-        De {{_globalMethod.convertToDate(agenda.dataInicio) | date}} Até {{_globalMethod.convertToDate(agenda.dataFim) | date}}
+        De {{_globalMethod.convertToDate(agenda.data_inicio) | date}} Até {{_globalMethod.convertToDate(agenda.data_fim) | date}}
       </p>
       <button clear item-right (click)="marcarComoFavorito(agenda)" [ngClass]="{'favorito': agenda.favorito, 'nao-favorito': !agenda.favorito}">
             <ion-icon name='star'></ion-icon>

@@ -1,11 +1,21 @@
+export * from './agenda.model';
 export * from './avaliacao.model';
-
+export * from './avaliacao-usuario.model';
+export * from './caracteristica.model';
+export * from './caracteristica-tipo-ponto-interesse.model';
+export * from './endereco.model';
+export * from './historico.model';
 export * from './item.model';
-
+export * from './menu.model';
+export * from './notificacao.model';
 export * from './ponto-interesse.model';
-
 export * from './preferencia-usuario.model';
-
 export * from './rota.model';
-
+export * from './tipo-agenda.model';
+export * from './tipo-dado.model';
+export * from './tipo-ponto-interesse.model';
+export * from './tipo-transporte.model';
+export * from './tipo.model';
 export * from './transporte.model';
+export * from './tutorial.model';
+export * from './usuario.model';

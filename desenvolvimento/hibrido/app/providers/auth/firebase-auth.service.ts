@@ -4,23 +4,25 @@ import { AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState } from 'ang
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
-import { Usuario } from '../usuarios/usuario.model';
-import { Endereco } from '../usuarios/endereco.model';
+import {
+    IUsuario
+} from '../../pages/shared';
 
 @Injectable()
 export class FirebaseAuthService {
+
     authState: FirebaseAuthState = null;
 
     constructor(
         public _auth: FirebaseAuth) {
         _auth.subscribe((state: FirebaseAuthState) => {
-                this.authState = state;
-            },
+            this.authState = state;
+        },
             error => { // -- on error
                 this.handleError(<any>error);
             },
             () => { // -- on completion
-                console.log('authState:[UserInfo] ' + JSON.stringify(this.authState.auth))
+                console.log('authState:[UserInfo] ' + JSON.stringify(this.authState.auth));
             });
     }
 
@@ -74,7 +76,7 @@ export class FirebaseAuthService {
             .take(1)
             .map(authState => !!authState)
             .do(authenticated => {
-                console.log('authGuard: ' + JSON.stringify(authenticated))
+                console.log('authGuard: ' + JSON.stringify(authenticated));
             });
     }
 
@@ -83,7 +85,7 @@ export class FirebaseAuthService {
             .take(1)
             .map(authState => !authState)
             .do(unauthenticated => {
-                console.log('unauthGuard: ' + JSON.stringify(unauthenticated))
+                console.log('unauthGuard: ' + JSON.stringify(unauthenticated));
             });
     }
 
@@ -91,46 +93,26 @@ export class FirebaseAuthService {
         return this.authState !== null;
     }
 
-    get id(): string {
+    get uid(): string {
         return this.authenticated ? this.authState.uid : '';
     }
 
-    get userInfo(): Usuario {
-        if (this.authenticated && this.authState !== null) {
-            if (this.authState.auth.isAnonymous) {
-                return {
-                    data: null,
-                    displayName: this.authState.auth.displayName || 'Nome de usuário',
-                    email: this.authState.auth.email || 'usuario@usuario.com.br',
-                    password: '',
-                    photoURL: this.authState.auth.photoURL || 'img/user-woman.svg',
-                    providerId: this.authState.auth.providerId,
-                    uid: this.authState.uid || this.authState.auth.uid,
-                    endereco: new Endereco()
-                };
-            } else {
-                return {
-                    data: null,
-                    displayName: this.authState.auth.displayName || this.authState.auth.providerData[0].displayName || 'Nome de usuário',
-                    email: this.authState.auth.email || this.authState.auth.providerData[0].email || 'usuario@usuario.com.br',
-                    password: '',
-                    photoURL: this.authState.auth.photoURL || this.authState.auth.providerData[0].photoURL || 'img/user-woman.svg',
-                    providerId: this.authState.auth.providerId,
-                    uid: this.authState.uid || this.authState.auth.uid || this.authState.auth.providerData[0].uid,
-                    endereco: new Endereco()
-                };
-            }
-        }
-        else {
+    get userInfo(): IUsuario {
+        if (this.authState && this.authState.auth) {
             return {
-                data: null,
+                displayName: this.authState.auth.displayName || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].displayName : 'Nome de usuário'),
+                email: this.authState.auth.email || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].email : 'usuario@email.com.br'),
+                photoURL: this.authState.auth.photoURL || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].photoURL : 'img/user-woman.svg'),
+                providerId: this.authState.auth.providerId || '',
+                uid: this.authState.uid || this.authState.auth.uid || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].uid : '')
+            };
+        } else {
+            return {
                 displayName: 'Nome de usuário',
-                email: 'usuario@usuario.com.br',
-                password: '',
+                email: 'usuario@email.com.br',
                 photoURL: 'img/user-woman.svg',
                 providerId: '',
-                uid: '',
-                endereco: new Endereco()
+                uid: ''
             };
         }
     }

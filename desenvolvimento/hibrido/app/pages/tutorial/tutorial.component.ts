@@ -2,14 +2,14 @@ import { Component }  from '@angular/core';
 
 import { ViewController } from 'ionic-angular';
 
-import { ITutorial } from '../../providers/data';
+import { ITutorial } from '../shared';
 
 @Component({
   templateUrl: 'build/pages/tutorial/tutorial.component.html'
 })
 export class TutorialPage {
 
-  titulo: string = "Tutorial";
+  titulo: string = 'Tutorial';
   tutorials: ITutorial[] = [];
 
   constructor(

@@ -1,17 +1,22 @@
-import { Usuario } from '../../../providers/usuarios';
-import { TipoPontoInteresse } from './';
-
 /**
  * Referente a preferencia usuario
  * 
- * @param id 
+ * @param $key 
  * @param usuario
- * @param tipoPontoInteresse
+ * @param tipo_ponto_interesse
  */
 export class PreferenciaUsuario {
-    id: number;
-    constructor(public usuario: Usuario,
-        public tipoPontoInteresse: TipoPontoInteresse) {
+    usuario: any;
+    tipo_ponto_interesse: any;
 
+    constructor(obj?: any) {
+        this.usuario = obj && obj.usuario || null;
+        this.tipo_ponto_interesse = obj && obj.tipo_ponto_interesse || null;
     }
+}
+
+export interface IPreferenciaUsuario {
+    $key?: string;
+    usuario: any;
+    tipo_ponto_interesse: any;
 }

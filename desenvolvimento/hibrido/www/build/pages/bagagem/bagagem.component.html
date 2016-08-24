@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{titulo}}</ion-title>
+    <ion-title>{{ titulo }}</ion-title>
     <ion-buttons end>
       <button (click)="salvar()">
       Salvar
@@ -16,11 +16,11 @@
       <ion-icon name='briefcase' item-left></ion-icon>
       Relação de Itens para Viagem&nbsp;&nbsp;&nbsp;&nbsp;
       <ion-note item-right>
-        {{contador}} de {{bagagem.length}}
+        {{ contador }} de {{ bagagem.length }}
       </ion-note>
     </ion-item-divider>
     <ion-item *ngFor="let item of bagagem">
-      <ion-label>{{item.descricao}}</ion-label>
+      <ion-label>{{ item.descricao }}</ion-label>
       <ion-checkbox [(ngModel)]="item.status" [checked]="item.status" [value]="item.descricao" (click)="gerenciarContador()"></ion-checkbox>
       <button mdc-grey clear item-right (click)="gerenciar(item)">
         <ion-icon name='md-more'></ion-icon>

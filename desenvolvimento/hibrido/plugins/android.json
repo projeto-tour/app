@@ -12,7 +12,17 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
+        }
+    }
 }
