@@ -10653,18 +10653,12 @@ body {
 .historico ion-content.cards-bg {
   background-color: #f4f4f7; }
 
-.mapa ion-content, .mapa-agenda ion-content, .mapa-ponto-interesse ion-content, .mapa-rota ion-content {
-  background: #e5e3df; }
+.scroll {
+  height: 100%; }
 
-.mapa #map, .mapa #map-agenda, .mapa #map-ponto-interesse, .mapa #map-rota, .mapa-agenda #map, .mapa-agenda #map-agenda, .mapa-agenda #map-ponto-interesse, .mapa-agenda #map-rota, .mapa-ponto-interesse #map, .mapa-ponto-interesse #map-agenda, .mapa-ponto-interesse #map-ponto-interesse, .mapa-ponto-interesse #map-rota, .mapa-rota #map, .mapa-rota #map-agenda, .mapa-rota #map-ponto-interesse, .mapa-rota #map-rota {
+#map {
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  -webkit-transition: opacity 150ms ease-in;
-  transition: opacity 150ms ease-in; }
-
-.mapa #map.show-map, .mapa #map-agenda.show-map, .mapa #map-ponto-interesse.show-map, .mapa #map-rota.show-map, .mapa-agenda #map.show-map, .mapa-agenda #map-agenda.show-map, .mapa-agenda #map-ponto-interesse.show-map, .mapa-agenda #map-rota.show-map, .mapa-ponto-interesse #map.show-map, .mapa-ponto-interesse #map-agenda.show-map, .mapa-ponto-interesse #map-ponto-interesse.show-map, .mapa-ponto-interesse #map-rota.show-map, .mapa-rota #map.show-map, .mapa-rota #map-agenda.show-map, .mapa-rota #map-ponto-interesse.show-map, .mapa-rota #map-rota.show-map {
-  opacity: 1; }
+  height: 100%; }
 
 .notificacao ion-card[category=ionic] ion-card-content {
   border-left: 2px solid #387ef5;

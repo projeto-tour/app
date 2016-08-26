@@ -4,27 +4,17 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
 
-import {
-  AuthService,
-  ToastService,
-  ModalService,
-  EntityService,
-  CadastroComponent,
-  TipoDadoService,
-  ITipoDado,
-  TipoDado,
-  MdlDirective
-} from '../shared';
+import { AuthService } from '../shared/providers/auth';
+import { ModalService } from '../shared/directives/modal';
+import { ToastService } from '../shared/directives/toast';
+import { TipoDadoService } from '../shared/providers';
+
+import { ITipoDado, TipoDado } from '../shared/models';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-tipo-dado',
   templateUrl: 'tipo-dado.component.html',
   styleUrls: ['tipo-dado.component.css'],
-  directives: [
-    CadastroComponent,
-    MdlDirective
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TipoDadoComponent implements OnInit {
@@ -40,7 +30,6 @@ export class TipoDadoComponent implements OnInit {
     private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
-    private _entityService: EntityService,
     private _tipoDadoService: TipoDadoService) {
     this.clear();
   }
@@ -84,7 +73,7 @@ export class TipoDadoComponent implements OnInit {
       this._toastService.activate(`${tipoDado.descricao} não pode ser excluído pois já foi atribuído à 
         ${_.keys(tipoDado.caracteristica).length} cadastros.`);
     } else {
-      let msg = `Deseja realmente excluir ${tipoDado.descricao} ?`;
+      let msg = `Deseja excluir ${tipoDado.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._tipoDadoService.remove(tipoDado).then(data => {

@@ -4,27 +4,17 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
 
-import {
-  AuthService,
-  ToastService,
-  ModalService,
-  EntityService,
-  CadastroComponent,
-  TipoAgendaService,
-  ITipoAgenda,
-  TipoAgenda,
-  MdlDirective
-} from '../shared';
+import { AuthService } from '../shared/providers/auth';
+import { ModalService } from '../shared/directives/modal';
+import { ToastService } from '../shared/directives/toast';
+import { TipoAgendaService } from '../shared/providers';
+
+import { ITipoAgenda, TipoAgenda } from '../shared/models';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-tipo-agenda',
   templateUrl: 'tipo-agenda.component.html',
   styleUrls: ['tipo-agenda.component.css'],
-  directives: [
-    CadastroComponent,
-    MdlDirective
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TipoAgendaComponent implements OnInit {
@@ -40,7 +30,6 @@ export class TipoAgendaComponent implements OnInit {
     private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
-    private _entityService: EntityService,
     private _tipoAgendaService: TipoAgendaService) {
     this.clear();
   }
@@ -84,7 +73,7 @@ export class TipoAgendaComponent implements OnInit {
       this._toastService.activate(`${tipoAgenda.descricao} não pode ser excluído pois já foi atribuído à 
                                     ${_.keys(tipoAgenda.agenda).length} cadastros.`);
     } else {
-      let msg = `Deseja realmente excluir ${tipoAgenda.descricao} ?`;
+      let msg = `Deseja excluir ${tipoAgenda.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._tipoAgendaService.remove(tipoAgenda).then(data => {

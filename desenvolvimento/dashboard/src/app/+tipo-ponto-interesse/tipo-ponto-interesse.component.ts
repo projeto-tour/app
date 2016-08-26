@@ -4,27 +4,17 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
 
-import {
-  AuthService,
-  ToastService,
-  ModalService,
-  EntityService,
-  CadastroComponent,
-  TipoPontoInteresseService,
-  ITipoPontoInteresse,
-  TipoPontoInteresse,
-  MdlDirective
-} from '../shared';
+import { AuthService } from '../shared/providers/auth';
+import { ModalService } from '../shared/directives/modal';
+import { ToastService } from '../shared/directives/toast';
+import { TipoPontoInteresseService } from '../shared/providers';
+
+import { ITipoPontoInteresse, TipoPontoInteresse } from '../shared/models';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-tipo-ponto-interesse',
   templateUrl: 'tipo-ponto-interesse.component.html',
   styleUrls: ['tipo-ponto-interesse.component.css'],
-  directives: [
-    CadastroComponent,
-    MdlDirective
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TipoPontoInteresseComponent implements OnInit {
@@ -40,7 +30,6 @@ export class TipoPontoInteresseComponent implements OnInit {
     private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
-    private _entityService: EntityService,
     private _tipoPontoInteresseService: TipoPontoInteresseService) {
     this.clear();
   }
@@ -87,7 +76,7 @@ export class TipoPontoInteresseComponent implements OnInit {
         ${_.keys(tipoPontoInteresse.preferencias_usuario).length
         + _.keys(tipoPontoInteresse.caracteristica_tipo_ponto_interesse).length} cadastros.`);
     } else {
-      let msg = `Deseja realmente excluir ${tipoPontoInteresse.descricao} ?`;
+      let msg = `Deseja excluir ${tipoPontoInteresse.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._tipoPontoInteresseService.remove(tipoPontoInteresse).then(data => {

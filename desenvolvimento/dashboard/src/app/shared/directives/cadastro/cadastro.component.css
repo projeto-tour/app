@@ -6,3 +6,7 @@ md-input {
   background-color: #f7f7f7;
   padding: 8px;
 }
+
+vaadin-grid {
+  height: 60vh;
+}

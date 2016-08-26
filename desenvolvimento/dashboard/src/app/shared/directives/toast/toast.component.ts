@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastService } from '../../providers/toast.service';
+import { ToastService } from './toast.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-toast',
   templateUrl: 'toast.component.html',
   styleUrls: ['toast.component.css']
 })
 export class ToastComponent implements OnInit {
 
-  private defaults = {
-    title: '',
-    message: 'Operação foi realizada com sucesso.'
-  };
+  private defaults = { title: '', message: 'Operação foi realizada com sucesso.' };
   private toastElement: any;
 
   title: string;
@@ -34,15 +30,8 @@ export class ToastComponent implements OnInit {
   }
 
   private show() {
-    // console.log(this.message);
-    this.toastElement.style.opacity = 1;
-    this.toastElement.style.zIndex = 9999;
-
-    window.setTimeout(() => this.hide(), 2500);
+    this.toastElement.text = this.message;
+    this.toastElement.open();
   }
 
-  private hide() {
-    this.toastElement.style.opacity = 0;
-    window.setTimeout(() => this.toastElement.style.zIndex = 0, 400);
-  }
 }

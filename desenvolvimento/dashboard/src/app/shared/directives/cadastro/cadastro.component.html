@@ -1,12 +1,48 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col">
+        <!--<vaadin-grid frozen-columns="1">
+            <table>
+                <colgroup>
+                    <col sortable width="80">
+                    <col>
+                    <col width="150">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="mdl-data-table__cell--non-numeric">Descrição</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of items | async; let i = index" >
+                    <td>{{ i+1 }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <table style="width:100%;">
+                            <tr>
+                                <td><span style="font-weight: bold;">{{ item.descricao }}</span></td>
+                            </tr>
+                            <tr *ngIf="showIcone">
+                                <td><span>Ícone: {{ item.icone }}</span></td>
+                            </tr>
+                            <tr *ngIf="showDestaque">
+                                <td><span>Destaque: {{ item.destaque }}</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="edit.emit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
+                        <button md-icon-button (click)="remove.emit(item)"><md-icon class="md-24">delete</md-icon></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </vaadin-grid>-->
         <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
             <thead>
                 <tr>
                     <th style="width:10%">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
-                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">Ícone</th>
-                    <th class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">Destaque</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
                     <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
                 </tr>
@@ -17,13 +53,11 @@
                         {{ i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        {{ item.descricao }}
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showIcone">
-                        {{ item.icone }}
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric" *ngIf="showDestaque">
-                        {{ item.destaque }}
+                        <span style="font-weight: bold;">{{ item.descricao }}</span>
+                        <br *ngIf="showIcone">
+                        <span *ngIf="showIcone">Ícone: {{ item.icone }}</span>
+                        <br *ngIf="showDestaque">
+                        <span *ngIf="showDestaque">Destaque: {{ item.destaque }}</span>
                     </td>
                     <td>
                         <button md-icon-button (click)="edit.emit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
@@ -36,7 +70,7 @@
         </table>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-        <form #frm="ngForm" (ngSubmit)="submit(frm.value)" >     
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" >     
             <md-card>
                 <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
                 <md-card-content>
@@ -78,8 +112,8 @@
                     </md-input>
                 </md-card-content>
                 <md-card-actions align="end">
-                    <button *ngIf="editing" md-raised-button (click)="reset()">Cancelar</button>
-                    <button type="submit" md-raised-button color="accent" [disabled]="!frm.form.valid">Salvar</button>
+                    <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
+                    <button type="submit" md-raised-button color="primary" [disabled]="!form.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalService } from '../../providers/modal.service';
+import { ModalService } from './modal.service';
 
-const KEY_ESC = 27;
+// const KEY_ESC = 27;
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-modal',
   templateUrl: 'modal.component.html',
   styleUrls: ['modal.component.css']
@@ -26,8 +25,8 @@ export class ModalComponent implements OnInit {
     okText: 'OK'
   };
   private modalElement: any;
-  private cancelButton: any;
-  private okButton: any;
+  // private cancelButton: any;
+  // private okButton: any;
 
   constructor(private _modalService: ModalService) {
     _modalService.activate = this.activate.bind(this);
@@ -50,48 +49,26 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.modalElement = document.getElementById('confirmationModal');
-    this.cancelButton = document.getElementById('cancelButton');
-    this.okButton = document.getElementById('okButton');
+  }
+
+  onCancel(event) {
+    this.hide(event);
+    this.negativeOnClick(event);
+  }
+
+  onOk(event) {
+    this.hide(event);
+    this.positiveOnClick(event);
   }
 
   private show() {
-    document.onkeyup = null;
-
-    if (!this.modalElement || !this.cancelButton || !this.okButton) {
-      return;
-    }
-
-    this.cancelButton.onclick = ((e: any) => {
-      e.preventDefault();
-      if (!this.negativeOnClick(e)) {
-        this.hideDialog();
-      }
-    });
-
-    this.okButton.onclick = ((e: any) => {
-      e.preventDefault();
-      if (!this.positiveOnClick(e)) {
-        this.hideDialog();
-      }
-    });
-
-    this.modalElement.onclick = () => {
-      this.hideDialog();
-      return this.negativeOnClick(null);
-    };
-
-    document.onkeyup = (e: any) => {
-      if (e.which === KEY_ESC) {
-        this.hideDialog();
-        return this.negativeOnClick(null);
-      }
-    };
-
-    this.modalElement.showModal();
+    this.modalElement.positionTarget = this;
+    this.modalElement.open();
   }
 
-  private hideDialog() {
-    document.onkeyup = null;
+  private hide(event) {
+    event.preventDefault();
     this.modalElement.close();
   }
+
 }

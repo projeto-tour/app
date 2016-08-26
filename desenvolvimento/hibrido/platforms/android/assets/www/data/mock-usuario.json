@@ -1,16 +1,8 @@
-[
-  {
-    "id": "1",
-    "email": "camargo_w@yahoo.com.br",
-    "senha": "123123123",
-    "alias": "wellington",
-    "nome": "Wellington Camargo"
-  },
-  {
-    "id": "2",
-    "email": "wacujuguna@gmail.com",
-    "senha": "123123123",
-    "alias": "paul",
-    "nome": "Paul Kibe"
-  }
-]
+{
+  "displayName": "Nome de Usuário",
+  "email": "usuario@email.com.br",
+  "password": "123456",
+  "photoURL": "img/user-woman.svg",
+  "providerId": "",
+  "uid": ""
+}

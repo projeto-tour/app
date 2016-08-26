@@ -1,54 +1,20 @@
 // Underscore imports
 /// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/forms';
-
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { MD_RADIO_DIRECTIVES } from '@angular2-material/radio/radio';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-import { MdUniqueSelectionDispatcher } from '@angular2-material/core/coordination/unique-selection-dispatcher';
 
 import * as _ from 'underscore';
 
-import {
-  AuthService,
-  ToastService,
-  ModalService,
-  EntityService,
-  TransporteService,
-  TipoTransporteService,
-  ITransporte,
-  Transporte,
-  ITipoTransporte,
-  AutofocusDirective,
-  MdlDirective
-} from '../shared';
+import { AuthService } from '../shared/providers/auth';
+import { ModalService } from '../shared/directives/modal';
+import { ToastService } from '../shared/directives/toast';
+import { TransporteService, TipoTransporteService } from '../shared/providers';
+
+import { ITransporte, Transporte, ITipoTransporte } from '../shared/models';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-transporte',
   templateUrl: 'transporte.component.html',
   styleUrls: ['transporte.component.css'],
-  directives: [
-    MD_GRID_LIST_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MD_ICON_DIRECTIVES,
-    MD_CARD_DIRECTIVES,
-    MD_INPUT_DIRECTIVES,
-    MD_RADIO_DIRECTIVES,
-    FORM_DIRECTIVES,
-    MdIcon,
-    AutofocusDirective,
-    MdlDirective
-  ],
-  providers: [
-    MdIconRegistry,
-    MdUniqueSelectionDispatcher
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransporteComponent implements OnInit {
@@ -62,10 +28,9 @@ export class TransporteComponent implements OnInit {
     private _authService: AuthService,
     private _modalService: ModalService,
     private _toastService: ToastService,
-    private _entityService: EntityService,
     public _transporteService: TransporteService,
     public _tipoTransporteService: TipoTransporteService) {
-    this.clear();
+    this.reset();
   }
 
   ngOnInit() {
@@ -76,11 +41,10 @@ export class TransporteComponent implements OnInit {
 
     this._tipoTransporteService.list.subscribe((data: ITipoTransporte[]) => {
       this.listTipoTransporte = data;
-      this.transporte.tipo_transporte = _.defaults(_.has(this.listTipoTransporte[0], '$key') ? this.listTipoTransporte[0].$key : '', '');
     });
   }
 
-  submit(transporte: ITransporte): void {
+  onSubmit(transporte: ITransporte): void {
     if (this.isValid(transporte)) {
       let key = null;
       let message = '';
@@ -98,23 +62,29 @@ export class TransporteComponent implements OnInit {
       if (key) {
         this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
           JSON.parse(`{"${key}": true}`));
-        this.clear();
       }
+      this.reset();
       this._toastService.activate(message);
     }
   }
 
-  edit(transporte: ITransporte): void {
+  onClear(event): void {
+    event.preventDefault();
+    this.editing = false;
+    this.reset();
+  }
+
+  onEdit(transporte: ITransporte): void {
     this.transporte = _.clone(transporte);
     this.editing = true;
   }
 
-  remove(transporte: ITransporte): void {
+  onRemove(transporte: ITransporte): void {
     if (transporte.rota && _.keys(transporte.rota).length > 0) {
       this._toastService.activate(`${transporte.descricao} não pode ser excluído pois já foi atribuído à  
         ${_.keys(transporte.rota).length} cadastros.`);
     } else {
-      let msg = `Deseja realmente excluir ${transporte.descricao} ?`;
+      let msg = `Deseja excluir ${transporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
           this._transporteService.remove(transporte).then(data => {
@@ -127,13 +97,9 @@ export class TransporteComponent implements OnInit {
     }
   }
 
-  clear() {
-    this.editing = false;
-    this.transporte = new Transporte();
-    this.transporte.icone = null;
-    this.transporte.destaque = null;
-    this.transporte.tipo_transporte = _.defaults(_.has(this.listTipoTransporte[0], '$key') ?
-      this.listTipoTransporte[0].$key : '', '');
+  getDescricao(tipoTransporte: string): string {
+    let option = _.findWhere(this.listTipoTransporte, { $key: tipoTransporte });
+    return _.has(option, 'descricao') ? option.descricao : '';
   }
 
   private isValid(transporte: ITransporte): boolean {
@@ -141,8 +107,8 @@ export class TransporteComponent implements OnInit {
       && (transporte.tipo_transporte && transporte.tipo_transporte.length > 0);
   }
 
-  getDescricao(tipoTransporte: string): string {
-    let option = _.findWhere(this.listTipoTransporte, { $key: tipoTransporte });
-    return _.has(option, 'descricao') ? option.descricao : '';
+  private reset(transporte?: ITransporte): void {
+    this.transporte = new Transporte(transporte);
   }
+
 }

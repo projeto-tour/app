@@ -1,11 +1,11 @@
-import { Injectable, bind, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { ITransporte, Transporte } from '../';
-import { FIREBASE_CONFIG, FirebaseConfig } from '../config';
+import { FIREBASE_CONFIG, FirebaseConfig } from '../const/config.const';
 
 import { ExceptionService } from '../providers/exception.service';
-import { ProgressBarService } from '../providers/progress-bar.service';
+import { ProgressBarService } from '../directives/progress-bar/progress-bar.service';
 
 @Injectable()
 export class TransporteService {
@@ -18,6 +18,7 @@ export class TransporteService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.transporte);
+    this.list = _angularFire.database.list('transporte');
     // this.list.subscribe(data => { console.log('TransporteService: ' + JSON.stringify(data)); });
   }
 
@@ -53,12 +54,8 @@ export class TransporteService {
   private requestResponse(ok: boolean, error: any): void {
     this._progressBarService.hide();
     if (!ok) {
-        this._exceptionService.catchBadResponse(error);
+      this._exceptionService.catchBadResponse(error);
     }
   }
 
 }
-
-export var transporteServiceInjectables: Array<any> = [
-  bind(TransporteService).toClass(TransporteService)
-];

@@ -1,82 +1,3 @@
-<!--<app>
-
-  <md-sidenav-layout fullscreen>
-    
-    <md-sidenav #sidenav>
-
-      <md-nav-list dense>
-        <li class="mdl-list__item mdl-list__item--two-line" (click)="sidenav.close();title = 'Dashboard'" [routerLink]="['./home']">
-          <span class="mdl-list__item-primary-content">
-            <img class="mdl-list__item-avatar" src="assets/logo.png" [alt]="title">
-            <span>Partiu!</span>
-            <span class="mdl-list__item-sub-title">Painel Administrativo</span>
-          </span>
-        </li>
-        <md-divider></md-divider>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Dashboard'" [routerLink]="['./home']">
-          <md-icon md-list-avatar style="margin-top:15px;">home</md-icon>
-          <h4 md-line>Home</h4>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Característica'" [routerLink]="['./caracteristica']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Característica</h4>
-          <span class="secondary-text" style="float:right;">{{ countCaracteristica }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Tipo de Agenda'" [routerLink]="['./tipodeagenda']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Tipo de Agenda</h4>
-          <span class="secondary-text" style="float:right;">{{ countTipoAgenda }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Tipo de Dado'" [routerLink]="['./tipodedado']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Tipo de Dado</h4>
-          <span class="secondary-text" style="float:right;">{{ countTipoDado }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Tipo de Ponto de Interesse'" [routerLink]="['./tipodepontodeinteresse']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Tipo de Ponto de Interesse</h4>
-          <span class="secondary-text" style="float:right;">{{ countTipoPontoInteresse }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Tipo de Trasporte'" [routerLink]="['./tipodetrasporte']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Tipo de Trasporte</h4>
-          <span class="secondary-text" style="float:right;">{{ countTipoTransporte }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item (click)="sidenav.close();title = 'Trasporte'" [routerLink]="['./trasporte']">
-          <md-icon md-list-avatar style="margin-top:15px;">add</md-icon>
-          <h4 md-line>Trasporte</h4>
-          <span class="secondary-text" style="float:right;">{{ countTransporte }}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-      </md-nav-list>
-    </md-sidenav>
-
-    <md-toolbar color="primary">
-      <button md-icon-button (click)="sidenav.open()">
-        <md-icon class="md-24">menu</md-icon>
-      </button>
-      <span>{{ title }}</span>
-      <span class="fill-remaining"></span>
-      <span>{{ user }} | </span>
-      <button id="logout" md-icon-button (click)="logout()">
-        <md-icon class="md-24">exit_to_app</md-icon>
-      </button>
-      
-    </md-toolbar>
-    
-    <router-outlet></router-outlet>
-    
-  </md-sidenav-layout>
-  
-</app>-->
-
 <!-- Always shows a header, even in smaller screens. -->
 <div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <header class="mdl-layout__header">
@@ -111,43 +32,49 @@
     </li>
     <hr>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" [routerLink]="['./home']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./home']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">home</i>
           Home
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./caracteristica']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./avaliacao']">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon">add</i>
+          Avaliação
+        </span>
+      </a>
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./caracteristica']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Característica
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./tipodeagenda']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./tipodeagenda']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Tipo de Agenda
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./tipodedado']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./tipodedado']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Tipo de Dado
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./tipodepontodeinteresse']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./tipodepontodeinteresse']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Tipo de Ponto de Interesse
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./tipodetrasporte']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./tipodetrasporte']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Tipo de Trasporte
         </span>
       </a>
-      <a class="mdl-navigation__link" [routerLink]="['./trasporte']">
+      <a class="mdl-navigation__link" routerLinkActive="active" [routerLink]="['./trasporte']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">add</i>
           Trasporte

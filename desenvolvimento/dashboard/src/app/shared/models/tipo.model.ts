@@ -5,7 +5,7 @@
  * @param key           UIDD
  * @param descricao     Descrição do tipos.
  * @param icone         Icone do tipos quando se aplica.
- * @param destaque      Descrição do tipos quando se aplica.
+ * @param destaque      Descrição do tipos quando se aplição.
  */
 export class Tipo implements ITipo {
     descricao: string;
@@ -25,4 +25,3 @@ export interface ITipo {
     icone: string;
     destaque: string;
 }
-

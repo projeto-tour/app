@@ -2,6 +2,11 @@
   "rules": {
     ".read": "auth != null",
     ".write": "auth != null",
+    "avaliacao": {
+      "$key_avaliacao": {
+        ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0 && newData.child('nota').isNumber() && newData.child('nota').val() >= 1 && newData.child('nota').val() <= 5"
+      }
+    },
     "caracteristica": {
       "$key_caracteristica": {
         ".validate": "newData.hasChildren(['descricao', 'tipo_dado']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0 && newData.child('tipo_dado').exists() && newData.child('tipo_dado').val().length > 0"

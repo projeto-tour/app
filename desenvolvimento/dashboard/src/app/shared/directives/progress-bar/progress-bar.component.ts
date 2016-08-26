@@ -1,18 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
-
-import { ProgressBarState, ProgressBarService } from '../../providers/progress-bar.service';
+import { ProgressBarState, ProgressBarService } from './progress-bar.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-progress-bar',
   templateUrl: 'progress-bar.component.html',
-  styleUrls: ['progress-bar.component.css'],
-  directives: [
-    MD_PROGRESS_BAR_DIRECTIVES
-  ]
+  styleUrls: ['progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnDestroy, OnInit {
 

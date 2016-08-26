@@ -3,32 +3,82 @@
     <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-    <ion-title>{{titulo}}</ion-title>
+    <!--<ion-title>{{titulo}}</ion-title>-->
     <ion-buttons end>
       <button (click)="carregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
-    </ion-buttons>
+  </ion-buttons>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="mapa">
+      Mapa
+    </ion-segment-button>
+    <ion-segment-button value="pontos-interesse">
+      Pontos de Interesse
+    </ion-segment-button>
+  </ion-segment>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="mapa">
+<ion-content>
   
-  <ion-list>
+  <div [ngSwitch]="segment">
+
+    <ion-list *ngSwitchCase="'mapa'">
+      <ion-item>
+        <ion-label>Ponto de Interesse</ion-label>
+        <ion-select [(ngModel)]="pontoInteresse.tipo_ponto_interesse">
+            <ion-option *ngFor="let item of _tipoPontoInteresseService.tipos | async" [value]="item.$key" >
+                {{ item.descricao }}
+            </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <input 
+          type="text"
+          style="width:100%;"
+          [(ngModel)] = "pontoInteresse.descricao"  
+          (setAddress) = "getAddress($event)" 
+          googleplace/>
+      </ion-item>
+    </ion-list>
+    <div #map id="map" *ngSwitchCase="'mapa'"></div>
+
+    <div  *ngSwitchCase="'pontos-interesse'">
+      <ion-list *ngFor="let tipo of _tipoPontoInteresseService.tipos | async">
+        <ion-list-header>
+          <button  clear item-left>
+            <ion-icon name='add' is-active="true"></ion-icon>
+            {{ tipo.descricao }}
+          </button>
+        </ion-list-header>
+        <ion-item *ngFor="let ponto of getPontosInteresse(tipo.$key)">
+          <h2>{{ ponto.descricao }}</h2>
+          <p>{{ ponto.observacao }}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </div>
+
+  <!--<ion-list>
     <ion-item>
       <ion-label>Ponto de Interesse</ion-label>
-      <ion-select [(ngModel)]="pontoInteresse">
-        <ion-option value="1">Passeio</ion-option>
-        <ion-option value="2">Alimentação</ion-option>
-        <ion-option value="3">Evento</ion-option>
-        <ion-option value="4">Hotel</ion-option>
-        <ion-option value="5">Negócios</ion-option>
+      <ion-select [(ngModel)]="pontoInteresse.tipo_ponto_interesse">
+        <ion-option *ngFor="let item of _tipoPontoInteresseService.tipos | async" [value]="item.$key">
+          {{ item.descricao }}
+        </ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Ex. Av. presidente vargas ou São Paulo"></ion-input>
+      <input 
+          type="text" 
+          style="width:100%;" 
+          [(ngModel)]="pontoInteresse.descricao" 
+          (setAddress)="getAddress($event)" 
+          googleplace/>
     </ion-item>
   </ion-list>
-  <div id="map"></div>
+  <div #map id="map"></div>-->
 
 </ion-content>

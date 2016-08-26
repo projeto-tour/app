@@ -1,39 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/forms';
 
 import { FirebaseListObservable } from 'angularfire2';
 
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-
-import {
-    AutofocusDirective,
-    MdlDirective
-} from '../../';
-
 @Component({
-    moduleId: module.id,
     selector: 'partiu-cadastro',
     templateUrl: 'cadastro.component.html',
     styleUrls: ['cadastro.component.css'],
-    directives: [
-        MD_GRID_LIST_DIRECTIVES,
-        MD_BUTTON_DIRECTIVES,
-        MD_ICON_DIRECTIVES,
-        MD_CARD_DIRECTIVES,
-        MD_INPUT_DIRECTIVES,
-        FORM_DIRECTIVES,
-        MdIcon,
-        AutofocusDirective,
-        MdlDirective
-    ],
-    providers: [
-        MdIconRegistry
-    ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CadastroComponent implements OnInit {
@@ -56,7 +28,7 @@ export class CadastroComponent implements OnInit {
 
     ngOnInit() { }
 
-    submit(item: any): void {
+    onSubmit(item: any): void {
         if (this.editing) {
             this.update.emit({ item: this.item, changes: item });
         } else {
@@ -64,7 +36,8 @@ export class CadastroComponent implements OnInit {
         }
     }
 
-    reset(): boolean {
+    onClear(event): boolean {
+        event.preventDefault();
         this.clear.emit(true);
         return false;
     }

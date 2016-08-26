@@ -1,11 +1,11 @@
-import { Injectable, bind, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { ITipo, Tipo } from '../';
-import { FIREBASE_CONFIG, FirebaseConfig } from '../config';
+import { FIREBASE_CONFIG, FirebaseConfig } from '../const/config.const';
 
 import { ExceptionService } from '../providers/exception.service';
-import { ProgressBarService } from '../providers/progress-bar.service';
+import { ProgressBarService } from '../directives/progress-bar/progress-bar.service';
 
 @Injectable()
 export class TipoPontoInteresseService {
@@ -18,6 +18,7 @@ export class TipoPontoInteresseService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.tipo_ponto_interesse);
+    this.list = _angularFire.database.list('tipo_ponto_interesse');
     // this.list.subscribe(data => { console.log('TipoPontoInteresseService: ' + JSON.stringify(data)); });
   }
 
@@ -53,12 +54,8 @@ export class TipoPontoInteresseService {
   private requestResponse(ok: boolean, error: any): void {
     this._progressBarService.hide();
     if (!ok) {
-        this._exceptionService.catchBadResponse(error);
+      this._exceptionService.catchBadResponse(error);
     }
   }
 
 }
-
-export var tipoPontoInteresseServiceInjectables: Array<any> = [
-  bind(TipoPontoInteresseService).toClass(TipoPontoInteresseService)
-];

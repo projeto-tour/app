@@ -1,0 +1,61 @@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col">
+        <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:10%">Nota</th>
+                    <th class="mdl-data-table__cell--non-numeric">Descrição</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of _avaliacaoService.list | async">
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{ item.nota }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <span style="font-weight: bold;">{{ item.descricao }}</span>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="onEdit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="onRemove(item)"><md-icon class="md-24">delete</md-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>     
+            <md-card>
+                <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
+                <md-card-content>
+                    <md-input 
+                        type="text" 
+                        placeholder="Descrição"  
+                        required 
+                        #descricao 
+                        formControlName="descricao" 
+                        maxLength="100"
+                        [dividerColor]="(!form.find('descricao').valid && !form.find('descricao').pristine) ? 'warn':'primary'">
+                        <md-hint align="end">{{descricao.characterCount}} / 100</md-hint>
+                    </md-input>
+                    <div>Nota: <span>{{ form.value.nota }}</span></div><br>
+                    <input 
+                        class="mdl-slider mdl-js-slider" style="width:100%"
+                        type="range" min="1" max="5" step="1"
+                        required 
+                        #nota 
+                        formControlName="nota">
+                    <hr>
+                </md-card-content>
+                <md-card-actions align="end">
+                    <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
+                    <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Salvar</button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</div>

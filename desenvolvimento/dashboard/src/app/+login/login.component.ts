@@ -1,58 +1,51 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_ICON_DIRECTIVES } from '@angular2-material/icon';
-import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
-import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-
-import {
-  AuthService,
-  ToastService,
-  MdlDirective
-} from '../shared';
+import { AuthService } from '../shared/providers/auth';
+import { ToastService } from '../shared/directives/toast';
 
 @Component({
-  moduleId: module.id,
   selector: 'partiu-login',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css'],
-  directives: [
-    MD_BUTTON_DIRECTIVES,
-    MD_CARD_DIRECTIVES,
-    MD_GRID_LIST_DIRECTIVES,
-    MD_ICON_DIRECTIVES,
-    MD_INPUT_DIRECTIVES,
-    MD_TOOLBAR_DIRECTIVES,
-    MdIcon,
-    MdlDirective
-  ],
-  providers: [
-    MdIconRegistry
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
+
+  form: FormGroup;
 
   constructor(
     public _authService: AuthService,
     private _toastService: ToastService,
     private _router: Router) {
+    this.configForm();
   }
 
   ngOnInit() {
-    this._authService.title = 'Partiu!';
+    this._authService.title = 'Controle de Acesso';
   }
 
-  onSubmit(form: any): void {
-    this._authService.signIn(form.email, form.password)
+  onSubmit(user: any): void {
+    this._authService.signIn(user.email, user.password)
       .then(() => {
-        let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : 'dashboard';
+        let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : '/dashboard';
         this._router.navigate([redirect]);
       });
+  }
+
+  private configForm(): void {
+    this.form = new FormGroup({
+      'email': new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
+      'password': new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(10),
+      ])
+    });
   }
 
 }

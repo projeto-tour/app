@@ -1,11 +1,11 @@
-import { Injectable, bind, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { ITipo, Tipo } from '../';
-import { FIREBASE_CONFIG, FirebaseConfig } from '../config';
+import { FIREBASE_CONFIG, FirebaseConfig } from '../const/config.const';
 
 import { ExceptionService } from '../providers/exception.service';
-import { ProgressBarService } from '../providers/progress-bar.service';
+import { ProgressBarService } from '../directives/progress-bar/progress-bar.service';
 
 @Injectable()
 export class TipoDadoService {
@@ -19,6 +19,7 @@ export class TipoDadoService {
     private _progressBarService: ProgressBarService,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
     this.list = _angularFire.database.list(_firebaseConfig.tipo_dado);
+    this.list = _angularFire.database.list('tipo_dado');
     // this.list.subscribe(data => { console.log('TipoDadoService: ' + JSON.stringify(data)); });
   }
 
@@ -66,12 +67,8 @@ export class TipoDadoService {
   private requestResponse(ok: boolean, error: any): void {
     this._progressBarService.hide();
     if (!ok) {
-        this._exceptionService.catchBadResponse(error);
+      this._exceptionService.catchBadResponse(error);
     }
   }
 
 }
-
-export var tipoDadoServiceInjectables: Array<any> = [
-  bind(TipoDadoService).toClass(TipoDadoService)
-];
