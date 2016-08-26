@@ -16933,10 +16933,13 @@ body {
 .historico ion-content.cards-bg {
   background-color: #f4f4f7; }
 
-.scroll {
+.mapa ion-content {
+  background: #e5e3df; }
+
+.mapa scroll-content {
   height: 100%; }
 
-#map {
+.mapa #map {
   width: 100%;
   height: 100%; }
 

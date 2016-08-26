@@ -23,7 +23,7 @@ export class TipoPontoInteresse implements ITipoPontoInteresse {
 
 export interface ITipoPontoInteresse extends ITipo {
     $key?: string;
-    preferencias_usuario?: any;
+    preferencia_usuario?: any;
     caracteristica_tipo_ponto_interesse?: any;
     ponto_interesse?: any;
 }

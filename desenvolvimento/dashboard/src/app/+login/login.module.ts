@@ -13,6 +13,9 @@ import { loginRouting } from './login.routing';
 import { LoginComponent } from './login.component';
 
 @NgModule({
+    declarations: [
+        LoginComponent
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -27,9 +30,6 @@ import { LoginComponent } from './login.component';
         MdGridListModule,
 
         loginRouting
-    ],
-    declarations: [
-        LoginComponent
     ],
     providers: [
     ]

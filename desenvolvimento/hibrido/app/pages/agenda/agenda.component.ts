@@ -121,10 +121,11 @@ export class AgendaPage {
         {
           text: 'Sim',
           handler: () => {
-            // -- TODO Otimizar a remoção de agenda da lista local
-            this._service.remove(agenda).then(() => {
-              // -- TODO Toast com msg remoção
-            });
+            // // -- TODO Otimizar a remoção de agenda da lista local
+            // this._service.remove(agenda).then(() => {
+            //   // -- TODO Toast com msg remoção
+            // });
+            console.log('Sim clicked');
           }
         }
       ]

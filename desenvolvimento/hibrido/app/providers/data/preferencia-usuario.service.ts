@@ -23,7 +23,7 @@ export class PreferenciaUsuarioService {
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.ponto_interesse}/${this._auth.uid || this._auth.userInfo.uid}`);
+    this.tipos = _af.database.list(`${_firebaseConfig.preferencia_usuario}/${this._auth.uid || this._auth.userInfo.uid}`);
   }
 
   create(preferenciaUsuario: IPreferenciaUsuario): any {

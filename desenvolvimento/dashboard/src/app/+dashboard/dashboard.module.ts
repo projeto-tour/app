@@ -39,6 +39,25 @@ import { TransporteComponent } from '../+transporte/transporte.component';
 import { dashboardRouting } from './dashboard.routing';
 
 @NgModule({
+    declarations: [
+        MdlDirective,
+        AutofocusDirective,
+
+        CadastroComponent,
+
+        DashboardComponent,
+        HomeComponent,
+        AvaliacaoComponent,
+        CaracteristicaComponent,
+        TipoAgendaComponent,
+        TipoDadoComponent,
+        TipoPontoInteresseComponent,
+        TipoTransporteComponent,
+        TransporteComponent,
+
+        PolymerElement('vaadin-grid'),
+        PolymerElement('vaadin-combo-box'),
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -62,25 +81,6 @@ import { dashboardRouting } from './dashboard.routing';
         MdTooltipModule,
 
         dashboardRouting
-    ],
-    declarations: [
-        MdlDirective,
-        AutofocusDirective,
-
-        CadastroComponent,
-
-        DashboardComponent,
-        HomeComponent,
-        AvaliacaoComponent,
-        CaracteristicaComponent,
-        TipoAgendaComponent,
-        TipoDadoComponent,
-        TipoPontoInteresseComponent,
-        TipoTransporteComponent,
-        TransporteComponent,
-
-        PolymerElement('vaadin-grid'),
-        PolymerElement('vaadin-combo-box'),
     ],
     providers: [
     ]

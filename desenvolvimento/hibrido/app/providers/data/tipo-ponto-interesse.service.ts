@@ -38,6 +38,10 @@ export class TipoPontoInteresseService {
     return this.tipos.update(tipoPontoInteresse.$key, changes);
   }
 
+  setPreferenciasUsuario(key: string, changes: any): firebase.Promise<any> {
+    return this._af.database.object(`${this._firebaseConfig.tipo_ponto_interesse}/${key}/${this._firebaseConfig.preferencia_usuario}/${this._auth.uid || this._auth.userInfo.uid}`).update(changes);
+  }
+
   setPontoInteresse(key: string, changes: any): firebase.Promise<any> {
     return this._af.database.object(`${this._firebaseConfig.tipo_ponto_interesse}/${key}/${this._firebaseConfig.ponto_interesse}/${this._auth.uid || this._auth.userInfo.uid}`).update(changes);
   }
@@ -47,4 +51,7 @@ export class TipoPontoInteresseService {
     return data.map((response: Response) => <ITipoPontoInteresse[]>response.json());
   }
 
+    // preferencias_usuario?: any;
+    // caracteristica_tipo_ponto_interesse?: any;
+    // ponto_interesse?: any;
 }
