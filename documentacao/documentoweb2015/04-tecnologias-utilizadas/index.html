@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Visão geral do documento</title>
+		<title>Tecnologias Utilizadas</title>
 		<meta charset="utf-8">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -16,38 +16,105 @@
 		div {
 			padding: 10px;
 		}
-
-		span {
-			font-weight: bold;
-			display: block;
-			font-style: italic;
-			font-size: 20px;
+		
+		#navigation ul
+		{
+			margin: 0;
+			padding: 0;
 		}
 
-		span::before {
-			content: "[pasta] > "
+		#navigation ul li
+		{
+			list-style-type: none;
+			display: inline;
 		}
-		</style>
+
+		#navigation li:before {
+		content: " > ";
+		}
+
+		#navigation li:first-child:before {
+		content: none;
+		}
+
+	</style>
 	</head>
 	<body>
 		<main>
 		
-			<!-- [EXPLICAR O QUE O PROFESSOR AVALIADOR VAI ENCONTRAR DENTRO DESTA PASTA] -->
-
-
+			<!-- Esse documento tem o objetivo de expor a funcionalidade das ferramentas utilizadas para a elaboração desse projeto -->
+			
 			<div class="panel panel-default">
 			  <!-- Default panel contents -->
-			  <div class="panel-heading"><h1>Documentação de Software do projeto [NOME DO PROJETO]</h1></div>
-			  <div class="panel-body">
-			  	<span><a href="#">04-tecnologias-utilizadas</a></span>
+			  <div class="panel-heading"><h1>Documentação de Software do projeto Partiu!</h1></div>
+			  <div id="navigation">
+				<ul>
+					<li>
+						<a href="../index.html"> <span itemprop="title"> Home </span> </a>
+					</li>
+
+					<li> 
+						<a href="#" ><span itemprop="title"> 04-tecnologias-utilizadas </span></a>
+					</li>
+				</ul>
 			  </div>
 
 			  <!-- List group -->
 			  <ul class="list-group">
 				<li class="list-group-item">
-					O documento preve das tecnologias que foram utilizadas para desenvolvimento do software e uma descrição de cada uma delas.
+					Este documento visa apresentar um overview de cada uma das tecnologias utilizadas na elaboração desse projeto.
+					As seguintes tecnologias foram utilizadas:
+					<ol>
+						<li>Angular 2</li>
+						<li>Ionic 2</li>
+						<li>Firebase 3</li>
+						<li>Angular Firebase</li>
+						<li>TypeScript</li>
+					</ol>
+					<br>					
+			    </li>
+			  </ul>
+			  <ul class="list-group">
+				<li class="list-group-item">
+					<h1> Angular 2</h1>
 					<br>
-					<a href="#">Tecnologias utilizadas</a>		    	
+					Angular 2 é um framework mantido pelo Google nos auxilia a abstrair a manipulação do DOM da lógica do aplicativo, abstrair o acoplamento entre o lado cliente e o lado servidor da aplicação e a melhorar a qualidade dos testes.
+					<br>
+					Angular é basicamente um conjunto de bibliotecas (algumas core, outras não) que trabalham em cooperação.
+					<br>
+					O framework segue o padrão MVC (Model View Controller) e presa pelo baixo acoplamento entre as camadas de apresentação, dados e componentes lógicos. Utilizando de injeção de dependência ele traz alguns componentes que normalmento são utilizados no lador servidor para o lado cliente deixando, consequentemente, o backend mais leve.
+					<br>
+					Abaixo segue a arquitetura básica do Angular 2:
+					<br>
+					<img src="img/overview2.png">
+					<br>
+					Aplicações Angular são desenvolvidas pela composição de templates HTML enriquecido com anotações e marcações angular. Para manipular os templates escrevemos <i>componentes</i> e criamos <i>serviços</i> para executar a lógica da aplicação. Componentes e serviços são emapcotados em módulos.
+					<br>
+					Componentes nada mais são que uma classe com a anotação @Componente, exemplo de componente: 
+					<br>
+					<pre><code ng-non-bindable=""><span>@Component</span><span>({</span>
+						<span>selector</span><span>:</span><span></span><span>'hero-list'</span><span>,</span>
+						<span>templateUrl</span><span>:</span><span></span><span>'app/hero-list.component.html'</span><span>,</span>
+						<span>providers</span><span>:</span><span>   </span><span>[</span><span> </span><span>HeroService</span><span> </span><span>]</span><span>
+					</span><span class="pun">})</span><span class="pln">
+					</span><span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">HeroListComponent</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">OnInit</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+					</span><span class="com">/* . . . */</span><span class="pln">
+					</span><span class="pun">}</span></code>
+					</pre>
+					<br>
+					 Para saber mais acesse: <a href="https://angular.io/docs/ts/latest/">Angular 2.</a>		    	
+			    </li>
+				<li class="list-group-item">
+					<h1> Ionic 2</h1>
+					<br>
+					Ionic framework é uma SDK (Software Development Kit) de código aberto que possibilita ao desenvolvedor de aplicações web que já possui conhecimento em HTML5, CSS e JavaScript a criar aplicações mobile.
+					<br>
+					Ionic foca principalmente na interação com a interface do aplicativo, ele visa simplificar o desenvolvimento do front-end. Basicamente ele preenche a lacuna do HTML5 para o desenvolvimento nativo do aplicativo.
+					<br>
+					Além do framework permitir que aplicações mobile sejam criadas praticamente do mesmo modo de uma aplicação web comum ainda permite que os testes sejam realizados diretamente pelo browser.
+					<br>
+					<br>
+					Para saber mais acesse: <a href="http://ionicframework.com/docs/v2/getting-started/">Ionic 2.</a>		    	
 			    </li>
 			  </ul>
 
