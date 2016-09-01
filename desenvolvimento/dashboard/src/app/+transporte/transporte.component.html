@@ -39,13 +39,13 @@
                     <md-input 
                         type="text"
                         placeholder="Descrição" 
-                        maxLength="50" 
                         required
-                        [(value)]="transporte.descricao"
-                        (keyup.escape)="reset()"
+                        maxLength="50" 
+                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
+                        [(ngModel)]="transporte.descricao"
                         name="descricao"
-                        #descricao 
-                        ngModel>
+                        ngModel
+                        #descricao>
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
                     <vaadin-combo-box 
@@ -57,11 +57,10 @@
                         required
                         [(ngModel)]="transporte.tipo_transporte" 
                         name="tipo_transporte" 
-                        #tipo_transporte 
                         ngModel
-                        ngDefaultControl>
+                        ngDefaultControl
+                        #tipo_transporte>
                     </vaadin-combo-box>
-                    <hr>
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>

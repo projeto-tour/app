@@ -4,6 +4,9 @@ import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from '../+home/home.component';
 import { AvaliacaoComponent } from '../+avaliacao/avaliacao.component';
 import { CaracteristicaComponent } from '../+caracteristica/caracteristica.component';
+import {
+    CaracteristicaTipoPontoInteresseComponent
+} from '../+caracteristica-tipo-ponto-interesse/caracteristica-tipo-ponto-interesse.component';
 import { TipoAgendaComponent } from '../+tipo-agenda/tipo-agenda.component';
 import { TipoDadoComponent } from '../+tipo-dado/tipo-dado.component';
 import { TipoPontoInteresseComponent } from '../+tipo-ponto-interesse/tipo-ponto-interesse.component';
@@ -23,6 +26,7 @@ const dashboardRoutes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'avaliacao', component: AvaliacaoComponent },
             { path: 'caracteristica', component: CaracteristicaComponent },
+            { path: 'caracteristica_tipo_ponto_interesse', component: CaracteristicaTipoPontoInteresseComponent },
             { path: 'tipodeagenda', component: TipoAgendaComponent },
             { path: 'tipodedado', component: TipoDadoComponent },
             { path: 'tipodepontodeinteresse', component: TipoPontoInteresseComponent },

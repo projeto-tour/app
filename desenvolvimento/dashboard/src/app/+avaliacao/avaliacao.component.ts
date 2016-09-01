@@ -21,9 +21,8 @@ import { IAvaliacao, Avaliacao } from '../shared/models';
 export class AvaliacaoComponent implements OnInit {
 
   form: FormGroup;
-
-  avaliacao: IAvaliacao = new Avaliacao();
   editing: boolean = false;
+  avaliacao: IAvaliacao = new Avaliacao();
   listAvaliacao: IAvaliacao[] = [];
 
   constructor(
@@ -67,15 +66,18 @@ export class AvaliacaoComponent implements OnInit {
 
   onRemove(avaliacao: IAvaliacao): void {
     if (avaliacao.avaliacao_usuario && _.keys(avaliacao.avaliacao_usuario).length > 0) {
-      this._toastService.activate(`${avaliacao.descricao} não pode ser excluído pois já foi atribuído à 
+      this._toastService.activate(`${avaliacao.descricao} não pode ser excluído pois está sendo utilizado por 
         ${_.keys(avaliacao.avaliacao_usuario).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${avaliacao.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._avaliacaoService.remove(avaliacao).then(data => {
-            this._toastService.activate(`${avaliacao.descricao} foi removido com successo.`);
-          });
+          this._avaliacaoService.remove(avaliacao)
+            .then(data => {
+              this._toastService.activate(`${avaliacao.descricao} foi removido com êxito.`);
+            }).catch(error => {
+              this._toastService.activate(`${error}`, 'Atenção');
+            });
         }
       });
     }
@@ -88,8 +90,8 @@ export class AvaliacaoComponent implements OnInit {
       this._toastService.activate(`A nota ${avaliacao.nota} já foi utilizado.`);
     } else {
       let key = this._avaliacaoService.create(new Avaliacao(avaliacao));
-      this._toastService.activate(key ? `${avaliacao.descricao} foi cadastrado com successo.`
-        : `Não foi possível cadastrar ${avaliacao.descricao}.`);
+      this._toastService.activate(key ? `${avaliacao.descricao} foi cadastrado com êxito.`
+        : `Erro ao cadastrar ${avaliacao.descricao}.`);
     }
     this.resetForm();
   }
@@ -97,7 +99,7 @@ export class AvaliacaoComponent implements OnInit {
   update(avaliacao: IAvaliacao): void {
     this._avaliacaoService.update(this.avaliacao, avaliacao).then(data => {
       this.resetForm();
-      this._toastService.activate(`${avaliacao.descricao} foi alterado com successo.`);
+      this._toastService.activate(`${avaliacao.descricao} foi alterado com êxito.`);
     });
   }
 

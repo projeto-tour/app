@@ -50,6 +50,7 @@ import { CONFIG_PROVIDERS } from './shared/const';
 
 import { AvaliacaoService } from './shared/providers/avaliacao.service';
 import { CaracteristicaService } from './shared/providers/caracteristica.service';
+import { CaracteristicaTipoPontoInteresseService } from './shared/providers/caracteristica-tipo-ponto-interesse.service';
 import { ExceptionService } from './shared/providers/exception.service';
 import { TipoAgendaService } from './shared/providers/tipo-agenda.service';
 import { TipoDadoService } from './shared/providers/tipo-dado.service';
@@ -114,6 +115,7 @@ import { TransporteService } from './shared/providers/transporte.service';
     CONFIG_PROVIDERS,
     AvaliacaoService,
     CaracteristicaService,
+    CaracteristicaTipoPontoInteresseService,
     ExceptionService,
     TipoAgendaService,
     TipoDadoService,

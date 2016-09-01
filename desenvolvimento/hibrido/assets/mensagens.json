@@ -1,0 +1,41 @@
+{
+  "login": {
+    "invalidCredentials": "E-mail ou senha inválido",
+    "success": "Login efetuado com sucesso",
+    "error": "Não foi possível realizar login"
+  },
+  "logout": {
+    "sucesso": "Logout efetuado com êxito",
+    "erro": "Erro ao efetuar logout"
+  },
+  "configuracoes": {
+    "sucesso": "Configurações salvas com êxito",
+    "erro": "Erro ao atualizar configurações"
+  },
+  "conta": {
+    "sucesso": "Conta criada com sucesso",
+    "erro": "Erro ao criar conta",
+    "dadosInvalidos": "Dados inválidos"
+  },
+  "agenda": {
+    "sucesso": "Agenda criada com sucesso",
+    "erro": "Erro ao criar agenda",
+    "dadosInvalidos": "Dados inválidos",
+    "duplicidade": "Agenda já existe"
+  },
+  "mapa": {
+    "error": "Erro ao carregar o mapa",
+    "invalidLocation": "Localização inválida"
+  },
+  "historico": {
+    "erro": "Erro ao exibir histórico",
+    "erroPesquisa": "Não encontramos o histórico informado",
+    "erroAgenda": "Não existem agendas para o histórico selecionado"
+  },
+  "favoritos": {
+    "sucessoInserir": "O ponto de interesse {pontoInteresse} foi adicionado aos favoritos com êxito",
+    "sucessoRemover": "O ponto de interesse {pontoInteresse} foi removido dos favoritos com êxito",
+    "erroInserir": "Erro ao inserir o ponto de interesse {pontoInteresse} aos favoritos",
+    "erroRemover": "Erro ao remover o ponto de interesse {pontoInteresse} dos favoritos"
+  }
+}

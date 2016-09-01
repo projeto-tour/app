@@ -39,13 +39,13 @@
                     <md-input 
                         type="text" 
                         placeholder="Descrição"
-                        maxLength="100"  
                         required 
+                        maxLength="100"  
+                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
                         [(ngModel)]="caracteristica.descricao" 
                         name="descricao" 
-                        #descricao 
                         ngModel
-                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'">
+                        #descricao>
                         <md-hint align="end">{{descricao.characterCount}} / 100</md-hint>
                     </md-input>
                     <vaadin-combo-box 
@@ -56,12 +56,11 @@
                         (selected-item-changed)="caracteristica.tipo_dado=$event.detail.value.$key"
                         required
                         [(ngModel)]="caracteristica.tipo_dado" 
-                        name="tipo_dado" 
-                        #tipo_dado 
+                        name="tipo_dado"
                         ngModel
-                        ngDefaultControl>
+                        ngDefaultControl 
+                        #tipo_dado>
                     </vaadin-combo-box>
-                    <hr>
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>

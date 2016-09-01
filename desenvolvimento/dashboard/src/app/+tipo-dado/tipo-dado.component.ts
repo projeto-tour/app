@@ -19,10 +19,9 @@ import { ITipoDado, TipoDado } from '../shared/models';
 })
 export class TipoDadoComponent implements OnInit {
 
-  tipoDado: ITipoDado = new TipoDado();
   editing: boolean = false;
+  tipoDado: ITipoDado = new TipoDado();
   listTipoDado: ITipoDado[] = [];
-
   showIcone: boolean = false;
   showDestaque: boolean = false;
 
@@ -31,7 +30,7 @@ export class TipoDadoComponent implements OnInit {
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _tipoDadoService: TipoDadoService) {
-    this.clear();
+    // this.onClear();
   }
 
   ngOnInit() {
@@ -41,54 +40,63 @@ export class TipoDadoComponent implements OnInit {
     });
   }
 
-  create(tipoDado: ITipoDado): void {
+  onCreate(tipoDado: ITipoDado): void {
     if (this.isValid(tipoDado)) {
       if (_.findWhere(this.listTipoDado, { descricao: tipoDado.descricao })) {
         this._toastService.activate(`${tipoDado.descricao} já existe.`);
       } else {
         let key = this._tipoDadoService.create(new TipoDado(tipoDado));
-        this._toastService.activate(key ? `${tipoDado.descricao} foi cadastrado com successo.`
-          : `Não foi possível cadastrar ${tipoDado.descricao}.`);
+        if (key) {
+          this.onClear();
+          this._toastService.activate(`${tipoDado.descricao} foi cadastrado com êxito.`);
+        } else {
+          this._toastService.activate(`Erro ao cadastrar ${tipoDado.descricao}.`);
+        }
       }
+    } else {
+      this._toastService.activate('Por favor, preencha os campos de formulário corretamente.');
     }
-    this.clear();
   }
 
-  update(tipoDado: any): void {
+  onUpdate(tipoDado: any): void {
     if (this.isValid(tipoDado.changes)) {
-      this._tipoDadoService.update(tipoDado.item, tipoDado.changes).then(data => {
-        this._toastService.activate(`${tipoDado.changes.descricao} foi alterado com successo.`);
-      });
+      this._tipoDadoService.update(tipoDado.item, tipoDado.changes)
+        .then(data => {
+          this.onClear();
+          this._toastService.activate(`${tipoDado.changes.descricao} foi alterado com êxito.`);
+        }).catch(error => {
+          this._toastService.activate(`${error}`, 'Atenção');
+        });
     }
-    this.clear();
   }
 
-  edit(tipoDado: ITipoDado): void {
+  onEdit(tipoDado: ITipoDado): void {
     this.tipoDado = _.clone(tipoDado);
     this.editing = true;
   }
 
-  remove(tipoDado: ITipoDado): void {
+  onRemove(tipoDado: ITipoDado): void {
     if (tipoDado.caracteristica && _.keys(tipoDado.caracteristica).length > 0) {
-      this._toastService.activate(`${tipoDado.descricao} não pode ser excluído pois já foi atribuído à 
+      this._toastService.activate(`${tipoDado.descricao} não pode ser excluído pois está sendo utilizado por 
         ${_.keys(tipoDado.caracteristica).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${tipoDado.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoDadoService.remove(tipoDado).then(data => {
-            this._toastService.activate(`${tipoDado.descricao} foi removido com successo.`);
-          });
+          this._tipoDadoService.remove(tipoDado)
+            .then(data => {
+              this._toastService.activate(`${tipoDado.descricao} foi removido com êxito.`);
+            }).catch(error => {
+              this._toastService.activate(`${error}`, 'Atenção');
+            });
         }
       });
     }
   }
 
-  clear(data?: any) {
+  onClear(event?: any): void {
     this.editing = false;
-    this.tipoDado = new TipoDado();
-    this.tipoDado.icone = null;
-    this.tipoDado.destaque = null;
+    this.tipoDado = new TipoDado({ descricao: '', icone: '', destaque: '' });
   }
 
   private isValid(tipoDado: ITipoDado): boolean {

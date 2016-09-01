@@ -19,10 +19,9 @@ import { ITipoAgenda, TipoAgenda } from '../shared/models';
 })
 export class TipoAgendaComponent implements OnInit {
 
-  tipoAgenda: ITipoAgenda = new TipoAgenda();
   editing: boolean = false;
+  tipoAgenda: ITipoAgenda = new TipoAgenda();
   listTipoAgenda: ITipoAgenda[] = [];
-
   showIcone: boolean = true;
   showDestaque: boolean = true;
 
@@ -31,7 +30,7 @@ export class TipoAgendaComponent implements OnInit {
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _tipoAgendaService: TipoAgendaService) {
-    this.clear();
+    // this.onClear();
   }
 
   ngOnInit() {
@@ -41,54 +40,63 @@ export class TipoAgendaComponent implements OnInit {
     });
   }
 
-  create(tipoAgenda: ITipoAgenda): void {
+  onCreate(tipoAgenda: ITipoAgenda): void {
     if (this.isValid(tipoAgenda)) {
       if (_.findWhere(this.listTipoAgenda, { descricao: tipoAgenda.descricao })) {
         this._toastService.activate(`${tipoAgenda.descricao} já existe.`);
       } else {
         let key = this._tipoAgendaService.create(new TipoAgenda(tipoAgenda));
-        this._toastService.activate(key ? `${tipoAgenda.descricao} foi cadastrado com successo.`
-          : `Não foi possível cadastrar ${tipoAgenda.descricao}.`);
+        if (key) {
+          this.onClear();
+          this._toastService.activate(`${tipoAgenda.descricao} foi cadastrado com êxito.`);
+        } else {
+          this._toastService.activate(`Erro ao cadastrar ${tipoAgenda.descricao}.`);
+        }
       }
+    } else {
+      this._toastService.activate('Por favor, preencha os campos de formulário corretamente.');
     }
-    this.clear();
   }
 
-  update(tipoAgenda: any): void {
+  onUpdate(tipoAgenda: any): void {
     if (this.isValid(tipoAgenda.changes)) {
-      this._tipoAgendaService.update(tipoAgenda.item, tipoAgenda.changes).then(data => {
-        this._toastService.activate(`${tipoAgenda.changes.descricao} foi alterado com successo.`);
-      });
+      this._tipoAgendaService.update(tipoAgenda.item, tipoAgenda.changes)
+        .then(data => {
+          this.onClear();
+          this._toastService.activate(`${tipoAgenda.changes.descricao} foi alterado com êxito.`);
+        }).catch(error => {
+          this._toastService.activate(`${error}`, 'Atenção');
+        });
     }
-    this.clear();
   }
 
-  edit(tipoAgenda: ITipoAgenda): void {
+  onEdit(tipoAgenda: ITipoAgenda): void {
     this.tipoAgenda = _.clone(tipoAgenda);
     this.editing = true;
   }
 
-  remove(tipoAgenda: ITipoAgenda): void {
+  onRemove(tipoAgenda: ITipoAgenda): void {
     if (tipoAgenda.agenda && _.keys(tipoAgenda.agenda).length > 0) {
-      this._toastService.activate(`${tipoAgenda.descricao} não pode ser excluído pois já foi atribuído à 
-                                    ${_.keys(tipoAgenda.agenda).length} cadastros.`);
+      this._toastService.activate(`${tipoAgenda.descricao} não pode ser excluído pois está sendo utilizado por 
+        ${_.keys(tipoAgenda.agenda).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${tipoAgenda.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoAgendaService.remove(tipoAgenda).then(data => {
-            this._toastService.activate(`${tipoAgenda.descricao} foi removido com successo.`);
-          });
+          this._tipoAgendaService.remove(tipoAgenda)
+            .then(data => {
+              this._toastService.activate(`${tipoAgenda.descricao} foi removido com êxito.`);
+            }).catch(error => {
+              this._toastService.activate(`${error}`, 'Atenção');
+            });
         }
       });
     }
   }
 
-  clear(data?: any) {
+  onClear(event?: any): void {
     this.editing = false;
-    this.tipoAgenda = new TipoAgenda();
-    this.tipoAgenda.icone = null;
-    this.tipoAgenda.destaque = null;
+    this.tipoAgenda = new TipoAgenda({ descricao: '', icone: '', destaque: '' });
   }
 
   private isValid(tipoAgenda: ITipoAgenda): boolean {

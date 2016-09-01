@@ -1,0 +1,97 @@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col">
+        <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:10%">#</th>
+                    <th class="mdl-data-table__cell--non-numeric">Valor</th>
+                    <th class="mdl-data-table__cell--non-numeric">Tipo Ponto de Interesse</th>
+                    <th class="mdl-data-table__cell--non-numeric">Característica</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of _caracteristicaTipoPontoInteresseService.list | async; let i = index">
+                    <td>
+                        {{  i+1  }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <span style="font-weight: bold;">{{  item.valor  }}</span>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{  getDescricaoTipoPontoInteresse(item.tipo_ponto_interesse)  }}
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        {{  getDescricaoCaracteristica(item.caracteristica)  }}
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="onEdit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
+                    </td>
+                    <td>
+                        <button md-icon-button (click)="onRemove(item)"><md-icon class="md-24">delete</md-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" novalidate>    
+            <md-card>
+                <md-card-title>{{ editing ? 'Editar' : 'Cadastrar' }}</md-card-title>   
+                <md-card-content>
+                    <md-input 
+                        type="text" 
+                        placeholder="Valor" 
+                        required
+                        maxLength="100"
+                        [dividerColor]="valor.valid || valor.pristine ? 'warn':'primary'"
+                        [(ngModel)]="caracteristicaTipoPontoInteresse.valor" 
+                        name="valor"
+                        ngModel 
+                        #valor>
+                        <md-hint align="end">{{ valor.characterCount }} / 100</md-hint>
+                    </md-input>
+                    <vaadin-combo-box 
+                        label="Tipo Ponto de Interesse" 
+                        [items]="_tipoPontoInteresseService.list | async" 
+                        item-label-path="descricao"
+                        item-value-path="$key"
+                        (selected-item-changed)="caracteristicaTipoPontoInteresse.tipo_ponto_interesse=$event.detail.value.$key"
+                        required
+                        [(ngModel)]="caracteristicaTipoPontoInteresse.tipo_ponto_interesse" 
+                        name="tipo_ponto_interesse"
+                        ngModel
+                        ngDefaultControl
+                        #tipo_ponto_interesse>
+                    </vaadin-combo-box>
+                    <vaadin-combo-box 
+                        label="Característica" 
+                        [items]="_caracteristicaService.list | async" 
+                        item-label-path="descricao"
+                        item-value-path="$key"
+                        (selected-item-changed)="caracteristicaTipoPontoInteresse.caracteristica=$event.detail.value.$key"
+                        required
+                        [(ngModel)]="caracteristicaTipoPontoInteresse.caracteristica" 
+                        name="caracteristica"
+                        ngModel
+                        ngDefaultControl
+                        #caracteristica>
+                    </vaadin-combo-box>
+                    <md-checkbox  
+                        required 
+                        [(ngModel)]="caracteristicaTipoPontoInteresse.obrigatorio" 
+                        name="obrigatorio"
+                        ngModel
+                        #obrigatorio>
+                        Obrigatório
+                    </md-checkbox>
+                </md-card-content>
+                <md-card-actions align="end">
+                    <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
+                    <button md-raised-button color="primary" type="submit" [disabled]="!form.form.valid">Salvar</button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</div>

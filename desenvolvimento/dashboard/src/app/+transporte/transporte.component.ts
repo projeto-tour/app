@@ -19,8 +19,9 @@ import { ITransporte, Transporte, ITipoTransporte } from '../shared/models';
 })
 export class TransporteComponent implements OnInit {
 
-  transporte: ITransporte = new Transporte();
   editing: boolean = false;
+  transporte: ITransporte = new Transporte();
+  tipoTransporte: string;
   listTransporte: ITransporte[] = [];
   listTipoTransporte: ITipoTransporte[] = [];
 
@@ -30,7 +31,7 @@ export class TransporteComponent implements OnInit {
     private _toastService: ToastService,
     public _transporteService: TransporteService,
     public _tipoTransporteService: TipoTransporteService) {
-    this.reset();
+    // this.reset();
   }
 
   ngOnInit() {
@@ -38,7 +39,6 @@ export class TransporteComponent implements OnInit {
     this._transporteService.list.subscribe((data: ITransporte[]) => {
       this.listTransporte = data;
     });
-
     this._tipoTransporteService.list.subscribe((data: ITipoTransporte[]) => {
       this.listTipoTransporte = data;
     });
@@ -46,25 +46,29 @@ export class TransporteComponent implements OnInit {
 
   onSubmit(transporte: ITransporte): void {
     if (this.isValid(transporte)) {
-      let key = null;
-      let message = '';
       if (this.editing) {
-        this._transporteService.update(this.transporte, transporte);
-        key = this.transporte.$key;
-        message = `${transporte.descricao} foi alterado com successo.`;
+        this._transporteService.update(this.transporte, transporte)
+          .then(() => {
+            this.updates(this.transporte.$key, true, transporte.tipo_transporte,
+              `${this.transporte.descricao} foi alterado com êxito.`
+            );
+          }).catch(error => {
+            this._toastService.activate(`${error}`, 'Atenção');
+          });
       } else if (_.findWhere(this.listTransporte, { descricao: transporte.descricao })) {
-        message = `${transporte.descricao} já existe.`;
+        this._toastService.activate(`${transporte.descricao} já existe.`);
       } else {
-        key = this._transporteService.create(new Transporte(transporte));
-        message = key ? `${transporte.descricao} foi cadastrado com successo.`
-          : `Não foi possível cadastrar ${transporte.descricao}.`;
+        let key = this._transporteService.create(new Transporte(transporte));
+        if (key) {
+          this.updates(key, true, transporte.tipo_transporte,
+            `${transporte.descricao} foi cadastrado com êxito.`
+          );
+        } else {
+          this._toastService.activate(`Erro ao cadastrar ${transporte.descricao}.`);
+        }
       }
-      if (key) {
-        this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
-          JSON.parse(`{"${key}": true}`));
-      }
-      this.reset();
-      this._toastService.activate(message);
+    } else {
+      this._toastService.activate('Por favor, preencha os campos de formulário corretamente.');
     }
   }
 
@@ -76,22 +80,27 @@ export class TransporteComponent implements OnInit {
 
   onEdit(transporte: ITransporte): void {
     this.transporte = _.clone(transporte);
+    this.tipoTransporte = _.clone(transporte.tipo_transporte);
     this.editing = true;
   }
 
   onRemove(transporte: ITransporte): void {
     if (transporte.rota && _.keys(transporte.rota).length > 0) {
-      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois já foi atribuído à  
+      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois está sendo utilizado por  
         ${_.keys(transporte.rota).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${transporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._transporteService.remove(transporte).then(data => {
-            this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
-              JSON.parse(`{"${transporte.$key}": true}`));
-            this._toastService.activate(`${transporte.descricao} foi removido com successo.`);
-          });
+          this._transporteService.remove(transporte)
+            .then(data => {
+              return this._tipoTransporteService.updates(`/${transporte.tipo_transporte}/transporte`,
+                JSON.parse(`{"${transporte.$key}": null}`));
+            }).then(() => {
+              this._toastService.activate(`${transporte.descricao} foi removido com êxito.`);
+            }).catch(error => {
+              this._toastService.activate(`${error}`, 'Atenção');
+            });
         }
       });
     }
@@ -102,13 +111,31 @@ export class TransporteComponent implements OnInit {
     return _.has(option, 'descricao') ? option.descricao : '';
   }
 
+  private updates(key: string, value: boolean, tipoTransporte: string, msg: string): void {
+    this._tipoTransporteService.updates(`/${tipoTransporte}/transporte`, JSON.parse(`{"${key}": ${value}}`))
+      .then(() => {
+        if (this.editing && !_.isMatch(this.transporte, { 'tipo_transporte': this.tipoTransporte })) {
+          return this._tipoTransporteService.updates(
+            `/${this.tipoTransporte}/transporte`, JSON.parse(`{"${key}": null}`)
+          );
+        }
+      }).then(() => {
+        this.reset();
+        this._toastService.activate(msg);
+      }).catch(error => {
+        this._toastService.activate(`${error}`, 'Atenção');
+      });
+  }
+
   private isValid(transporte: ITransporte): boolean {
     return (transporte.descricao && transporte.descricao.trim().length > 0)
       && (transporte.tipo_transporte && transporte.tipo_transporte.length > 0);
   }
 
-  private reset(transporte?: ITransporte): void {
-    this.transporte = new Transporte(transporte);
+  private reset(): void {
+    this.editing = false;
+    this.transporte = new Transporte({ descricao: '', tipo_transporte: this.listTipoTransporte[0].$key });
+    this.tipoTransporte = '';
   }
 
 }

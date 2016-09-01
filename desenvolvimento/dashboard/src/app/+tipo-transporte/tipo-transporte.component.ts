@@ -31,7 +31,7 @@ export class TipoTransporteComponent implements OnInit {
     private _modalService: ModalService,
     private _toastService: ToastService,
     private _tipoTransporteService: TipoTransporteService) {
-    this.clear();
+    // this.onClear();
   }
 
   ngOnInit() {
@@ -41,54 +41,63 @@ export class TipoTransporteComponent implements OnInit {
     });
   }
 
-  create(tipoTransporte: ITipoTransporte): void {
+  onCreate(tipoTransporte: ITipoTransporte): void {
     if (this.isValid(tipoTransporte)) {
       if (_.findWhere(this.listTipoTransporte, { descricao: tipoTransporte.descricao })) {
         this._toastService.activate(`${tipoTransporte.descricao} já existe.`);
       } else {
         let key = this._tipoTransporteService.create(new TipoTransporte(tipoTransporte));
-        this._toastService.activate(key ? `${tipoTransporte.descricao} foi cadastrado com successo.`
-          : `Não foi possível cadastrar ${tipoTransporte.descricao}.`);
+         if (key) {
+          this.onClear();
+          this._toastService.activate(`${tipoTransporte.descricao} foi cadastrado com êxito.`);
+        } else {
+          this._toastService.activate(`Erro ao cadastrar ${tipoTransporte.descricao}.`);
+        }
       }
+    } else {
+      this._toastService.activate('Por favor, preencha os campos de formulário corretamente.');
     }
-    this.clear();
   }
 
-  update(tipoTransporte: any): void {
+  onUpdate(tipoTransporte: any): void {
     if (this.isValid(tipoTransporte.changes)) {
-      this._tipoTransporteService.update(tipoTransporte.item, tipoTransporte.changes).then(data => {
-        this._toastService.activate(`${tipoTransporte.changes.descricao} foi alterado com successo.`);
-      });
+      this._tipoTransporteService.update(tipoTransporte.item, tipoTransporte.changes)
+        .then(data => {
+          this.onClear();
+          this._toastService.activate(`${tipoTransporte.changes.descricao} foi alterado com êxito.`);
+        }).catch(error => {
+          this._toastService.activate(`${error}`, 'Atenção');
+        });
     }
-    this.clear();
   }
 
-  edit(tipoTransporte: ITipoTransporte): void {
+  onEdit(tipoTransporte: ITipoTransporte): void {
     this.tipoTransporte = _.clone(tipoTransporte);
     this.editing = true;
   }
 
-  remove(tipoTransporte: ITipoTransporte): void {
+  onRemove(tipoTransporte: ITipoTransporte): void {
     if (tipoTransporte.transporte && _.keys(tipoTransporte.transporte).length > 0) {
-      this._toastService.activate(`${tipoTransporte.descricao} não pode ser excluído pois já foi atribuído à 
+      this._toastService.activate(`${tipoTransporte.descricao} não pode ser excluído pois está sendo utilizado por 
         ${_.keys(tipoTransporte.transporte).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${tipoTransporte.descricao} ?`;
       this._modalService.activate(msg).then(responseOK => {
         if (responseOK) {
-          this._tipoTransporteService.remove(tipoTransporte).then(data => {
-            this._toastService.activate(`${tipoTransporte.descricao} foi removido com successo.`);
-          });
+          this._tipoTransporteService.remove(tipoTransporte)
+            .then(data => {
+              this._toastService.activate(`${tipoTransporte.descricao} foi removido com êxito.`);
+            }).catch(error => {
+              this._toastService.activate(`${error}`, 'Atenção');
+            });
         }
       });
     }
   }
 
-  clear(data?: any) {
+  onClear(event?: any): void {
     this.editing = false;
-    this.tipoTransporte = new TipoTransporte();
-    this.tipoTransporte.icone = null;
-    this.tipoTransporte.destaque = null;
+    this.tipoTransporte = new TipoTransporte({ descricao: '', icone: '', destaque: '' });
   }
 
   private isValid(tipoTransporte: ITipoTransporte): boolean {
