@@ -1,14 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <!--<ion-title>{{titulo}}</ion-title>-->
-    <ion-segment [(ngModel)]="segment">
-      <ion-segment-button value="preferencia">
-        Tipos
-      </ion-segment-button>
-      <ion-segment-button value="ponto-interesse">
-        Pontos
-      </ion-segment-button>
-    </ion-segment>
+    <ion-title>{{ titulo }}</ion-title>
     <ion-buttons end>
       <button (click)="onDismiss()">OK</button>
     </ion-buttons>
@@ -17,56 +9,15 @@
 
 <ion-content class="preferencia">
 
-  <!--<div [ngSwitch]="segment">
-
-      <ion-list *ngSwitchCase="'preferencia'">
-        <ion-item *ngFor="let tipo of _tipoPontoInteresseService.tipos | async">
-          <ion-badge item-left>{{ getPontosInteresse(tipo.$key)?.length }}</ion-badge>
-          {{ tipo.descricao }}
-          <button 
-              clear item-right (click)="onSelectTipo(tipo)" 
-              [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
-              <ion-icon name='star'></ion-icon>
-          </button>
-        </ion-item>
-      </ion-list>
-
-    <div *ngSwitchCase="'ponto-interesse'">
-      <ion-list *ngFor="let tipo of _tipoPontoInteresseService.tipos | async">
-        <ion-item>
-          <ion-badge item-left>{{ getPontosInteresse(tipo.$key)?.length }}</ion-badge>
-          {{ tipo.descricao }}
-          <button 
-              clear item-right (click)="onSelectTipo(tipo)" 
-              [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
-              <ion-icon name='star'></ion-icon>
-          </button>
-        </ion-item>
-        <ion-item *ngFor="let ponto of getPontosInteresse(tipo.$key)" (click)="onSelectPonto(ponto)">
-          <h2>{{ ponto.descricao }}</h2>
-          <p>{{ ponto.observacao }}</p>
-        </ion-item>
-      </ion-list>
-    </div>
-
-  </div>-->
-
-  <ion-list *ngFor="let tipo of _tipoPontoInteresseService.tipos | async">
-    <ion-item>
-      <ion-badge item-left>{{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }}</ion-badge>
-      {{ tipo.descricao }}
+  <ion-list>
+    <ion-item *ngFor="let tipo of _tipoPontoInteresseService.list | async">
+      <h2>{{ tipo.descricao }}</h2>
       <button clear item-right 
-          (click)="onSelectTipo(tipo)" 
+          (click)="onSelectTipoPontoInteresse(tipo)" 
           [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
           <ion-icon name='star'></ion-icon>
       </button>
     </ion-item>
-    <div *ngIf="segment === 'ponto-interesse'">
-      <ion-item *ngFor="let ponto of getPontosInteresse(tipo.$key)" (click)="onSelectPonto(ponto)">
-        <h2>{{ ponto.descricao }}</h2>
-        <p>{{ ponto.observacao }}</p>
-      </ion-item>
-    </div>
   </ion-list>
 
 </ion-content>

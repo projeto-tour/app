@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>{{titulo}}</ion-title>-->
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="all">
+        Todos
+      </ion-segment-button>
+      <ion-segment-button value="favorite">
+        Favoritos
+      </ion-segment-button>
+    </ion-segment>
+    <ion-buttons end>
+      <button (click)="onMarcarTodosComoFavorito()">
+        <ion-icon ios="ios-done-all" md="md-done-all"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="ponto-interesse">
+
+  <ion-card *ngFor="let tipo of _tipoPontoInteresseService.list | async">
+
+    <div [ngSwitch]="segment">
+
+      <div *ngSwitchCase="'all'">
+        <ion-item>
+          <ion-icon name="pin" item-left></ion-icon>
+          <h2>{{ tipo.descricao }}</h2>
+          <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
+              <ion-icon name='star'></ion-icon>
+          </button>
+        </ion-item>
+        <ion-list>
+          <button ion-item *ngFor="let ponto of getPontosInteresse(tipo.$key)" (click)="onSelectPontoInteresse(ponto)">
+          <h4>{{ ponto.descricao }}</h4>
+          <p>{{ ponto.observacao }}</p>
+          <button mdc-grey clear item-right (click)="onGerenciarPontoInteresse(ponto)">
+              <ion-icon name='md-more'></ion-icon>
+          </button>
+          </button>
+        </ion-list>
+        <ion-row *ngIf="getPontosInteresse(tipo.$key)?.length > 0">
+          <ion-col>
+            <button primary clear small (click)="onLoadMap(tipo)">
+              <ion-icon name="map"></ion-icon>
+              <div>Mapa</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
+              <ion-icon name="trash"></ion-icon>
+              <div>Excluir</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngSwitchCase="'favorite'">
+        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0">
+          <ion-icon name="pin" item-left></ion-icon>
+          <h2>{{ tipo.descricao }}</h2>
+          <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
+              <ion-icon name='star'></ion-icon>
+          </button>
+        </ion-item>
+        <ion-list *ngIf="getPreferencias(tipo.$key)?.length > 0">
+          <button ion-item *ngFor="let ponto of getPontosInteresse(tipo.$key)" (click)="onSelectPontoInteresse(ponto)">
+          <h4>{{ ponto.descricao }}</h4>
+          <p>{{ ponto.observacao }}</p>
+          <button mdc-grey clear item-right (click)="onGerenciarPontoInteresse(ponto)">
+              <ion-icon name='md-more'></ion-icon>
+          </button>
+          </button>
+        </ion-list>
+        <ion-row *ngIf="getPreferencias(tipo.$key)?.length > 0 && getPontosInteresse(tipo.$key)?.length > 0">
+          <ion-col>
+            <button primary clear small (click)="onLoadMap(tipo)">
+              <ion-icon name="map"></ion-icon>
+              <div>Mapa</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
+              <ion-icon name="trash"></ion-icon>
+              <div>Excluir</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </div>
+      
+    </div>
+
+  </ion-card>
+
+</ion-content>

@@ -3,6 +3,7 @@ import { MenuDataService } from './menu-data.service';
 import { NotificacaoService } from './notificacao.service';
 import { PontoInteresseService } from './ponto-interesse.service';
 import { PreferenciaUsuarioService } from './preferencia-usuario.service';
+import { RotaService } from './rota.service';
 import { TipoAgendaService } from './tipo-agenda.service';
 import { TipoPontoInteresseService } from './tipo-ponto-interesse.service';
 import { TransporteService } from './transporte.service';
@@ -15,6 +16,7 @@ export {
   NotificacaoService,
   PontoInteresseService,
   PreferenciaUsuarioService,
+  RotaService,
   TipoAgendaService,
   TipoPontoInteresseService,
   TransporteService,
@@ -28,6 +30,7 @@ export const DATA_PROVIDERS: any[] = [
   NotificacaoService,
   PontoInteresseService,
   PreferenciaUsuarioService,
+  RotaService,
   TipoAgendaService,
   TipoPontoInteresseService,
   TransporteService,

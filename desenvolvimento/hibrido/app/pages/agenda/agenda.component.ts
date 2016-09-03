@@ -1,16 +1,17 @@
 import { Component }  from '@angular/core';
 import { NgClass, DatePipe } from '@angular/common';
 
+import { NavController, ActionSheetController, Platform, AlertController } from 'ionic-angular';
+import { InAppBrowser }  from 'ionic-native';
+
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Observable } from 'rxjs/Observable';
 
-import { NavController, ActionSheetController, Platform, AlertController } from 'ionic-angular';
-import { InAppBrowser }  from 'ionic-native';
+import { clone } from 'lodash';
 
 import { AgendaFilterPipe } from './';
 import { PreferenciaPage } from '../preferencia';
-import { MapaAgendaPage } from '../mapa-agenda';
 import { RotaPage } from '../rota';
 import { AgendaDetailPage } from '../agenda-detail';
 
@@ -32,42 +33,41 @@ export class AgendaPage {
     public _navCtrl: NavController,
     public _platform: Platform,
     public _globalMethod: GlobalMethodService,
-    public _service: AgendaService,
+    public _agendaService: AgendaService,
     public _alertCtrl: AlertController,
     public _actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewLoaded() {
-    this._service.filterByDate((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), false);
+    this._agendaService.filterByDate((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), false);
   }
 
-  marcarComoFavorito(agenda: IAgenda): void {
+  onMarcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
-    this._service.update(agenda, { favorito: agenda.favorito });
+    this._agendaService.update(agenda, { favorito: agenda.favorito });
   }
 
-  carregarPreferencias(): void {
+  onCarregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  carregarMapa(agenda: IAgenda): void {
-    // this._navCtrl.push(MapaAgendaPage, agenda);
+  onCarregarMapa(agenda: IAgenda): void {
     new InAppBrowser(`http://maps.google.com/maps?q=${agenda.descricao}`, '_blank');
   }
 
-  carregarRotas(agenda: IAgenda): void {
-    this._globalMethod.carregarPagina(RotaPage, agenda.$key, true, this._navCtrl);
+  onCarregarRotas(agenda: IAgenda): void {
+    this._globalMethod.carregarPagina(RotaPage, clone(agenda), true, this._navCtrl);
   }
 
   editar(agenda: IAgenda): void {
-    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Editar', agenda: agenda }, true, this._navCtrl);
+    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Editar', agenda: clone(agenda) }, true, this._navCtrl);
   }
 
-  incluir(): void {
+  onIncluir(): void {
     this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Criar', agenda: null }, true, this._navCtrl);
   }
 
-  gerenciar(agenda: IAgenda): void {
+  onGerenciar(agenda: IAgenda): void {
     let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
       buttons: [
@@ -76,7 +76,7 @@ export class AgendaPage {
           role: 'destructive',
           icon: !this._platform.is('ios') ? 'trash' : null,
           handler: () => {
-            this.excluir(agenda);
+            this.onExcluir(agenda);
           }
         },
         {
@@ -107,10 +107,10 @@ export class AgendaPage {
     actionSheet.present();
   }
 
-  excluir(agenda: IAgenda): void {
+  onExcluir(agenda: IAgenda): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
-      message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
+      message: `Deseja excluir agenda ${agenda.descricao}?`,
       buttons: [
         {
           text: 'Não',
@@ -122,7 +122,7 @@ export class AgendaPage {
           text: 'Sim',
           handler: () => {
             // // -- TODO Otimizar a remoção de agenda da lista local
-            // this._service.remove(agenda).then(() => {
+            // this._agendaService.remove(agenda).then(() => {
             //   // -- TODO Toast com msg remoção
             // });
             console.log('Sim clicked');

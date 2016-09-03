@@ -2,8 +2,9 @@ import { Component }  from '@angular/core';
 import { NgClass } from '@angular/common';
 
 import { NavParams, NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
+import { InAppBrowser }  from 'ionic-native';
 
-import { filter } from 'lodash';
+import { filter, clone } from 'lodash';
 
 import { GlobalMethodService, IAgenda, ITipoAgenda } from '../shared';
 import { AgendaService } from '../../providers/data';
@@ -11,7 +12,6 @@ import { AgendaService } from '../../providers/data';
 import { AgendaFilterPipe } from '../agenda';
 import { AgendaDetailPage } from '../agenda-detail';
 import { PreferenciaPage } from '../preferencia';
-import { MapaAgendaPage } from '../mapa-agenda';
 import { RotaPage } from '../rota';
 
 @Component({
@@ -33,22 +33,22 @@ export class HistoricoListPage {
     public _navParams: NavParams,
     public _navCtrl: NavController,
     public _platform: Platform,
-    public _service: AgendaService,
+    public _agendaService: AgendaService,
     public _globalMethod: GlobalMethodService,
     public _alertCtrl: AlertController,
     public _actionSheetCtrl: ActionSheetController) {
     this.tipoAgenda = this._navParams.data;
-    _service.agendasPorTipo.subscribe((agendas: IAgenda[]) => {
+    _agendaService.agendasPorTipo.subscribe((agendas: IAgenda[]) => {
       this.agendas = this.todasAgendas = agendas;
-      this.atualizarLista();
+      this.onAtualizarLista();
     });
   }
 
   ionViewLoaded() {
-    this._service.filterByTipo(this.tipoAgenda.$key);
+    this._agendaService.filterByTipo(this.tipoAgenda.$key);
   }
 
-  atualizarLista(): void {
+  onAtualizarLista(): void {
     if (this.segment === 'favoritas') {
       this.agendas = filter(this.todasAgendas, { 'favorito': true });
     } else {
@@ -56,30 +56,30 @@ export class HistoricoListPage {
     }
   }
 
-  marcarComoFavorito(agenda: IAgenda): void {
+  onMarcarComoFavorito(agenda: IAgenda): void {
     agenda.favorito = !agenda.favorito;
-    this._service.update(agenda, { favorito: agenda.favorito }).then(() => {
+    this._agendaService.update(agenda, { favorito: agenda.favorito }).then(() => {
       this._globalMethod.mostrarMensagem(`${agenda.descricao} foi adicionado aos favoritos.`, this._navCtrl);
     });
   }
 
-  carregarPreferencias(): void {
+  onCarregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  carregarMapa(agenda: IAgenda): void {
-    this._navCtrl.push(MapaAgendaPage, agenda);
+  onCarregarMapa(agenda: IAgenda): void {
+    new InAppBrowser(`http://maps.google.com/maps?q=${agenda.descricao}`, '_blank');
   }
 
-  carregarRotas(agenda: IAgenda): void {
-    this._globalMethod.carregarPagina(RotaPage, agenda, true, this._navCtrl);
+  onCarregarRotas(agenda: IAgenda): void {
+    this._globalMethod.carregarPagina(RotaPage, clone(agenda), true, this._navCtrl);
   }
 
-  reagendar(agenda: IAgenda): void {
-    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Reagendar', agenda: agenda }, true, this._navCtrl);
+  onReagendar(agenda: IAgenda): void {
+    this._globalMethod.carregarPagina(AgendaDetailPage, { titulo: 'Reagendar', agenda: clone(agenda) }, true, this._navCtrl);
   }
 
-  gerenciar(agenda: IAgenda): void {
+  onGerenciar(agenda: IAgenda): void {
     let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
       buttons: [
@@ -88,14 +88,14 @@ export class HistoricoListPage {
           role: 'destructive',
           icon: !this._platform.is('ios') ? 'trash' : null,
           handler: () => {
-            this.excluir(agenda);
+            this.onExcluir(agenda);
           }
         },
         {
           text: 'Reagendar',
           icon: !this._platform.is('ios') ? 'redo' : null,
           handler: () => {
-            this.reagendar(agenda);
+            this.onReagendar(agenda);
           }
         },
         {
@@ -119,10 +119,10 @@ export class HistoricoListPage {
     actionSheet.present();
   }
 
-  excluir(agenda: IAgenda): void {
+  onExcluir(agenda: IAgenda): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
-      message: `Deseja realmente excluir agenda ${agenda.descricao}?`,
+      message: `Deseja excluir agenda ${agenda.descricao}?`,
       buttons: [
         {
           text: 'Não',

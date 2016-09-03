@@ -17118,19 +17118,6 @@ body {
 .rota-create .ion-label {
   font-size: 0.875em; }
 
-.rota-detail ion-card.adv-map p {
-  font-size: 0.7em !important; }
-
-.rota-detail button[fab].fab-map {
-  top: calc(100% - 35px);
-  z-index: 50; }
-
-.rota-detail .item-bold {
-  font-weight: bold; }
-
-.rota-detail ion-content.cards-bg {
-  background-color: #f4f4f7; }
-
 .compartilhar .ion-img {
   height: auto;
   width: auto; }

@@ -16,26 +16,26 @@ import {
 @Injectable()
 export class TipoPontoInteresseService {
 
-  tipos: FirebaseListObservable<ITipoPontoInteresse[]>;
+  list: FirebaseListObservable<ITipoPontoInteresse[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.tipo_ponto_interesse}`);
+    this.list = _af.database.list(`${_firebaseConfig.tipo_ponto_interesse}`);
   }
 
   create(tipoPontoInteresse: ITipoPontoInteresse): firebase.Promise<any> {
-    return this.tipos.push(tipoPontoInteresse);
+    return this.list.push(tipoPontoInteresse);
   }
 
   remove(tipoPontoInteresse: ITipoPontoInteresse): firebase.Promise<any> {
-    return this.tipos.remove(tipoPontoInteresse.$key);
+    return this.list.remove(tipoPontoInteresse.$key);
   }
 
   update(tipoPontoInteresse: ITipoPontoInteresse, changes: any): firebase.Promise<any> {
-    return this.tipos.update(tipoPontoInteresse.$key, changes);
+    return this.list.update(tipoPontoInteresse.$key, changes);
   }
 
   setPreferenciasUsuario(key: string, changes: any): firebase.Promise<any> {
@@ -51,7 +51,4 @@ export class TipoPontoInteresseService {
     return data.map((response: Response) => <ITipoPontoInteresse[]>response.json());
   }
 
-    // preferencias_usuario?: any;
-    // caracteristica_tipo_ponto_interesse?: any;
-    // ponto_interesse?: any;
 }

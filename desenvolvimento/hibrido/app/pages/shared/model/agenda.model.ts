@@ -10,7 +10,8 @@
  * @param data_criacao 
  * @param distancia 
  * @param tipo_agenda            
- * @param usuario       
+ * @param usuario                
+ * @param rota      
  */
 export class Agenda implements IAgenda {
     descricao: string;
@@ -42,5 +43,6 @@ export interface IAgenda {
     distancia: string;
     tipo_agenda: any;
     usuario?: any;
+    rota?: any;
 }
 

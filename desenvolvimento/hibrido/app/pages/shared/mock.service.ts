@@ -11,11 +11,11 @@ export class MockService {
         public _agendaService: AgendaService) {
     }
 
-    generateMockTiposDeAgenda(): void {
+    generateMocklistDeAgenda(): void {
         this._tipoAgendaService.getMock()
             .subscribe(
-            (tipos: ITipoAgenda[]) => { // -- on sucess
-                tipos.forEach(tipo => {
+            (list: ITipoAgenda[]) => { // -- on sucess
+                list.forEach(tipo => {
                     this._tipoAgendaService.create({
                         descricao: tipo.descricao,
                         destaque: tipo.destaque,

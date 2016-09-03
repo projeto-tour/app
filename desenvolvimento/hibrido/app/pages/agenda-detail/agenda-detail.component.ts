@@ -32,7 +32,7 @@ export class AgendaDetailPage {
 
   titulo: string = 'Agenda';
   agenda: IAgenda;
-  tiposDeAgenda: ITipoAgenda[];
+  listDeAgenda: ITipoAgenda[];
   isNovaAgenda: boolean = true;
   form: FormGroup;
 
@@ -49,8 +49,8 @@ export class AgendaDetailPage {
     this.agenda = _navParams.data.agenda;
     this.isNovaAgenda = keys(this.agenda).length <= 0;
     this.configForm(true, false);
-    this._tipoAgendaService.tipos.subscribe((tipos: ITipoAgenda[]) => {
-      this.tiposDeAgenda = tipos;
+    this._tipoAgendaService.list.subscribe((list: ITipoAgenda[]) => {
+      this.listDeAgenda = list;
       if (this.isNovaAgenda) {
         this.configForm(false, false);
       }
@@ -69,9 +69,13 @@ export class AgendaDetailPage {
     }
   }
 
-  limpar(event): void {
+  onLimpar(event): void {
     event.preventDefault();
     this.configForm(false, true);
+  }
+
+  onCarregarPreferencias(): void {
+    this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
   private criar() {
@@ -79,28 +83,22 @@ export class AgendaDetailPage {
     if (key) {
       this._tipoAgendaService.setAgenda(this.form.value.tipo_agenda, JSON.parse(`{"${key}": true }`))
         .then(data => {
-          this._globalMethod.mostrarMensagem('Dados de agenda foram salvos com êxito.', this._navCtrl);
+          return this._globalMethod.mostrarMensagem('Dados de agenda foram salvos com êxito.', this._navCtrl);
+        }).then(data => {
           this._globalMethod.carregarPagina(RotaPage, key, true, this._navCtrl);
-        })
-        .catch(this.handleError);
+        }).catch(this.handleError);
     }
   }
 
   private atualizar() {
     this._agendaService.update(this.agenda, this.form.value)
       .then(data => {
-        this._tipoAgendaService.setAgenda(this.agenda.tipo_agenda, JSON.parse(`{"${this.agenda.$key}": true }`))
-          .then(data => {
-            this._globalMethod.mostrarMensagem('Dados de agenda foram atualizados com êxito.', this._navCtrl);
-            this._globalMethod.carregarPagina(RotaPage, this.agenda.$key, true, this._navCtrl);
-          })
-          .catch(this.handleError);
-      })
-      .catch(this.handleError);
-  }
-
-  carregarPreferencias(): void {
-    this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
+        return this._tipoAgendaService.setAgenda(this.agenda.tipo_agenda, JSON.parse(`{"${this.agenda.$key}": true }`));
+      }).then(data => {
+        return this._globalMethod.mostrarMensagem('Dados de agenda foram atualizados com êxito.', this._navCtrl);
+      }).then(data => {
+        this._globalMethod.carregarPagina(RotaPage, this.agenda, true, this._navCtrl);
+      }).catch(this.handleError);
   }
 
   private configForm(isInit: boolean, isReset: boolean) {
@@ -118,12 +116,12 @@ export class AgendaDetailPage {
       this.form.controls['descricao'].updateValueAndValidity('');
       this.form.controls['data_inicio'].updateValueAndValidity((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
       this.form.controls['data_fim'].updateValueAndValidity((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['tipo_agenda'].updateValueAndValidity(this.tiposDeAgenda && this.tiposDeAgenda.length > 0 ? this.tiposDeAgenda[0].$key : '');
+      this.form.controls['tipo_agenda'].updateValueAndValidity(this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
     } else {
       this.form.controls['descricao'].updateValueAndValidity(this.agenda ? this.agenda.descricao : '');
       this.form.controls['data_inicio'].updateValueAndValidity(this.agenda ? this.agenda.data_inicio : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
       this.form.controls['data_fim'].updateValueAndValidity(this.agenda ? this.agenda.data_fim : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['tipo_agenda'].updateValueAndValidity(this.agenda ? this.agenda.tipo_agenda : this.tiposDeAgenda && this.tiposDeAgenda.length > 0 ? this.tiposDeAgenda[0].$key : '');
+      this.form.controls['tipo_agenda'].updateValueAndValidity(this.agenda ? this.agenda.tipo_agenda : this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
     }
   }
 

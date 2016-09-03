@@ -16,26 +16,26 @@ import {
 @Injectable()
 export class TransporteService {
 
-  tipos: FirebaseListObservable<ITransporte[]>;
+  list: FirebaseListObservable<ITransporte[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.transporte}`);
+    this.list = _af.database.list(`${_firebaseConfig.transporte}`);
   }
 
   create(transporte: ITransporte): firebase.Promise<any> {
-    return this.tipos.push(transporte);
+    return this.list.push(transporte);
   }
 
   remove(transporte: ITransporte): firebase.Promise<any> {
-    return this.tipos.remove(transporte.$key);
+    return this.list.remove(transporte.$key);
   }
 
   update(transporte: ITransporte, changes: any): firebase.Promise<any> {
-    return this.tipos.update(transporte.$key, changes);
+    return this.list.update(transporte.$key, changes);
   }
 
   setRota(key: string, changes: any): firebase.Promise<any> {

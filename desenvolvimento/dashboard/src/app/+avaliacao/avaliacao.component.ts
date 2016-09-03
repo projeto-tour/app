@@ -83,6 +83,10 @@ export class AvaliacaoComponent implements OnInit {
     }
   }
 
+  onRatingClicked(message: string): void {
+    console.log(message);
+  }
+
   create(avaliacao: IAvaliacao): void {
     if (_.findWhere(this.listAvaliacao, { descricao: avaliacao.descricao })) {
       this._toastService.activate(`${avaliacao.descricao} já existe.`);

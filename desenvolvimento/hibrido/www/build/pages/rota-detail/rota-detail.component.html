@@ -1,62 +1,118 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{titulo}}</ion-title>
+        <ion-title>{{ (editing ? 'Editar' : 'Criar') + ' ' + titulo }}</ion-title>
         <ion-buttons end>
-            <button (click)="carregarMapa()">
-        <ion-icon ios="ios-map" md="md-map"></ion-icon>
+            <button (click)="onSubmit()">
+            Salvar
     </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content class="cards-bg rota-detail">
+<ion-content class="cards-bg rota-create">
 
     <ion-card class="adv-map">
         <div style="position: relative">
             <img src="img/advance-card-map-paris.png">
             <button danger fab fab-right fab-top class="fab-map">
-                <ion-icon name='pin'></ion-icon>
+                <ion-icon name='map'></ion-icon>
             </button>
         </div>
+        <ion-list>
+            <ion-item-divider light>Informações da Rota</ion-item-divider>
+            <ion-item>
+                <ion-icon name="pin" item-left></ion-icon>
+                Ponto de Saída
+            </ion-item>
+            <ion-item>
+                <input 
+                    type="text" 
+                    placeholder="Ex. RIbeirão Preto"
+                    style="width:100%;" 
+                    [(ngModel)]="rota.ponto_partida" 
+                    (setAddress)="onSelectPlacePontoPartida($event)" 
+                    googleplace
+                    #ponto_partida/>
+            </ion-item>
+            <ion-item>
+                <ion-label dark style="font-size: 0.875em;">Data</ion-label>
+                <ion-datetime 
+                    displayFormat="DD/MM/YYYY" 
+                    pickerFormat="DD MMM YYYY" 
+                    cancelText="Cancelar" 
+                    doneText="OK" 
+                    [(ngModel)]="rota.data_saida"
+                    #data_inicio>
+                </ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="pin" item-left></ion-icon>
+                Ponto de Chegada
+            </ion-item>
+            <ion-item>
+                <input 
+                    type="text" 
+                    placeholder="Ex. São Carlos"
+                    style="width:100%;" 
+                    [(ngModel)]="rota.ponto_chegada" 
+                    (setAddress)="onSelectPlacePontoChegada($event)" 
+                    googleplace
+                    #ponto_chegada/>
+            </ion-item>
+            <ion-item>
+                <ion-label dark style="font-size: 0.875em;">Data</ion-label>
+                <ion-datetime 
+                    displayFormat="DD/MM/YYYY" 
+                    pickerFormat="DD MMM YYYY" 
+                    cancelText="Cancelar" 
+                    doneText="OK" 
+                    [(ngModel)]="rota.data_chegada"
+                    #data_inicio>
+                </ion-datetime>
+            </ion-item>
+            <ion-item small>
+                <ion-icon name="flag" item-left></ion-icon>
+                Ponto de Interesse
+                <ion-badge item-right>{{ listPontoInteresse.length > 0 ? listPontoInteresse.length : '0' }}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-label dark style="font-size: 0.875em;">Selecione</ion-label>
+                <ion-select 
+                    submitText="OK" cancelText="Cancelar"
+                    [(ngModel)]="rota.ponto_interesse"
+                    #ponto_interesse>
+                    <ion-option *ngFor="let item of listPontoInteresse" [value]="item.$key" >
+                        {{ item.descricao }}
+                    </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="bus" item-left></ion-icon>
+                Meio de Transporte
+                <ion-badge item-right>{{ listTransporte.length > 0 ? listTransporte.length : '0' }}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-label dark style="font-size: 0.875em;">Selecione</ion-label>
+                <ion-select 
+                    submitText="OK" cancelText="Cancelar"
+                    [(ngModel)]="rota.transporte"
+                    #transporte>
+                    <ion-option *ngFor="let item of listTransporte" [value]="item.$key" >
+                        {{ item.descricao }}
+                    </ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
         <ion-item>
-            <ion-icon subtle item-left name='calendar'></ion-icon>
-            <h2>Informações da Rota</h2>
-            <hr>
-            <h4>Saída: <strong>01/03/2016</strong> as <strong>13:00</strong></h4>
-            <p>Rua visconde de inhumirim 99, Vila Virginia, Ribeirão Preto - SP</p>
-            <h4>Chegada: <strong>01/03/2016</strong> as <strong>13:00</strong></h4>
-            <p>Avenida paulista 100, Jardins, São Paulo - SP</p>
-            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
-        </ion-item>
-        <ion-item>
-            <ion-icon subtle item-left name='restaurant'></ion-icon>
-            <h2>Ponto de Interesse</h2>
-            <hr>
-            <h4>Resturante</h4>
-            <p>Avenida paulista 130, Jardins, São Paulo - SP</p>
-            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
-        </ion-item>
-        <ion-item>
-            <ion-icon subtle item-left name='car'></ion-icon>
-            <h2>Meio de Transporte</h2>
-            <hr>
-            <h4>Carro</h4>
-            <p><span item-left class="item-bold">3 hr</span><span item-left subtle>(4.8 km)</span></p>
-            <button clear secondary item-right><ion-icon name="create"></ion-icon></button>
-        </ion-item>
-        <ion-item actions>
-            <button clear primary item-left>
-                <ion-icon name='thumbs-up'></ion-icon>
-                12 Curtidas
-            </button>
-            <button clear primary item-left>
-                <ion-icon name="text"></ion-icon>
-                4 Comentários
-            </button>
-            <button clear primary item-right>
-                <ion-icon name='share'></ion-icon>
+            <span secondary item-left>{{ rota.duracao || '0' }} min</span>
+            <span item-left>({{ rota.distancia || '0' }} KM)</span>
+            <button primary clear small item-right>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>12 Curtidas</div>
             </button>
         </ion-item>
+
     </ion-card>
 
 </ion-content>

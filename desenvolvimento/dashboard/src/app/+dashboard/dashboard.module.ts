@@ -25,6 +25,7 @@ import { MdlDirective } from '../shared/directives/mdl.directive';
 import { AutofocusDirective } from '../shared/directives/autofocus.directive';
 
 import { CadastroComponent } from '../shared/directives/cadastro/cadastro.component';
+import { StarComponent, RatingComponent } from '../shared/directives/rating/rating.component';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from '../+home/home.component';
@@ -47,6 +48,8 @@ import { dashboardRouting } from './dashboard.routing';
         AutofocusDirective,
 
         CadastroComponent,
+        StarComponent,
+        RatingComponent,
 
         DashboardComponent,
         HomeComponent,

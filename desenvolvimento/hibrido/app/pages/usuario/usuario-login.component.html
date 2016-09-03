@@ -65,23 +65,28 @@
 
     <ion-row>
       <ion-col width-25>
-        <button twitter (click)="loginTwitter()">
+        <button twitter (click)="onLoginTwitter()">
           <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
         </button>
       </ion-col>
       <ion-col width-25>
-        <button facebook (click)="loginFacebook()">
+        <button facebook (click)="onLoginFacebook()">
           <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
         </button>
       </ion-col>
       <ion-col width-25>
-        <button danger (click)="loginGoogle()">
+        <button danger (click)="onLoginGoogle()">
           <ion-icon ios="logo-google" md="logo-google"></ion-icon>
         </button>
       </ion-col>
-      <ion-col width-25>
-        <button github (click)="loginGithub()">
+      <!--<ion-col width-25>
+        <button github (click)="onLoginGithub()">
           <ion-icon ios="logo-github" md="logo-github"></ion-icon>
+        </button>
+      </ion-col>-->
+      <ion-col width-25>
+        <button github (click)="onLoginAnonymous()">
+          PULAR
         </button>
       </ion-col>
     </ion-row>
@@ -89,6 +94,6 @@
 
 </ion-content>
 
-<button fab light fab-bottom fab-center style="z-index: 100" (click)="pular()">
+<!--<button fab light fab-bottom fab-center style="z-index: 100" (click)="onLoginAnonymous()">
   PULAR
-</button>
+</button>-->

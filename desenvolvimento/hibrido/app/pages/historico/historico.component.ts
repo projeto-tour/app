@@ -35,7 +35,7 @@ export class HistoricoPage {
 
   ionViewLoaded() { }
 
-  carregarAgendas(historico: Historico): void {
+  onCarregarAgendas(historico: Historico): void {
     if (!historico.qtde_todos || historico.qtde_todos <= 0) {
       this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
     } else {
@@ -43,11 +43,11 @@ export class HistoricoPage {
     }
   }
 
-  carregarPreferencias(): void {
+  onCarregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  gerenciar(historico: Historico): void {
+  onGerenciar(historico: Historico): void {
     if (!historico.qtde_todos || historico.qtde_todos <= 0) {
       this._globalMethod.mostrarMensagem('Não existem agendas para o histórico selecionado.', this._navCtrl);
     } else {
@@ -59,14 +59,14 @@ export class HistoricoPage {
             role: 'destructive',
             icon: !this._platform.is('ios') ? 'trash' : null,
             handler: () => {
-              this.excluir(historico);
+              this.onExcluir(historico);
             }
           },
           {
             text: 'Visualizar Agendas',
             icon: !this._platform.is('ios') ? 'open' : null,
             handler: () => {
-              this.carregarAgendas(historico);
+              this.onCarregarAgendas(historico);
             }
           },
           {
@@ -84,10 +84,10 @@ export class HistoricoPage {
 
   }
 
-  excluir(historico: Historico): void {
+  onExcluir(historico: Historico): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
-      message: `Deseja realmente excluir todas agendas do tipo ${historico.tipo_agenda.descricao}?`,
+      message: `Deseja excluir todas agendas de ${historico.tipo_agenda.descricao}?`,
       buttons: [
         {
           text: 'Não',
@@ -108,9 +108,9 @@ export class HistoricoPage {
   }
 
   private getHistoricos(): void {
-    this._tipoAgendaService.tipos.subscribe((tipos: ITipoAgenda[]) => { // -- on sucess
+    this._tipoAgendaService.list.subscribe((list: ITipoAgenda[]) => { // -- on sucess
       this.historicos = [];
-      tipos.forEach((tipo: ITipoAgenda) => {
+      list.forEach((tipo: ITipoAgenda) => {
         let historico = new Historico();
         historico.qtde_todos = keys(get(tipo.agenda, `${this._auth.uid || this._auth.userInfo.uid}`)).length;
         historico.tipo_agenda = tipo;

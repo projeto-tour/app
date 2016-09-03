@@ -49,7 +49,7 @@ export class NotificacaoPage {
   excluir(notificacao: INotificacao): void {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
-      message: 'Deseja realmente excluir essa notificação?',
+      message: 'Deseja excluir essa notificação?',
       buttons: [
         {
           text: 'Não',

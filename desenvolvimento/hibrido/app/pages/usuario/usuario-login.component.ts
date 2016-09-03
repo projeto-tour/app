@@ -58,7 +58,7 @@ export class UsuarioLoginPage {
     }
   }
 
-  pular() {
+  onLoginAnonymous() {
     this._auth.signInWithAnonymous()
       .then(authData => {
         this.carregarTelaPrincipal();
@@ -66,7 +66,7 @@ export class UsuarioLoginPage {
       .catch(this.handleError);
   }
 
-  loginFacebook(): void {
+  onLoginFacebook(): void {
     this._auth.signInWithFacebook()
       .then(authData => {
         this.carregarTelaPrincipal();
@@ -74,7 +74,7 @@ export class UsuarioLoginPage {
       .catch(this.handleError);
   }
 
-  loginTwitter(): void {
+  onLoginTwitter(): void {
     this._auth.signInWithTwitter()
       .then(authData => {
         this.carregarTelaPrincipal();
@@ -82,7 +82,7 @@ export class UsuarioLoginPage {
       .catch(this.handleError);
   }
 
-  loginGoogle(): void {
+  onLoginGoogle(): void {
     this._auth.signInWithGoogle()
       .then(authData => {
         this.carregarTelaPrincipal();
@@ -90,7 +90,7 @@ export class UsuarioLoginPage {
       .catch(this.handleError);
   }
 
-  loginGithub(): void {
+  onLoginGithub(): void {
     this._auth.signInWithGithub()
       .then(authData => {
         this.carregarTelaPrincipal();
