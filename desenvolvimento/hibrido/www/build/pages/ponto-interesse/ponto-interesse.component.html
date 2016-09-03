@@ -29,7 +29,7 @@
       <div *ngSwitchCase="'all'">
         <ion-item>
           <ion-icon name="pin" item-left></ion-icon>
-          <h2>{{ tipo.descricao }}</h2>
+          <h4>{{ tipo.descricao }}</h4>
           <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
               <ion-icon name='star'></ion-icon>
           </button>

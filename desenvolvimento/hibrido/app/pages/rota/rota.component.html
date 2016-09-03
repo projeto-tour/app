@@ -19,22 +19,22 @@
         <ion-card>
             <ion-item no-padding>
                 <ion-icon name='car' item-left></ion-icon>
-                <h2>Rota de {{ rota.distancia || '0' }} KM</h2>
+                <h4>Rota de {{ rota.distancia || '0' }} KM</h4>
                 <p>Viagem de {{ rota.duracao || '0' }} Hrs</p>
             </ion-item>
             <hr>
             <ion-card-content>
-                <h4>
+                <h6>
                     <ion-icon item-left name='calendar'></ion-icon>
                     Saída: <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_saida) | date }}</strong> as
                     <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_saida) | date:'shortTime' }}</strong>
-                </h4>
+                </h6>
                 <p>{{ rota.ponto_partida }}</p>
-                <h3>
+                <h6>
                     <ion-icon item-left name='calendar'></ion-icon>
                     Chegada: <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_chegada) | date }}</strong> as
                     <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_chegada) | date:'shortTime' }}</strong>
-                </h3>
+                </h6>
                 <p>{{ rota.ponto_chegada }}</p>
             </ion-card-content>
             <ion-item actions>

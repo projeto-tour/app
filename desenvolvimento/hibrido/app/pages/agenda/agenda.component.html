@@ -26,7 +26,7 @@
   <ion-card *ngFor="let agenda of _agendaService.agendas | async | agendaFilter:filtro">
     <ion-item>
       <ion-icon name='calendar' item-left></ion-icon>
-      <h2>{{ agenda.tipo_agenda.descricao }}</h2>
+      <h4>{{ agenda.tipo_agenda.descricao }}</h4>
       <p>
         De {{ _globalMethod.convertToDate(agenda.data_inicio) | date }} Até {{ _globalMethod.convertToDate(agenda.data_fim) | date }}
       </p>
