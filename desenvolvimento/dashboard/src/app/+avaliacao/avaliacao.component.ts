@@ -83,8 +83,8 @@ export class AvaliacaoComponent implements OnInit {
     }
   }
 
-  onRatingClicked(message: string): void {
-    console.log(message);
+  onRatingClicked(rate: any): void {
+    this.form.get('nota').setValue(<number>rate || 1);
   }
 
   create(avaliacao: IAvaliacao): void {

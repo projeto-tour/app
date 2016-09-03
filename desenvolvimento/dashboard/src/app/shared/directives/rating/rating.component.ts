@@ -32,7 +32,7 @@ export class StarComponent {
     <div class="stars">
       <partiu-star
         *ngFor="let star of stars"
-        [active]="star <= _rating"
+        [active]="star <= rating"
         (rate)="onRate($event)"
         [position]="star">
       </partiu-star>
@@ -46,7 +46,6 @@ export class RatingComponent implements OnChanges {
     @Output() rate = new EventEmitter();
 
     stars: number[] = [1, 2, 3, 4, 5];
-    _rating = this.rating;
 
     constructor() {
         // const count = this.starCount < 0 ? 5 : this.starCount;
@@ -54,6 +53,6 @@ export class RatingComponent implements OnChanges {
 
     onRate(star) {
         this.rate.emit(star);
-        this._rating = star;
+        this.rating = star;
     }
 }
