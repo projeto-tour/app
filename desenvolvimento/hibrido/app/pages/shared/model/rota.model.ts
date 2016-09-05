@@ -18,6 +18,8 @@ export class Rota implements IRota {
     data_chegada: string;
     ponto_partida: string;
     ponto_chegada: string;
+    localizacao_ponto_partida: any;
+    localizacao_ponto_chegada: any;
     distancia: string;
     duracao: string;
     rota_pai: any;
@@ -30,6 +32,8 @@ export class Rota implements IRota {
         this.data_chegada = obj && obj.data_chegada || null;
         this.ponto_partida = obj && obj.ponto_partida || null;
         this.ponto_chegada = obj && obj.ponto_chegada || null;
+        this.localizacao_ponto_partida = obj && obj.localizacao_ponto_partida || null;
+        this.localizacao_ponto_chegada = obj && obj.localizacao_ponto_chegada || null;
         this.distancia = obj && obj.distancia || null;
         this.duracao = obj && obj.duracao || null;
         this.rota_pai = obj && obj.rota_pai || null;
@@ -45,6 +49,8 @@ export interface IRota {
     data_chegada: string;
     ponto_partida: string;
     ponto_chegada: string;
+    localizacao_ponto_partida: any;
+    localizacao_ponto_chegada: any;
     distancia: string;
     duracao: string;
     rota_pai: any;

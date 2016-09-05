@@ -77,13 +77,13 @@
                     <md-input 
                         type="text"
                         placeholder="Descrição" 
-                        maxLength="50" 
                         required
-                        [(value)]="item.descricao"
-                        (keyup.escape)="reset()"
+                        maxLength="50" 
+                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
+                        [(ngModel)]="item.descricao"
                         name="descricao"
-                        #descricao
-                        ngModel>
+                        ngModel
+                        #descricao>
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
                     <md-input 
@@ -91,11 +91,11 @@
                         type="text"
                         placeholder="Nome do ícone" 
                         maxLength="20" 
-                        [(value)]="item.icone"
-                        (keyup.escape)="reset()"
+                        [dividerColor]="icone.valid || icone.pristine ? 'warn':'primary'"
+                        [(ngModel)]="item.icone"
                         name="icone"
-                        #icone 
-                        ngModel>
+                        ngModel
+                        #icone>
                         <md-hint align="end">{{icone.characterCount}} / 20</md-hint>
                     </md-input>
                     <md-input 
@@ -103,11 +103,11 @@
                         type="text"
                         placeholder="Url da imagem de destaque" 
                         maxLength="100"
-                        [(value)]="item.destaque"
-                        (keyup.escape)="reset()"
+                        [dividerColor]="destaque.valid || destaque.pristine ? 'warn':'primary'"
+                        [(ngModel)]="item.destaque"
                         name="destaque"
-                        #destaque 
-                        ngModel>
+                        ngModel
+                        #destaque>
                         <md-hint align="end">{{destaque.characterCount}} / 100</md-hint>
                     </md-input>
                 </md-card-content>

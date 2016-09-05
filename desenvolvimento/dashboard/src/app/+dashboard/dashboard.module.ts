@@ -25,11 +25,15 @@ import { MdlDirective } from '../shared/directives/mdl.directive';
 import { AutofocusDirective } from '../shared/directives/autofocus.directive';
 
 import { CadastroComponent } from '../shared/directives/cadastro/cadastro.component';
+import { StarComponent, RatingComponent } from '../shared/directives/rating/rating.component';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from '../+home/home.component';
 import { AvaliacaoComponent } from '../+avaliacao/avaliacao.component';
 import { CaracteristicaComponent } from '../+caracteristica/caracteristica.component';
+import {
+    CaracteristicaTipoPontoInteresseComponent
+} from '../+caracteristica-tipo-ponto-interesse/caracteristica-tipo-ponto-interesse.component';
 import { TipoAgendaComponent } from '../+tipo-agenda/tipo-agenda.component';
 import { TipoDadoComponent } from '../+tipo-dado/tipo-dado.component';
 import { TipoPontoInteresseComponent } from '../+tipo-ponto-interesse/tipo-ponto-interesse.component';
@@ -44,11 +48,14 @@ import { dashboardRouting } from './dashboard.routing';
         AutofocusDirective,
 
         CadastroComponent,
+        StarComponent,
+        RatingComponent,
 
         DashboardComponent,
         HomeComponent,
         AvaliacaoComponent,
         CaracteristicaComponent,
+        CaracteristicaTipoPontoInteresseComponent,
         TipoAgendaComponent,
         TipoDadoComponent,
         TipoPontoInteresseComponent,

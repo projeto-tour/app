@@ -12,6 +12,11 @@
         ".validate": "newData.hasChildren(['descricao', 'tipo_dado']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0 && newData.child('tipo_dado').exists() && newData.child('tipo_dado').val().length > 0"
       }
     },
+    "caracteristica_tipo_ponto_interesse": {
+      "$key_caracteristica_tipo_ponto_interesse": {
+        ".validate": "newData.hasChildren(['obrigatorio', 'valor', 'tipo_ponto_interesse', 'caracteristica']) && newData.child('obrigatorio').exists() && newData.child('valor').exists() && newData.child('valor').val().length > 0 && newData.child('tipo_ponto_interesse').exists() && newData.child('tipo_ponto_interesse').val().length > 0 && newData.child('caracteristica').exists() && newData.child('caracteristica').val().length > 0"
+      }
+    },
     "tipo_agenda": {
       "$key_tipo_agenda": {
         ".validate": "newData.hasChildren(['descricao']) && newData.child('descricao').exists() && newData.child('descricao').val().length > 0"

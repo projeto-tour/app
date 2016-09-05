@@ -36,10 +36,9 @@ export class CadastroComponent implements OnInit {
         }
     }
 
-    onClear(event): boolean {
+    onClear(event): void {
         event.preventDefault();
         this.clear.emit(true);
-        return false;
     }
 
 }

@@ -15,6 +15,15 @@ module.exports = [
         "runs": true
     },
     {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
         "id": "cordova-plugin-network-information.network",
         "file": "plugins/cordova-plugin-network-information/www/network.js",
         "pluginId": "cordova-plugin-network-information",
@@ -44,26 +53,18 @@ module.exports = [
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "pluginId": "cordova-plugin-whitelist",
         "runs": true
-    },
-    {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-compat": "1.0.0",
+    "cordova-plugin-crosswalk-webview": "2.0.0",
     "cordova-plugin-geolocation": "2.2.0",
+    "cordova-plugin-inappbrowser": "1.4.0",
     "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-splashscreen": "4.0.0",
-    "cordova-plugin-whitelist": "1.0.0",
-    "cordova-plugin-inappbrowser": "1.4.0"
+    "cordova-plugin-whitelist": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

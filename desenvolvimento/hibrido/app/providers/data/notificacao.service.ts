@@ -16,26 +16,26 @@ import {
 @Injectable()
 export class NotificacaoService {
 
-  tipos: FirebaseListObservable<INotificacao[]>;
+  list: FirebaseListObservable<INotificacao[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.tipo_agenda}/${_auth.uid || _auth.userInfo.uid}`);
+    this.list = _af.database.list(`${_firebaseConfig.tipo_agenda}/${_auth.uid || _auth.userInfo.uid}`);
   }
 
   create(notificacao: INotificacao): firebase.Promise<any> {
-    return this.tipos.push(notificacao);
+    return this.list.push(notificacao);
   }
 
   remove(notificacao: INotificacao): firebase.Promise<any> {
-    return this.tipos.remove(notificacao.$key);
+    return this.list.remove(notificacao.$key);
   }
 
   update(notificacao: INotificacao, changes: any): firebase.Promise<any> {
-    return this.tipos.update(notificacao.$key, changes);
+    return this.list.update(notificacao.$key, changes);
   }
 
   getMock(): Observable<INotificacao[]> {

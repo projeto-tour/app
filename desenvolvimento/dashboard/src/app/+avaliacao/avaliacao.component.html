@@ -42,14 +42,24 @@
                         [dividerColor]="(!form.find('descricao').valid && !form.find('descricao').pristine) ? 'warn':'primary'">
                         <md-hint align="end">{{descricao.characterCount}} / 100</md-hint>
                     </md-input>
-                    <div>Nota: <span>{{ form.value.nota }}</span></div><br>
+                    <table style="width:100%">
+                        <tr>
+                            <td><h6>Nota: </h6></td>
+                            <td>
+                                <partiu-rating 
+                                    [rating]="form.value.nota"
+                                    (rate)="onRatingClicked($event)">
+                                </partiu-rating>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
                     <input 
                         class="mdl-slider mdl-js-slider" style="width:100%"
                         type="range" min="1" max="5" step="1"
                         required 
                         #nota 
                         formControlName="nota">
-                    <hr>
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>

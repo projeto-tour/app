@@ -16,28 +16,28 @@ import {
 @Injectable()
 export class PontoInteresseService {
 
-  tipos: FirebaseListObservable<IPontoInteresse[]>;
+  list: FirebaseListObservable<IPontoInteresse[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.ponto_interesse}/${this._auth.uid || this._auth.userInfo.uid}`);
+    this.list = _af.database.list(`${_firebaseConfig.ponto_interesse}/${this._auth.uid || this._auth.userInfo.uid}`);
   }
 
   create(pontoInteresse: IPontoInteresse): any {
-    console.log('create: ' + JSON.stringify(pontoInteresse));
-    return this.tipos.push(pontoInteresse).key;
+    // console.log('create: ' + JSON.stringify(pontoInteresse));
+    return this.list.push(pontoInteresse).key;
   }
 
   remove(pontoInteresse: IPontoInteresse): firebase.Promise<any> {
-    return this.tipos.remove(pontoInteresse.$key);
+    return this.list.remove(pontoInteresse.$key);
   }
 
   update(pontoInteresse: IPontoInteresse, changes: any): firebase.Promise<any> {
-    console.log('update:[pontoInteresse] ' + JSON.stringify(pontoInteresse) + ' changes: ' + JSON.stringify(changes));
-    return this.tipos.update(pontoInteresse.$key, changes);
+    // console.log('update:[pontoInteresse] ' + JSON.stringify(pontoInteresse) + ' changes: ' + JSON.stringify(changes));
+    return this.list.update(pontoInteresse.$key, changes);
   }
 
   setRota(key: string, changes: any): firebase.Promise<any> {

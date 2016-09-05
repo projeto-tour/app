@@ -1,6 +1,7 @@
 export * from './auth/auth.service';
 export * from './avaliacao.service';
 export * from './caracteristica.service';
+export * from './caracteristica-tipo-ponto-interesse.service';
 export * from './tipo-agenda.service';
 export * from './tipo-dado.service';
 export * from './tipo-ponto-interesse.service';

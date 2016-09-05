@@ -12,7 +12,7 @@
   </header>
 
   <main>
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <md-card class="md-input-card">
         <md-toolbar color="primary">{{ _authService.title }}</md-toolbar>
         <md-card-content>

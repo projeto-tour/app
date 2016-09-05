@@ -39,6 +39,18 @@ export class CaracteristicaService {
       });
   }
 
+  updates(item: any, changes: any): firebase.Promise<any> {
+    console.log('updates>> item: ' + JSON.stringify(item) + '  changes: ' + JSON.stringify(changes));
+    this._progressBarService.show();
+    return this.list.update(item, changes)
+      .then((data) => {
+        return this.requestResponse(true, null);
+      })
+      .catch((error) => {
+        return this.requestResponse(false, error);
+      });
+  }
+
   remove(caracteristica: ICaracteristica): firebase.Promise<any> {
     console.log('remove>> caracteristica: ' + JSON.stringify(caracteristica));
     this._progressBarService.show();

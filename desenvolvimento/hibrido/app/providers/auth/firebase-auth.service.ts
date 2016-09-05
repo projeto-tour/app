@@ -4,6 +4,8 @@ import { AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState } from 'ang
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
+import { isEmpty } from 'lodash';
+
 import {
     IUsuario
 } from '../../pages/shared';
@@ -100,9 +102,9 @@ export class FirebaseAuthService {
     get userInfo(): IUsuario {
         if (this.authState && this.authState.auth) {
             return {
-                displayName: this.authState.auth.displayName || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].displayName : 'Nome de usuário'),
-                email: this.authState.auth.email || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].email : 'usuario@email.com.br'),
-                photoURL: this.authState.auth.photoURL || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].photoURL : 'img/user-woman.svg'),
+                displayName: this.authState.auth.displayName || (this.authState.auth.providerData[0] && !isEmpty(this.authState.auth.providerData[0].displayName) ? this.authState.auth.providerData[0].displayName : 'Nome de usuário'),
+                email: this.authState.auth.email || (this.authState.auth.providerData[0] && !isEmpty(this.authState.auth.providerData[0].email) ? this.authState.auth.providerData[0].email : 'usuario@email.com.br'),
+                photoURL: this.authState.auth.photoURL || (this.authState.auth.providerData[0] && !isEmpty(this.authState.auth.providerData[0].photoURL) ? this.authState.auth.providerData[0].photoURL : 'img/user-woman.svg'),
                 providerId: this.authState.auth.providerId || '',
                 uid: this.authState.uid || this.authState.auth.uid || (this.authState.auth.providerData[0] ? this.authState.auth.providerData[0].uid : '')
             };

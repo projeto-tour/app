@@ -7,7 +7,13 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
+        },
         "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
         },
         "cordova-plugin-network-information": {
@@ -17,9 +23,6 @@
             "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
         }
     },

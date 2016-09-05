@@ -27,11 +27,24 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(user: any): void {
-    this._authService.signIn(user.email, user.password)
-      .then(() => {
-        let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : '/dashboard';
-        this._router.navigate([redirect]);
-      });
+    if (this.form.dirty && this.form.valid) {
+      this._authService.signIn(this.form.value.email, this.form.value.password)
+        .then(data => {
+          if (this._authService.authenticated) {
+            this._toastService.activate(`Login efetuado com sucesso.`);
+          } else {
+            this._toastService.activate('E-mail ou senha inválido.');
+          }
+        }).then(() => {
+          if (this._authService.authenticated) {
+            this._router.navigate([this._authService.redirectUrl ? this._authService.redirectUrl : '/dashboard']);
+          }
+        }).catch(error => {
+          this._toastService.activate(`Não foi possível realizar login.`);
+        });
+    } else if (!this.form.valid) {
+      this._toastService.activate('E-mail ou senha inválido.');
+    }
   }
 
   private configForm(): void {

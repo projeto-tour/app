@@ -31,7 +31,6 @@ import {
 // Views
 import { PrincipalPage } from './pages/principal';
 import { UsuarioLoginPage } from './pages/usuario';
-import { RotaService } from './pages/rota';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -128,7 +127,6 @@ ionicBootstrap
     CONFIG_PROVIDERS,
     DATA_PROVIDERS,
     FIREBASE_APP_PROVIDERS,
-    RotaService,
     GlobalMethodService,
     GlobalVariableService
   ],

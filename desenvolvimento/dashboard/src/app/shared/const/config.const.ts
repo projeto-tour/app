@@ -3,6 +3,7 @@ import { OpaqueToken } from '@angular/core';
 export interface FirebaseConfig {
     avaliacao: string;
     caracteristica: string;
+    caracteristica_tipo_ponto_interesse: string;
     tipo_agenda: string;
     tipo_dado: string;
     tipo_ponto_interesse: string;
@@ -13,6 +14,7 @@ export interface FirebaseConfig {
 export const FIREBASE_URLS_CONFIG: FirebaseConfig = {
     avaliacao: '/avaliacao',
     caracteristica: '/caracteristica',
+    caracteristica_tipo_ponto_interesse: '/caracteristica_tipo_ponto_interesse',
     tipo_agenda: '/tipo_agenda',
     tipo_dado: '/tipo_dado',
     tipo_ponto_interesse: '/tipo_ponto_interesse',

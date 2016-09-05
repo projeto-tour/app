@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{titulo}}</ion-title>
+        <ion-title>{{ titulo }}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -14,8 +14,8 @@
                 <ion-select 
                     formControlName="tipo_agenda"
                     #tipo_agenda>
-                    <ion-option *ngFor="let tipoAgenda of _tipoAgendaService.tipos | async" [value]="tipoAgenda.$key" >
-                        {{ tipoAgenda.descricao }}
+                    <ion-option *ngFor="let item of _tipoAgendaService.list | async" [value]="item.$key" >
+                        {{  item.descricao  }}
                     </ion-option>
                 </ion-select>
             </ion-item>
@@ -60,7 +60,7 @@
         <ion-grid>
             <ion-row>
                 <ion-col width-50 padding>
-                    <button light (click)="limpar($event)" class="btn">Limpar</button>
+                    <button light (click)="onLimpar($event)" class="btn">Limpar</button>
                 </ion-col>
                 <ion-col width-50 padding>
                     <button type="submit" class="btn">Confirmar</button>

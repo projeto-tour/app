@@ -40,7 +40,7 @@ export class AgendaService {
         public _af: AngularFire,
         public _auth: FirebaseAuthService,
         public _http: Http,
-        @Inject(FIREBASE_CONFIG) _firebaseConfig: FirebaseConfig) {
+        @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
         const path = `${_firebaseConfig.agenda}/${_auth.uid || _auth.userInfo.uid}`;
 
         this.items = _af.database.list(path);
@@ -78,18 +78,18 @@ export class AgendaService {
 
     filterByDate(filter: string, isHistorico: boolean): void {
         if (isHistorico) {
-        this.filterHistorico.next(filter);
+            this.filterHistorico.next(filter);
         } else {
             this.filterAgenda.next(filter);
         }
     }
 
     filterByTipo(filter: string): void {
-       this.filterByTipoAgenda.next(filter);
+        this.filterByTipoAgenda.next(filter);
     }
 
     create(agenda: IAgenda): any {
-        console.log('create: ' + JSON.stringify(agenda));
+        // console.log('create: ' + JSON.stringify(agenda));
         return this.items.push(agenda).key;
     }
 
@@ -98,8 +98,12 @@ export class AgendaService {
     }
 
     update(agenda: IAgenda, changes: any): firebase.Promise<any> {
-        console.log('update:[agenda] ' + JSON.stringify(agenda) + ' changes: ' + JSON.stringify(changes));
+        // console.log('update:[agenda] ' + JSON.stringify(agenda) + ' changes: ' + JSON.stringify(changes));
         return this.items.update(agenda.$key, changes);
+    }
+
+    setRota(key: string, changes: any): firebase.Promise<any> {
+        return this._af.database.object(`${this._firebaseConfig.agenda}/${key}/${this._firebaseConfig.rota}`).update(changes);
     }
 
     getMockAgendas(): Observable<IAgenda[]> {

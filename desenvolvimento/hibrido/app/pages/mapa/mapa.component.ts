@@ -33,7 +33,7 @@ export class MapaPage {
   map: any;
 
   pontoInteresse: PontoInteresse = new PontoInteresse();
-  tiposPontoInteresse: ITipoPontoInteresse[] = [];
+  listPontoInteresse: ITipoPontoInteresse[] = [];
   pontosInteresse: IPontoInteresse[] = [];
 
   dados: any;
@@ -48,47 +48,21 @@ export class MapaPage {
     public _globalMethod: GlobalMethodService,
     public _alertCtrl: AlertController) {
     this.dados = this._navParams.data;
-    _tipoPontoInteresseService.tipos.subscribe((tipos: ITipoPontoInteresse[]) => {
-      this.tiposPontoInteresse = tipos;
-      this.pontoInteresse.tipo_ponto_interesse = this.pontoInteresse.tipo_ponto_interesse || tipos[0].$key;
+    _tipoPontoInteresseService.list.subscribe((list: ITipoPontoInteresse[]) => {
+      this.listPontoInteresse = list;
+      this.pontoInteresse.tipo_ponto_interesse = this.pontoInteresse.tipo_ponto_interesse || list[0].$key;
     });
 
-    _pontoInteresseService.tipos.subscribe((pontos: IPontoInteresse[]) => {
+    _pontoInteresseService.list.subscribe((pontos: IPontoInteresse[]) => {
       pontos.forEach(ponto => {
-        this.updatePontoInteresse(ponto.$key, ponto);
+        this.atualizarPontoInteresse(ponto.$key, ponto);
       });
     });
 
   }
 
   ionViewLoaded() {
-    this.loadMap();
-  }
-
-  loadMap() {
-
-    // Geolocation.getCurrentPosition().then((position) => {
-    //   let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    //   let mapOptions = {
-    //     center: latLng,
-    //     zoom: 15,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    //   };
-    //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    // }, (err) => {
-    //   this._globalMethod.mostrarMensagem('Falha ao carregar o mapa.', this._navCtrl);
-    // });
-
-    this._platform.ready().then(() => {
-      let latLng = new google.maps.LatLng(-15.7213869, -48.0783234);
-      let mapOptions = {
-        center: latLng,
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    });
-
+    this.carregarMapa();
   }
 
   onSelectPlace(place: Object) {
@@ -96,15 +70,15 @@ export class MapaPage {
     this.pontoInteresse.descricao = place['name'];
     this.pontoInteresse.observacao = place['formatted_address'];
     this.pontoInteresse.localizacao = { 'lat': location.lat(), 'lng': location.lng() };
-    this.updatePontoInteresse(null, clone(this.pontoInteresse));
-    this.addMarker(location.lat(), location.lng());
+    this.atualizarPontoInteresse(null, clone(this.pontoInteresse));
+    this.adicionarPontoNoMapa(location.lat(), location.lng());
   }
 
-  carregarPreferencias(): void {
+  onCarregarPreferencias(): void {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
-  private infoWindow(pontoInteresse: IPontoInteresse) {
+  private exibirDetallhesPontoInteresse(pontoInteresse: IPontoInteresse) {
     let prompt = this._alertCtrl.create({
       title: 'Ponto de Interesse',
       message: pontoInteresse.descricao,
@@ -135,7 +109,33 @@ export class MapaPage {
     prompt.present();
   }
 
-  private addMarker(lat: number, lng: number) {
+  private carregarMapa() {
+
+    // Geolocation.getCurrentPosition().then((position) => {
+    //   let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //   let mapOptions = {
+    //     center: latLng,
+    //     zoom: 15,
+    //     mapTypeId: google.maps.MapTypeId.ROADMAP
+    //   };
+    //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    // }, (err) => {
+    //   this._globalMethod.mostrarMensagem('Falha ao carregar o mapa.', this._navCtrl);
+    // });
+
+    this._platform.ready().then(() => {
+      let latLng = new google.maps.LatLng(-15.7213869, -48.0783234);
+      let mapOptions = {
+        center: latLng,
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    });
+
+  }
+
+  private adicionarPontoNoMapa(lat: number, lng: number) {
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
@@ -145,7 +145,7 @@ export class MapaPage {
     google.maps.event.addListener(marker, 'click', (e) => {
       let latLng = JSON.parse(JSON.stringify(e.latLng));
       let ponto = clone(find(this.pontosInteresse, { localizacao: { lat: <number>get(latLng, 'lat'), lng: <number>get(latLng, 'lng') } }));
-      this.infoWindow(ponto);
+      this.exibirDetallhesPontoInteresse(ponto);
     });
 
     this.map.setCenter({ lat: lat, lng: lng });
@@ -160,20 +160,19 @@ export class MapaPage {
         tipo_ponto_interesse: pontoInteresse.tipo_ponto_interesse
       }).then(data => {
         this._globalMethod.mostrarMensagem(`Dodos do ponto de interesse ${pontoInteresse.descricao} foram salvos com êxito.`, this._navCtrl);
-      });
+      }).catch(this.handleError);
     } else {
       let key = this._pontoInteresseService.create(pontoInteresse);
       if (key) {
         this._tipoPontoInteresseService.setPontoInteresse(pontoInteresse.tipo_ponto_interesse, JSON.parse(`{"${key}": true }`))
           .then(data => {
             this._globalMethod.mostrarMensagem(`Dodos do ponto de interesse ${pontoInteresse.descricao} foram atualizado com êxito.`, this._navCtrl);
-          })
-          .catch(this.handleError);
+          }).catch(this.handleError);
       }
     }
   }
 
-  private updatePontoInteresse(key: string, pontoInteresse: IPontoInteresse): void {
+  private atualizarPontoInteresse(key: string, pontoInteresse: IPontoInteresse): void {
     let index = findIndex(this.pontosInteresse, { localizacao: { 'lat': pontoInteresse.localizacao.lat, 'lng': pontoInteresse.localizacao.lng } });
     key = key && key.length > 0 ? key : this.pontosInteresse[index] ? this.pontosInteresse[index].$key || null : null;
     this.pontosInteresse.slice(index, 1);

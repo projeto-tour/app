@@ -16,28 +16,28 @@ import {
 @Injectable()
 export class PreferenciaUsuarioService {
 
-  tipos: FirebaseListObservable<IPreferenciaUsuario[]>;
+  list: FirebaseListObservable<IPreferenciaUsuario[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.preferencia_usuario}/${this._auth.uid || this._auth.userInfo.uid}`);
+    this.list = _af.database.list(`${_firebaseConfig.preferencia_usuario}/${this._auth.uid || this._auth.userInfo.uid}`);
   }
 
   create(preferenciaUsuario: IPreferenciaUsuario): any {
-    console.log('create: ' + JSON.stringify(preferenciaUsuario));
-    return this.tipos.push(preferenciaUsuario).key;
+    // console.log('create: ' + JSON.stringify(preferenciaUsuario));
+    return this.list.push(preferenciaUsuario).key;
   }
 
   remove(preferenciaUsuario: IPreferenciaUsuario): firebase.Promise<any> {
-    return this.tipos.remove(preferenciaUsuario.$key);
+    return this.list.remove(preferenciaUsuario.$key);
   }
 
   update(preferenciaUsuario: IPreferenciaUsuario, changes: any): firebase.Promise<any> {
-    console.log('update:[preferenciaUsuario] ' + JSON.stringify(preferenciaUsuario) + ' changes: ' + JSON.stringify(changes));
-    return this.tipos.update(preferenciaUsuario.$key, changes);
+    // console.log('update:[preferenciaUsuario] ' + JSON.stringify(preferenciaUsuario) + ' changes: ' + JSON.stringify(changes));
+    return this.list.update(preferenciaUsuario.$key, changes);
   }
 
   getMock(): Observable<IPreferenciaUsuario[]> {

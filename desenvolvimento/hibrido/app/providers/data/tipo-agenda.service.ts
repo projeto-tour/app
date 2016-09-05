@@ -16,26 +16,26 @@ import {
 @Injectable()
 export class TipoAgendaService {
 
-  tipos: FirebaseListObservable<ITipoAgenda[]>;
+  list: FirebaseListObservable<ITipoAgenda[]>;
 
   constructor(
     public _af: AngularFire,
     public _auth: FirebaseAuthService,
     public _http: Http,
     @Inject(FIREBASE_CONFIG) public _firebaseConfig: FirebaseConfig) {
-    this.tipos = _af.database.list(`${_firebaseConfig.tipo_agenda}`);
+    this.list = _af.database.list(`${_firebaseConfig.tipo_agenda}`);
   }
 
   create(tipoAgenda: ITipoAgenda): firebase.Promise<any> {
-    return this.tipos.push(tipoAgenda);
+    return this.list.push(tipoAgenda);
   }
 
   remove(tipoAgenda: ITipoAgenda): firebase.Promise<any> {
-    return this.tipos.remove(tipoAgenda.$key);
+    return this.list.remove(tipoAgenda.$key);
   }
 
   update(tipoAgenda: ITipoAgenda, changes: any): firebase.Promise<any> {
-    return this.tipos.update(tipoAgenda.$key, changes);
+    return this.list.update(tipoAgenda.$key, changes);
   }
 
   setAgenda(key: string, changes: any): firebase.Promise<any> {
