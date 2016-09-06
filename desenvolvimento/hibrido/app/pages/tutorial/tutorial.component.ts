@@ -28,22 +28,34 @@ export class TutorialPage {
     this.tutorials = [
             {
                 index: 1,
-                titulo: 'Welcome to <b>ICA</b>',
-                descricao: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
-                url: 'img/ica-slidebox-img-1.png',
+                titulo: 'Faça login',
+                descricao: 'Utilize suas credenciais <b>Google</b> ou faça o cadastro para começar organizar toda a experiência de sua viagem',
+                url: 'img/login2.svg',
             },
             {
                 index: 2,
-                titulo: 'What is Ionic?',
-                descricao: '<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.',
-                url: 'img/ica-slidebox-img-2.png',
+                titulo: 'Adicione<br/>suas agendas',
+                descricao: 'Com o <b>Partiu!</b> adicionar, gerenciar e compartilhar suas agendas de viagem ficou muito fácil.',
+                url: 'img/calendar2.svg',
+            },
+            { 
+                index: 3,
+                titulo: 'Pontos de interesse',
+                descricao: 'Adicione os pontos de interesse que deseja visitar durante seu percurso e mantenha sua agenda mais organizada.',
+                url: 'img/placeholder2.svg',
             },
             {
-                index: 3,
-                titulo: 'What is Ionic Platform?',
-                descricao: 'The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.',
-                url: 'img/ica-slidebox-img-3.png',
-            }
+                index: 4,
+                titulo: 'Informe </br>suas rotas',
+                descricao: 'Você pode adicionar cada uma de suas <b>rotas</b> nas agendas, registrando sua viagem do início ao fim.',
+                url: 'img/route2.svg',
+            },
+            {
+                index: 5,
+                titulo: 'Partiu!',
+                descricao: 'Aperte os cintos e <b>Partiu!</b><br/> Ser organizado vai permitir que sua viagem seja inesquecível. E nós vamos de carona!',
+                url: 'img/suitcase2.svg',
+            }                        
         ];
   }
 

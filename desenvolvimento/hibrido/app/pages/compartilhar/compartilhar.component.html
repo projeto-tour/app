@@ -13,6 +13,7 @@
 
 <ion-content no-padding class="has-header cards-bg compartilhar">
 
+
   <ion-card>
     <img src="img/onboarding-screens.gif" class="ion-img" />
     <ion-card-content>
@@ -63,7 +64,7 @@
         </button>
       </ion-col>
       <ion-col width-50>
-        <button instagram outline class="btn">
+        <button instagram outline class="btn" (click)="instagramShare()">
           <ion-icon ios="logo-instagram" md="logo-instagram" is-active="false"></ion-icon>
           Instagram
         </button>
@@ -71,4 +72,9 @@
     </ion-row>
   </ion-grid>
 
-</ion-content>
+        <button full (click)="whatsappShare()">Share on WhatsApp</button>
+       <button full secondary (click)="twitterShare()">Share on Twitter</button>
+       <button full danger (click)="facebookShare()">Share on Facebook</button>
+       <button full dark (click)="otherShare()">Share Other</button>
+
+</ion-content>  
