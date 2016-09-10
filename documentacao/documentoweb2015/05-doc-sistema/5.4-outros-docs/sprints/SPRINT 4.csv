@@ -1,0 +1,94 @@
+id,status,changetime,description,reporter,story_priority,resolution,time,remaining_time,summary,keywords,drp_resources,milestone,owner,rd_points,sprint,type
+266,closed,2016-04-29 22:27:51.566360+00:00,,po,,,2016-04-29 20:17:47.057269+00:00,,Como desenvolvedor devo fazer o refactory do Banco do banco de dados,,,milestone1,,8,SPRINT 4,story
+267,reopened,2016-04-29 22:28:19.756790+00:00,,po,Linear,,2016-04-29 20:18:14.411808+00:00,,Como Desenvolvedor devo Fazer o refactory de todos os serviços,,,milestone1,,13,SPRINT 4,story
+268,closed,2016-04-29 22:39:34.851852+00:00,,po,,,2016-04-29 22:34:22.468830+00:00,,Remover Entidade Percurso,,,milestone1,,,SPRINT 4,task
+269,closed,2016-04-29 22:39:37.103399+00:00,,po,,,2016-04-29 22:34:32.139068+00:00,,Remover Entidade Trecho,,,milestone1,,,SPRINT 4,task
+270,closed,2016-04-29 22:39:39.358887+00:00,,po,,,2016-04-29 22:34:51.769387+00:00,,Remover Entidade Hospedagem,,,milestone1,,,SPRINT 4,task
+271,closed,2016-04-29 22:39:41.386475+00:00,,po,,,2016-04-29 22:35:05.395344+00:00,,Remover Entidade TipoHospedagem,,,milestone1,,,SPRINT 4,task
+272,closed,2016-04-29 22:39:43.592268+00:00,,po,,,2016-04-29 22:35:31.407381+00:00,,Remover Entidade Evento,,,milestone1,,,SPRINT 4,task
+273,closed,2016-04-29 22:39:45.756508+00:00,,po,,,2016-04-29 22:35:40.930886+00:00,,Remover Entidade tipoEvento,,,milestone1,,,SPRINT 4,task
+274,closed,2016-04-29 22:39:48.618933+00:00,,po,,,2016-04-29 22:35:50.120419+00:00,,Remover Entidade Alimentação,,,milestone1,,,SPRINT 4,task
+275,closed,2016-04-29 22:39:50.457679+00:00,,po,,,2016-04-29 22:36:05.635058+00:00,,Remover Entidade Especialidade,,,milestone1,,,SPRINT 4,task
+276,closed,2016-04-29 22:39:52.381185+00:00,,po,,,2016-04-29 22:36:14.045781+00:00,,Remover Entidade Passeio,,,milestone1,,,SPRINT 4,task
+277,closed,2016-04-29 22:39:54.753027+00:00,,po,,,2016-04-29 22:36:23.591334+00:00,,Remover Entidade Tipo Passeio,,,milestone1,,,SPRINT 4,task
+278,closed,2016-04-29 22:39:56.706974+00:00,,po,,,2016-04-29 22:36:34.754439+00:00,,Criar Entidade Rota,,,milestone1,,,SPRINT 4,task
+279,closed,2016-04-29 22:39:58.802857+00:00,,po,,,2016-04-29 22:36:43.279406+00:00,,Criar Entidade tipoPontoInteresse,,,milestone1,,,SPRINT 4,task
+280,closed,2016-04-29 22:40:00.848967+00:00,,po,,,2016-04-29 22:36:50.933413+00:00,,Criar Entidade caracteristica,,,milestone1,,,SPRINT 4,task
+281,closed,2016-04-29 22:40:02.751981+00:00,,po,,,2016-04-29 22:36:59.388208+00:00,,Criar Entidade CaracteristicaPontoInteresse,,,milestone1,,,SPRINT 4,task
+282,closed,2016-04-29 22:40:05.824824+00:00,,po,,,2016-04-29 22:39:20.591471+00:00,,Criar Entidade tipoDeDados,,,milestone1,,,SPRINT 4,task
+283,closed,2016-04-29 22:49:05.699242+00:00,,po,,,2016-04-29 22:43:40.972120+00:00,,"remocao servicos para percurso, trecho, hospedagem, tipo_hospedagem, evento, tipo_evento, alimentacao, especialidade, passeio, tipo_passeio, negocios",,,milestone1,,,SPRINT 4,task
+284,closed,2016-04-29 22:49:08.717468+00:00,,po,,,2016-04-29 22:44:23.632633+00:00,,servico de inserção percurso,,,milestone1,,,SPRINT 4,task
+285,closed,2016-04-29 22:49:11.151346+00:00,,po,,,2016-04-29 22:44:49.524803+00:00,,serviço de alteração percurso,,,milestone1,,,SPRINT 4,task
+286,closed,2016-04-29 22:49:14.206299+00:00,,po,,,2016-04-29 22:45:02.119026+00:00,,serviço de remoção percurso,,,milestone1,,,SPRINT 4,task
+287,closed,2016-04-29 22:49:17.407964+00:00,,po,,,2016-04-29 22:45:13.199413+00:00,,serviço de busca por id percurso,,,milestone1,,,SPRINT 4,task
+288,closed,2016-04-29 22:49:20.171207+00:00,,po,,,2016-04-29 22:45:25.238264+00:00,,serviço de buscar todos percurso,,,milestone1,,,SPRINT 4,task
+289,closed,2016-04-29 22:49:22.451861+00:00,,po,,,2016-04-29 22:46:00.335587+00:00,,servico de inserção trecho,,,milestone1,,,SPRINT 4,task
+290,closed,2016-04-29 22:49:25.215511+00:00,,po,,,2016-04-29 22:46:11.624326+00:00,,serviço de alteração trecho,,,milestone1,,,SPRINT 4,task
+291,closed,2016-04-29 22:49:27.715795+00:00,,po,,,2016-04-29 22:46:19.801587+00:00,,serviço de remoção trecho,,,milestone1,,,SPRINT 4,task
+292,closed,2016-04-29 22:49:30.127329+00:00,,po,,,2016-04-29 22:46:30.612295+00:00,,serviço de busca por id trecho,,,milestone1,,,SPRINT 4,task
+293,closed,2016-04-29 22:49:34.108047+00:00,,po,,,2016-04-29 22:46:43.172865+00:00,,serviço de buscar todos trecho,,,milestone1,,,SPRINT 4,task
+294,closed,2016-04-29 22:49:36.810913+00:00,,po,,,2016-04-29 22:47:24.759497+00:00,,servico de inserção hospedagem,,,milestone1,,,SPRINT 4,task
+295,closed,2016-04-29 22:49:39.773450+00:00,,po,,,2016-04-29 22:47:34.125785+00:00,,serviço de alteração hospedagem,,,milestone1,,,SPRINT 4,task
+296,closed,2016-04-29 22:49:42.295057+00:00,,po,,,2016-04-29 22:47:42.583814+00:00,,serviço de remoção hospedagem,,,milestone1,,,SPRINT 4,task
+297,closed,2016-04-29 22:49:46.640455+00:00,,po,,,2016-04-29 22:47:53.763525+00:00,,serviço de busca por id hospedagem,,,milestone1,,,SPRINT 4,task
+298,closed,2016-04-29 22:51:17.830403+00:00,,po,,,2016-04-29 22:49:07.708741+00:00,,servico de inserção tipo_hospedagem,,,milestone1,,,SPRINT 4,task
+299,closed,2016-04-29 22:51:20.146132+00:00,,po,,,2016-04-29 22:49:16.350866+00:00,,serviço de alteração tipo_hospedagem,,,milestone1,,,SPRINT 4,task
+300,closed,2016-04-29 22:51:23.614247+00:00,,po,,,2016-04-29 22:49:27.122939+00:00,,serviço de remoção tipo_hospedagem,,,milestone1,,,SPRINT 4,task
+301,closed,2016-04-29 22:51:27.077451+00:00,,po,,,2016-04-29 22:49:35.863187+00:00,,serviço de busca por id tipo_hospedagem,,,milestone1,,,SPRINT 4,task
+302,closed,2016-04-29 22:51:34.745036+00:00,,po,,,2016-04-29 22:49:45.185276+00:00,,serviço de buscar todos tipo_hospedagem,,,milestone1,,,SPRINT 4,task
+303,closed,2016-04-29 22:51:38.322238+00:00,,po,,,2016-04-29 22:50:02.569708+00:00,,servico de inserção evento,,,milestone1,,,SPRINT 4,task
+304,closed,2016-04-29 22:51:41.343325+00:00,,po,,,2016-04-29 22:50:10.984726+00:00,,serviço de alteração evento,,,milestone1,,,SPRINT 4,task
+305,closed,2016-04-29 22:51:43.999486+00:00,,po,,,2016-04-29 22:50:19.795958+00:00,,serviço de remoção evento,,,milestone1,,,SPRINT 4,task
+306,closed,2016-04-29 22:51:47.887195+00:00,,po,,,2016-04-29 22:50:29.713840+00:00,,serviço de busca por id evento,,,milestone1,,,SPRINT 4,task
+307,closed,2016-04-29 23:01:05.011826+00:00,,scrummaster,,,2016-04-29 22:53:56.963947+00:00,,serviço de buscar todos evento,,,milestone1,,,SPRINT 4,task
+308,closed,2016-04-29 23:01:09.169181+00:00,,scrummaster,,,2016-04-29 22:54:06.862951+00:00,,servico de inserção tipo_evento,,,milestone1,,,SPRINT 4,task
+309,closed,2016-04-29 23:01:12.582602+00:00,,scrummaster,,,2016-04-29 22:54:37.102472+00:00,,serviço de alteração tipo_evento,,,milestone1,,,SPRINT 4,task
+310,closed,2016-04-29 23:01:16.584069+00:00,,scrummaster,,,2016-04-29 22:54:59.763378+00:00,,serviço de remoção tipo_evento,,,milestone1,,,SPRINT 4,task
+311,closed,2016-04-29 23:01:20.060715+00:00,,scrummaster,,,2016-04-29 22:55:15.886456+00:00,,serviço de busca por id tipo_evento,,,milestone1,,,SPRINT 4,task
+312,closed,2016-04-29 23:01:23.566591+00:00,,scrummaster,,,2016-04-29 22:55:24.166303+00:00,,serviço de buscar todos tipo_evento,,,milestone1,,,SPRINT 4,task
+313,closed,2016-04-29 23:01:27.403895+00:00,,scrummaster,,,2016-04-29 22:55:32.617329+00:00,,servico de inserção alimentacao,,,milestone1,,,SPRINT 4,task
+314,closed,2016-04-29 23:01:30.956444+00:00,,scrummaster,,,2016-04-29 22:55:39.432964+00:00,,serviço de alteração alimentacao,,,milestone1,,,SPRINT 4,task
+315,closed,2016-04-29 23:01:59.990137+00:00,,scrummaster,,,2016-04-29 22:55:47.375424+00:00,,serviço de remoção alimentacao,,,milestone1,,,SPRINT 4,task
+316,closed,2016-04-29 23:02:05.349829+00:00,,scrummaster,,,2016-04-29 22:55:51.738166+00:00,,serviço de remoção alimentacao,,,milestone1,,,SPRINT 4,task
+317,closed,2016-04-29 23:02:11.568517+00:00,,scrummaster,,,2016-04-29 22:55:58.630307+00:00,,serviço de busca por id alimentacao,,,milestone1,,,SPRINT 4,task
+318,closed,2016-04-29 23:02:16.856177+00:00,,scrummaster,,,2016-04-29 22:56:09.740926+00:00,,serviço de buscar todos alimentacao,,,milestone1,,,SPRINT 4,task
+319,closed,2016-04-29 23:02:19.389327+00:00,,scrummaster,,,2016-04-29 22:56:17.964665+00:00,,servico de inserção especialidade,,,milestone1,,,SPRINT 4,task
+320,closed,2016-04-29 23:02:22.602986+00:00,,scrummaster,,,2016-04-29 22:56:26.524563+00:00,,serviço de alteração especialidade,,,milestone1,,,SPRINT 4,task
+321,closed,2016-04-29 23:02:25.635932+00:00,,scrummaster,,,2016-04-29 22:56:33.607152+00:00,,serviço de remoção especialidade,,,milestone1,,,SPRINT 4,task
+322,closed,2016-04-29 23:02:28.157939+00:00,,scrummaster,,,2016-04-29 22:56:40.801003+00:00,,serviço de busca por id especialidade,,,milestone1,,,SPRINT 4,task
+323,closed,2016-04-29 23:02:31.472829+00:00,,scrummaster,,,2016-04-29 22:56:48.300554+00:00,,serviço de buscar todos especialidade,,,milestone1,,,SPRINT 4,task
+324,closed,2016-04-29 23:02:34.594126+00:00,,scrummaster,,,2016-04-29 22:56:55.893881+00:00,,servico de inserção passeio,,,milestone1,,,SPRINT 4,task
+325,closed,2016-04-29 23:02:37.593210+00:00,,scrummaster,,,2016-04-29 22:57:03.703022+00:00,,serviço de alteração passeio,,,milestone1,,,SPRINT 4,task
+326,closed,2016-04-29 23:02:44.415236+00:00,,scrummaster,,,2016-04-29 22:57:11.355738+00:00,,serviço de remoção passeio,,,milestone1,,,SPRINT 4,task
+327,closed,2016-04-29 23:02:47.039023+00:00,,scrummaster,,,2016-04-29 22:57:18.721614+00:00,,serviço de busca por id passeio,,,milestone1,,,SPRINT 4,task
+328,closed,2016-04-29 23:02:49.565560+00:00,,scrummaster,,,2016-04-29 22:57:25.135204+00:00,,serviço de buscar todos passeio,,,milestone1,,,SPRINT 4,task
+329,closed,2016-04-29 23:02:52.535583+00:00,,scrummaster,,,2016-04-29 22:57:32.920484+00:00,,servico de inserção tipo_passeio,,,milestone1,,,SPRINT 4,task
+330,closed,2016-04-29 23:02:55.102714+00:00,,scrummaster,,,2016-04-29 22:57:40.175000+00:00,,serviço de alteração tipo_passeio,,,milestone1,,,SPRINT 4,task
+331,closed,2016-04-29 23:02:57.398028+00:00,,scrummaster,,,2016-04-29 22:57:47.470144+00:00,,serviço de remoção tipo_passeio,,,milestone1,,,SPRINT 4,task
+332,closed,2016-04-29 23:02:59.662237+00:00,,scrummaster,,,2016-04-29 22:57:54.772807+00:00,,serviço de busca por id tipo_passeio,,,milestone1,,,SPRINT 4,task
+333,closed,2016-04-29 23:03:01.981136+00:00,,scrummaster,,,2016-04-29 22:58:05.199957+00:00,,serviço de buscar todos tipo_passeio,,,milestone1,,,SPRINT 4,task
+334,closed,2016-04-29 23:03:09.769466+00:00,,scrummaster,,,2016-04-29 22:58:11.871441+00:00,,servico de inserção negocios,,,milestone1,,,SPRINT 4,task
+335,closed,2016-04-29 23:03:13.227338+00:00,,scrummaster,,,2016-04-29 22:58:20.630226+00:00,,serviço de alteração negocios,,,milestone1,,,SPRINT 4,task
+336,closed,2016-04-29 23:03:17.840582+00:00,,scrummaster,,,2016-04-29 22:58:30.835500+00:00,,serviço de remoção negocios,,,milestone1,,,SPRINT 4,task
+337,closed,2016-04-29 23:03:22.409438+00:00,,scrummaster,,,2016-04-29 22:58:38.510259+00:00,,serviço de busca por id negocios,,,milestone1,,,SPRINT 4,task
+338,closed,2016-04-29 23:03:29.105900+00:00,,scrummaster,,,2016-04-29 22:58:46.778066+00:00,,serviço de buscar todos negocios,,,milestone1,,,SPRINT 4,task
+339,new,2016-04-29 23:03:15.831442+00:00,,scrummaster,,,2016-04-29 23:03:15.831442+00:00,,servico de inserção  rota,,,milestone1,,,SPRINT 4,task
+340,new,2016-04-29 23:03:23.182622+00:00,,scrummaster,,,2016-04-29 23:03:23.182622+00:00,,serviço de alteração rota,,,milestone1,,,SPRINT 4,task
+341,new,2016-04-29 23:03:30.466199+00:00,,scrummaster,,,2016-04-29 23:03:30.466199+00:00,,serviço de remoção rota,,,milestone1,,,SPRINT 4,task
+342,new,2016-04-29 23:03:38.249826+00:00,,scrummaster,,,2016-04-29 23:03:38.249826+00:00,,serviço de busca por id rota,,,milestone1,,,SPRINT 4,task
+343,new,2016-04-29 23:03:46.181301+00:00,,scrummaster,,,2016-04-29 23:03:46.181301+00:00,,serviço de buscar todos rota,,,milestone1,,,SPRINT 4,task
+344,new,2016-04-29 23:03:53.754681+00:00,,scrummaster,,,2016-04-29 23:03:53.754681+00:00,,servico de inserção tipo de ponto de interesse,,,milestone1,,,SPRINT 4,task
+345,new,2016-04-29 23:04:01.185264+00:00,,scrummaster,,,2016-04-29 23:04:01.185264+00:00,,serviço de alteração tipo de ponto de interesse,,,milestone1,,,SPRINT 4,task
+346,new,2016-04-29 23:04:09.936301+00:00,,scrummaster,,,2016-04-29 23:04:09.936301+00:00,,serviço de remoção tipo de ponto de interesse,,,milestone1,,,SPRINT 4,task
+347,new,2016-04-29 23:04:16.486847+00:00,,scrummaster,,,2016-04-29 23:04:16.486847+00:00,,serviço de busca por id tipo de ponto de interesse,,,milestone1,,,SPRINT 4,task
+348,new,2016-04-29 23:04:24.702961+00:00,,scrummaster,,,2016-04-29 23:04:24.702961+00:00,,serviço de buscar  tipo de ponto de interesse,,,milestone1,,,SPRINT 4,task
+349,assigned,2016-04-29 23:07:07.459170+00:00,,scrummaster,,,2016-04-29 23:04:31.792665+00:00,,servico de inserção caracteristicas,,,milestone1,,,SPRINT 4,task
+350,assigned,2016-04-29 23:07:14.204032+00:00,,scrummaster,,,2016-04-29 23:04:38.850314+00:00,,serviço de alteração caracteristicas,,,milestone1,,,SPRINT 4,task
+351,assigned,2016-04-29 23:07:20.923964+00:00,,scrummaster,,,2016-04-29 23:04:47.032754+00:00,,serviço de remoção caracteristicas,,,milestone1,,,SPRINT 4,task
+352,assigned,2016-04-29 23:07:25.246340+00:00,,scrummaster,,,2016-04-29 23:04:54.549476+00:00,,serviço de busca por id caracteristicas,,,milestone1,,,SPRINT 4,task
+353,assigned,2016-04-29 23:07:31.639394+00:00,,scrummaster,,,2016-04-29 23:05:01.628979+00:00,,serviço de buscar todos caracteristicas,,,milestone1,,,SPRINT 4,task
+354,closed,2016-04-29 23:07:35.589781+00:00,,scrummaster,,,2016-04-29 23:05:59.398127+00:00,,servico de inserção tipo de dados,,,milestone1,,,SPRINT 4,task
+355,closed,2016-04-29 23:07:41.188550+00:00,,scrummaster,,,2016-04-29 23:06:12.939325+00:00,,serviço de alteração tipo de dados,,,milestone1,,,SPRINT 4,task
+356,closed,2016-04-29 23:07:48.644427+00:00,,scrummaster,,,2016-04-29 23:06:20.953894+00:00,,serviço de remoção tipo de dados,,,milestone1,,,SPRINT 4,task
+357,closed,2016-04-29 23:08:10.724665+00:00,,scrummaster,,,2016-04-29 23:06:30.126214+00:00,,serviço de busca por id tipo de dados,,,milestone1,,,SPRINT 4,task
+358,closed,2016-04-29 23:08:38.559207+00:00,,scrummaster,,,2016-04-29 23:06:38.767394+00:00,,serviço de buscar todos tipo de dados,,,milestone1,,,SPRINT 4,task
