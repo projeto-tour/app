@@ -1,0 +1,19 @@
+id,status,changetime,description,reporter,story_priority,resolution,time,remaining_time,summary,keywords,drp_resources,milestone,owner,rd_points,sprint,type
+359,assigned,2016-07-02 11:16:26.544774+00:00,,po,,,2016-07-01 23:29:42.739469+00:00,,Como desenvolvedor devo escrever a documentação,,,milestone1,Jaqueline,13,SPRINT 5,story
+360,assigned,2016-07-02 13:40:08.505768+00:00,,po,,,2016-07-01 23:59:09.260491+00:00,,Como desenvolvedor desejo estruturar as telas do aplicativos,,,milestone1,Vitor,,SPRINT 5,story
+361,new,2016-07-02 00:23:07.360604+00:00,,po,,,2016-07-02 00:23:07.360604+00:00,,Atualizações e melhorias de seguintes componentes,,,milestone1,,,SPRINT 5,task
+362,assigned,2016-07-02 13:39:11.427445+00:00,,po,,,2016-07-02 00:24:36.446952+00:00,,"Como desenvolvedor, desejo integrar o front end com AngularFire2 e Firebase 3",,,milestone1,Paul,,SPRINT 5,story
+363,new,2016-07-02 11:52:33.889556+00:00,,po,,,2016-07-02 00:26:01.096005+00:00,,"Como desenvoledor, desejo implementar o gerenciamento de usuário Google, Facebook, Email, Twitter ,Github",,,milestone1,Paul,,SPRINT 5,story
+364,closed,2016-07-02 11:35:22.988678+00:00,,po,,,2016-07-02 00:28:37.178384+00:00,,Implementação da camada PLL,,,milestone1,Eduardo,,SPRINT 5,task
+365,closed,2016-07-02 11:21:41.996748+00:00,,po,,,2016-07-02 00:29:34.894319+00:00,,Implementação da camada BLL,,,milestone1,Paul,,SPRINT 5,task
+366,closed,2016-07-02 11:21:50.794396+00:00,,po,,,2016-07-02 00:29:54.952605+00:00,,Implementação da camada DLL,,,milestone1,Paul,,SPRINT 5,task
+367,closed,2016-07-02 11:21:47.664857+00:00,,po,,,2016-07-02 00:30:36.482112+00:00,,Implementação da camada DAO,,,milestone1,Paul,,SPRINT 5,task
+368,closed,2016-07-02 11:20:38.504525+00:00,,po,,,2016-07-02 00:56:49.017042+00:00,,"Como desenvolvedor desejo implementar o Gerenciamento de agenda, históricos e tipo de agenda",,,milestone1,Paul,,SPRINT 5,story
+369,closed,2016-07-02 11:34:53.571806+00:00,,po,,,2016-07-02 00:59:57.329655+00:00,,Implementação da camada PLL da Agenda,,,milestone1,Everton,,SPRINT 5,task
+370,closed,2016-07-02 11:34:57.852329+00:00,,po,,,2016-07-02 01:00:14.105742+00:00,,Implementação da camada BLL da Agenda,,,milestone1,Paul,,SPRINT 5,task
+371,closed,2016-07-02 11:35:01.465845+00:00,,po,,,2016-07-02 01:00:24.554709+00:00,,Implementação da camada DLL Agenda,,,milestone1,Paul,,SPRINT 5,task
+372,closed,2016-07-02 11:35:17.917537+00:00,,po,,,2016-07-02 01:00:43.710730+00:00,,Implementação da camada DAO Agenda,,,milestone1,Paul,,SPRINT 5,task
+373,new,2016-07-02 01:24:27.218532+00:00,,po,,,2016-07-02 01:08:21.455933+00:00,,Como desenvolvedor desejo fazer a refatoração de provedores de dados de menus e tutoriais,,,milestone1,,,SPRINT 5,story
+374,closed,2016-07-02 11:18:20.212740+00:00,,po,,,2016-07-02 01:08:43.450836+00:00,,Como desenvolvedor desejo gerar uma aplicação web apartir do aplicativo nativo,,,milestone1,Paul,,SPRINT 5,story
+375,assigned,2016-07-02 11:18:16.167528+00:00,,po,,,2016-07-02 01:09:50.408420+00:00,,Teste e validação,,,milestone1,Wellington,,SPRINT 5,story
+376,assigned,2016-07-02 11:17:59.024117+00:00,,po,,,2016-07-02 01:10:25.575459+00:00,,Liberação do aplicativo no Firebase Hosting,,,milestone1,Paul,,SPRINT 5,story

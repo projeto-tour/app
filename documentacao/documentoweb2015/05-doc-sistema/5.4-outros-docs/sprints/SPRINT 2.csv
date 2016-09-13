@@ -1,0 +1,55 @@
+id,status,changetime,description,reporter,story_priority,resolution,time,remaining_time,summary,keywords,drp_resources,milestone,owner,rd_points,sprint,type
+41,closed,2015-12-04 01:51:42.480183+00:00,Cadastro de avaliações,po,,,2015-12-02 01:45:06.722127+00:00,,"Como administrador do sistema, desejo cadastrar tipos de avaliações permitidas para o usuário avaliar um ponto de interesse.",tipos de avaliações,,milestone1,,5,SPRINT 2,story
+42,closed,2015-12-04 23:18:44.299706+00:00,Criar a tabela no banco Mysql para que ela possa ser alimentada e consultada.,po,,,2015-12-02 01:48:12.943422+00:00,,"Criar tabela ""avaliacao"" no banco de dados;",,,milestone1,Wellington,,SPRINT 2,task
+43,closed,2015-12-04 23:18:48.884897+00:00,"Criar entidade ""Avaliação"" para mapeamento JPA da tabela ""avaliacao"";",po,,,2015-12-02 01:49:30.884809+00:00,,"Criar entidade ""Avaliacao"" para mapeamento JPA da tabela ""avaliacao"";",,,milestone1,Wellington,,SPRINT 2,task
+44,closed,2015-12-04 23:18:50.912950+00:00,,po,,,2015-12-02 01:51:36.630170+00:00,,"Criar package ""ponto de interesse"" para encapsular webservices de ponto de interesse",,,milestone1,Wellington,,SPRINT 2,task
+45,closed,2015-12-04 23:18:53.029813+00:00,,po,,,2015-12-02 01:52:06.723511+00:00,,Criar ws para operações GET de avaliacao;,,,milestone1,Wellington,,SPRINT 2,task
+47,closed,2015-12-04 23:18:54.915594+00:00,Testar ws GET da tabela avaliacao,po,,,2015-12-02 01:53:48.176551+00:00,,Teste,,,milestone1,Wellington,,SPRINT 2,task
+48,closed,2015-12-04 23:18:56.748126+00:00,,po,,,2015-12-02 01:54:50.764192+00:00,,Criar ws para operações POST de avaliacao;,,,milestone1,Wellington,,SPRINT 2,task
+49,closed,2015-12-04 23:18:59.316279+00:00,Testar ws POST tabela avaliacao,po,,,2015-12-02 01:57:52.336387+00:00,,Teste,,,milestone1,Wellington,,SPRINT 2,task
+50,closed,2015-12-04 23:19:03.141599+00:00,,po,,,2015-12-02 01:58:37.052269+00:00,,Criar ws para operações PUT de avaliacao;,,,milestone1,Wellington,,SPRINT 2,task
+51,closed,2015-12-04 23:19:05.085946+00:00,Fazer teste ws PUT da tabela avaliacao,po,,,2015-12-02 01:59:14.493202+00:00,,Teste,,,milestone1,Wellington,,SPRINT 2,task
+52,closed,2015-12-04 23:19:06.882124+00:00,,po,,,2015-12-02 01:59:38.555367+00:00,,Criar ws para operações DELETE de avaliacao;,,,milestone1,Wellington,,SPRINT 2,task
+53,closed,2015-12-04 23:19:09.242234+00:00,Testar todas as implementações feitas nesta sprint,po,,,2015-12-02 02:00:13.451082+00:00,,Testes,,,milestone1,Wellington,,SPRINT 2,task
+54,closed,2015-12-04 23:19:10.954835+00:00,subir e iniciar os serviços na Amazon,po,,,2015-12-02 02:01:34.659270+00:00,,Publicar webservice na AWS,,,milestone1,Wellington,,SPRINT 2,task
+55,closed,2015-12-04 01:51:46.891897+00:00,Cadastro de tipos de Transporte,po,,,2015-12-02 02:02:19.311925+00:00,,"Como administrador do sistema, desejo cadastrar tipos de transportes possíveis para o usuário se locomover pelos trechos.",,,milestone1,,5,SPRINT 2,story
+56,closed,2015-12-04 23:19:23.430099+00:00,,po,,,2015-12-02 02:03:19.305216+00:00,,"Criar tabela ""tipo_transporte"" no banco de dados",,,milestone1,Paul,,SPRINT 2,task
+57,closed,2015-12-04 23:19:24.675311+00:00,,po,,,2015-12-03 00:41:41.789723+00:00,,"Criar entidade ""TipoTransporte"" para mapeamento JPA da tabela ""tipo_transporte""",,,milestone1,Paul,,SPRINT 2,task
+58,closed,2015-12-04 23:19:26.431460+00:00,manter  organização dos arquivos,po,,,2015-12-03 00:42:21.513900+00:00,,"Criar package ""techo"" para encapsular webservices de trecho;",,,milestone1,Paul,,SPRINT 2,task
+59,closed,2015-12-04 23:19:27.985598+00:00,,po,,,2015-12-03 00:43:51.761730+00:00,,Criar ws para operações GET para tipo de transporte;,,,milestone1,Paul,,SPRINT 2,task
+60,closed,2015-12-04 23:19:30.597639+00:00,testes do WS GET,po,,,2015-12-03 00:44:26.049647+00:00,,Testes,,,milestone1,Paul,,SPRINT 2,task
+61,closed,2015-12-04 23:19:33.701324+00:00,,po,,,2015-12-03 00:44:58.725186+00:00,,Criar ws para operações POST para tipo de transporte;,,,milestone1,Paul,,SPRINT 2,task
+62,closed,2015-12-04 23:19:35.426519+00:00,Testes do ws POST,po,,,2015-12-03 00:46:27.412079+00:00,,Testes,,,milestone1,Paul,,SPRINT 2,task
+63,closed,2015-12-04 23:19:37.143933+00:00,,po,,,2015-12-03 00:47:14.192264+00:00,,Criar ws para operações PUT para tipo de transporte;,,,milestone1,Paul,,SPRINT 2,task
+64,closed,2015-12-04 23:19:39.103459+00:00,Testes ws Put,po,,,2015-12-03 00:47:30.675080+00:00,,Testes,,,milestone1,Paul,,SPRINT 2,task
+65,closed,2015-12-04 23:19:40.887211+00:00,,po,,,2015-12-03 00:47:56.034960+00:00,,Criar ws para operações DELETE para tipo de transporte,,,milestone1,Paul,,SPRINT 2,task
+66,closed,2015-12-04 23:19:42.583991+00:00,Testes ws Delete,po,,,2015-12-03 00:48:41.899643+00:00,,Testes,,,milestone1,Paul,,SPRINT 2,task
+67,closed,2015-12-04 23:19:44.941913+00:00,,po,,,2015-12-03 00:49:13.431983+00:00,,Publicar webservice na AWS,,,milestone1,Paul,,SPRINT 2,task
+68,reopened,2015-12-04 23:26:37.312837+00:00,Teste de todas as funcionalidades desenvolvidas nessa história do usuário,po,,,2015-12-03 00:49:46.346766+00:00,,Testes,,,milestone1,Paul,,SPRINT 2,task
+69,reopened,2015-12-04 23:38:10.753340+00:00,Teste de todos os itens desenvolvidos nesta sprint,po,,,2015-12-03 00:50:25.098991+00:00,,Testes,,,milestone1,Wellington,,SPRINT 2,task
+70,closed,2015-12-04 01:54:11.335061+00:00,Cadastro de tipos de hospedagem,po,,,2015-12-03 01:06:26.713604+00:00,,"Como administrador do sistema, desejo cadastrar tipos de hospedagens possíveis para o usuário utilizar como ponto de interesse.",,,milestone1,,5,SPRINT 2,story
+71,closed,2015-12-04 23:21:24.119644+00:00,,po,,,2015-12-03 01:08:44.961649+00:00,,"Criar tabela ""tipo_hospedagem"" no banco de dados",,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+72,closed,2015-12-04 23:21:25.098995+00:00,,po,,,2015-12-03 01:09:04.190895+00:00,,"Criar entidade ""TipoHospedagem"" para mapeamento JPA da tabela ""tipo_hospedagem""",,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+73,closed,2015-12-04 23:21:26.021861+00:00,,po,,,2015-12-03 01:09:15.576097+00:00,,"Criar package ""hoteis"" para encapsular webservices de hoteis",,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+74,closed,2015-12-04 23:21:26.498865+00:00,,po,,,2015-12-03 01:09:26.167561+00:00,,Criar ws para operações GET para tipo de hospedagem;,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+75,closed,2015-12-04 23:21:27.423267+00:00,,po,,,2015-12-03 01:09:36.871497+00:00,,Testes,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+76,closed,2015-12-04 23:21:27.871146+00:00,,po,,,2015-12-03 01:09:52.653577+00:00,,Criar ws para operações POST para tipo de hospedagem;,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+77,closed,2015-12-04 23:21:28.862728+00:00,,po,,,2015-12-03 01:10:02.058234+00:00,,Testes,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+78,closed,2015-12-04 23:21:29.687101+00:00,,po,,,2015-12-03 01:10:13.347411+00:00,,Criar ws para operações PUT para tipo de hospedagem,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+79,closed,2015-12-04 23:21:30.665312+00:00,,po,,,2015-12-03 01:10:22.154234+00:00,,Testes,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+80,closed,2015-12-04 23:21:31.502089+00:00,,po,,,2015-12-03 01:10:37.398377+00:00,,Criar ws para operações DELETE para tipo de hospedagem;,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+81,closed,2015-12-04 23:21:32.310293+00:00,,po,,,2015-12-03 01:10:55.990418+00:00,,Testes,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+82,closed,2015-12-04 23:21:33.895943+00:00,,po,,,2015-12-03 01:11:08.289704+00:00,,Publicar webservice na AWS,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+83,reopened,2015-12-04 23:26:33.990372+00:00,,po,,,2015-12-03 01:11:16.444649+00:00,,Testes,,,milestone1,Jaqueline / Vitor,,SPRINT 2,task
+84,new,2015-12-04 23:20:24.191120+00:00,Criação de interface para cadastro de avaliações,po,,,2015-12-03 01:11:47.774671+00:00,,"Como administrador do sistema, desejo realizar cadastros de tipos de avaliação através de interface visual",,,milestone1,Everton,8,SPRINT 2,story
+85,closed,2015-12-04 23:20:29.895965+00:00,,po,,,2015-12-03 01:12:02.748321+00:00,,Desenvolver a interface para consumos dos serviços referentes a avaliação;,,,milestone1,Everton,,SPRINT 2,task
+86,new,2015-12-04 23:20:32.862464+00:00,,po,,,2015-12-03 01:12:17.151239+00:00,,Desenvolver funcionalidades de consumo dos serviços criados,,,milestone1,Everton,,SPRINT 2,task
+87,new,2015-12-04 23:20:39.614302+00:00,,po,,,2015-12-03 01:40:58.043952+00:00,,Testes,,,milestone1,Everton,,SPRINT 2,task
+88,new,2015-12-04 23:20:45.013824+00:00,Criação de interface para cadastro de tipos de transporte,po,,,2015-12-03 01:47:15.939028+00:00,,"Como administrador do sistema, desejo realizar cadastros de tipos de transporte através de interface visual",,,milestone1,Everton,8,SPRINT 2,story
+89,closed,2015-12-04 23:20:45.899572+00:00,,po,,,2015-12-03 01:47:35.020891+00:00,,Desenvolver a interface para consumos dos serviços referentes a tipos de transporte;,,,milestone1,Everton,,SPRINT 2,task
+90,new,2015-12-04 23:20:46.695862+00:00,,po,,,2015-12-03 01:48:15.973974+00:00,,Desenvolver funcionalidades de consumo dos serviços criados,,,milestone1,Everton,,SPRINT 2,task
+91,new,2015-12-04 23:20:47.960006+00:00,,po,,,2015-12-03 01:48:33.416756+00:00,,Testes,,,milestone1,Everton,,SPRINT 2,task
+92,new,2015-12-04 23:20:52.888620+00:00,Criação de interface para cadastro de tipos de hospedagem,po,,,2015-12-03 01:51:15.916448+00:00,,"Como administrador do sistema, desejo realizar cadastros de tipos de hospedagem através de interface visual",,,milestone1,Eduardo,8,SPRINT 2,story
+93,closed,2015-12-04 23:20:54.491826+00:00,,po,,,2015-12-03 01:55:40.738476+00:00,,Desenvolver a interface para consumos dos serviços referentes a hospedagem;,,,milestone1,Eduardo,,SPRINT 2,task
+94,new,2015-12-04 23:20:55.559701+00:00,,po,,,2015-12-03 02:02:28.419169+00:00,,Desenvolver funcionalidades de consumo dos serviços criados;,,,milestone1,Eduardo,,SPRINT 2,task
+95,new,2015-12-04 23:21:01.576754+00:00,,po,,,2015-12-03 02:02:38.985666+00:00,,Testes,,,milestone1,Eduardo,,SPRINT 2,task

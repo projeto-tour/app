@@ -1,0 +1,38 @@
+id,status,changetime,description,reporter,story_priority,resolution,time,remaining_time,summary,keywords,drp_resources,milestone,owner,rd_points,sprint,type
+437,new,2016-08-27 14:57:12.956371+00:00,,po,Mandatory,,2016-08-26 13:11:32.408426+00:00,,"Como Usuário, desejo que a rota seja traçada em um mapa no momento que eu indicar oponto inicial e final do trecho",,,milestone1,PAUL,8,SPRINT 7,story
+438,new,2016-08-27 14:57:14.498196+00:00,,po,,,2016-08-26 13:12:29.285213+00:00,,Implementar a entrada de dados integrada com o google maps,,,milestone1,PAUL,,SPRINT 7,task
+439,new,2016-08-27 14:57:15.848743+00:00,,po,,,2016-08-26 13:12:36.943099+00:00,,Gerar a janela com a rota traçada para o usuário,,,milestone1,PAUL,,SPRINT 7,task
+440,new,2016-08-27 14:57:17.180648+00:00,,po,,,2016-08-26 13:12:44.623316+00:00,,Salvar no banco de dados as informações de rota da agenda,,,milestone1,PAUL,,SPRINT 7,task
+441,new,2016-08-27 14:57:18.808497+00:00,,po,,,2016-08-26 13:12:57.757181+00:00,,Executar testes ao traçar rotas e trechos,,,milestone1,PAUL,,SPRINT 7,task
+448,new,2016-08-27 14:19:38.368452+00:00,,po,,,2016-08-27 14:19:38.368452+00:00,,Como desenvolvedor desejo corrigir de bugs da tela de login,,,milestone1,PAUL,,SPRINT 7,story
+449,new,2016-08-27 14:20:17.063121+00:00,,po,,,2016-08-27 14:20:17.063121+00:00,,Correção de login pela autenticação do google,,,milestone1,PAUL,,SPRINT 7,task
+450,new,2016-08-27 14:20:26.285074+00:00,,po,,,2016-08-27 14:20:26.285074+00:00,,Teste,,,milestone1,PAUL,,SPRINT 7,task
+451,new,2016-08-27 14:21:00.421633+00:00,,po,,,2016-08-27 14:21:00.421633+00:00,,Como desenvolvedor desejo implementar o sistema de rotas para as agendas,,,milestone1,PAUL,,SPRINT 7,story
+452,new,2016-08-27 14:21:14.805460+00:00,,po,,,2016-08-27 14:21:14.805460+00:00,,Integrar os plugins do google places para preenchimento automatico dos pontos de Saída e Chegada,,,milestone1,PAUL,,SPRINT 7,task
+453,new,2016-08-27 14:21:36.400482+00:00,,po,,,2016-08-27 14:21:36.400482+00:00,,Integrar informações de Ponto de Interesse,,,milestone1,PAUL,,SPRINT 7,task
+454,new,2016-08-27 14:22:05.202947+00:00,,po,,,2016-08-27 14:22:05.202947+00:00,,Integrar informações de Transporte,,,milestone1,PAUL,,SPRINT 7,task
+455,new,2016-08-27 14:23:07.991463+00:00,,po,,,2016-08-27 14:23:07.991463+00:00,,Adicionar Rota,,,milestone1,PAUL,,SPRINT 7,task
+456,new,2016-08-27 14:23:17.363768+00:00,,po,,,2016-08-27 14:23:17.363768+00:00,,Listar Rota,,,milestone1,PAUL,,SPRINT 7,task
+457,new,2016-08-27 14:23:26.239090+00:00,,po,,,2016-08-27 14:23:26.239090+00:00,,Excluir Rota,,,milestone1,PAUL,,SPRINT 7,task
+458,new,2016-08-27 14:23:39.603107+00:00,,po,,,2016-08-27 14:23:39.603107+00:00,,Alterar Rota,,,milestone1,PAUL,,SPRINT 7,task
+459,new,2016-08-27 14:24:42.616093+00:00,,po,,,2016-08-27 14:24:42.616093+00:00,,Teste,,,milestone1,PAUL,,SPRINT 7,task
+460,new,2016-08-27 14:26:11.010252+00:00,,po,,,2016-08-27 14:26:11.010252+00:00,,Como desenvolvedor desejo Implementar o tutorial,,,milestone1,Everton,,SPRINT 7,story
+461,closed,2016-09-03 00:31:45.434442+00:00,,po,,,2016-08-27 14:26:32.851674+00:00,,Definir o fluxo para apresentação do curso,,,milestone1,Everton,,SPRINT 7,task
+462,closed,2016-09-03 00:31:49.837682+00:00,,po,,,2016-08-27 14:27:21.863905+00:00,,Criar as ilustrações,,,milestone1,Everton,,SPRINT 7,task
+463,closed,2016-09-03 00:31:53.354018+00:00,,po,,,2016-08-27 14:27:32.889981+00:00,,Criar os componente ionic de slide do tutorial,,,milestone1,Everton,,SPRINT 7,task
+464,assigned,2016-09-02 02:32:23.237663+00:00,,po,,,2016-08-27 14:27:47.913135+00:00,,Teste,,,milestone1,Everton,,SPRINT 7,task
+465,new,2016-08-27 14:28:43.194017+00:00,,po,,,2016-08-27 14:28:43.194017+00:00,,Como desenvolvedor desejo implementar a funcionalidades de Compartilhamento,,,milestone1,Everton,,SPRINT 7,story
+466,new,2016-08-27 14:29:07.125269+00:00,,po,,,2016-08-27 14:29:07.125269+00:00,,Implementar funcionalidade de compartilhamento de rota,,,milestone1,Everton,,SPRINT 7,task
+467,new,2016-08-27 14:29:22.468265+00:00,,po,,,2016-08-27 14:29:22.468265+00:00,,implementar botão de compartilhamento,,,milestone1,Everton,,SPRINT 7,task
+468,accepted,2016-09-05 15:39:30.831608+00:00,,po,,,2016-08-27 14:30:28.667228+00:00,,Elaborar a documentação dentro dos padrões disponibilizados,,,milestone1,,,SPRINT 7,story
+469,closed,2016-09-07 15:57:32.004887+00:00,,po,,,2016-08-27 14:47:18.294407+00:00,,Escrever Introdução,,,milestone1,Eduardo,,SPRINT 7,task
+470,closed,2016-09-07 15:57:38.326178+00:00,,po,,,2016-08-27 14:47:39.263889+00:00,,Escrever Resumo,,,milestone1,Eduardo,,SPRINT 7,task
+471,assigned,2016-09-05 16:06:11.633967+00:00,,po,,,2016-08-27 14:48:19.658686+00:00,,Escrever Descrição detalhada,,,milestone1,Eduardo,,SPRINT 7,task
+472,new,2016-08-27 14:54:16.993762+00:00,,po,,,2016-08-27 14:48:30.112554+00:00,,Escrever sobre Tecnologias Utilizadas,,,milestone1,Vitor,,SPRINT 7,task
+473,new,2016-08-27 14:55:42.029351+00:00,,po,,,2016-08-27 14:48:51.004642+00:00,,Listar as funcionalidades por atores,,,milestone1,Wellington,,SPRINT 7,task
+474,new,2016-08-27 14:54:06.660776+00:00,,po,,,2016-08-27 14:48:59.466666+00:00,,Desenhar e anexar Modelos de Casos de Uso,,,milestone1,Jaqueline,,SPRINT 7,task
+475,new,2016-08-27 14:55:26.722290+00:00,,po,,,2016-08-27 14:49:18.518859+00:00,,Anexar a implementação do nosso código,,,milestone1,Wellington,,SPRINT 7,task
+476,new,2016-08-27 14:54:54.212840+00:00,,po,,,2016-08-27 14:49:47.973026+00:00,,Revisar e Anexar Modelo de Classes,,,milestone1,Jaqueline,,SPRINT 7,task
+477,closed,2016-09-01 02:41:07.268086+00:00,,po,,,2016-08-27 14:49:58.139800+00:00,,Revisar e Anexar Modelo E/R do banco de dados,,,milestone1,Wellington,,SPRINT 7,task
+478,assigned,2016-09-01 02:41:30.149870+00:00,,po,,,2016-08-27 14:50:07.068392+00:00,,Revisar e Anexar Modelo de Arquitetura,,,milestone1,Wellington,,SPRINT 7,task
+479,new,2016-08-27 14:53:47.180039+00:00,,po,,,2016-08-27 14:53:47.180039+00:00,,Revisar e Anexar Outros documentos de Projeto,,,milestone1,,,SPRINT 7,task
