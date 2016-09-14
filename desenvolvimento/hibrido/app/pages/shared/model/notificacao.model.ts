@@ -13,8 +13,8 @@
  */
 export class Notificacao {
     categoria: string;
-    titulo: string; 
-    descricao: string; 
+    titulo: string;
+    descricao: string;
     url: string;
     avatar: string;
     destaque: string;
@@ -38,8 +38,8 @@ export class Notificacao {
 export interface INotificacao {
     $key?: string;
     categoria: string;
-    titulo: string; 
-    descricao: string; 
+    titulo: string;
+    descricao: string;
     url: string;
     avatar: string;
     destaque: string;

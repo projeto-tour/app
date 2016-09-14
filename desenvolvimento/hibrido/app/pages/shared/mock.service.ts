@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IAgenda, ITipoAgenda } from '../shared';
+import { ITipoAgenda } from '../shared';
 import { AgendaService, TipoAgendaService } from '../../providers/data';
 
 @Injectable()
@@ -21,16 +21,6 @@ export class MockService {
                         destaque: tipo.destaque,
                         icone: tipo.icone
                     });
-                });
-            });
-    }
-
-    private getAgendas(): void {
-        this._agendaService.getMockAgendas()
-            .subscribe(
-            (agendas: IAgenda[]) => { // -- on sucess
-                agendas.forEach(agenda => {
-                    this._agendaService.create(agenda);
                 });
             });
     }

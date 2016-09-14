@@ -17,7 +17,7 @@ export class PrincipalPage {
 
   selectedIndex: number;
   preferenciaUsuario: number = 0;
-  
+
   tab1Root: any = AgendaPage;
   tab2Root: any = MapaPage;
   tab3Root: any = HistoricoPage;

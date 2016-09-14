@@ -38,7 +38,7 @@ export class TutorialPage {
                 descricao: 'Com o <b>Partiu!</b> adicionar, gerenciar e compartilhar suas agendas de viagem ficou muito fácil.',
                 url: 'img/calendar2.svg',
             },
-            { 
+            {
                 index: 3,
                 titulo: 'Pontos de interesse',
                 descricao: 'Adicione os pontos de interesse que deseja visitar durante seu percurso e mantenha sua agenda mais organizada.',
@@ -55,7 +55,7 @@ export class TutorialPage {
                 titulo: 'Partiu!',
                 descricao: 'Aperte os cintos e <b>Partiu!</b><br/> Ser organizado vai permitir que sua viagem seja inesquecível. E nós vamos de carona!',
                 url: 'img/suitcase2.svg',
-            }                        
+            }
         ];
   }
 

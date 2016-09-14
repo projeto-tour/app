@@ -1,7 +1,7 @@
 /**
  * Referente a avaliação de usuario a um ponto de interesse
- * 
- * @param $key 
+ *
+ * @param $key
  * @param usuario 
  * @param ponto_interesse 
  * @param avaliacao 

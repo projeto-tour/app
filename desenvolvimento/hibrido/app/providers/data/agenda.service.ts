@@ -93,8 +93,8 @@ export class AgendaService {
         return this.items.push(agenda).key;
     }
 
-    remove(agenda: IAgenda): firebase.Promise<any> {
-        return this.items.remove(agenda.$key);
+    remove(agenda: string): firebase.Promise<any> {
+        return this.items.remove(agenda);
     }
 
     update(agenda: IAgenda, changes: any): firebase.Promise<any> {

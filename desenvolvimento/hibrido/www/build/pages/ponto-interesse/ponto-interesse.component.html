@@ -27,8 +27,7 @@
     <div [ngSwitch]="segment">
 
       <div *ngSwitchCase="'all'">
-        <ion-item>
-          <ion-icon name="pin" item-left></ion-icon>
+        <ion-item [ngStyle]="{'border-left': '4px solid #8c9eff'}">
           <h4>{{ tipo.descricao }}</h4>
           <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
               <ion-icon name='star'></ion-icon>
@@ -50,12 +49,12 @@
               <div>Mapa</div>
             </button>
           </ion-col>
-          <ion-col>
+          <!--<ion-col>
             <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
               <ion-icon name="trash"></ion-icon>
               <div>Excluir</div>
             </button>
-          </ion-col>
+          </ion-col>-->
           <ion-col center text-center>
             <ion-note>
               {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
@@ -65,8 +64,7 @@
       </div>
 
       <div *ngSwitchCase="'favorite'">
-        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0">
-          <ion-icon name="pin" item-left></ion-icon>
+        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0" [ngStyle]="{'border-left': '4px solid #8c9eff'}">
           <h2>{{ tipo.descricao }}</h2>
           <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
               <ion-icon name='star'></ion-icon>
@@ -88,12 +86,12 @@
               <div>Mapa</div>
             </button>
           </ion-col>
-          <ion-col>
+          <!--<ion-col>
             <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
               <ion-icon name="trash"></ion-icon>
               <div>Excluir</div>
             </button>
-          </ion-col>
+          </ion-col>-->
           <ion-col center text-center>
             <ion-note>
               {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
@@ -101,7 +99,7 @@
           </ion-col>
         </ion-row>
       </div>
-      
+
     </div>
 
   </ion-card>

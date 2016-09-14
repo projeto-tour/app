@@ -12,20 +12,20 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 // Providers / Services
 import { FIREBASE_APP_PROVIDERS } from './providers/firebase';
 import { AUTH_PROVIDERS, FirebaseAuthService } from './providers/auth';
-import { 
+import {
   DATA_PROVIDERS,
-  MenuDataService 
+  MenuDataService
 } from './providers/data';
 import { CONNECTIVITY_PROVIDERS } from './providers/connectivity';
 
 // Shared
-import { 
-  GlobalMethodService, 
+import {
+  GlobalMethodService,
   GlobalVariableService,
   CONFIG_PROVIDERS,
-  IMenu, 
+  IMenu,
   IMenuItem,
-  Usuario 
+  Usuario
 } from './pages/shared';
 
 // Views
@@ -40,7 +40,7 @@ class PartiuApp {
   @ViewChild(Nav) nav: Nav;
 
   usuario: Usuario = new Usuario({ displayName: 'Nome de usuário', email: 'usuario@usuario.com.br', photoURL: 'img/user-woman.svg' });
-  
+
   rootPage: any = null;
   menuPages: IMenu[];
   showPage: boolean = false;
@@ -119,7 +119,7 @@ ionicBootstrap
   (
   // -- Root Component
   PartiuApp,
-  // -- Providers           
+  // -- Providers
   [
     HTTP_PROVIDERS,
     AUTH_PROVIDERS,

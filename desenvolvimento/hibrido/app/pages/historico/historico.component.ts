@@ -1,5 +1,4 @@
 import { Component }  from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { NavController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 
 import { keys, get } from 'lodash';
@@ -54,14 +53,14 @@ export class HistoricoPage {
       let actionSheet = this._actionSheetCtrl.create({
         title: 'Opções',
         buttons: [
-          {
-            text: 'Excluir Agendas',
-            role: 'destructive',
-            icon: !this._platform.is('ios') ? 'trash' : null,
-            handler: () => {
-              this.onExcluir(historico);
-            }
-          },
+          // {
+          //   text: 'Excluir Agendas',
+          //   role: 'destructive',
+          //   icon: !this._platform.is('ios') ? 'trash' : null,
+          //   handler: () => {
+          //     this.onExcluir(historico);
+          //   }
+          // },
           {
             text: 'Visualizar Agendas',
             icon: !this._platform.is('ios') ? 'open' : null,

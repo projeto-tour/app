@@ -1,8 +1,9 @@
 import { Component }  from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NavParams, ViewController, NavController } from 'ionic-angular';
+import { InAppBrowser }  from 'ionic-native';
 
-import { isEmpty, isMatch } from 'lodash';
+import { isEmpty, isMatch, clone, get } from 'lodash';
 
 import {
   GlobalMethodService,
@@ -42,9 +43,9 @@ export class RotaDetailPage {
     public _transporteService: TransporteService,
     public _rotaService: RotaService,
     public _globalMethod: GlobalMethodService) {
-    this.rotaPai = <IRota>this._navParams.data.rota_pai;
-    this.rota = <IRota>this._navParams.data.rota;
-    this.rotaFilho = <IRota>this._navParams.data.rota_filho;
+    this.rotaPai = <IRota>clone(this._navParams.data.rota_pai);
+    this.rota = <IRota>clone(this._navParams.data.rota);
+    this.rotaFilho = <IRota>clone(this._navParams.data.rota_filho);
     this.editing = this.rota && this.rota.$key ? true : false;
     _pontoInteresseService.list.subscribe((list: IPontoInteresse[]) => {
       this.listPontoInteresse = list;
@@ -55,8 +56,12 @@ export class RotaDetailPage {
   }
 
   ionViewLoaded() {
-    this.rota.data_saida = this.rota.data_saida || (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
-    this.rota.data_chegada = this.rota.data_chegada || (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
+    if (!this.editing) {
+      this.rota.ponto_partida = get(this.rotaPai, 'ponto_chegada', '');
+      this.rota.localizacao_ponto_partida = get(this.rotaPai, 'localizacao_ponto_chegada', '');
+      this.rota.data_saida = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
+      this.rota.data_chegada = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
+    }
   }
 
   onSubmit(): void {
@@ -71,16 +76,25 @@ export class RotaDetailPage {
     }
   }
 
+  onSelectPlacePontoPartida(place: Object) {
+    let location = place['geometry']['location'];
+    this.rota.ponto_partida = place['formatted_address'];
+    this.rota.localizacao_ponto_partida = { 'lat': location.lat(), 'lng': location.lng() };
+  }
+
   onSelectPlacePontoChegada(place: Object) {
     let location = place['geometry']['location'];
     this.rota.ponto_chegada = place['formatted_address'];
     this.rota.localizacao_ponto_chegada = { 'lat': location.lat(), 'lng': location.lng() };
   }
 
-  onSelectPlacePontoPartida(place: Object) {
-    let location = place['geometry']['location'];
-    this.rota.ponto_partida = place['formatted_address'];
-    this.rota.localizacao_ponto_partida = { 'lat': location.lat(), 'lng': location.lng() };
+  onLoadMapa(): void {
+    let rota = `${get(this.rota, 'ponto_partida', '')}
+                /${get(this.rota, 'ponto_chegada', '')}
+                /${get(this.listPontoInteresse.filter(data => data.$key === this.rota.ponto_interesse), 'descricao', '')}`;
+    if (rota.length > 2) {
+      new InAppBrowser(`https://www.google.com.br/maps/dir/${rota}/`, '_blank');
+    }
   }
 
   private criar() {

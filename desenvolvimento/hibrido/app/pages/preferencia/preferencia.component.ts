@@ -1,17 +1,14 @@
 import { Component }  from '@angular/core';
 
 import {
-  App,
   NavParams,
   ViewController,
   NavController,
   NavOptions
 } from 'ionic-angular';
-import { InAppBrowser }  from 'ionic-native';
 
 import {
   GlobalMethodService,
-  IPontoInteresse,
   ITipoPontoInteresse,
   IPreferenciaUsuario
 } from '../shared';

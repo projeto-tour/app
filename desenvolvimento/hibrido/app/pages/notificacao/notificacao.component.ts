@@ -11,7 +11,6 @@ import { GlobalMethodService, INotificacao } from '../shared';
 import { NotificacaoService } from '../../providers/data/notificacao.service';
 
 import { PreferenciaPage } from '../preferencia';
-import { DesenvolvimentoPage } from '../desenvolvimento';
 
 @Component({
   templateUrl: 'build/pages/notificacao/notificacao.component.html',

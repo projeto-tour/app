@@ -9,8 +9,6 @@ export class SobrePage {
 
   titulo: string = 'Sobre';
 
-  private mensagenErro: any;
-
   constructor(
     public _app: App,
     public _navParams: NavParams,

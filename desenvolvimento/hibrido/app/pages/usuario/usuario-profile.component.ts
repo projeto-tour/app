@@ -1,6 +1,6 @@
 import { Component }  from '@angular/core';
 
-import { NavParams, NavController, ViewController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 
 import { FirebaseAuthService } from '../../providers/auth';
@@ -36,7 +36,4 @@ export class UsuarioProfilePage {
     this._viewCtrl.dismiss();
   }
 
-  private handleError(error: any) {
-    this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
-  }
 }

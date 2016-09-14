@@ -1,6 +1,6 @@
 /**
  * Referente ao valor e obrigatoriedade de caracteristica de pontos de interesse.
- * 
+ *
  * @param $key 
  * @param tipo_ponto_interesse
  * @param caracteristica

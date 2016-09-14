@@ -10,8 +10,6 @@ export class DesenvolvimentoPage {
   titulo: string = 'Partiu!';
   dados: any;
 
-  private mensagenErro: any;
-
   constructor(
     public _navParams: NavParams,
     public _viewCtrl: ViewController) {

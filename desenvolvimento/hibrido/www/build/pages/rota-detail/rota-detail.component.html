@@ -14,7 +14,7 @@
     <ion-card class="adv-map">
         <div style="position: relative">
             <img src="img/advance-card-map-paris.png">
-            <button danger fab fab-right fab-top class="fab-map">
+            <button danger fab fab-right fab-top class="fab-map" (click)="onLoadMapa()">
                 <ion-icon name='map'></ion-icon>
             </button>
         </div>
@@ -25,21 +25,21 @@
                 Ponto de Saída
             </ion-item>
             <ion-item>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Ex. RIbeirão Preto"
-                    style="width:100%;" 
-                    [(ngModel)]="rota.ponto_partida" 
-                    (setAddress)="onSelectPlacePontoPartida($event)" 
+                    style="width:100%;"
+                    [(ngModel)]="rota.ponto_partida"
+                    (setAddress)="onSelectPlacePontoPartida($event)"
                     googleplace
                     #ponto_partida/>
             </ion-item>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Data</ion-label>
-                <ion-datetime 
-                    displayFormat="DD/MM/YYYY" 
-                    pickerFormat="DD MMM YYYY" 
-                    cancelText="Cancelar" 
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
                     doneText="OK" 
                     [(ngModel)]="rota.data_saida"
                     #data_inicio>

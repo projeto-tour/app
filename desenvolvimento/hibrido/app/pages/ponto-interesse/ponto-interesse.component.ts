@@ -1,7 +1,6 @@
 import { Component }  from '@angular/core';
 
 import {
-  App,
   NavParams,
   ViewController,
   NavController,
@@ -120,14 +119,14 @@ export class PontoInteressePage {
             console.log('Editar clicked');
           }
         },
-        {
-          text: 'Compartilhar',
-          icon: !this._platform.is('ios') ? 'share' : null,
-          handler: () => {
-            // -- TODO
-            console.log('Compartilhar clicked');
-          }
-        },
+        // {
+        //   text: 'Compartilhar',
+        //   icon: !this._platform.is('ios') ? 'share' : null,
+        //   handler: () => {
+        //     // -- TODO
+        //     console.log('Compartilhar clicked');
+        //   }
+        // },
         {
           text: 'Cancelar',
           role: 'cancel',
@@ -213,13 +212,25 @@ export class PontoInteressePage {
         {
           text: 'Sim',
           handler: () => {
-            // -- TODO
-            console.log('Sim clicked');
+            this.excluir(pontoInteresse);
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  private excluir(pontoInteresse: IPontoInteresse): void {
+    if (get(pontoInteresse, 'rota', '').length > 0) {
+      this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} possui rotas e não pode ser excluído.`, this._navCtrl);
+    } else {
+      this._tipoPontoInteresseService.setPontoInteresse(pontoInteresse.tipo_ponto_interesse, JSON.parse(`{"${pontoInteresse.$key}": null }`))
+        .then(data => {
+          return this._pontoInteresseService.remove(pontoInteresse.$key);
+        }).then(data => {
+          this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} foram excluído com êxito.`, this._navCtrl);
+        }).catch(this.handleError);
+    }
   }
 
   private confirmar(pontoInteresse: IPontoInteresse) {

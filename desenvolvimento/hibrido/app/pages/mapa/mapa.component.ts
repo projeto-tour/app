@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef }  from '@angular/core';
 
 import { NavParams, NavController, Platform, AlertController } from 'ionic-angular';
-import { Geolocation } from 'ionic-native';
+// import { Geolocation } from 'ionic-native';
 
-import { groupBy, get, clone, find, isEqual, findIndex } from 'lodash';
+import { get, clone, find, findIndex } from 'lodash';
 
 import {
   GlobalMethodService,
@@ -50,7 +50,7 @@ export class MapaPage {
     this.dados = this._navParams.data;
     _tipoPontoInteresseService.list.subscribe((list: ITipoPontoInteresse[]) => {
       this.listPontoInteresse = list;
-      this.pontoInteresse.tipo_ponto_interesse = this.pontoInteresse.tipo_ponto_interesse || list[0].$key;
+      this.pontoInteresse.tipo_ponto_interesse = this.pontoInteresse.tipo_ponto_interesse || get(list[0], '$key', '');
     });
 
     _pontoInteresseService.list.subscribe((pontos: IPontoInteresse[]) => {

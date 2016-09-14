@@ -1,21 +1,18 @@
-import { Component, Inject }  from '@angular/core';
+import { Component }  from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormControl, FormBuilder, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { NavParams, NavController } from 'ionic-angular';
 
-import { keys, find } from 'lodash';
+import { keys, clone, isMatch } from 'lodash';
 
 import { AgendaService } from '../../providers/data/agenda.service';
 import { TipoAgendaService } from '../../providers/data/tipo-agenda.service';
 import {
   GlobalMethodService,
-  ValidationService,
   ControlMessagesComponent,
   IAgenda,
-  Agenda,
-  ITipoAgenda,
-  TipoAgenda
+  ITipoAgenda
 } from '../shared';
 
 import { PreferenciaPage } from '../preferencia';
@@ -46,7 +43,7 @@ export class AgendaDetailPage {
     public _tipoAgendaService: TipoAgendaService,
     public _formBuilder: FormBuilder) {
     this.titulo = _navParams.data.titulo;
-    this.agenda = _navParams.data.agenda;
+    this.agenda = clone(_navParams.data.agenda);
     this.isNovaAgenda = keys(this.agenda).length <= 0;
     this.configForm(true, false);
     this._tipoAgendaService.list.subscribe((list: ITipoAgenda[]) => {
@@ -94,6 +91,10 @@ export class AgendaDetailPage {
     this._agendaService.update(this.agenda, this.form.value)
       .then(data => {
         return this._tipoAgendaService.setAgenda(this.agenda.tipo_agenda, JSON.parse(`{"${this.agenda.$key}": true }`));
+      }).then(() => {
+        if (!isMatch(<IAgenda>this._navParams.data.agenda, { 'tipo_agenda': this.agenda.tipo_agenda })) {
+          return this._tipoAgendaService.setAgenda((<IAgenda>this._navParams.data.agenda).tipo_agenda, JSON.parse(`{"${this.agenda.$key}": null }`));
+        }
       }).then(data => {
         return this._globalMethod.mostrarMensagem('Dados de agenda foram atualizados com êxito.', this._navCtrl);
       }).then(data => {

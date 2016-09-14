@@ -1,11 +1,11 @@
 /**
  * Referente ao usuario do aplicativo
- * 
- * @param uid 
- * @param displayName 
- * @param email 
- * @param photoURL 
- * @param providerId 
+ *
+ * @param uid
+ * @param displayName
+ * @param email
+ * @param photoURL
+ * @param providerId
  */
 export class Usuario implements IUsuario {
     uid: string;

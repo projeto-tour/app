@@ -25,4 +25,3 @@ export interface ITipo {
     icone: string;
     destaque: string;
 }
-

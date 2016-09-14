@@ -10,8 +10,7 @@ export class Endereco {
     pais: String = 'Brazil';
     latitude: String = '';
     longitude: String = '';
-    constructor(public cidade: String = '', 
+    constructor(public cidade: String = '',
                 public estado: String = 'SP') {
-                    
                 }
 }

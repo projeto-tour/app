@@ -1,17 +1,17 @@
 /**
- * Referente a agenda de usuario. 
+ * Referente a agenda de usuario.
  * Ex.: XXXX, XXXX, etc.
- *          
- * @param $key    
- * @param descricao          
- * @param favorito    
- * @param data_inicio          
- * @param data_fim    
- * @param data_criacao 
- * @param distancia 
- * @param tipo_agenda            
- * @param usuario                
- * @param rota      
+ *
+ * @param $key
+ * @param descricao
+ * @param favorito
+ * @param data_inicio
+ * @param data_fim
+ * @param data_criacao
+ * @param distancia
+ * @param tipo_agenda
+ * @param usuario
+ * @param rota
  */
 export class Agenda implements IAgenda {
     descricao: string;
@@ -45,4 +45,3 @@ export interface IAgenda {
     usuario?: any;
     rota?: any;
 }
-

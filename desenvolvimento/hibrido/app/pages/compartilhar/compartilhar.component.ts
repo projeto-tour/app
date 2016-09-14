@@ -12,8 +12,6 @@ export class CompartilharPage {
   titulo: string = 'Compartilhar';
   dados: any;
 
-  private mensagenErro: any;
-
   constructor(
     public _navParams: NavParams,
     public _viewCtrl: ViewController) {
@@ -38,57 +36,56 @@ export class CompartilharPage {
     this._viewCtrl.dismiss(this.titulo);
   }
 
- whatsappShare(){
-    SocialSharing.shareViaWhatsApp("Message via WhatsApp", "img/calendar.svg",  "http://pointdeveloper.com/" )
-      .then(()=>{
-        alert("Success");
+  whatsappShare() {
+    SocialSharing.shareViaWhatsApp('Message via WhatsApp', 'img/calendar.svg', 'http://pointdeveloper.com/')
+      .then(() => {
+        alert('Success');
       },
-      ()=>{
-         alert("failed");
-      })  
-  }
- 
- twitterShare(){
-    SocialSharing.shareViaTwitter("Message via Twitter", "img/calendar.svg", "http://pointdeveloper.com")
-    .then(()=>{
-        alert("Success");
-      },
-      ()=>{
-         alert("failed");
-      })
-  }
- 
-  facebookShare(){
-    SocialSharing.shareViaFacebook("Message via Twitter", "img/calendar.svg", "http://pointdeveloper.com")
-    .then(()=>{
-        alert("Success");
-      },
-      ()=>{
-         alert("failed");
-      })
+      () => {
+        alert('failed');
+      });
   }
 
-  instagramShare(){
-    SocialSharing.shareViaInstagram("Message via Instagram", "img/calendar.svg")
-    .then(()=>{
-        alert("Success");
+  twitterShare() {
+    SocialSharing.shareViaTwitter('Message via Twitter', 'img/calendar.svg', 'http://pointdeveloper.com')
+      .then(() => {
+        alert('Success');
       },
-      ()=>{
-         alert("failed");
-      })
-  } 
+      () => {
+        alert('failed');
+      });
+  }
 
-
-  otherShare(){
-    SocialSharing.share("Genral Share Sheet","Partiu !","img/calendar.svg","http://pointdeveloper.com")
-    .then(()=>{
-        alert("Success");
+  facebookShare() {
+    SocialSharing.shareViaFacebook('Message via Twitter', 'img/calendar.svg', 'http://pointdeveloper.com')
+      .then(() => {
+        alert('Success');
       },
-      ()=>{
-         alert("failed");
-      })
- 
-  }  
+      () => {
+        alert('failed');
+      });
+  }
 
+  instagramShare() {
+    SocialSharing.shareViaInstagram('Message via Instagram', 'img/calendar.svg')
+      .then(() => {
+        alert('Success');
+      },
+      () => {
+        alert('failed');
+      });
+  }
+
+
+  otherShare() {
+    SocialSharing.share('Genral Share Sheet', 'Partiu !', 'img/calendar.svg', 'http://pointdeveloper.com')
+      .then(() => {
+        alert('Success');
+      },
+      () => {
+        alert('failed');
+      });
+
+  }
 
 }

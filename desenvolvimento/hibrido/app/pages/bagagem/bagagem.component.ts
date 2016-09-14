@@ -14,8 +14,6 @@ export class BagagemPage {
   bagagem: Item[] = [];
   contador: number = 0;
 
-  private mensagenErro: any;
-
   constructor(
     public _navParams: NavParams,
     public _viewCtrl: ViewController,

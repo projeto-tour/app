@@ -98,14 +98,14 @@ export class HistoricoListPage {
             this.onReagendar(agenda);
           }
         },
-        {
-          text: 'Compartilhar',
-          icon: !this._platform.is('ios') ? 'share' : null,
-          handler: () => {
-            // -- TODO Compartilhar
-            console.log('Compartilhar clicked');
-          }
-        },
+        // {
+        //   text: 'Compartilhar',
+        //   icon: !this._platform.is('ios') ? 'share' : null,
+        //   handler: () => {
+        //     // -- TODO Compartilhar
+        //     console.log('Compartilhar clicked');
+        //   }
+        // },
         {
           text: 'Cancelar',
           role: 'cancel',
