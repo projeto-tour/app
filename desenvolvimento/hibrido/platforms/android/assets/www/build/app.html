@@ -25,11 +25,11 @@
         <div *ngFor="let page of menu.pages">
           <button ion-item menuClose (click)="openPage(page)" *ngIf="_auth.authenticated && page.status !== 'LOGGEDOUT'">
             <ion-icon item-left [name]="page.icon"></ion-icon>
-            {{page.title}}
+            <h4>{{page.title}}</h4>
           </button>
           <button ion-item menuClose (click)="openPage(page)" *ngIf="!_auth.authenticated && page.status !== 'LOGGEDIN'">
             <ion-icon item-left [name]="page.icon"></ion-icon>
-            {{page.title}}
+            <h4>{{page.title}}</h4>
           </button>
         </div>
       </ion-item-group>

@@ -1,56 +1,63 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{titulo}}</ion-title>
+        <ion-title>{{ titulo }}</ion-title>
         <ion-buttons end>
-            <button (click)="carregarMapa()">
-      <ion-icon ios="ios-map" md="md-map"></ion-icon>
-    </button>
+            <button (click)="onLoadMapa()" *ngIf="listRota && listRota.length > 0">
+                <ion-icon ios="ios-map" md="md-map"></ion-icon>
+            </button>
+            <button (click)="onAdd()" *ngIf="!listRota || listRota.length <= 0">
+                <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="rota cards-bg">
-    <div *ngFor="let rota of rotas">
+
+    <div *ngFor="let rota of listRota">
+
         <ion-card>
             <ion-item no-padding>
                 <ion-icon name='car' item-left></ion-icon>
-                <h2>Rota de {{rota.distancia}}</h2>
-                <p>Viagem de {{rota.duracao}}</p>
+                <h4>Rota de {{ rota.distancia || '0' }} KM</h4>
+                <p>Viagem de {{ rota.duracao || '0' }} Hrs</p>
             </ion-item>
             <hr>
             <ion-card-content>
-                <h4>
+                <h6>
                     <ion-icon item-left name='calendar'></ion-icon>
-                    Saída: <strong mdc-grey>{{_globalMethod.convertToDate(rota.dataSaida) | date}}</strong> as
-                    <strong mdc-grey>{{_globalMethod.convertToDate(rota.dataSaida) | date:'shortTime'}}</strong>
-                </h4>
-                <p>{{rota.pontoPartida}}</p>
-                <h3>
+                    Saída: <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_saida) | date }}</strong> as
+                    <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_saida) | date:'shortTime' }}</strong>
+                </h6>
+                <p>{{ rota.ponto_partida }}</p>
+                <h6>
                     <ion-icon item-left name='calendar'></ion-icon>
-                    Chegada: <strong mdc-grey>{{_globalMethod.convertToDate(rota.dataChegada) | date}}</strong> as
-                    <strong mdc-grey>{{_globalMethod.convertToDate(rota.dataChegada) | date:'shortTime'}}</strong>
-                </h3>
-                <p>{{rota.pontoChegada}}</p>
+                    Chegada: <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_chegada) | date }}</strong> as
+                    <strong mdc-grey>{{ _globalMethod.convertToDate(rota.data_chegada) | date:'shortTime' }}</strong>
+                </h6>
+                <p>{{ rota.ponto_chegada }}</p>
             </ion-card-content>
             <ion-item actions>
-                <button primary clear item-left (click)="navegarNoMapa(rota)">
+                <button primary clear item-left (click)="onLoadMapa(rota)">
                 <ion-icon name='navigate'></ion-icon>
                 Navegar
             </button>
-                <button primary clear item-left (click)="gerenciarRota(rota)">
+                <button primary clear item-left (click)="onEdit(rota)">
                 <ion-icon name='create'></ion-icon>
                 Editar
             </button>
-                <button danger clear item-right (click)="excluir(rota)">
+                <button danger clear item-right (click)="onDelete(rota)">
                 <ion-icon name='trash'></ion-icon>
                 Excluir
             </button>
             </ion-item>
         </ion-card>
-        <button light small full (click)="incluir()">
-        <ion-icon  name="md-add"></ion-icon>
-        Incluir nova rota
-    </button>
+
+        <button light small full (click)="onCreate(rota)">
+            <ion-icon  name="md-add"></ion-icon>
+            Incluir nova rota
+        </button>
+
     </div>
 
 </ion-content>

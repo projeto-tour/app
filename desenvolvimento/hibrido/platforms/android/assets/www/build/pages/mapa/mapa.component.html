@@ -5,7 +5,7 @@
   </button>
     <ion-title>{{ titulo }}</ion-title>
     <ion-buttons end>
-      <button (click)="carregarPreferencias()">
+      <button (click)="onCarregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
   </ion-buttons>
@@ -13,26 +13,27 @@
 </ion-header>
 
 <ion-content class="mapa">
-  
+
   <ion-list>
     <ion-item>
       <ion-label>Ponto de Interesse</ion-label>
       <ion-select [(ngModel)]="pontoInteresse.tipo_ponto_interesse">
-        <ion-option *ngFor="let item of _tipoPontoInteresseService.tipos | async" [value]="item.$key">
+        <ion-option *ngFor="let item of _tipoPontoInteresseService.list | async" [value]="item.$key">
           {{ item.descricao }}
         </ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <input 
-          type="text" 
-          style="width:100%;" 
-          [(ngModel)]="pontoInteresse.descricao" 
-          (setAddress)="onSelectPlace($event)" 
+      <input
+          type="text"
+          placeholder="Ex. Av. presidente vargas"
+          style="width:100%;"
+          [(ngModel)]="pontoInteresse.descricao"
+          (setAddress)="onSelectPlace($event)"
           googleplace/>
     </ion-item>
   </ion-list>
-  
+
   <div #map id="map"></div>
 
 </ion-content>

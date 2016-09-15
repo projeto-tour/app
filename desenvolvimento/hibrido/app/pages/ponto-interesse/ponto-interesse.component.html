@@ -27,7 +27,7 @@
     <div [ngSwitch]="segment">
 
       <div *ngSwitchCase="'all'">
-        <ion-item [ngStyle]="{'border-left': '4px solid #8c9eff'}">
+        <ion-item [ngStyle]="{'border-left': '2px solid #8c9eff', 'border-right': '2px solid #8c9eff'}">
           <h4>{{ tipo.descricao }}</h4>
           <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
               <ion-icon name='star'></ion-icon>
@@ -64,7 +64,7 @@
       </div>
 
       <div *ngSwitchCase="'favorite'">
-        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0" [ngStyle]="{'border-left': '4px solid #8c9eff'}">
+        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0" [ngStyle]="{'border-left': '2px solid #8c9eff', 'border-right': '2px solid #8c9eff'}">
           <h2>{{ tipo.descricao }}</h2>
           <button clear item-right (click)="onSelectTipoPontoInteresse(tipo)" [ngClass]="{'favorito': getPreferencias(tipo.$key)?.length > 0, 'nao-favorito': getPreferencias(tipo.$key)?.length <= 0}">
               <ion-icon name='star'></ion-icon>
@@ -92,7 +92,7 @@
               <div>Excluir</div>
             </button>
           </ion-col>-->
-          <ion-col center text-center>
+          <ion-col right text-right>
             <ion-note>
               {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
             </ion-note>

@@ -1,10 +1,10 @@
 import { Component }  from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormBuilder, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 import { NavParams, NavController } from 'ionic-angular';
 
-import { keys, clone, isMatch } from 'lodash';
+import { keys, clone, isMatch, lt } from 'lodash';
 
 import { AgendaService } from '../../providers/data/agenda.service';
 import { TipoAgendaService } from '../../providers/data/tipo-agenda.service';
@@ -32,6 +32,7 @@ export class AgendaDetailPage {
   listDeAgenda: ITipoAgenda[];
   isNovaAgenda: boolean = true;
   form: FormGroup;
+  now: string = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
 
   private mensagenErro: any;
 
@@ -75,6 +76,12 @@ export class AgendaDetailPage {
     this._globalMethod.carregarPagina(PreferenciaPage, this.titulo, true, this._navCtrl);
   }
 
+  onChangeDataInicio(data): void {
+    if (lt(this.form.value.data_fim, this.form.value.data_inicio)) {
+      (<FormControl>this.form.controls['data_fim']).updateValue(clone(this.form.value.data_inicio));
+    }
+  }
+
   private criar() {
     let key = this._agendaService.create(this.form.value);
     if (key) {
@@ -106,23 +113,23 @@ export class AgendaDetailPage {
     if (isInit) {
       this.form = this._formBuilder.group({
         'descricao': [this.agenda ? this.agenda.descricao : '', [Validators.required, Validators.minLength(5)]],
-        'data_inicio': [this.agenda ? this.agenda.data_inicio : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), [Validators.required]],
-        'data_fim': [this.agenda ? this.agenda.data_fim : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), [Validators.required]],
+        'data_inicio': [this.agenda ? this.agenda.data_inicio : clone(this.now), [Validators.required]],
+        'data_fim': [this.agenda ? this.agenda.data_fim : clone(this.now), [Validators.required]],
         'tipo_agenda': [this.agenda ? this.agenda.tipo_agenda : '', [Validators.required]],
         'distancia': [this.agenda ? this.agenda.distancia : '0 KM'],
         'favorito': [this.agenda ? this.agenda.favorito : false],
         'data_criacao': [this.agenda ? this.agenda.data_criacao : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd HH:mm:ss')]
       });
     } else if (isReset) {
-      this.form.controls['descricao'].updateValueAndValidity('');
-      this.form.controls['data_inicio'].updateValueAndValidity((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['data_fim'].updateValueAndValidity((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['tipo_agenda'].updateValueAndValidity(this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
+      (<FormControl>this.form.controls['descricao']).updateValue('');
+      (<FormControl>this.form.controls['data_inicio']).updateValue(clone(this.now));
+      (<FormControl>this.form.controls['data_fim']).updateValue(clone(this.now));
+      (<FormControl>this.form.controls['tipo_agenda']).updateValue(this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
     } else {
-      this.form.controls['descricao'].updateValueAndValidity(this.agenda ? this.agenda.descricao : '');
-      this.form.controls['data_inicio'].updateValueAndValidity(this.agenda ? this.agenda.data_inicio : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['data_fim'].updateValueAndValidity(this.agenda ? this.agenda.data_fim : (new DatePipe()).transform(new Date(), 'yyyy-MM-dd'));
-      this.form.controls['tipo_agenda'].updateValueAndValidity(this.agenda ? this.agenda.tipo_agenda : this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
+      (<FormControl>this.form.controls['descricao']).updateValue(this.agenda ? this.agenda.descricao : '');
+      (<FormControl>this.form.controls['data_inicio']).updateValue(this.agenda ? this.agenda.data_inicio : clone(this.now));
+      (<FormControl>this.form.controls['data_fim']).updateValue(this.agenda ? this.agenda.data_fim : clone(this.now));
+      (<FormControl>this.form.controls['tipo_agenda']).updateValue(this.agenda ? this.agenda.tipo_agenda : this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
     }
   }
 

@@ -6,26 +6,7 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"
-        }
-    },
+    "installed_plugins": {},
     "dependent_plugins": {
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "br.ufscar.dc.latosensu.partiu"

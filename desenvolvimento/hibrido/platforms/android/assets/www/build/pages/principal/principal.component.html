@@ -1,6 +1,7 @@
 <ion-tabs [selectedIndex]="selectedIndex">
-  <ion-tab [root]="tab1Root" tabTitle="Agendas" tabIcon="calendar" class="tab"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Mapa" tabIcon="map" class="tab"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Interesses" tabIcon="flag" [tabBadge]="preferenciaUsuario" tabBadgeStyle="danger" class="tab"></ion-tab>
+  <ion-tab [root]="tab1Root" tabTitle="Agendas" tabIcon="calendar" class="tab"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Históricos" tabIcon="time" class="tab"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Notificações" tabIcon="notifications" tabBadge="3" tabBadgeStyle="danger" class="tab"></ion-tab>
+  <!--<ion-tab [root]="tab4Root" tabTitle="Notificações" tabIcon="notifications" tabBadge="3" tabBadgeStyle="danger" class="tab"></ion-tab>-->
 </ion-tabs>

@@ -39,20 +39,20 @@ export class CompartilharPage {
   whatsappShare() {
     SocialSharing.shareViaWhatsApp('Message via WhatsApp', 'img/calendar.svg', 'http://pointdeveloper.com/')
       .then(() => {
-        alert('Success');
+        // alert('Success');
       },
       () => {
-        alert('failed');
+        // alert('failed');
       });
   }
 
   twitterShare() {
     SocialSharing.shareViaTwitter('Message via Twitter', 'img/calendar.svg', 'http://pointdeveloper.com')
       .then(() => {
-        alert('Success');
+        // alert('Success');
       },
       () => {
-        alert('failed');
+        // alert('failed');
       });
   }
 
@@ -69,10 +69,10 @@ export class CompartilharPage {
   instagramShare() {
     SocialSharing.shareViaInstagram('Message via Instagram', 'img/calendar.svg')
       .then(() => {
-        alert('Success');
+        // alert('Success');
       },
       () => {
-        alert('failed');
+        // alert('failed');
       });
   }
 
@@ -80,12 +80,11 @@ export class CompartilharPage {
   otherShare() {
     SocialSharing.share('Genral Share Sheet', 'Partiu !', 'img/calendar.svg', 'http://pointdeveloper.com')
       .then(() => {
-        alert('Success');
+        // alert('Success');
       },
       () => {
-        alert('failed');
+        // alert('failed');
       });
-
   }
 
 }

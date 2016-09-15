@@ -5,7 +5,7 @@
   </button>
     <ion-title>{{ titulo }}</ion-title>
     <ion-buttons end>
-      <button (click)="carregarPreferencias()">
+      <button (click)="onCarregarPreferencias()">
       <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
     </button>
     </ion-buttons>
@@ -23,19 +23,19 @@
       <ion-card class="adv-map">
         <div style="position: relative">
           <img [src]='historico.tipo_agenda.destaque'>
-          <button light small fab fab-left fab-top class="fab-map" (click)="carregarAgendas(historico)">
+          <button light small fab fab-left fab-top class="fab-map" (click)="onCarregarAgendas(historico)">
               <ion-icon [name]='historico.tipo_agenda.icone'></ion-icon>
             </button>
         </div>
         <br>
         <ion-item>
-          <h2>{{ historico.tipo_agenda.descricao }}</h2>
+          <h4>{{ historico.tipo_agenda.descricao }}</h4>
         </ion-item>
         <ion-item actions>
-          <button mdc-orange clear item-left (click)="carregarAgendas(historico)">
+          <button mdc-orange clear item-left (click)="onCarregarAgendas(historico)">
               <ion-badge mdc-orange>{{ historico.qtde_todos }}</ion-badge>&nbsp;&nbsp;Agendas
             </button>
-          <button mdc-grey clear item-right (click)="gerenciar(historico)">
+          <button mdc-grey clear item-right (click)="onGerenciar(historico)">
                 <ion-icon name='md-more'></ion-icon>
             </button>
         </ion-item>

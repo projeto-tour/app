@@ -3,7 +3,8 @@ import { DatePipe } from '@angular/common';
 import { NavParams, ViewController, NavController } from 'ionic-angular';
 import { InAppBrowser }  from 'ionic-native';
 
-import { isEmpty, isMatch, clone, get } from 'lodash';
+import { isEmpty, isMatch, clone, get, lt } from 'lodash';
+// import * as moment from 'moment';
 
 import {
   GlobalMethodService,
@@ -32,6 +33,7 @@ export class RotaDetailPage {
   rotaFilho: IRota = new Rota();
   listPontoInteresse: IPontoInteresse[] = [];
   listTransporte: ITransporte[] = [];
+  now: string = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
 
   private mensagenErro: any;
 
@@ -57,11 +59,19 @@ export class RotaDetailPage {
 
   ionViewLoaded() {
     if (!this.editing) {
-      this.rota.ponto_partida = get(this.rotaPai, 'ponto_chegada', '');
-      this.rota.localizacao_ponto_partida = get(this.rotaPai, 'localizacao_ponto_chegada', '');
-      this.rota.data_saida = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
-      this.rota.data_chegada = (new DatePipe()).transform(new Date(), 'yyyy-MM-dd');
+      this.onClear();
     }
+  }
+
+  onClear(): void {
+    this.rota.ponto_partida = get(this.rotaPai, 'ponto_chegada', '');
+    this.rota.localizacao_ponto_partida = get(this.rotaPai, 'localizacao_ponto_chegada', '');
+    this.rota.ponto_chegada = '';
+    this.rota.localizacao_ponto_chegada = '';
+    this.rota.data_saida = clone(this.now);
+    this.rota.data_chegada = clone(this.now);
+    this.rota.ponto_interesse = '';
+    this.rota.transporte = '';
   }
 
   onSubmit(): void {
@@ -94,6 +104,12 @@ export class RotaDetailPage {
                 /${get(this.listPontoInteresse.filter(data => data.$key === this.rota.ponto_interesse), 'descricao', '')}`;
     if (rota.length > 2) {
       new InAppBrowser(`https://www.google.com.br/maps/dir/${rota}/`, '_blank');
+    }
+  }
+
+  onChangeDataSaida(data): void {
+    if (lt(this.rota.data_chegada, this.rota.data_saida)) {
+      this.rota.data_chegada = this.rota.data_saida;
     }
   }
 

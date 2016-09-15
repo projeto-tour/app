@@ -40,8 +40,10 @@
                     displayFormat="DD/MM/YYYY"
                     pickerFormat="DD MMM YYYY"
                     cancelText="Cancelar"
-                    doneText="OK" 
+                    doneText="OK"
+                    [min]="now"
                     [(ngModel)]="rota.data_saida"
+                    (ionChange)="onChangeDataSaida($event)"
                     #data_inicio>
                 </ion-datetime>
             </ion-item>
@@ -50,22 +52,23 @@
                 Ponto de Chegada
             </ion-item>
             <ion-item>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Ex. São Carlos"
-                    style="width:100%;" 
-                    [(ngModel)]="rota.ponto_chegada" 
-                    (setAddress)="onSelectPlacePontoChegada($event)" 
+                    style="width:100%;"
+                    [(ngModel)]="rota.ponto_chegada"
+                    (setAddress)="onSelectPlacePontoChegada($event)"
                     googleplace
                     #ponto_chegada/>
             </ion-item>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Data</ion-label>
-                <ion-datetime 
-                    displayFormat="DD/MM/YYYY" 
-                    pickerFormat="DD MMM YYYY" 
-                    cancelText="Cancelar" 
-                    doneText="OK" 
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
+                    doneText="OK"
+                    [min]="rota.data_saida"
                     [(ngModel)]="rota.data_chegada"
                     #data_inicio>
                 </ion-datetime>
@@ -77,7 +80,7 @@
             </ion-item>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Selecione</ion-label>
-                <ion-select 
+                <ion-select
                     submitText="OK" cancelText="Cancelar"
                     [(ngModel)]="rota.ponto_interesse"
                     #ponto_interesse>
@@ -93,11 +96,11 @@
             </ion-item>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Selecione</ion-label>
-                <ion-select 
+                <ion-select
                     submitText="OK" cancelText="Cancelar"
                     [(ngModel)]="rota.transporte"
                     #transporte>
-                    <ion-option *ngFor="let item of listTransporte" [value]="item.$key" >
+                    <ion-option *ngFor="let item of listTransporte" [value]="item.$key">
                         {{ item.descricao }}
                     </ion-option>
                 </ion-select>
@@ -107,9 +110,9 @@
         <ion-item>
             <span secondary item-left>{{ rota.duracao || '0' }} min</span>
             <span item-left>({{ rota.distancia || '0' }} KM)</span>
-            <button primary clear small item-right>
-                <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Curtidas</div>
+            <button primary clear small item-right (click)="onClear()">
+                <ion-icon name="brush"></ion-icon>
+                <div>Limpar</div>
             </button>
         </ion-item>
 

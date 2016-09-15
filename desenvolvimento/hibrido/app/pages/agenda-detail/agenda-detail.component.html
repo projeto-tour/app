@@ -11,7 +11,7 @@
             <ion-item-divider light>Informações de Agenda</ion-item-divider>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Tipo de Agenda</ion-label>
-                <ion-select 
+                <ion-select
                     formControlName="tipo_agenda"
                     #tipo_agenda>
                     <ion-option *ngFor="let item of _tipoAgendaService.list | async" [value]="item.$key" >
@@ -22,8 +22,8 @@
             <control-messages [control]="form.controls.tipo_agenda"></control-messages>
             <ion-item>
                 <ion-label stacked dark style="font-size: 0.875em;">Descrição</ion-label>
-                <ion-input 
-                    placeholder="Ex. Visita aos meus pais na Bahia" 
+                <ion-input
+                    placeholder="Ex. Visita aos meus pais na Bahia"
                     formControlName="descricao"
                     #descricao
                     clearInput>
@@ -33,24 +33,27 @@
             <ion-item-divider light>Período de Realização</ion-item-divider>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Data Inicial</ion-label>
-                <ion-datetime 
-                    displayFormat="DD/MM/YYYY" 
-                    pickerFormat="DD MMM YYYY" 
-                    cancelText="Cancelar" 
-                    doneText="OK" 
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
+                    doneText="OK"
                     formControlName="data_inicio"
+                    [min]="now"
+                    (ionChange)="onChangeDataInicio($event)"
                     #data_inicio>
                 </ion-datetime>
             </ion-item>
             <control-messages [control]="form.controls.data_inicio"></control-messages>
             <ion-item>
                 <ion-label dark style="font-size: 0.875em;">Data Final</ion-label>
-                <ion-datetime 
-                    displayFormat="DD/MM/YYYY" 
-                    pickerFormat="DD MMM YYYY" 
-                    cancelText="Cancelar" 
-                    doneText="OK" 
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
+                    doneText="OK"
                     formControlName="data_fim"
+                    [min]="form.value.data_inicio"
                     #data_fim>
                 </ion-datetime>
             </ion-item>
@@ -68,5 +71,5 @@
             </ion-row>
         </ion-grid>
     </form>
-    
+
 </ion-content>

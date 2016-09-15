@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { UsuarioProfilePage, UsuarioSignUpPage } from '../../pages/usuario';
 import { TutorialPage } from '../../pages/tutorial';
 import { SobrePage } from '../../pages/sobre';
-import { CompartilharPage } from '../../pages/compartilhar';
+// import { CompartilharPage } from '../../pages/compartilhar';
 // import { ConfiguracaoPage } from '../../pages/configuracao';
 // import { BagagemPage } from '../../pages/bagagem';
 
@@ -42,8 +42,8 @@ export class MenuDataService {
         'title': 'PARTIU!',
         'pages': [
           { title: 'Ajuda', component: TutorialPage, status: 'DEFAULT', icon: 'md-help-circle' },
-          { title: 'Sobre', component: SobrePage, status: 'DEFAULT', icon: 'md-information-circle' },
-          { title: 'Compartilhar', component: CompartilharPage, status: 'DEFAULT', icon: 'share' }
+          { title: 'Sobre', component: SobrePage, status: 'DEFAULT', icon: 'md-information-circle' }
+          // { title: 'Compartilhar', component: CompartilharPage, status: 'DEFAULT', icon: 'share' }
         ]
       }
     ];
