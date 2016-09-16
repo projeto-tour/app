@@ -39,7 +39,7 @@ export class TransporteService {
   }
 
   setRota(key: string, changes: any): firebase.Promise<any> {
-    return this._af.database.object(`${this._firebaseConfig.transporte}/${key}/${this._firebaseConfig.rota}`).update(changes);
+    return this._af.database.object(`${this._firebaseConfig.transporte}/${key}/${this._firebaseConfig.rota}/${this._auth.uid || this._auth.userInfo.uid}`).update(changes);
   }
 
   getMock(): Observable<ITransporte[]> {

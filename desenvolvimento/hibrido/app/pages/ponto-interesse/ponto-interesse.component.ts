@@ -21,7 +21,7 @@ import { PontoInteresseService } from '../../providers/data/ponto-interesse.serv
 import { PreferenciaUsuarioService } from '../../providers/data/preferencia-usuario.service';
 import { TipoPontoInteresseService } from '../../providers/data/tipo-ponto-interesse.service';
 
-import { groupBy, get, keys, clone, find } from 'lodash';
+import { groupBy, get, clone, find, keys } from 'lodash';
 
 @Component({
   templateUrl: 'build/pages/ponto-interesse/ponto-interesse.component.html'
@@ -74,8 +74,10 @@ export class PontoInteressePage {
       this.listTipoPontoInteresse.forEach(data => {
         if (keys(this.getPreferencias(data.$key)).length > 0) {
           this.unFavorite(
-            clone(data),
-            <IPreferenciaUsuario>clone(find(this.getPreferencias(data.$key), { 'tipo_ponto_interesse': data.$key }))
+            clone(data), <
+            IPreferenciaUsuario>clone(find(this.getPreferencias(data.$key), {
+              'tipo_ponto_interesse': data.$key
+            }))
           );
         }
       });
@@ -87,8 +89,10 @@ export class PontoInteressePage {
       this.favorite(clone(tipoPontoInteresse));
     } else {
       this.unFavorite(
-        clone(tipoPontoInteresse),
-        <IPreferenciaUsuario>clone(find(this.getPreferencias(tipoPontoInteresse.$key), { 'tipo_ponto_interesse': tipoPontoInteresse.$key }))
+        clone(tipoPontoInteresse), <
+        IPreferenciaUsuario>clone(find(this.getPreferencias(tipoPontoInteresse.$key), {
+          'tipo_ponto_interesse': tipoPontoInteresse.$key
+        }))
       );
     }
   }
@@ -102,16 +106,14 @@ export class PontoInteressePage {
   onGerenciarPontoInteresse(pontoInteresse: IPontoInteresse): void {
     let actionSheet = this._actionSheetCtrl.create({
       title: 'Opções',
-      buttons: [
-        {
-          text: 'Excluir',
-          role: 'destructive',
-          icon: !this._platform.is('ios') ? 'trash' : null,
-          handler: () => {
-            this.excluirPontoInteresse(pontoInteresse);
-          }
-        },
-        {
+      buttons: [{
+        text: 'Excluir',
+        role: 'destructive',
+        icon: !this._platform.is('ios') ? 'trash' : null,
+        handler: () => {
+          this.excluirPontoInteresse(pontoInteresse);
+        }
+      }, {
           text: 'Editar',
           icon: !this._platform.is('ios') ? 'create' : null,
           handler: () => {
@@ -148,21 +150,18 @@ export class PontoInteressePage {
     let confirm = this._alertCtrl.create({
       title: 'Excluir',
       message: `Deseja excluir pontos de interesse de ${tipoPontoInteresse.descricao}?`,
-      buttons: [
-        {
-          text: 'Não',
-          handler: () => {
-            console.log('Não clicked');
-          }
-        },
-        {
+      buttons: [{
+        text: 'Não',
+        handler: () => {
+          console.log('Não clicked');
+        }
+      }, {
           text: 'Sim',
           handler: () => {
             // -- TODO
             console.log('Sim clicked');
           }
-        }
-      ]
+        }]
     });
     confirm.present();
   }
@@ -180,7 +179,9 @@ export class PontoInteressePage {
   }
 
   private favorite(tipoPontoInteresse: ITipoPontoInteresse): void {
-    let key = this._preferenciaUsuarioService.create({ tipo_ponto_interesse: tipoPontoInteresse.$key });
+    let key = this._preferenciaUsuarioService.create({
+      tipo_ponto_interesse: tipoPontoInteresse.$key
+    });
     if (key) {
       this._tipoPontoInteresseService.setPreferenciasUsuario(tipoPontoInteresse.$key, JSON.parse(`{"${key}": true }`))
         .then(data => {
@@ -199,38 +200,36 @@ export class PontoInteressePage {
   }
 
   private excluirPontoInteresse(pontoInteresse: IPontoInteresse): void {
-    let confirm = this._alertCtrl.create({
-      title: 'Excluir',
-      message: `Deseja excluir ${pontoInteresse.descricao}?`,
-      buttons: [
-        {
-          text: 'Não',
-          handler: () => {
-            console.log('Não clicked');
-          }
-        },
-        {
-          text: 'Sim',
-          handler: () => {
-            this.excluir(pontoInteresse);
-          }
-        }
-      ]
-    });
-    confirm.present();
+    if (keys(get(pontoInteresse, 'rota', '')).length > 0) {
+      this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} possui rotas e não pode ser excluído.`, this._navCtrl);
+    } else {
+      this.excluir(pontoInteresse);
+      // let confirm = this._alertCtrl.create({
+      //   title: 'Excluir',
+      //   message: `Deseja excluir ${pontoInteresse.descricao}?`,
+      //   buttons: [{
+      //     text: 'Não',
+      //     handler: () => {
+      //       console.log('Não clicked');
+      //     }
+      //   }, {
+      //       text: 'Sim',
+      //       handler: () => {
+      //         this.excluir(pontoInteresse);
+      //       }
+      //     }]
+      // });
+      // confirm.present();
+    }
   }
 
   private excluir(pontoInteresse: IPontoInteresse): void {
-    if (get(pontoInteresse, 'rota', '').length > 0) {
-      this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} possui rotas e não pode ser excluído.`, this._navCtrl);
-    } else {
-      this._tipoPontoInteresseService.setPontoInteresse(pontoInteresse.tipo_ponto_interesse, JSON.parse(`{"${pontoInteresse.$key}": null }`))
-        .then(data => {
-          return this._pontoInteresseService.remove(pontoInteresse.$key);
-        }).then(data => {
-          this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} foram excluído com êxito.`, this._navCtrl);
-        }).catch(this.handleError);
-    }
+    this._tipoPontoInteresseService.setPontoInteresse(pontoInteresse.tipo_ponto_interesse, JSON.parse(`{"${pontoInteresse.$key}": null }`))
+      .then(data => {
+        return this._pontoInteresseService.remove(pontoInteresse.$key);
+      }).then(data => {
+        this._globalMethod.mostrarMensagem(`O ponto de interesse ${pontoInteresse.descricao} foram excluído com êxito.`, this._navCtrl);
+      }).catch(this.handleError);
   }
 
   private confirmar(pontoInteresse: IPontoInteresse) {

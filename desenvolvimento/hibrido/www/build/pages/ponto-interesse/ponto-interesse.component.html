@@ -42,25 +42,19 @@
           </button>
           </button>
         </ion-list>
-        <ion-row *ngIf="getPontosInteresse(tipo.$key)?.length > 0">
-          <ion-col>
-            <button primary clear small (click)="onLoadMap(tipo)">
-              <ion-icon name="map"></ion-icon>
-              <div>Mapa</div>
-            </button>
-          </ion-col>
-          <!--<ion-col>
-            <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
+        <ion-item *ngIf="getPontosInteresse(tipo.$key)?.length > 0">
+          <button primary clear small (click)="onLoadMap(tipo)" item-left>
+            <ion-icon name="map"></ion-icon>
+            <div>Mapa</div>
+          </button>
+          <!--<button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)" item-left>
               <ion-icon name="trash"></ion-icon>
               <div>Excluir</div>
-            </button>
-          </ion-col>-->
-          <ion-col center text-center>
-            <ion-note>
-              {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
-            </ion-note>
-          </ion-col>
-        </ion-row>
+            </button>-->
+          <ion-note item-right>
+            {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
+          </ion-note>
+        </ion-item>
       </div>
 
       <div *ngSwitchCase="'favorite'">
@@ -79,25 +73,19 @@
           </button>
           </button>
         </ion-list>
-        <ion-row *ngIf="getPreferencias(tipo.$key)?.length > 0 && getPontosInteresse(tipo.$key)?.length > 0">
-          <ion-col>
-            <button primary clear small (click)="onLoadMap(tipo)">
-              <ion-icon name="map"></ion-icon>
-              <div>Mapa</div>
-            </button>
-          </ion-col>
-          <!--<ion-col>
-            <button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)">
+        <ion-item *ngIf="getPreferencias(tipo.$key)?.length > 0 && getPontosInteresse(tipo.$key)?.length > 0">
+          <button primary clear small (click)="onLoadMap(tipo)" item-left>
+            <ion-icon name="map"></ion-icon>
+            <div>Mapa</div>
+          </button>
+          <!--<button primary clear small (click)="onDeleteTipoPontoInteresse(tipo)" item-left>
               <ion-icon name="trash"></ion-icon>
               <div>Excluir</div>
-            </button>
-          </ion-col>-->
-          <ion-col right text-right>
-            <ion-note>
-              {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
-            </ion-note>
-          </ion-col>
-        </ion-row>
+            </button>-->
+          <ion-note item-right>
+            {{ getPontosInteresse(tipo.$key) ? getPontosInteresse(tipo.$key).length : 0 }} Pontos
+          </ion-note>
+        </ion-item>
       </div>
 
     </div>

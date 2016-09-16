@@ -43,6 +43,8 @@ export class RotaPage {
       let lista = list.filter(data => data.agenda === this.agenda.$key);
       if (lista && lista.length > 0) {
         this.ordenarRotas(lista);
+      } else {
+        this.listRota = [];
       }
     });
   }
@@ -55,7 +57,10 @@ export class RotaPage {
     this._navCtrl.push(
       RotaDetailPage, {
         rota_pai: null,
-        rota: new Rota({ agenda: this.agenda.$key, rota_pai: null }),
+        rota: new Rota({
+          agenda: this.agenda.$key,
+          rota_pai: null
+        }),
         rota_filho: null
       });
   }
@@ -63,9 +68,12 @@ export class RotaPage {
   onCreate(rota: IRota): void {
     this._navCtrl.push(
       RotaDetailPage, {
-        rota_pai: rota,
-        rota: new Rota({ agenda: this.agenda.$key, rota_pai: rota.$key }),
-        rota_filho: this.listRota.find(data => data.rota_pai === rota.$key)
+        rota_pai: clone(rota),
+        rota: new Rota({
+          agenda: this.agenda.$key,
+          rota_pai: rota.$key
+        }),
+        rota_filho: clone(this.listRota.find(data => data.rota_pai === rota.$key))
       });
   }
 
@@ -79,25 +87,29 @@ export class RotaPage {
   }
 
   onDelete(rota: IRota): void {
-    let confirm = this._alertCtrl.create({
-      title: 'Excluir',
-      message: `Deseja excluir ${rota.ponto_partida} - ${rota.ponto_chegada} ?`,
-      buttons: [
-        {
-          text: 'Não',
-          handler: () => {
-            console.log('Não clicked');
-          }
-        },
-        {
-          text: 'Sim',
-          handler: () => {
-            this.excluirRota(rota);
-          }
-        }
-      ]
-    });
-    confirm.present();
+    if (filter(this.listRota, {
+        'rota_pai': rota.$key
+      }).length > 0) {
+      this._globalMethod.mostrarMensagem(`Esta rota está associada a outra rota e não pode ser excluído.`, this._navCtrl);
+    } else {
+      this.excluirRota(rota);
+      // let confirm = this._alertCtrl.create({
+      //   title: 'Excluir',
+      //   message: `Deseja excluir ${rota.ponto_partida} - ${rota.ponto_chegada} ?`,
+      //   buttons: [{
+      //     text: 'Não',
+      //     handler: () => {
+      //       console.log('Não clicked');
+      //     }
+      //   }, {
+      //     text: 'Sim',
+      //     handler: () => {
+      //       this.excluirRota(rota);
+      //     }
+      //   }]
+      // });
+      // confirm.present();
+    }
   }
 
   onLoadMapa(rota?: IRota): void {
@@ -106,22 +118,21 @@ export class RotaPage {
     } else {
       let rotas = '';
       for (var index = 0; index < this.listRota.length; index++) {
-        rotas = rotas + (index < this.listRota.length - 1 ? `${this.listRota[index].ponto_partida}/${this.listRota[index].ponto_chegada}/`
-          : `${this.listRota[index].ponto_partida}/${this.listRota[index].ponto_chegada}`);
+        rotas = rotas + (index < this.listRota.length - 1 ? `${this.listRota[index].ponto_partida}/${this.listRota[index].ponto_chegada}/` :
+          `${this.listRota[index].ponto_partida}/${this.listRota[index].ponto_chegada}`);
       }
       new InAppBrowser(`https://www.google.com.br/maps/dir/${rotas}/`, '_blank');
     }
   }
 
   excluirRota(rota: IRota): void {
-    if (filter(this.listRota, { 'rota_pai': rota.$key }).length > 0) {
-      this._globalMethod.mostrarMensagem(`Esta rota está associada a outra rota e não pode ser excluído.`, this._navCtrl);
-    } else {
-      this._agendaService.setRota(rota.agenda, JSON.parse(`{"${rota.$key}": null }`))
+    this._agendaService.setRota(rota.agenda, JSON.parse(`{"${rota.$key}": null }`))
       .then(() => {
         return this._transporteService.setRota(rota.transporte, JSON.parse(`{"${rota.$key}": null }`));
       }).then(() => {
         return this._pontoInteresseService.setRota(rota.ponto_interesse, JSON.parse(`{"${rota.$key}": null }`));
+      }).then(() => {
+        return this._agendaService.setRota(rota.agenda, JSON.parse(`{"${rota.$key}": true }`));
       }).then(() => {
         return this._rotaService.remove(rota.$key);
       }).then(() => {
@@ -129,7 +140,6 @@ export class RotaPage {
       }).then(() => {
         return this._globalMethod.mostrarMensagem(`A rota foi excluído com êxito.`, this._navCtrl);
       }).catch(this.handleError);
-    }
   }
 
   private ordenarRotas(rotas: IRota[]): void {
@@ -141,7 +151,7 @@ export class RotaPage {
   }
 
   private handleError(error: any) {
-    this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+    this._globalMethod.mostrarErro(this.mensagenErro = < any > error, this._navCtrl);
   }
 
 }

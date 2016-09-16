@@ -4,7 +4,7 @@ import { NgClass, DatePipe } from '@angular/common';
 import { NavController, ActionSheetController, Platform, AlertController } from 'ionic-angular';
 import { InAppBrowser }  from 'ionic-native';
 
-import { clone, get } from 'lodash';
+import { clone, get, keys } from 'lodash';
 
 import { AgendaFilterPipe } from './';
 import { PreferenciaPage } from '../preferencia';
@@ -111,37 +111,38 @@ export class AgendaPage {
   }
 
   onExcluir(agenda: IAgenda): void {
-    let confirm = this._alertCtrl.create({
-      title: 'Excluir',
-      message: `Deseja excluir agenda ${agenda.descricao}?`,
-      buttons: [{
-        text: 'Não',
-        handler: () => {
-          console.log('Não clicked');
-        }
-      }, {
-          text: 'Sim',
-          handler: () => {
-            this.excluirAgenda(agenda);
-          }
-        }]
-    });
-    confirm.present();
+    if (keys(get(agenda, 'rota', '')).length > 0) {
+      this._globalMethod.mostrarMensagem(`Agenda ${agenda.descricao} possui rotas e não pode ser excluído.`, this._navCtrl);
+    } else {
+      this.excluirAgenda(agenda);
+      // let confirm = this._alertCtrl.create({
+      //   title: 'Excluir',
+      //   message: `Deseja excluir agenda ${agenda.descricao}?`,
+      //   buttons: [{
+      //     text: 'Não',
+      //     handler: () => {
+      //       console.log('Não clicked');
+      //     }
+      //   }, {
+      //       text: 'Sim',
+      //       handler: () => {
+      //         this.excluirAgenda(agenda);
+      //       }
+      //     }]
+      // });
+      // confirm.present();
+    }
   }
 
   excluirAgenda(agenda: IAgenda): void {
-    if (get(agenda, 'rota', '').length > 0) {
-      this._globalMethod.mostrarMensagem(`Agenda ${agenda.descricao} possui rotas e não pode ser excluído.`, this._navCtrl);
-    } else {
-      this._tipoAgendaService.setAgenda(agenda.tipo_agenda, JSON.parse(`{"${agenda.$key}": null }`))
-        .then(data => {
-          return this._agendaService.remove(agenda.$key);
-        }).then(data => {
-          return this._agendaService.filterByDate((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), false);
-        }).then(data => {
-          this._globalMethod.mostrarMensagem(`Agenda ${agenda.descricao} foi excluído com êxito.`, this._navCtrl);
-        }).catch(this.handleError);
-    }
+    this._tipoAgendaService.setAgenda(agenda.tipo_agenda, JSON.parse(`{"${agenda.$key}": null }`))
+      .then(data => {
+        return this._agendaService.remove(agenda.$key);
+      }).then(data => {
+        return this._agendaService.filterByDate((new DatePipe()).transform(new Date(), 'yyyy-MM-dd'), false);
+      }).then(data => {
+        this._globalMethod.mostrarMensagem(`Agenda ${agenda.descricao} foi excluído com êxito.`, this._navCtrl);
+      }).catch(this.handleError);
   }
 
   private handleError(error: any) {

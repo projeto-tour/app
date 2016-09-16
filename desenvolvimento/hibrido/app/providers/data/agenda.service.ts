@@ -103,7 +103,7 @@ export class AgendaService {
     }
 
     setRota(key: string, changes: any): firebase.Promise<any> {
-        return this._af.database.object(`${this._firebaseConfig.agenda}/${key}/${this._firebaseConfig.rota}`).update(changes);
+        return this._af.database.object(`${this._firebaseConfig.agenda}/${this._auth.uid || this._auth.userInfo.uid}/${key}/${this._firebaseConfig.rota}`).update(changes);
     }
 
     getMockAgendas(): Observable<IAgenda[]> {

@@ -17,6 +17,7 @@ import {
 import { PontoInteresseService } from '../../providers/data/ponto-interesse.service';
 import { TransporteService } from '../../providers/data/transporte.service';
 import { RotaService } from '../../providers/data/rota.service';
+import { AgendaService } from '../../providers/data/agenda.service';
 
 @Component({
   templateUrl: 'build/pages/rota-detail/rota-detail.component.html',
@@ -44,10 +45,11 @@ export class RotaDetailPage {
     public _pontoInteresseService: PontoInteresseService,
     public _transporteService: TransporteService,
     public _rotaService: RotaService,
+    public _agendaService: AgendaService,
     public _globalMethod: GlobalMethodService) {
-    this.rotaPai = <IRota>clone(this._navParams.data.rota_pai);
-    this.rota = <IRota>clone(this._navParams.data.rota);
-    this.rotaFilho = <IRota>clone(this._navParams.data.rota_filho);
+    this.rotaPai = <IRota> this._navParams.data.rota_pai;
+    this.rota = <IRota> this._navParams.data.rota;
+    this.rotaFilho = <IRota> this._navParams.data.rota_filho;
     this.editing = this.rota && this.rota.$key ? true : false;
     _pontoInteresseService.list.subscribe((list: IPontoInteresse[]) => {
       this.listPontoInteresse = list;
@@ -89,13 +91,19 @@ export class RotaDetailPage {
   onSelectPlacePontoPartida(place: Object) {
     let location = place['geometry']['location'];
     this.rota.ponto_partida = place['formatted_address'];
-    this.rota.localizacao_ponto_partida = { 'lat': location.lat(), 'lng': location.lng() };
+    this.rota.localizacao_ponto_partida = {
+      'lat': location.lat(),
+      'lng': location.lng()
+    };
   }
 
   onSelectPlacePontoChegada(place: Object) {
     let location = place['geometry']['location'];
     this.rota.ponto_chegada = place['formatted_address'];
-    this.rota.localizacao_ponto_chegada = { 'lat': location.lat(), 'lng': location.lng() };
+    this.rota.localizacao_ponto_chegada = {
+      'lat': location.lat(),
+      'lng': location.lng()
+    };
   }
 
   onLoadMapa(): void {
@@ -140,12 +148,18 @@ export class RotaDetailPage {
       .then(() => {
         return this._transporteService.setRota(this.rota.transporte, JSON.parse(`{"${key}": true }`));
       }).then(() => {
-        if (this.editing && !isMatch(<IRota>this._navParams.data, { 'ponto_interesse': this.rota.ponto_interesse })) {
-          return this._pontoInteresseService.setRota((<IRota>this._navParams.data).ponto_interesse, JSON.parse(`{"${key}": null }`));
+        return this._agendaService.setRota(this.rota.agenda, JSON.parse(`{"${key}": true }`));
+      }).then(() => {
+        if (this.editing && !isMatch( <IRota> this._navParams.data, {
+            'ponto_interesse': this.rota.ponto_interesse
+          })) {
+          return this._pontoInteresseService.setRota(( <IRota> this._navParams.data).ponto_interesse, JSON.parse(`{"${key}": null }`));
         }
       }).then(() => {
-        if (this.editing && !isMatch(<IRota>this._navParams.data, { 'transporte': this.rota.transporte })) {
-          return this._transporteService.setRota((<IRota>this._navParams.data).transporte, JSON.parse(`{"${key}": null }`));
+        if (this.editing && !isMatch( <IRota> this._navParams.data, {
+            'transporte': this.rota.transporte
+          })) {
+          return this._transporteService.setRota(( <IRota> this._navParams.data).transporte, JSON.parse(`{"${key}": null }`));
         }
       }).then(() => {
         return this._globalMethod.mostrarMensagem(msg, this._navCtrl);
@@ -155,14 +169,14 @@ export class RotaDetailPage {
   }
 
   private isValid(rota: IRota): boolean {
-    return rota
-      && (rota.data_saida && rota.data_saida.trim().length > 0)
-      && (rota.data_chegada && rota.data_chegada.length > 0)
-      && (rota.ponto_partida && rota.ponto_partida.length > 0)
-      && (rota.ponto_chegada && rota.ponto_chegada.length > 0)
-      && (rota.agenda && rota.agenda.length > 0)
-      && (rota.ponto_interesse && rota.ponto_interesse.length > 0)
-      && (rota.transporte && rota.transporte.length > 0);
+    return rota &&
+      (rota.data_saida && rota.data_saida.trim().length > 0) &&
+      (rota.data_chegada && rota.data_chegada.length > 0) &&
+      (rota.ponto_partida && rota.ponto_partida.length > 0) &&
+      (rota.ponto_chegada && rota.ponto_chegada.length > 0) &&
+      (rota.agenda && rota.agenda.length > 0) &&
+      (rota.ponto_interesse && rota.ponto_interesse.length > 0) &&
+      (rota.transporte && rota.transporte.length > 0);
   }
 
   private dismiss() {
@@ -170,7 +184,7 @@ export class RotaDetailPage {
   }
 
   private handleError(error: any) {
-    this._globalMethod.mostrarErro(this.mensagenErro = <any>error, this._navCtrl);
+    this._globalMethod.mostrarErro(this.mensagenErro = < any > error, this._navCtrl);
   }
 
 }

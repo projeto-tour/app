@@ -41,7 +41,7 @@ export class PontoInteresseService {
   }
 
   setRota(key: string, changes: any): firebase.Promise<any> {
-    return this._af.database.object(`${this._firebaseConfig.ponto_interesse}/${key}/${this._firebaseConfig.rota}/${this._auth.uid || this._auth.userInfo.uid}`).update(changes);
+    return this._af.database.object(`${this._firebaseConfig.ponto_interesse}/${this._auth.uid || this._auth.userInfo.uid}/${key}/${this._firebaseConfig.rota}`).update(changes);
   }
 
   getMock(): Observable<IPontoInteresse[]> {
