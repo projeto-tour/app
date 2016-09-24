@@ -34,15 +34,15 @@ export class TutorialPage {
             },
             {
                 index: 2,
-                titulo: 'Adicione<br/>suas agendas',
-                descricao: 'Com o <b>Partiu!</b> adicionar, gerenciar e compartilhar suas agendas de viagem ficou muito fácil.',
-                url: 'img/calendar2.svg',
-            },
-            {
-                index: 3,
                 titulo: 'Pontos de interesse',
                 descricao: 'Adicione os pontos de interesse que deseja visitar durante seu percurso e mantenha sua agenda mais organizada.',
                 url: 'img/placeholder2.svg',
+            },
+            {
+                index: 3,
+                titulo: 'Adicione<br/>suas agendas',
+                descricao: 'Com o <b>Partiu!</b> adicionar, gerenciar e compartilhar suas agendas de viagem ficou muito fácil.',
+                url: 'img/calendar2.svg',
             },
             {
                 index: 4,
