@@ -1,5 +1,3 @@
-// Underscore imports
-/// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
@@ -87,7 +85,7 @@ export class CaracteristicaComponent implements OnInit {
   onRemove(caracteristica: ICaracteristica): void {
     if (caracteristica.caracteristica_tipo_ponto_interesse
       && _.keys(caracteristica.caracteristica_tipo_ponto_interesse).length > 0) {
-      this._toastService.activate(`${caracteristica.descricao} não pode ser excluído pois está sendo utilizado por 
+      this._toastService.activate(`${caracteristica.descricao} não pode ser excluído pois está sendo utilizado por
         ${_.keys(caracteristica.caracteristica_tipo_ponto_interesse).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${caracteristica.descricao} ?`;
@@ -120,7 +118,8 @@ export class CaracteristicaComponent implements OnInit {
             `/${this.tipoDado}/caracteristica`, JSON.parse(`{"${key}": null}`)
           );
         }
-      }).then(() => {
+        return;
+      }).then((_) => {
         this.reset();
         this._toastService.activate(msg);
       }).catch(error => {

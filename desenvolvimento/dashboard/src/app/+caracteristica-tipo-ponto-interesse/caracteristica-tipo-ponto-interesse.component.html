@@ -3,18 +3,17 @@
         <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
             <thead>
                 <tr>
-                    <th style="width:10%">#</th>
+                    <th style="width:5px;">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Valor</th>
                     <th class="mdl-data-table__cell--non-numeric">Tipo Ponto de Interesse</th>
                     <th class="mdl-data-table__cell--non-numeric">Característica</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:80px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of _caracteristicaTipoPontoInteresseService.list | async; let i = index">
-                    <td>
-                        {{  i+1  }}
+                    <td style="width:5px;">
+                        {{  i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <span style="font-weight: bold;">{{  item.valor  }}</span>
@@ -25,11 +24,13 @@
                     <td class="mdl-data-table__cell--non-numeric">
                         {{  getDescricaoCaracteristica(item.caracteristica)  }}
                     </td>
-                    <td>
-                        <button md-icon-button (click)="onEdit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
-                    </td>
-                    <td>
-                        <button md-icon-button (click)="onRemove(item)"><md-icon class="md-24">delete</md-icon></button>
+                    <td style="width:80px;padding-right:5px;">
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onEdit(item)">
+                        <i class="material-icons">create</i>
+                      </button>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onRemove(item)">
+                        <i class="material-icons">delete</i>
+                      </button>
                     </td>
                 </tr>
             </tbody>
@@ -45,11 +46,11 @@
                         placeholder="Valor" 
                         required
                         maxLength="100"
-                        [dividerColor]="valor.valid || valor.pristine ? 'warn':'primary'"
                         [(ngModel)]="caracteristicaTipoPontoInteresse.valor" 
                         name="valor"
                         ngModel 
-                        #valor>
+                        #valor
+                        [dividerColor]="valor.valid || valor.pristine ? 'warn':'primary'">
                         <md-hint align="end">{{ valor.characterCount }} / 100</md-hint>
                     </md-input>
                     <vaadin-combo-box 
@@ -89,7 +90,7 @@
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
-                    <button md-raised-button color="primary" type="submit" [disabled]="!form.form.valid">Salvar</button>
+                    <button md-raised-button color="primary" style="color:white;" type="submit" [disabled]="!form.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

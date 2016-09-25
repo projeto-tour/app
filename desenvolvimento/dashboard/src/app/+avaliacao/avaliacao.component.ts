@@ -1,5 +1,3 @@
-// Underscore imports
-/// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -66,7 +64,7 @@ export class AvaliacaoComponent implements OnInit {
 
   onRemove(avaliacao: IAvaliacao): void {
     if (avaliacao.avaliacao_usuario && _.keys(avaliacao.avaliacao_usuario).length > 0) {
-      this._toastService.activate(`${avaliacao.descricao} não pode ser excluído pois está sendo utilizado por 
+      this._toastService.activate(`${avaliacao.descricao} não pode ser excluído pois está sendo utilizado por
         ${_.keys(avaliacao.avaliacao_usuario).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${avaliacao.descricao} ?`;

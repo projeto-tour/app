@@ -1,10 +1,16 @@
-.grid {
-    padding-top: 100px;
-    margin: 5px 5px 5px 5px;
+.login {
+    height: 100%;
+    background: linear-gradient(180deg, #673ab7 50%, white 50%);
+    margin: 0;
+    padding: 0;
+}
+
+.grid-tile {
+  color: white;
 }
 
 .md-input-card {
-  width: 30%;
+  width: 25em;
   margin: 100px auto;
   padding: 0;
 }
@@ -20,4 +26,26 @@
 md-input {
   margin: 8px 0;
   width: 100%;
+}
+
+.footer {
+  text-align: center;
+}
+
+.avatar-container {
+    position: relative;
+    border: 2px solid #eeeeee;
+    border-radius: 5%;
+    height: 80px;
+    padding: 2px;
+    width: 80px;
+    margin: 10px auto;
+}
+
+.avatar-container .image {
+    background-image: url('assets/logo.png');
+    background-size: contain;
+    border-radius: 5%;
+    height: 100%;
+    width: 100%;
 }

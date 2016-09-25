@@ -1,55 +1,16 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col">
-        <!--<vaadin-grid frozen-columns="1">
-            <table>
-                <colgroup>
-                    <col sortable width="80">
-                    <col>
-                    <col width="150">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th class="mdl-data-table__cell--non-numeric">Descrição</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let item of items | async; let i = index" >
-                    <td>{{ i+1 }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <table style="width:100%;">
-                            <tr>
-                                <td><span style="font-weight: bold;">{{ item.descricao }}</span></td>
-                            </tr>
-                            <tr *ngIf="showIcone">
-                                <td><span>Ícone: {{ item.icone }}</span></td>
-                            </tr>
-                            <tr *ngIf="showDestaque">
-                                <td><span>Destaque: {{ item.destaque }}</span></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <button md-icon-button (click)="edit.emit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
-                        <button md-icon-button (click)="remove.emit(item)"><md-icon class="md-24">delete</md-icon></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </vaadin-grid>-->
         <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
             <thead>
                 <tr>
-                    <th style="width:10%">#</th>
+                    <th style="width:5px;">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:80px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of items | async; let i = index" >
-                    <td>
+                    <td style="width:5px;">
                         {{ i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
@@ -59,61 +20,63 @@
                         <br *ngIf="showDestaque">
                         <span *ngIf="showDestaque">Destaque: {{ item.destaque }}</span>
                     </td>
-                    <td>
-                        <button md-icon-button (click)="edit.emit(item)"><md-icon class="md-24">mode_edit</md-icon></button>
-                    </td>
-                    <td>
-                        <button md-icon-button (click)="remove.emit(item)"><md-icon class="md-24">delete</md-icon></button>
+                    <td style="width:80px;padding-right:5px;">
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onEdit(item)">
+                        <i class="material-icons">create</i>
+                      </button>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onRemove(item)">
+                        <i class="material-icons">delete</i>
+                      </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" >     
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" novalidate>
             <md-card>
-                <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>   
+                <md-card-title>{{editing ? 'Editar' : 'Cadastrar'}}</md-card-title>
                 <md-card-content>
-                    <md-input 
+                    <md-input
                         type="text"
-                        placeholder="Descrição" 
+                        placeholder="Descrição"
                         required
-                        maxLength="50" 
-                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
+                        maxLength="50"
                         [(ngModel)]="item.descricao"
                         name="descricao"
                         ngModel
-                        #descricao>
+                        #descricao
+                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'">
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
-                    <md-input 
+                    <md-input
                         *ngIf="showIcone"
                         type="text"
-                        placeholder="Nome do ícone" 
-                        maxLength="20" 
-                        [dividerColor]="icone.valid || icone.pristine ? 'warn':'primary'"
+                        placeholder="Nome do ícone"
+                        maxLength="20"
                         [(ngModel)]="item.icone"
                         name="icone"
                         ngModel
-                        #icone>
+                        #icone
+                        [dividerColor]="icone.valid || icone.pristine ? 'warn':'primary'">
                         <md-hint align="end">{{icone.characterCount}} / 20</md-hint>
                     </md-input>
-                    <md-input 
+                    <md-input
                         *ngIf="showDestaque"
                         type="text"
-                        placeholder="Url da imagem de destaque" 
+                        placeholder="Url da imagem de destaque"
                         maxLength="100"
-                        [dividerColor]="destaque.valid || destaque.pristine ? 'warn':'primary'"
                         [(ngModel)]="item.destaque"
                         name="destaque"
                         ngModel
-                        #destaque>
+                        #destaque
+                        [dividerColor]="destaque.valid || destaque.pristine ? 'warn':'primary'">
                         <md-hint align="end">{{destaque.characterCount}} / 100</md-hint>
                     </md-input>
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
-                    <button type="submit" md-raised-button color="primary" [disabled]="!form.form.valid">Salvar</button>
+                    <button type="submit" md-raised-button color="primary" style="color:white;" [disabled]="!form.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

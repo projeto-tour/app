@@ -1,14 +1,18 @@
 <!-- Always shows a header, even in smaller screens. -->
-<div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<div appMdl class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
+    <div class="mdl-layout__header-row" style="padding-left:10px;padding-right:10px;">
       <!-- Title -->
       <span class="mdl-layout-title">{{ _authService.title }}</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <i class="material-icons mdl-list__item-icon mdl-color--grey-50">person</i><span class="mdl-color-text--grey-50" style="padding-left:5px;">{{ _authService.user }}</span>
+        <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+            <img class="mdl-chip__contact" src="https://placeimg.com/40/40/people">
+            <span class="mdl-chip__text">{{ _authService.user }}</span>
+            <a [routerLink]="['./home']" class="mdl-chip__action"><i class="material-icons">info</i></a>
+        </span>
       </nav>
       <!-- Right aligned menu below button -->
       <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
@@ -38,12 +42,12 @@
           Home
         </span>
       </a>
-      <a class="mdl-navigation__link" style="padding-left: 10px;" routerLinkActive="active" [routerLink]="['./avaliacao']">
+      <!--<a class="mdl-navigation__link" style="padding-left: 10px;" routerLinkActive="active" [routerLink]="['./avaliacao']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">star_rate</i>
           Avaliação
         </span>
-      </a>
+      </a>-->
       <a class="mdl-navigation__link" style="padding-left: 10px;" routerLinkActive="active" [routerLink]="['./caracteristica']">
         <span class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">extension</i>

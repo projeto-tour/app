@@ -3,17 +3,16 @@
         <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
             <thead>
                 <tr>
-                    <th style="width:10%">#</th>
+                    <th style="width:5px;">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
                     <th class="mdl-data-table__cell--non-numeric">Tipo de Transporte</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:80px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let transporte of _transporteService.list | async; let i = index" >
-                    <td>
-                        {{ i+1 }}
+                    <td style="width:5px;">
+                        {{  i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <span style="font-weight: bold;">{{ transporte.descricao }}</span>
@@ -21,11 +20,13 @@
                     <td class="mdl-data-table__cell--non-numeric">
                         {{ getDescricao(transporte.tipo_transporte) }}
                     </td>
-                    <td>
-                        <button md-icon-button (click)="onEdit(transporte)"><md-icon class="md-24">mode_edit</md-icon></button>
-                    </td>
-                    <td>
-                        <button md-icon-button (click)="onRemove(transporte)"><md-icon class="md-24">delete</md-icon></button>
+                    <td style="width:80px;padding-right:5px;">
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onEdit(transporte)">
+                        <i class="material-icons">create</i>
+                      </button>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onRemove(transporte)">
+                        <i class="material-icons">delete</i>
+                      </button>
                     </td>
                 </tr>
             </tbody>
@@ -41,11 +42,11 @@
                         placeholder="Descrição" 
                         required
                         maxLength="50" 
-                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
                         [(ngModel)]="transporte.descricao"
                         name="descricao"
                         ngModel
-                        #descricao>
+                        #descricao
+                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'">
                         <md-hint align="end">{{descricao.characterCount}} / 50</md-hint>
                     </md-input>
                     <vaadin-combo-box 
@@ -64,7 +65,7 @@
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
-                    <button type="submit" md-raised-button color="primary" [disabled]="!form.form.valid">Salvar</button>
+                    <button type="submit" md-raised-button color="primary" style="color:white;" [disabled]="!form.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

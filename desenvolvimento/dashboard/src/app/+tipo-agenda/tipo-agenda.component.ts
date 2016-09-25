@@ -1,5 +1,3 @@
-// Underscore imports
-/// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';

@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit
 
 import { FirebaseListObservable } from 'angularfire2';
 
+import * as _ from 'underscore';
+
 @Component({
     selector: 'partiu-cadastro',
     templateUrl: 'cadastro.component.html',
@@ -34,6 +36,16 @@ export class CadastroComponent implements OnInit {
         } else {
             this.create.emit(item);
         }
+    }
+
+    onEdit(item: any): void {
+      this.item = _.clone(item);
+      this.editing = true;
+      // this.edit.emit(item);
+    }
+
+    onRemove(item: any): void {
+      this.remove.emit(item);
     }
 
     onClear(event): void {

@@ -1,5 +1,3 @@
-// Underscore imports
-/// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
@@ -86,7 +84,7 @@ export class TransporteComponent implements OnInit {
 
   onRemove(transporte: ITransporte): void {
     if (transporte.rota && _.keys(transporte.rota).length > 0) {
-      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois está sendo utilizado por  
+      this._toastService.activate(`${transporte.descricao} não pode ser excluído pois está sendo utilizado por
         ${_.keys(transporte.rota).length} cadastros.`);
     } else {
       let msg = `Deseja excluir ${transporte.descricao} ?`;
@@ -119,6 +117,7 @@ export class TransporteComponent implements OnInit {
             `/${this.tipoTransporte}/transporte`, JSON.parse(`{"${key}": null}`)
           );
         }
+        return;
       }).then(() => {
         this.reset();
         this._toastService.activate(msg);

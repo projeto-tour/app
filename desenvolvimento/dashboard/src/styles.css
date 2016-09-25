@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular2-material/core/theming/prebuilt/deeppurple-amber.css';
+
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.active {
+    background-color: #BDBDBD;
+    border-left: 4px solid #673ab7;
+}

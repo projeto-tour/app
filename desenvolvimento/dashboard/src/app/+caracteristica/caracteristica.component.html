@@ -3,68 +3,69 @@
         <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
             <thead>
                 <tr>
-                    <th style="width:10%">#</th>
+                    <th style="width:5px;">#</th>
                     <th class="mdl-data-table__cell--non-numeric">Descrição</th>
                     <th class="mdl-data-table__cell--non-numeric">Tipo de Dado</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric" style="width:10%">Excluir</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="width:80px;"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let caracteristica of _caracteristicaService.list | async; let i = index">
-                    <td>
-                        {{ i+1 }}
+                    <td style="width:5px;">
+                        {{  i+1 }}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <span style="font-weight: bold;">{{ caracteristica.descricao }}</span>
+                        <span style="font-weight: bold;">{{  caracteristica.descricao }}</span>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        {{ getDescricao(caracteristica.tipo_dado) }}
+                        {{  getDescricao(caracteristica.tipo_dado) }}
                     </td>
-                    <td>
-                        <button md-icon-button (click)="onEdit(caracteristica)"><md-icon class="md-24">mode_edit</md-icon></button>
-                    </td>
-                    <td>
-                        <button md-icon-button (click)="onRemove(caracteristica)"><md-icon class="md-24">delete</md-icon></button>
+                    <td style="width:80px;padding-right:5px;">
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onEdit(caracteristica)">
+                        <i class="material-icons">create</i>
+                      </button>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="onRemove(caracteristica)">
+                        <i class="material-icons">delete</i>
+                      </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" novalidate>     
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" novalidate>
             <md-card>
-                <md-card-title>{{ editing ? 'Editar' : 'Cadastrar' }}</md-card-title>   
+                <md-card-title>{{ editing ? 'Editar' : 'Cadastrar' }}</md-card-title>
                 <md-card-content>
-                    <md-input 
-                        type="text" 
+                    <md-input
+                        type="text"
                         placeholder="Descrição"
-                        required 
-                        maxLength="100"  
-                        [dividerColor]="descricao.valid || descricao.pristine ? 'warn':'primary'"
-                        [(ngModel)]="caracteristica.descricao" 
-                        name="descricao" 
+                        required
+                        maxLength="100"
+                        [(ngModel)]="caracteristica.descricao"
+                        name="descricao"
                         ngModel
-                        #descricao>
-                        <md-hint align="end">{{descricao.characterCount}} / 100</md-hint>
+                        #descricao
+                        [dividerColor]="descricao.errors?.required || descricao.errors?.maxLength ? 'warn':'primary'">
+                        <md-hint align="end">{{ descricao.characterCount }} / 100</md-hint>
                     </md-input>
-                    <vaadin-combo-box 
-                        label="Tipo de dado" 
-                        [items]="_tipoDadoService.list | async" 
+                    <vaadin-combo-box
+                        label="Tipo de dado"
+                        [items]="_tipoDadoService.list | async"
                         item-label-path="descricao"
                         item-value-path="$key"
                         (selected-item-changed)="caracteristica.tipo_dado=$event.detail.value.$key"
                         required
-                        [(ngModel)]="caracteristica.tipo_dado" 
+                        [(ngModel)]="caracteristica.tipo_dado"
                         name="tipo_dado"
+                        ngDefaultControl
                         ngModel
-                        ngDefaultControl 
                         #tipo_dado>
                     </vaadin-combo-box>
                 </md-card-content>
                 <md-card-actions align="end">
                     <button *ngIf="editing" md-raised-button (click)="onClear($event)">Cancelar</button>
-                    <button md-raised-button color="primary" type="submit" [disabled]="!form.form.valid">Salvar</button>
+                    <button md-raised-button color="primary" style="color:white;" type="submit" [disabled]="!form.form.valid">Salvar</button>
                 </md-card-actions>
             </md-card>
         </form>

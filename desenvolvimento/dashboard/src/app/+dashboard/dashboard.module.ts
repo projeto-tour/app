@@ -7,7 +7,7 @@ import { MdButtonToggleModule } from '@angular2-material/button-toggle';
 import { MdCardModule } from '@angular2-material/card';
 import { MdCheckboxModule } from '@angular2-material/checkbox';
 import { MdGridListModule } from '@angular2-material/grid-list';
-import { MdIconModule } from '@angular2-material/icon';
+import { MdIconModule, MdIconRegistry } from '@angular2-material/icon';
 import { MdInputModule } from '@angular2-material/input';
 import { MdListModule } from '@angular2-material/list';
 import { MdMenuModule } from '@angular2-material/menu';
@@ -19,10 +19,9 @@ import { MdTabsModule } from '@angular2-material/tabs';
 import { MdToolbarModule } from '@angular2-material/toolbar';
 import { MdTooltipModule } from '@angular2-material/tooltip';
 
-import { PolymerElement } from '@vaadin/angular2-polymer';
+import { MdlModule } from '../shared/directives/mdl/mdl.module';
 
-import { MdlDirective } from '../shared/directives/mdl.directive';
-import { AutofocusDirective } from '../shared/directives/autofocus.directive';
+import { PolymerElement } from '@vaadin/angular2-polymer';
 
 import { CadastroComponent } from '../shared/directives/cadastro/cadastro.component';
 import { StarComponent, RatingComponent } from '../shared/directives/rating/rating.component';
@@ -32,7 +31,7 @@ import { HomeComponent } from '../+home/home.component';
 import { AvaliacaoComponent } from '../+avaliacao/avaliacao.component';
 import { CaracteristicaComponent } from '../+caracteristica/caracteristica.component';
 import {
-    CaracteristicaTipoPontoInteresseComponent
+  CaracteristicaTipoPontoInteresseComponent
 } from '../+caracteristica-tipo-ponto-interesse/caracteristica-tipo-ponto-interesse.component';
 import { TipoAgendaComponent } from '../+tipo-agenda/tipo-agenda.component';
 import { TipoDadoComponent } from '../+tipo-dado/tipo-dado.component';
@@ -43,53 +42,53 @@ import { TransporteComponent } from '../+transporte/transporte.component';
 import { dashboardRouting } from './dashboard.routing';
 
 @NgModule({
-    declarations: [
-        MdlDirective,
-        AutofocusDirective,
+  declarations: [
+    CadastroComponent,
+    StarComponent,
+    RatingComponent,
 
-        CadastroComponent,
-        StarComponent,
-        RatingComponent,
+    DashboardComponent,
+    HomeComponent,
+    AvaliacaoComponent,
+    CaracteristicaComponent,
+    CaracteristicaTipoPontoInteresseComponent,
+    TipoAgendaComponent,
+    TipoDadoComponent,
+    TipoPontoInteresseComponent,
+    TipoTransporteComponent,
+    TransporteComponent,
 
-        DashboardComponent,
-        HomeComponent,
-        AvaliacaoComponent,
-        CaracteristicaComponent,
-        CaracteristicaTipoPontoInteresseComponent,
-        TipoAgendaComponent,
-        TipoDadoComponent,
-        TipoPontoInteresseComponent,
-        TipoTransporteComponent,
-        TransporteComponent,
+    PolymerElement('vaadin-grid'),
+    PolymerElement('vaadin-combo-box'),
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-        PolymerElement('vaadin-grid'),
-        PolymerElement('vaadin-combo-box'),
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdIconModule,
+    MdInputModule,
+    MdListModule,
+    MdMenuModule,
+    MdProgressBarModule,
+    MdProgressCircleModule,
+    MdRadioModule,
+    MdSidenavModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdGridListModule,
+    MdTooltipModule,
 
-        MdButtonModule,
-        MdButtonToggleModule,
-        MdCardModule,
-        MdCheckboxModule,
-        MdIconModule,
-        MdInputModule,
-        MdListModule,
-        MdMenuModule,
-        MdProgressBarModule,
-        MdProgressCircleModule,
-        MdRadioModule,
-        MdSidenavModule,
-        MdTabsModule,
-        MdToolbarModule,
-        MdGridListModule,
-        MdTooltipModule,
+    MdlModule,
 
-        dashboardRouting
-    ],
-    providers: [
-    ]
+    dashboardRouting
+  ],
+  providers: [
+    MdIconRegistry
+  ]
 })
 export class DashboardModule { }

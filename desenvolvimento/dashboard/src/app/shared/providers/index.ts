@@ -8,3 +8,4 @@ export * from './tipo-ponto-interesse.service';
 export * from './tipo-transporte.service';
 export * from './transporte.service';
 export * from './exception.service';
+export * from './service.module';

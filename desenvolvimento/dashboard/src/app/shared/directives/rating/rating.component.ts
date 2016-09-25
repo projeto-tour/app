@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'partiu-star',
@@ -39,7 +39,7 @@ export class StarComponent {
     </div>
   `,
 })
-export class RatingComponent implements OnChanges {
+export class RatingComponent {
 
     @Input() starCount: number;
     @Input() rating: number;

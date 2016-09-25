@@ -44,3 +44,17 @@ desenvolvimento/webservices/eclipse+tomcat/target/classes/META-INF/persistence.x
 desenvolvimento/webservices/eclipse+tomcat/target/classes/META-INF/persistence.xml
 desenvolvimento/webservices/eclipse+tomcat/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 desenvolvimento/webservices/eclipse+tomcat/target/classes/META-INF/persistence.xml
+
+# compiled output
+desenvolvimento/dashboard/dist
+desenvolvimento/dashboard/tmp
+
+# dependencies
+desenvolvimento/dashboard/node_modules
+desenvolvimento/dashboard/public/bower_components
+desenvolvimento/dashboard/src/assets/bower_components
+
+# e2e
+desenvolvimento/dashboard/e2e/*.js
+desenvolvimento/dashboard/e2e/*.map
+

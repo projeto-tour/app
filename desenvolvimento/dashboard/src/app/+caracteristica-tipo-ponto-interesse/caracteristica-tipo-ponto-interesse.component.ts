@@ -1,5 +1,3 @@
-// Underscore imports
-/// <reference path="../../../typings/globals/underscore/index.d.ts" />
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import * as _ from 'underscore';
@@ -167,12 +165,14 @@ export class CaracteristicaTipoPontoInteresseComponent implements OnInit {
                     `/${this.tipoPontoInteresse}/caracteristica_tipo_ponto_interesse`, JSON.parse(`{"${key}": null}`)
                 );
             }
+            return;
         }).then(() => {
             if (this.editing && !_.isMatch(this.caracteristicaTipoPontoInteresse, { 'caracteristica': this.caracteristica })) {
                 return this._caracteristicaService.updates(
                     `/${this.caracteristica}/caracteristica_tipo_ponto_interesse`, JSON.parse(`{"${key}": null}`)
                 );
             }
+            return;
         }).then(() => {
             this.reset();
             this._toastService.activate(msg);

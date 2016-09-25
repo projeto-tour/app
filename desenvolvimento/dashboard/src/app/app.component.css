@@ -1,11 +1,3 @@
-md-sidenav-start {
-  width: 320px;
-}
-
-.md-sidenav-end {
-  width: 480px;
-}
-
-.fill-remaining-space {
-  flex: 1 1 auto;
+vaadin-grid {
+    height: 50vh;
 }
