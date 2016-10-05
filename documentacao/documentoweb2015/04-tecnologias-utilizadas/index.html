@@ -67,9 +67,13 @@
 					<ol>
 						<li>Angular 2</li>
 						<li>AngularFire 2</li>
+						<li>Application Shell</li>
 						<li>Firebase 3</li>
 						<li>Ionic 2</li>
+						<li>Progressive Web Application</li>
+						<li>Service workers</li>
 						<li>TypeScript</li>
+						<li>Web App Manifest</li>
 					</ol>
 					<br>					
 			    </li>
@@ -78,11 +82,11 @@
 				<li class="list-group-item">
 					<h1> Angular 2</h1>
 					<br>
-					Angular 2 é um framework mantido pelo Google nos auxilia a abstrair a manipulação do DOM da lógica do aplicativo, abstrair o acoplamento entre o lado cliente e o lado servidor da aplicação e a melhorar a qualidade dos testes.
+					Angular 2 é um framework mantido pelo Google e nos auxilia a abstrair a manipulação do DOM da lógica do aplicativo,a abstrair o acoplamento entre o lado cliente e o lado servidor da aplicação e a melhorar a qualidade dos testes.
 					<br>
 					Angular é basicamente um conjunto de bibliotecas (algumas core, outras não) que trabalham em cooperação.
 					<br>
-					O framework segue o padrão MVC (Model View Controller) e presa pelo baixo acoplamento entre as camadas de apresentação, dados e componentes lógicos. Utilizando de injeção de dependência ele traz alguns componentes que normalmento são utilizados no lador servidor para o lado cliente deixando, consequentemente, o backend mais leve.
+					O framework segue o padrão MVC (Model View Controller) e presa pelo baixo acoplamento entre as camadas de apresentação, dados e componentes lógicos. Utilizando-se de injeção de dependência ele traz alguns componentes que normalmento são utilizados no lador servidor para o lado cliente deixando, consequentemente, o backend mais leve.
 					<br>
 					Abaixo segue a arquitetura básica do Angular 2:
 					<br>
@@ -115,10 +119,20 @@
 					Para saber mais acesse: <a href="https://angularfire2.com/">AngularFire 2.</a>		    	
 			    </li>
 				<li class="list-group-item">
+					<h1>Application Shell.</h1>
+					<br>
+					Uma aplicação shell é o ocnjunto de HTML, CSS e Javascript mínimos necessários para "carregar" a interface de uma aplicação web progressiva e um dos componentes que garantem uma boa performance da aplicação. A primeira vez que a aplicação carrega ela é imediatamente cacheada, isto é, o shell não precisa ser carregado toda vez, apenas o conteúdo necessário será carregado.
+					<br>
+					A arquitetura de uma aplicação shell separa a infraestrutura da aplicação principal da interface e dos dados. Toda a interface e a infraestrutura são cacheadas localmente utilizando-se um servivce worker para que posteriormente a aplicação seja carregada mais rápida.
+					<br>
+					<br>
+					Para saber mais acesse: <a href="https://developers.google.com/web/updates/2015/11/app-shell">Application Shell.</a>		    	
+			    </li>
+				<li class="list-group-item">
 					<h1> Firebase 3</h1>
 					<br>
-					Firebase é uma plataforma móvel unificada BaaS (<i>Backend as a Service</i>) que fornece ao desenvolvedor diversos serviços baseado em nuvem.
-					Alguns dos serviços oferecido pelo Firebase são:
+					Firebase é uma plataforma móvel unificada BaaS (<i>Backend as a Service</i>).Ela fornece ao desenvolvedor diversos serviços baseado em nuvem.
+					Alguns dos serviços oferecidos pelo Firebase são:
 					<ul>
 						<li><b>Análise: </b>Ferramenta que auxília a entender o comportamento do usuário, e estáticas de requisições ao aplicativo para auxíliar na tomada de decisões;</li>
 						<li><b>Armazenamento: </b> Possibilita guardar qualquer tipo de dados (Arquivos, fotos, vídeos...);</li>
@@ -145,6 +159,26 @@
 					Para saber mais acesse: <a href="http://ionicframework.com/docs/v2/getting-started/">Ionic 2.</a>		    	
 			    </li>
 				<li class="list-group-item">
+					<h1>Progressive Web Application</h1>
+					<br>
+					São experiencias que combinam o melhor de aplicações web e o melhor de aplicações nativas. Eles são úteis para os usuários desde a primeira visita em uma aba do browser sem a necessidade de instalação. A medida que progressivamente o usuário constrói um relacionamento com o aplicativo ele se torna mais poderoso.
+					<br>
+					Esse tipo de aplicação carrega rápido, mesmo em redes instáveis, envia notificações relevantes, possui ícone na tela home e carrega em primeiro nível para experiencia de tela cheia.
+					<br>
+					<br>
+					Para saber mais acesse: <a href="https://developers.google.com/web/fundamentals/getting-started/codelabs/your-first-pwapp/">Progressive Web Application.</a>		    	
+			    </li>
+				<li class="list-group-item">
+					<h1>Service Workers</h1>
+					<br>
+					É um script executado pelo browser em background, separado de uma página web, disponibilizando recursos que não precisam de uma página web ou de interação com o usuário.
+					<br>
+					Desenvolvedores podem registrar um service worker para interceptar todas as requisições feitas ao servidor para criar cache local e entregar o conteúdo armazenado localmente no caso da rede não estar disponível, isto é, possibilita que um aplicativo web móvel funcione plenamente mesmo estando off line.
+					<br>
+					<br>
+					Para saber mais acesse: <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">Service Workers.</a>		    	
+			    </li>
+				<li class="list-group-item">
 					<h1>TypeScript</h1>
 					<br>
 					TypeScript é uma linguagem de programação de código aberto criada e mantida pela Microsoft, é um "superconjunto" do JavaScript criada para desenvolvimento JavaScript em larga escala.
@@ -160,6 +194,16 @@
 					<br>
 					<br>
 					Para saber mais acesse: <a href="https://www.typescriptlang.org/">TypeScript.</a>		    	
+			    </li>
+				<li class="list-group-item">
+					<h1>Web App Manifest</h1>
+					<br>
+					Trata-se de um arquivo que provê meta dados úteis sobre uma aplicação web como por exemplo o nome da aplicação, ícones, configurações de inicialização entre outras. 
+					<br>
+					É um arquivo JSON que descreve alguns aspectos superficiais sobre como a aplicação web deve ser inicializada permitindo uma experiência mais próxima de uma aplicação nativa.
+					<br>
+					<br>
+					Para saber mais acesse: <a href="https://www.w3.org/TR/appmanifest/">Web App Manifest.</a>		    	
 			    </li>
 			  </ul>
 
