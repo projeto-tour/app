@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<utf-8>
 <html>
     <head>
         <title>Visão geral do documento</title>
@@ -54,21 +53,21 @@ th, td {
 <!-------->
 <div id="content">
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-        <li class="active"><a href="#sprint1" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO UC01</a></li>
-        <li><a href="#sprint2" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO UC02</a></li>
-        <li><a href="#sprint3" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO UC03</a></li>
-        <li><a href="#sprint4" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO UC04</a></li>
+        <li class="active"><a href="#uc01" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO-UC01</a></li>
+        <li><a href="#uc02" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO-UC02</a></li>
+        <li><a href="#uc03" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO-UC03</a></li>
+        <li><a href="#uc04" data-toggle="tab">ESPECIFICAÇÃO DE CASO DE USO-UC04</a></li>
         
     </ul>
     <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="sprint1">
-   <h1>ESPECIFICAÇÃO DE CASO DE USO </h1>
-   <H2>UC01 – EFETUAR LOGIN</H2>
+        <div class="tab-pane active" id="uc01">
+   <h1><center>ESPECIFICAÇÃO DE CASO DE USO-UC01</center></h1>
+   <h2><center>UC01 – EFETUAR LOGIN</center></h2>
    <hr>
    <table>
     <tr>
-        <td>Atores</td>
-        <td>Descrição</td>
+        <td><b>ATORES</b></td>
+        <td><b>DESCRIÇÃO</b></td>
     </tr>
     <tr>
         <td>Usuário</td>
@@ -76,135 +75,689 @@ th, td {
     </tr>
     <tr>
         <td>Administrador do Sistema</td>
-        <td>Usuário com permissão completa no Sistema</td>
+        <td>Usuário com permissão completa no sistema</td>
     </tr>
-    <tr>
-
+    
 </table>
- <h2>Objetivo</h2>
-       <ul>Permitir ao usuário cadastrar-se para adicionar e gerenciar suas agendas de viagens e iniciar o processo de localização de pontos de interesse. </ul>
-      <br>
-  <b>Ator Primário:</b> Cliente     
-        </div>
-  <h2>Pré Condições</h2>
-  Não se Aplica
+      <h3>Objetivo</h3>
+      Permitir ao usuário cadastrar-se para adicionar e gerenciar suas agendas de viagens e iniciar o processo de localização de pontos de interesse. 
+      <br>	<br>
+      <b>Ator Primário:</b> CLiente
+      <h3>Pré Condições</h3>
+      	Não se aplica
 
-  <h2>Pós Condições</h2>
-  Não se Aplica
+      <h3>Pós Condições</h3>
+      	Não se aplica	
+      <h3>Fluxo Principal</h3>
+       <b>FP</b> - Efetuar Login 
 
-  <h2>Fluxo Principal</h2>
-  <b>FP</b> - Efeturar Login
-
-    <table>
+       <table>
     <tr>
-        <td>Passo</td>
-        <td>Interação do Ator</td>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
     </tr>
     <tr>
         <td>1</td>
-        <td>Sistema Apresenta a tela de login</td>
+        <td>Sistema apresenta a tela de login</td>
     </tr>
     <tr>
         <td>2</td>
         <td>Usuário digita e-mail</td>
     </tr>
     <tr>
-    	<td>3</td>
+        <td>3</td>
         <td>Usuário digita senha</td>
     </tr>
     <tr>
-    	<td>4</td>
-        <td>Usuário seleciona botão login</td>
+        <td>4</td>
+        <td>Usuário seleciona botão Login</td>
     </tr>
     <tr>
-    	<td>5</td>
-        <td>Sistema Valida informações</td>
+        <td>5</td>
+        <td>Sistema valida informações</td>
     </tr>
     <tr>
-    	<td>6</td>
-        <td>Sistma exibe tela Ponto de Interesses</td>
+        <td>6</td>
+        <td>Sistema exibe tela Pontos de Interesse</td>
     </tr>
     <tr>
-    	<td>7</td>
+        <td>7</td>
         <td>O caso de uso é encerrado</td>
     </tr>
-
+    
 </table>
-<h2>Fluxo Alternativo</h2>
-  <b>FA01</b> - Novo Usuário
-    <table>
+
+
+      <h3>Fluxo Alternativo</h3>
+       <b>FA01</b> - Novo Usuário 
+        
+        <table>
     <tr>
-        <td>Passo</td>
-        <td>Interação do Ator</td>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
     </tr>
     <tr>
         <td>1</td>
-        <td>Sistema Apresenta a tela de login</td>
+        <td>Sistema apresenta a tela de login</td>
     </tr>
     <tr>
         <td>2</td>
         <td>Usuário digita e-mail</td>
     </tr>
     <tr>
-    	<td>3</td>
+        <td>3</td>
         <td>Usuário digita senha</td>
     </tr>
     <tr>
-    	<td>4</td>
-        <td>Usuário seleciona botão criar</td>
+        <td>4</td>
+        <td>Usuário seleciona botão Criar</td>
     </tr>
     <tr>
-    	<td>5</td>
+        <td>5</td>
         <td>Sistema verifica informações</td>
     </tr>
     <tr>
-    	<td>6</td>
-        <td>Sistma redireciona usuários para tela de Ponto de Interesses</td>
+        <td>6</td>
+        <td>Sistema redireciona usuário para tela Pontos de Interesse</td>
     </tr>
     <tr>
-    	<td>7</td>
+        <td>7</td>
         <td>O fluxo alternativo é encerrado</td>
     </tr>
-
+    
 </table>
-<br><br> 	
 
-  <b>FA02</b> - Usuário escolhe conectar-se utilizando conta do Google+
-    <table>
+<br><br>
+       <b>FA02</b> - Usuário escolhe conectar-se utilizando conta do Google+
+        
+        <table>
     <tr>
-        <td>Passo</td>
-        <td>Interação do Ator</td>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
     </tr>
     <tr>
         <td>1</td>
-        <td>Sistema Apresenta a tela de login</td>
+        <td>Sistema apresenta a tela de login</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>Usuário decide conectar-se utilizando conta do Google+</td>
+        <td>Usuário decide conectar-se utilizando conta do Google+ </td>
     </tr>
     <tr>
-    	<td>3</td>
+        <td>3</td>
         <td>Sistema exibe tela de Login da conta do Google+</td>
     </tr>
     <tr>
-    	<td>4</td>
+        <td>4</td>
         <td>Usuário informa e-mail e senha da conta do Google+</td>
     </tr>
     <tr>
-    	<td>5</td>
+        <td>5</td>
         <td>Sistema solicita autorização para utilizar as informações do Google+</td>
     </tr>
     <tr>
-    	<td>6</td>
+        <td>6</td>
         <td>Sistema recupera informações para que a conta seja habilitada</td>
     </tr>
     <tr>
-    	<td>7</td>
-        <td>Sistema re-direciona usuário para tela Pontos de Interesse</td>
+        <td>7</td>
+        <td>Sistema redireciona usuário para tela Pontos de Interesse</td>
     </tr>
     <tr>
-    	<td>8</td>
+        <td>8</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+    
+</table>
+
+<br><br>
+       <b>FA03</b> - Usuário escolhe Pular Cadastro
+        
+        <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta a tela de login</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona botão Pular </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema exibe tela Pontos de Interesse</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+    
+    
+</table>
+
+
+
+
+        </div>
+
+
+
+        <div class="tab-pane" id="uc02">
+            <h1><center>ESPECIFICAÇÃO DE CASO DE USO-UC02</center></h1>
+            <h2><center>UC02 – CADASTRAR PONTOS DE INTERESSE</center></h2>
+            <hr>
+
+<table>
+    <tr>
+        <td><b>ATORES</b></td>
+        <td><b>DESCRIÇÃO</b></td>
+    </tr>
+    <tr>
+        <td>Usuário</td>
+        <td>Usuário com permissão de consulta</td>
+    </tr>
+    <tr>
+        <td>Administrador do Sistema</td>
+        <td>Usuário com permissão completa no sistema</td>
+    </tr>
+    
+</table>
+      <h3>Objetivo</h3>
+      Permitir ao usuário cadastrar Pontos de Interesse em diversas localidades. 
+        <br> <br>
+      <b>Ator Primário:</b> CLiente
+
+      <h3>Pré Condições</h3>
+      	O usuário deverá estar cadastrado e logado no sistema.
+
+      <h3>Pós Condições</h3>
+      	Não se aplica	
+
+
+      <h3>Fluxo Principal</h3>
+       <b>FP</b> - Seleção de Pontos de Interesse 
+
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta tela de Pontos de Interesse</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona o Tipo de Ponto de Interesse</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Usuário digita palavra-chave do Ponto de Interesse</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Sistema disponibiliza o Ponto de Interesse escolhido no Mapa</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Usuário seleciona Ponto disponibilizado no Mapa  </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sistema disponibiliza tela com descrição do Ponto de Interesse</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Usuário seleciona Botão Salvar</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Sistema informa que as informações salvas com sucesso</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>O caso de uso é encerrado</td>
+    </tr>
+    
+</table>
+
+
+      <h3>Fluxo Alternativo</h3>
+       <b>FA01</b> - Novo Ponto de Interesse
+        
+        <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Passos de 1 a 8 FN é refeito</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Sistema disponibiliza a tela com a lista de Pontos de Interesse executado no item 1 do FA01</td>
+    </tr>
+    <tr>
+        <td>3</td>
         <td>O fluxo alternativo e encerrado</td>
     </tr>
+    
+</table>
 
+        </div>
+
+
+
+        <div class="tab-pane" id="uc03">
+            <h1><center>ESPECIFICAÇÃO DE CASO DE USO-UC03</center></h1>
+            <h2><center>UC03 – CRIAR AGENDA</center></h2>
+            <hr>
+
+<table>
+    <tr>
+        <td><b>ATORES</b></td>
+        <td><b>DESCRIÇÃO</b></td>
+    </tr>
+     <tr>
+        <td>Usuário</td>
+        <td>Usuário com permissão de consulta</td>
+    </tr>
+    <tr>
+        <td>Administrador do Sistema</td>
+        <td>Usuário com permissão completa no sistema</td>
+    </tr>
+    
+    
+</table>
+      <h3>Objetivo</h3>
+      Permitir ao usuário cadastrar agendas de viagens organizando por ponto de interesse. 
+        <br> <br>
+      <b>Ator Primário:</b> CLiente
+
+      <h3>Pré Condições</h3>
+      	O usuário deverá estar cadastrado e logado no sistema.
+
+      <h3>Pós Condições</h3>
+      	Não se aplica	
+
+
+      <h3>Fluxo Principal</h3>
+       <b>FP</b> - Pesquisar Agenda
+
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta tela de Pontos de Interesse</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Sistema apresenta tela com a lista de Agendas cadastradas</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Usuário seleciona Pesquisa</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Usuário digita palavra-chave</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sistema valida informações </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sistema exibe Agenda pesquisada</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>O caso de uso é encerrado</td>
+    </tr>
+   
+    
+</table>
+
+
+      <h3>Fluxo Alternativo</h3>
+       <b>FA01</b> - Nova Agenda
+        
+        <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Passos 1 e 2 iguais ao FP</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona botão de Criar de Agendas </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema disponibiliza tela de Criar Agendas</td>
+    </tr>
+     <tr>
+        <td>4</td>
+        <td>Usuário seleciona botão Tipo de agenda</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sistema disponibiliza tela com a lista de Tipo de Agenda</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Usuário seleciona o Tipo de Agenda e confirma</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Usuário digita descrição da Agenda</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Usuário insere data inicial e data final da Agenda </td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Usuario confirma a inclusão da Agenda</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Sistema direciona usuário para tela de Rotas</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+    
+</table>
+
+<br><br>
+       <b>FA02</b> - Menu de Opções - Excluir
+
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta de Agendas cadastradas</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona Agenda</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Usuário seleciona botão de Menu</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Sistema sistema disponibiliza opção Excluir, Editar e Cancelar</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Usuário seleciona a opção Excluir </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sistema informa usuário da correta exclusão da Agenda</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>O fluxo alternativo e encerrado</td>
+    </tr>
+   
+    
+</table>
+
+<br><br>
+       <b>FA03</b> - Menu de Opções - Editar
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Passos de 1 a 4 iguais ao FA02</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona a opção Editar</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema redireciona usuário para Tela Editar Agendas</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Usuário altera informações desejadas e confirma</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sistema informa usuário da correta alteração da Agenda </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sistema exibe tela Criar Rotas</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+   
+    
+</table>
+
+        </div>
+
+
+
+
+
+        <div class="tab-pane" id="uc04">
+             <h1><center>ESPECIFICAÇÃO DE CASO DE USO-UC04</center></h1>
+            <h2><center>UC04 – CRIAR ROTA</center></h2>
+            <hr>
+
+<table>
+    <tr>
+        <td><b>ATORES</b></td>
+        <td><b>DESCRIÇÃO</b></td>
+    </tr>
+    <tr>
+        <td>Usuário</td>
+        <td>Usuário com permissão de consulta</td>
+    </tr>
+    <tr>
+        <td>Administrador do Sistema</td>
+        <td>Usuário com permissão completa no sistema</td>
+    </tr>
+    
+    
+</table>
+      <h3>Objetivo</h3>
+      Permitir ao usuário criar rotas de viagens. 
+        <br> <br>
+      <b>Ator Primário:</b> CLiente
+
+      <h3>Pré Condições</h3>
+      	O usuário deverá estar cadastrado e logado no sistema 
+
+      <h3>Pós Condições</h3>
+      	Não se aplica	
+
+
+      <h3>Fluxo Principal</h3>
+       <b>FP</b> - Nova Rota
+
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta de Rotas</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona botão de cadastro de Rotas </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema disponibiliza tela de Criar rotas</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Usuário digita o ponto de saída</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Usuário seleciona a data de saída desejada </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Usuário digita o ponto de chegada </td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Usuário seleciona a data de chegada desejada</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Usuário seleciona o ponto de interesse</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Usuário seleciona o tipo de meio de transporte</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Usuário Salva informações</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>USistema informa que as informações foram gravadas com êxito</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>O fluxo alternativo e encerrado</td>
+    </tr>
+   
+    
+</table>
+
+       <br><br>
+         <b>FA02</b> - Exibir Rotas
+        
+        <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Passo de 1 a 6 do FP do caso de uso UC03 – Criar Agenda</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>UUsuário seleciona botão Rotas da Agenda </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema exibe tela com as informações sobre a Rota</td>
+    </tr>
+     <tr>
+        <td>4</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+    
+</table>
+
+<br><br>
+       <b>FA03</b> - Editar Rotas
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>SSistema apresenta de Rotas</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona a opção Editar</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema redireciona usuário para Tela Editar Rotas</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Usuário altera informações desejadas e salva</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sistema informa usuário da correta alteração na Rota </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Sistema exibe tela inicial de Rotas</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>O fluxo alternativo e encerrado</td>
+    </tr>
+   
+    
+</table>
+
+<br><br>
+       <b>FA04</b> -  Excluir
+       <table>
+    <tr>
+        <td><b>PASSO</b></td>
+        <td><b>INTERAÇÃO DO ATOR</b></td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sistema apresenta de Rotas</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Usuário seleciona a opção Excluir</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sistema informa Exclusão com sucesso</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>O fluxo alternativo é encerrado</td>
+    </tr>
+   
+    
+</table>
+
+        </div>
+
+
+
+
+
+      </div>                
+    </div>
+</div>
