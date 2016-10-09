@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>{{ titulo }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onCarregarPreferencias()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary" [(ngModel)]="filtro" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="historico cards-bg">
+
+  <ion-row *ngFor="let i of rows">
+    <ion-col width-50 *ngFor="let historico of historicos | slice:(i*2):(i+1)*2">
+      <ion-card class="adv-map">
+        <div style="position: relative">
+          <!--<img [src]='historico.tipo_agenda.destaque'>-->
+          <img src='assets/img/advance-card-map-paris.png'>
+          <ion-fab left bottom class="fab-map">
+            <button ion-fab mini color="light" class="fab-map" (click)="onCarregarAgendas(historico)">
+                <ion-icon [name]='historico.tipo_agenda.icone'></ion-icon>
+            </button>
+          </ion-fab>
+        </div>
+        <br>
+        <ion-item>
+          <h2>{{ historico.tipo_agenda.descricao }}</h2>
+        </ion-item>
+        <ion-item actions>
+          <button ion-button icon-left color="mdc-orange" clear item-left (click)="onCarregarAgendas(historico)">
+              <ion-badge color="mdc-orange">{{ historico.qtde_todos }}</ion-badge>&nbsp;&nbsp;Agendas
+            </button>
+          <button ion-button icon-left color="mdc-grey" clear item-right (click)="onGerenciar(historico)">
+                <ion-icon name='md-more'></ion-icon>
+            </button>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ titulo }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="agenda-detail" *ngIf="form !== null">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <ion-list>
+            <ion-item-divider color="light">Informações de Agenda</ion-item-divider>
+            <ion-item>
+                <ion-label color="dark">Tipo de Agenda</ion-label>
+                <ion-select
+                    formControlName="tipo_agenda"
+                    #tipo_agenda>
+                    <ion-option *ngFor="let item of _tipoAgendaService.list | async" [value]="item.$key" >
+                        {{  item.descricao  }}
+                    </ion-option>
+                </ion-select>
+            </ion-item>
+            <control-messages [control]="form.controls.tipo_agenda"></control-messages>
+            <ion-item>
+                <ion-label stacked color="dark">Descrição</ion-label>
+                <ion-input
+                    placeholder="Ex. Visita aos meus pais na Bahia"
+                    formControlName="descricao"
+                    #descricao
+                    clearInput>
+                </ion-input>
+            </ion-item>
+            <control-messages [control]="form.controls.descricao"></control-messages>
+            <ion-item-divider color="light">Período de Realização</ion-item-divider>
+            <ion-item>
+                <ion-label color="dark">Data Inicial</ion-label>
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
+                    doneText="OK"
+                    formControlName="data_inicio"
+                    [min]="now"
+                    (ionChange)="onChangeDataInicio($event)"
+                    #data_inicio>
+                </ion-datetime>
+            </ion-item>
+            <control-messages [control]="form.controls.data_inicio"></control-messages>
+            <ion-item>
+                <ion-label color="dark">Data Final</ion-label>
+                <ion-datetime
+                    displayFormat="DD/MM/YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    cancelText="Cancelar"
+                    doneText="OK"
+                    formControlName="data_fim"
+                    [min]="form.value.data_inicio"
+                    #data_fim>
+                </ion-datetime>
+            </ion-item>
+            <control-messages [control]="form.controls.data_fim"></control-messages>
+        </ion-list>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col width-50 padding>
+                    <button ion-button icon-left color="light" (click)="onLimpar($event)" class="btn">
+                      <ion-icon name="brush"></ion-icon>
+                      Limpar
+                    </button>
+                </ion-col>
+                <ion-col width-50 padding>
+                    <button ion-button icon-left color="primary" type="submit" class="btn">
+                      <ion-icon name="checkmark"></ion-icon>
+                      Confirmar
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+</ion-content>

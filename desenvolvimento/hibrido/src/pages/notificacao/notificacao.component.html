@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>{{ titulo }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="marcarComoLida()">
+        <ion-icon ios="ios-done-all" md="md-done-all"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary" [(ngModel)]="filtro" placeholder="Pesquisa">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notificacao cards-bg social-cards">
+
+  <ion-card *ngFor="let notificacao of notificacoes | async | notificacaoFilter:filtro" 
+            #card [attr.category]="notificacao.categoria | lowercase">
+    <ion-item>
+      <ion-avatar item-left>
+        <img [src]="notificacao.avatar">
+      </ion-avatar>
+      <h2>{{ notificacao.titulo }}</h2>
+      <p>
+        <ion-icon name="calendar"></ion-icon>&nbsp;{{ notificacao.data_hora | date:'medium' }}
+      </p>
+      <ion-note item-right>
+        {{ notificacao.tempo }} atrás
+      </ion-note>
+    </ion-item>
+    <img [src]="notificacao.destaque">
+    <ion-card-content>
+      <p>{{ notificacao.descricao }}</p>
+    </ion-card-content>
+    <ion-item actions>
+      <button ion-button color="primary" clear item-left>
+        <ion-icon name='thumbs-up'></ion-icon>
+        12 Curtidas
+      </button>
+      <button ion-button icon-left color="primary" clear item-left (click)="visualizar(notificacao)">
+        <ion-icon name='open'></ion-icon>
+        Abrir
+      </button>
+      <button ion-button icon-left color="danger" clear item-right (click)="excluir(notificacao)">
+        <ion-icon name='trash'></ion-icon>
+        Excluir
+      </button>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

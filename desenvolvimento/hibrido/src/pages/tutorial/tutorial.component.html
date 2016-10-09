@@ -1,0 +1,24 @@
+<ion-header no-shadow>
+  <ion-navbar>
+    <ion-title>
+      {{titulo}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()">
+        Fechar
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial">
+
+  <ion-slides [options]="{pager: true}">
+    <ion-slide *ngFor="let tutorial of tutorials">
+      <img [src]="tutorial.url" class="slide-image" padding/>
+      <h2 class="slide-title" [innerHTML]="tutorial.titulo"></h2>
+      <p [innerHTML]="tutorial.descricao"></p>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

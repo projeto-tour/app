@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{titulo}}
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="salvar()">
+              Salvar
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="configuracao">
+
+    <ion-list>
+        <ion-item-group>
+            <ion-item-divider sticky>Avisos e Notifições</ion-item-divider>
+            <ion-item>
+                <ion-label>
+                    <p>Receber notificões de pontos de interesse</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>Receber notificões de promoções</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider sticky>Pesquisas</ion-item-divider>
+            <ion-item>
+                <ion-label>
+                    <p>Salvar o historico</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>Restringir a localização atual</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider sticky>Grupo de configurações</ion-item-divider>
+            <ion-item>
+                <ion-label>
+                    <p>Tipo de configuração 1</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>Tipo de configuração 2</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>Tipo de configuração n</p>
+                </ion-label>
+                <ion-toggle value="1" checked="true"></ion-toggle>
+            </ion-item>
+        </ion-item-group>
+    </ion-list>
+
+</ion-content>

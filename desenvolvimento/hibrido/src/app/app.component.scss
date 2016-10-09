@@ -1,0 +1,23 @@
+.app {
+
+}
+
+// Background da tela de login principal
+.bg {
+    background: url('../assets/img/home.png') no-repeat center center fixed;
+    background-color: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 200px;
+}
+
+// Favoritismo de agendas, rotas
+.favorito {
+    color: #E65100;
+}
+
+.nao-favorito {
+    color: #9E9E9E;
+}

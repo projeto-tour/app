@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ titulo }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onLoadMapa()" *ngIf="listRota && listRota.length > 0">
+          <ion-icon ios="ios-map" md="md-map"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="onAdd()" *ngIf="!listRota || listRota.length <= 0">
+          <ion-icon ios="ios-add" md="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-navbar color="light" *ngIf="agenda.$key">
+    <ion-title>Agenda: {{ agenda.descricao }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="rota cards-bg">
+
+  <div *ngFor="let rota of listRota">
+
+    <ion-card>
+      <ion-card-content>
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col width-10>
+              <ion-icon item-left name='pin'></ion-icon>
+            </ion-col>
+            <ion-col width-90>
+              <h4>
+                Saída: <strong color="mdc-grey">{{ rota.data_saida | date }}</strong> as
+                <strong color="mdc-grey">{{ rota.data_saida | date:'shortTime' }}</strong>
+              </h4>
+              <p>{{ rota.ponto_partida }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row><ion-col width-100><hr></ion-col></ion-row>
+          <ion-row>
+            <ion-col width-10>
+              <ion-icon item-left name='pin'></ion-icon>
+            </ion-col>
+            <ion-col width-90>
+              <h4>
+                Chegada: <strong color="mdc-grey">{{ rota.data_chegada | date }}</strong> as
+                <strong color="mdc-grey">{{ rota.data_chegada | date:'shortTime' }}</strong>
+              </h4>
+              <p>{{ rota.ponto_chegada }}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row><ion-col width-100><hr></ion-col></ion-row>
+        </ion-grid>
+        <!--<h4>
+          <ion-icon item-left name='calendar'></ion-icon>
+          Saída: <strong color="mdc-grey">{{ rota.data_saida | date }}</strong> as
+          <strong color="mdc-grey">{{ rota.data_saida | date:'shortTime' }}</strong>
+        </h4>
+        <p>{{ rota.ponto_partida }}</p>
+        <hr>
+        <h4>
+          <ion-icon item-left name='calendar'></ion-icon>
+          Chegada: <strong color="mdc-grey">{{ rota.data_chegada | date }}</strong> as
+          <strong color="mdc-grey">{{ rota.data_chegada | date:'shortTime' }}</strong>
+        </h4>
+        <p>{{ rota.ponto_chegada }}</p>
+        <hr>-->
+      </ion-card-content>
+      <ion-item actions>
+        <button ion-button icon-left color="primary" clear item-left (click)="onLoadMapa(rota)">
+                <ion-icon name='navigate'></ion-icon>
+                Navegar
+            </button>
+        <button ion-button icon-left color="primary" clear item-left (click)="onEdit(rota)">
+                <ion-icon name='create'></ion-icon>
+                Editar
+            </button>
+        <button ion-button icon-left color="danger" clear item-right (click)="onDelete(rota)">
+                <ion-icon name='trash'></ion-icon>
+                Excluir
+            </button>
+      </ion-item>
+    </ion-card>
+
+    <button ion-button color="light" small full (click)="onCreate(rota)">
+        <ion-icon  name="md-add"></ion-icon>
+        Incluir nova rota
+    </button>
+
+  </div>
+
+</ion-content>

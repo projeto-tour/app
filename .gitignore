@@ -54,6 +54,17 @@ desenvolvimento/dashboard/node_modules
 desenvolvimento/dashboard/public/bower_components
 desenvolvimento/dashboard/src/assets/bower_components
 
+desenvolvimento/hibrido/.sass-cache
+desenvolvimento/hibrido/.tmp
+desenvolvimento/hibrido/.versions
+desenvolvimento/hibrido/coverage
+desenvolvimento/hibrido/node_modules
+desenvolvimento/hibrido/tmp
+desenvolvimento/hibrido/temp
+desenvolvimento/hibrido/hooks
+desenvolvimento/hibrido/platforms
+desenvolvimento/hibrido/plugins
+
 # e2e
 desenvolvimento/dashboard/e2e/*.js
 desenvolvimento/dashboard/e2e/*.map

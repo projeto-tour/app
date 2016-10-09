@@ -1,0 +1,35 @@
+[
+  {
+    "$key": 1,
+    "categoria": "promocao",
+    "titulo": "Hotel Leão da Montanha",
+    "descricao": "Relaxe e se divirta no melhor hotel-fazenda do interior de São Paulo! Ofertas em até 10x sem juros.",
+    "url": "https://www.google.com.br/",
+    "avatar": "assets/img/advance-card-map-madison.png",
+    "destaque": "assets/img/advance-card-map-madison.png",
+    "data_hora": "2016-06-03 10:00:00",
+    "tempo": "4 hr"
+  },
+  {
+    "$key": 2,
+    "categoria": "ponto_interesse",
+    "titulo": "Museu da Energia",
+    "descricao": "Nesta sexta-feira, o Museu da Energia de São Paulo estará fechado para uma manutenção técnica. A unidade reabre no sábado, a partir das 14 horas.",
+    "url": "https://www.google.com.br/",
+    "avatar": "assets/img/advance-card-map-madison.png",
+    "destaque": "assets/img/advance-card-map-madison.png",
+    "data_hora": "2016-06-02 14:00:00",
+    "tempo": "1 dia"
+  },
+  {
+    "$key": 3,
+    "categoria": "promocao",
+    "titulo": "Hotel Leão de Juda",
+    "descricao": "Relaxe e se divirta no melhor hotel-fazenda do interior de Minas Gerais! Ofertas em até 10x sem juros.",
+    "url": "https://www.google.com.br/",
+    "avatar": "assets/img/advance-card-map-madison.png",
+    "destaque": "assets/img/advance-card-map-madison.png",
+    "data_hora": "2016-06-01 12:00:00",
+    "tempo": "2 dias"
+  }
+]

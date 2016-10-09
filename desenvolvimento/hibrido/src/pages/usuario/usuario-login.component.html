@@ -1,0 +1,84 @@
+<ion-content padding class="usuario-login bg">
+
+  <div class="logo">
+    <img src="assets/img/logo.png">
+  </div>
+
+  <ion-grid>
+    <form #loginForm="ngForm" novalidate>
+      <ion-row>
+        <ion-col width-100>
+          <ion-item>
+            <ion-icon name="person" item-left></ion-icon>
+            <ion-input
+                [(ngModel)]="credentials.email"
+                name="email"
+                type="text"
+                #email="ngModel"
+                spellcheck="false"
+                autocapitalize="off"
+                required
+                placeholder="E-mail">
+            </ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-icon name="lock" item-left></ion-icon>
+            <ion-input
+                [(ngModel)]="credentials.password"
+                name="password"
+                type="password"
+                #password="ngModel"
+                required
+                placeholder="Senha">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col width-50>
+          <button ion-button color="mdc-grey-800" (click)="onCreateAccount(loginForm)">Criar</button>
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button color="mdc-green" (click)="onLogin(loginForm)" type="submit">Login</button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <ion-row>
+      <ion-col width-40>
+        <hr style="border-top: 1px solid white;">
+      </ion-col>
+      <ion-col width-20>
+        <p color="light" style="text-align:center;"><strong>OU</strong></p>
+      </ion-col>
+      <ion-col width-40>
+        <hr style="border-top: 1px solid white;">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-25>
+        <button  ion-button icon-only color="twitter" (click)="onLoginTwitter()">
+          <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col width-25>
+        <button  ion-button icon-only color="facebook" (click)="onLoginFacebook()">
+          <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col width-25>
+        <button  ion-button icon-only color="danger" (click)="onLoginGoogle()">
+          <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col width-25>
+        <button ion-button color="github" (click)="onLoginAnonymous()">
+          PULAR
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
