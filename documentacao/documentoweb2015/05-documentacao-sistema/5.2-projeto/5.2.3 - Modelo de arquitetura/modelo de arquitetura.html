@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Visão geral do documento</title>
+		<title>Partiu! - Modelo de Arquitetura</title>
 		<meta charset="utf-8">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -47,7 +47,18 @@
 				<li class="list-group-item">
 			              <h1>Modelo de Arquitetura</h1>
 
-			              A imagem a seguir consiste em um modelo de Arquitetura do aplicativo Partiu!
+			              <p>Abaixo é descrita a arquitetura do projeto, baseada em suas tecnologias e comunicação entre componentes e nuvem do Firebase.</p>
+						  <p>A aplicação foi desenvolvida de forma híbrida, como um projeto Web, respeitando as diretivas de uma aplicação baseada em <i>Progressive Web Apps</i>. 
+						  Dessa forma, temos a interface definida para o aplicativo, baseado no framework Ionic 2, tendo como ferramenta de backend, responsável pelas regras de negócio,
+						  o framework Angular2, o mais novo framework da Google.
+						  Ainda no escopo do dispositivo, temos o AngularFire, que encapsula a Firebase SDK e nos permite fazer com o que a aplicação esteja diretamente conectada,
+						  na nuvem, ao Firebase, que é a ferramenta responsável por todo o gerenciamento do aplicativo.</p>
+						  <p>Alinhadas as funcionalidades nativas do dispositivo móvel, temos o <i>Web App Manifest</i>, o <i>Service Workers</i> e <i>App Shell</i>, para
+						  que seja possível que a aplicação utilize a especificação da <i>Progressive Web Apps</i>.</p>
+						  <p>Todo o gerenciamento de dados do aplicativo é baseado nas tecnologias Google, que provê ferramentas maduras para esse fim, além de 
+						  proporcionar um alto grau de estabilidade e permissionamento para garantirmos alta disponibilidade dos serviços.</p>
+						  <p>O aplicativo Partiu! utiliza as mais recentes tecnologias para prover uma melhor experiência aos nossos usuários.</p>
+						  </p>
 			              <br><br><br>
 			              <img src="modelo de arquitetura.png"/>
 			              
