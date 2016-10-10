@@ -52,13 +52,13 @@ export class AgendaDetailPage {
   }
 
   onSubmit(): void {
-    if (this.form.dirty && this.form.valid) {
+    if (this.form.valid) {
       if (this.isNovaAgenda) {
         this.criar();
       } else {
         this.atualizar();
       }
-    } else if (!this.form.valid) {
+    } else {
       this._globalMethod.mostrarMensagem('Por favor, preencha os campos de formulário corretamente.', this._navCtrl);
     }
   }
@@ -81,11 +81,12 @@ export class AgendaDetailPage {
   private criar() {
     let key = this._agendaService.create(this.form.value);
     if (key) {
-      this._tipoAgendaService.setAgenda(this.form.value.tipo_agenda, JSON.parse(`{"${key}": true }`))
+      this.agenda = this.getAgenda(key);
+      this._tipoAgendaService.setAgenda(this.agenda.tipo_agenda, JSON.parse(`{"${this.agenda.$key}": true }`))
         .then(data => {
           return this._globalMethod.mostrarMensagem('Dados de agenda foram salvos com êxito.', this._navCtrl);
         }).then(data => {
-          this._globalMethod.carregarPagina(RotaPage, key, true, this._navCtrl);
+          this._globalMethod.carregarPagina(RotaPage, _.clone(this.agenda), true, this._navCtrl);
         }).then(data => {
           this.dismiss();
         }).catch(this.handleError);
@@ -104,7 +105,7 @@ export class AgendaDetailPage {
       }).then(data => {
         return this._globalMethod.mostrarMensagem('Dados de agenda foram atualizados com êxito.', this._navCtrl);
       }).then(data => {
-        return this._globalMethod.carregarPagina(RotaPage, this.agenda, true, this._navCtrl);
+        return this._globalMethod.carregarPagina(RotaPage, _.clone(this.agenda), true, this._navCtrl);
       }).then(data => {
         this.dismiss();
       }).catch(this.handleError);
@@ -132,6 +133,19 @@ export class AgendaDetailPage {
       (<FormControl>this.form.controls['data_fim']).setValue(this.agenda ? this.agenda.data_fim : _.clone(this.now));
       (<FormControl>this.form.controls['tipo_agenda']).setValue(this.agenda ? this.agenda.tipo_agenda : this.listDeAgenda && this.listDeAgenda.length > 0 ? this.listDeAgenda[0].$key : '');
     }
+  }
+
+  private getAgenda(key: string): IAgenda {
+    return {
+        $key: key,
+        descricao: this.form.value.descricao,
+        data_inicio: this.form.value.data_inicio,
+        data_fim: this.form.value.data_fim,
+        tipo_agenda: this.form.value.tipo_agenda,
+        distancia: this.form.value.distancia,
+        favorito: this.form.value.favorito,
+        data_criacao: this.form.value.data_criacao
+      }
   }
 
   private dismiss() {

@@ -101,18 +101,28 @@ export class MapaPage {
 
   private carregarMapa() {
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        let mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      });
-    } else {
-      this._platform.ready().then(() => {
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //     let mapOptions = {
+    //       center: latLng,
+    //       zoom: 15,
+    //       mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     };
+    //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    //   });
+    // } else {
+    //   this._platform.ready().then(() => {
+    //     let latLng = new google.maps.LatLng(-15.7213869, -48.0783234);
+    //     let mapOptions = {
+    //       center: latLng,
+    //       zoom: 8,
+    //       mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     };
+    //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    //   });
+    // }
+    this._platform.ready().then(() => {
         let latLng = new google.maps.LatLng(-15.7213869, -48.0783234);
         let mapOptions = {
           center: latLng,
@@ -121,7 +131,6 @@ export class MapaPage {
         };
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       });
-    }
 
   }
 
