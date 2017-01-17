@@ -1,0 +1,2 @@
+5- Documentação de Software do Partiu!
+	-> Consideração: A nomenclatura dada ao usuário da aplicação foi amplamente discutida entre os integrantes do time, sendo escolhida a nomenclatura "usuário" para o ator por contemplar os possíveis cenários de utilização da aplicação, sendo que a nomenclatura "viajante" ficaria restrita a um perfil específico de utilizador da aplicação.
